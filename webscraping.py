@@ -12,7 +12,7 @@ from selenium.common.exceptions import TimeoutException
 from selenium.common.exceptions import WebDriverException
 
 ProgramInfo = collections.namedtuple('ProgramInfo',
-                                     'title, datetime, link_info, link_tickets, location, info, price')
+                                     'title, artist, datetime, link_info, link_tickets, location, info, price, language_version')
 
 
 class Webscraper:
@@ -24,6 +24,7 @@ class Webscraper:
         return "some information"
 
     def get_html_from_web(self, url):
+        print('...loading webpage')
         try:
             response = requests.get(url)
             # status = response.status_code
@@ -43,28 +44,6 @@ class Webscraper:
             driver = webdriver.Firefox()
             driver.get(url)
             WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, class_name)))
-            source = driver.page_source
-        except TimeoutException:
-            print("Error! Selenium Timeout: {}".format(url))
-            print('the script is aborted')
-            sys.exit(1)
-        except WebDriverException as e:
-            print("Error! Selenium Exception. {}".format(str(e)))
-            print('the script is aborted')
-            sys.exit(1)
-        finally:
-            driver.close()
-        print('Retrieved html from: ', url)
-        return source
-
-    def get_html_from_web_ajax_test(self, url): #TODO make this shit work
-        """Get page source code from a web page that uses ajax to load elements of the page one at a time.
-         Selenium will wait for the element with the class name 'class_name' to load before getting the page source"""
-        print('...loading webpage')
-        try:
-            driver = webdriver.Firefox()
-            driver.get(url)
-            WebDriverWait(driver, 10).until(EC.presence_of_element_located(()))
             source = driver.page_source
         except TimeoutException:
             print("Error! Selenium Timeout: {}".format(url))
@@ -188,7 +167,7 @@ class City46(Webscraper):
             link = dict['link']
             info = dict['info']
             programinfo = ProgramInfo(title=title, datetime=datetime, link_info=link, link_tickets=None,
-                                    location='City46', info=info, price='') #TODO kloppen die links?
+                                    location='City46', info=info, price='', artist='', language_version='') #TODO kloppen die links?
             return programinfo
         else:
             return None
@@ -213,7 +192,7 @@ class CinemaOstertor(Webscraper):
                     link = cell.find('a').get('href')
 
                     programinfo = ProgramInfo(title=title, datetime=datetime, link_info=link, link_tickets=None,
-                                            location='Cinema Ostertor', info ='', price='')
+                                            location='Cinema Ostertor', info ='', price='', artist='', language_version='')
                     films.append(programinfo)
         return films
 
@@ -242,6 +221,7 @@ class TheaterBremen(Webscraper):
         return urls
 
     def extract_program(self, html, base_url):
+        #TODO get artist
         program = []
         soup = bs4.BeautifulSoup(html, 'html.parser')
         days = soup.find_all(class_='day')
@@ -263,64 +243,76 @@ class TheaterBremen(Webscraper):
                 infos = show.find_all('p')
                 info = '\n'.join(info.text for info in infos)
                 programinfo = ProgramInfo(title=title, datetime=datetime, link_info=link_info, link_tickets=link_tickets,
-                                        location='Theater Bremen', info=info, price=price)
+                                        location='Theater Bremen', info=info, price=price, artist='', language_version='')
                 program.append(programinfo)
         return program
 
 class Filmkunst(Webscraper):
 
-    def extract_program(self, html):
-        pass
+    def extract_program(self, html, location, program_link):
+        program = []
+        link = 'https://www.kinoheld.de/'
+        soup = bs4.BeautifulSoup(html, 'html.parser')
+        films = soup.find_all('article')
+        for film in films:
+            datetime = film.find(class_='movie__date').text
+            datetime = Filmkunst.parse_datetime(datetime)
+            title = film.find(class_='movie__title').text.strip()
+            if title[-3:] in ['OmU', ' OV']:  # do some cleaning to remove white lines from some titles
+                title = title[:-3].strip()
+            language_version = film.find(class_='movie__flags').text.strip()
+            link_tickets = link + film.a.get('href')
+            programinfo = ProgramInfo(title=title, datetime=datetime, link_info=program_link, link_tickets=link_tickets,
+                                      location=location, info='', price='', artist='', language_version=language_version)
+            program.append(programinfo)
+        return program
+
+    def parse_datetime(datetime_string):
+        """datetime_string: 'So 08.07. 14:15'. Parse date from this, and guess the year"""
+        datetime = arrow.now('Europe/Berlin')
+        datetime = datetime.replace(month=int(datetime_string[6:8]), day=int(datetime_string[3:5]),
+                                    hour=int(datetime_string[10:12]), minute=int(datetime_string[13:15]),
+                                    second=0, microsecond=0)
+        if datetime < arrow.now("Europe/Berlin").shift(months=-1):
+            return datetime.replace(year=datetime.year + 1)
+        else:
+            return datetime
 
 
 class Schwankhalle(Webscraper):
 
-    def extract_program(self, table):
-        """ save film info in a temporary dictionary that changes throughout the for loop through the table.
-                In this for loop the dictionary is saved as a ProgramInfo namedtuple, which is appended to a list. This dictionary
-                is exported +/- every time when the loop encounters a time (indicating a new film)"""
+
+    def extract_program(self, html):
         program = []
-        temp_dict = {'date': None, 'time': None, 'link': None, 'title': None, 'info': None}
-        re_date = re.compile(r"\d{1,2}\.\d{1,2}\.?")  # last .? in case they forget last dot
-        re_time = re.compile(r"\d\d:\d\d")
+        soup = bs4.BeautifulSoup(html, 'html.parser')
 
-        for row in table:
-            for cell in row:
-                pass
-        #                 program.append(self.save_programinfo(temp_dict))  # 1/3 save the last film of the previous day
-        #                 temp_dict['title'] = None
-        #             elif re_date.match(cell.text):
-        #                 temp_dict['date'] = self.add_dot_to_date(cell.text)
-        #             elif re_time.match(cell.text):
-        #                 program.append(self.save_programinfo(temp_dict))  # 2/3 save all other films
-        #                 temp_dict['time'] = cell.text.strip()
-        #             elif cell.find('a'):
-        #                 temp_dict['link'] = 'http://www.city46.de/' + cell.find('a').get('href')
-        #                 title = cell.find('a').text
-        #                 temp_dict['title'] = title
-        #                 temp_dict['info'] = cell.text[len(title):]  # separate the title from the other info
-        #             else:  # in case there is extra info in the most right column
-        #                 temp_dict['info'] = temp_dict['info'] + ' | ' + cell.text
-        # program.append(self.save_programinfo(temp_dict))  # 3/3 save the last movie of the month
-        # return program
+        year = soup.find("td", class_="year-month").text.strip()[0:4]
+        table = soup.find('table')
+        for row in table.find_all('tr'):  # normal for row in table did not work
+            if not isinstance(row, str):  # skip empty table rows
+                if row.find(class_='date-container'):
+                    date = row.find(class_='date-container').text.strip()
+                    date = date + year
+                if row.find(class_='time-container'):  # going to assume that a program row always has a time cell
+                    time = row.find(class_='time-container').text.strip()[-9:-4]  # in case the time is 'ab ...'
+                    if not time:
+                        time = '09:00'
+                    datetime = arrow.get(date + time, 'D.M.YYYYhh:mm', tzinfo='Europe/Berlin')
+                    link = 'https://schwankhalle.de/{}'.format(row.a.get('href').strip())
 
-    def save_programinfo(self, dict):
-        if dict['date'] is not None and dict['title'] is not None:
-            title = dict['title']
-            datetime = arrow.get(dict['date'] + dict['time'], 'D.M.hh:mm', tzinfo='Europe/Berlin')
-            datetime = datetime.replace(year=arrow.now('Europe/Berlin').year)
-            link = dict['link']
-            info = dict['info']
-            programinfo = ProgramInfo(title=title, datetime=datetime, link_info=link, link_tickets=None,
-                                    location='City46', info=info, price='') #TODO kloppen die links?
-            return programinfo
-        else:
-            return None
+                    title_artist_info = row.find('td', class_='title')
 
-    def add_dot_to_date(self, string):
-        """in case they forgot the last dot in the date, add this dot"""
-        if string[-1] == '.':
-            return string.strip()
-        elif string[-1] != '.':
-            string = string + '.'
-            return string.strip()
+                    artist = title_artist_info.a.span.text
+                    title = title_artist_info.a.text[len(artist)+1:]  # title is not separated by tags
+                    info = title_artist_info.text[len(title)+1:].strip() # info is not separated by tags
+
+                    artist = artist.strip()
+                    title = title.strip()
+
+                    programinfo = ProgramInfo(title=title, artist=artist, datetime=datetime, link_info=link,
+                                              link_tickets=link,
+                                              location='Schwankhalle', info=info, price="", language_version='')
+                    program.append(programinfo)
+        return program
+
+

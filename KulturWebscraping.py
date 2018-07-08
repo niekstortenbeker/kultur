@@ -1,18 +1,26 @@
 import webscraping
 import arrow
-import bs4
+
+
+# TODO maybe use this in some way https://www.omdbapi.com/ or maybe this because this works for german titles too https://www.themoviedb.org/documentation/api?language=de-DE
+# TODO filter all non OMUs out, unless they are german original language
+# TODO save to some database, or maybe start easy with JSON
+# TODO make this automatic
+# todo get individual info of the stuff
 
 def main():
     print_header()
+
     city46 = create_database_city46()
-    ostertor = create_database_cinema_ostertor()
+    # ostertor = create_database_cinema_ostertor()
     theater = create_database_theater_bremen()
-    # schwankhalle = create_database_schwankhalle()
-    # TODO: get Schauburg et al, Schwankhalle
-    databases = [city46, ostertor, theater]
+    filmkunst = create_database_filmkunst()
+    schwankhalle = create_database_schwankhalle()
+
+    databases = [city46, theater, filmkunst, schwankhalle]
     database = merge_databases(databases)
     print_database(database)
-    create_database_filmkunst()
+
 
 
 
@@ -29,7 +37,7 @@ def create_database_city46():
     city46 = webscraping.City46()
     links = city46.get_urls(base_url)
     for link in links:
-        html = city46.get_html_from_web(link)  # todo check if this is working on a >20 date.
+        html = city46.get_html_from_web(link)
         # html = open('city46.html', 'r')
         table = city46.get_tables_from_html(html)
         program.extend(city46.extract_program(table))
@@ -67,21 +75,35 @@ def create_database_theater_bremen():
 
 
 def create_database_filmkunst():
-    print('\nWorking on Schauburg')
-    url = 'http://www.bremerfilmkunsttheater.de/kino_reservierungen/schauburg.html'
-    schauburg = webscraping.Filmkunst()
-    html = schauburg.get_html_from_web_ajax_test(url)
-    print(html)
+    complete_program = []
+    print('\nWorking on Bremer Filmkunst Theater')
+
+    urls_scrape = ['https://www.kinoheld.de/kino-bremen/schauburg-kino-bremen/shows/shows?mode=widget',
+                   'https://www.kinoheld.de/kino-bremen/gondel-filmtheater-bremen/shows/shows?mode=widget',
+                   'https://www.kinoheld.de/kino-bremen/atlantis-filmtheater-bremen/shows/shows?mode=widget']
+    urls_info = ['http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html',
+                 'http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html',
+                 'http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html']
+    names = ['Schauburg', 'Gondel', 'Atlantis']
+
+    for idx, url in enumerate(urls_scrape):
+        filmkunst = webscraping.Filmkunst()
+        html = filmkunst.get_html_from_web_ajax(url, 'movie.u-px-2.u-py-2')
+        program = filmkunst.extract_program(html, names[idx], urls_info[idx])
+        complete_program.extend(program)
+
+    print('Done with filmkunst!')
+    return complete_program
 
 
 def create_database_schwankhalle():
     print('\nWorking on Schwankhalle')
     url = 'http://schwankhalle.de/spielplan-1.html'
     schwankhalle = webscraping.Schwankhalle()
-    html = schwankhalle.get_html_from_web(url)
-    table = schwankhalle.get_tables_from_html(html)
-    table = schwankhalle.clean_rowspan_in_table(table)
-    schwankhalle.extract_program(table)
+    html = schwankhalle.get_html_from_web_ajax(url, 'date-container') # at some point requests starting giving SSLError
+    program = schwankhalle.extract_program(html)
+    print('Done with Schwankhalle!')
+    return program
 
 
 def merge_databases(databases):
@@ -100,19 +122,29 @@ def print_database(database):
     print()
     day = arrow.utcnow().day  # necessary to print lines between days
     now = arrow.utcnow()
-    week_later = now.shift(weeks=+1).replace(hour=00, minute=00)
+    week_later = now.shift(weeks=+1).replace(hour=0, minute=0, second=0, microsecond=0, tzinfo='Europe/Berlin')
     for programinfo in database:
         if programinfo.datetime > now and programinfo.datetime < week_later:
             if programinfo.datetime.day != day:  # print a day separator
                 day = programinfo.datetime.day
                 print(''.center(50, '-'))
-            print('{} | {} | {} | {} | {} | {}'.format(programinfo.datetime.format('ddd MM-DD HH:mm'),
-                                             programinfo.location.center(15, ' '),
-                                             programinfo.title,
-                                             programinfo.link_info,
-                                             programinfo.info.replace('\n', '. '),
-                                             programinfo.price))
+            if programinfo.location in ['Schauburg', 'Gondel', 'Atlantis']:
+                if programinfo.language_version:
+                    print_programinfo(programinfo) # only print OMUs and OV, skipping german stuff now
+                    # TODO print stuf that is in german original
+                    # TODO only print cinema ostertor in original (now skipping everything)
+            else:
+                print_programinfo(programinfo)
 
+
+def print_programinfo(programinfo):
+    print('{} | {} | {} {} | {} | {} | {}'.format(programinfo.datetime.format('ddd MM-DD HH:mm'),
+                                                 programinfo.location.center(15, ' '),
+                                                 programinfo.artist,
+                                                 programinfo.title,
+                                                 programinfo.link_info,
+                                                 programinfo.info.replace('\n', '. '),
+                                                 programinfo.price))
 
 if __name__ == '__main__':
     main()
