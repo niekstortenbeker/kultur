@@ -15,6 +15,9 @@ ProgramInfo = collections.namedtuple('ProgramInfo',
                                      'title, artist, datetime, link_info, link_tickets, location, info, price, language_version')
 
 
+# TODO get individual info of the stuff other than ostertor
+
+
 class Webscraper:
     # def __init__(self):
     #     # maybe get some stuff here TODO and how about title/name etc?
@@ -99,6 +102,18 @@ class Webscraper:
 
 class City46(Webscraper):
 
+    def create_program_db(self):
+        base_url = 'http://www.city46.de/programm/'
+        program = []
+
+        links = City46.get_urls(self, base_url)
+        for link in links:
+            html = City46.get_html_from_web(self, link)
+            table = City46.get_tables_from_html(self, html)
+            program.extend(City46.extract_program(self, table))
+        program = City46.cleanup_programinfo(self, program)
+        return program
+
     def get_urls(self, url):
         """use today's date to figure out the city 46 program url. If date > 20 also get next month"""
         urls = []
@@ -175,6 +190,15 @@ class City46(Webscraper):
 
 class CinemaOstertor(Webscraper):
 
+    def create_program_db(self):
+        url = 'http://cinema-ostertor.de/programm/'
+        html = CinemaOstertor.get_html_from_web(self, url)
+        table = CinemaOstertor.get_tables_from_html(self, html)
+        table = CinemaOstertor.clean_rowspan_in_table(self, table)
+        program = CinemaOstertor.extract_program(self, table)
+        program = CinemaOstertor.cleanup_programinfo(self, program)
+        return program
+
     def extract_program(self, html_table):
         films = []
         day = {}
@@ -189,15 +213,73 @@ class CinemaOstertor(Webscraper):
                     time = cell.find(class_='hours').text
                     datetime = date.replace(hour=int(time[0:2]), minute=int(time[3:5]), tzinfo='Europe/Berlin')
                     title = cell.find('a').text
-                    link = cell.find('a').get('href')
-
+                    link = cell.find('a').get('href').strip()
                     programinfo = ProgramInfo(title=title, datetime=datetime, link_info=link, link_tickets=None,
                                             location='Cinema Ostertor', info ='', price='', artist='', language_version='')
                     films.append(programinfo)
         return films
 
+    def create_meta_db(self, ostertor_programinfo):
+        meta_info = {}
+        movie_links = set([programinfo.link_info for programinfo in ostertor_programinfo])
+
+        for link in movie_links:
+            html = Webscraper.get_html_from_web(self, link)
+            soup = bs4.BeautifulSoup(html, 'html.parser')
+            meta_film = {'title': '', 'country': '', 'year': '', 'genre': '', 'duration': '', 'director': '',
+                         'language': '', 'description': '', 'img_poster': '', 'img_screenshot': ''}  # I want keys to be present also if values are absent
+
+            # don't do this anymore, just skip silently when it doesnt work
+            # title = soup.find(class_='page_title').text.strip()
+            # meta_film['title'] = title # should always have a title
+
+            title = soup.find(class_='page_title')
+            if title:
+                title = title.text.strip()
+                meta_film['title'] = title
+            country = soup.find(class_='event_country')
+            if country:
+                meta_film['country'] = country.text.strip()
+            year = soup.find(class_='event_year')
+            if year:
+                meta_film['year'] = year.text.strip()
+            genre = soup.find(class_='event_category')
+            if genre:
+                meta_film['genre'] = genre.text.strip()
+            duration = soup.find(class_='movies_length')
+            if duration:
+                meta_film['duration'] = duration.text.strip()
+            director = soup.find(class_='event_director')
+            if director:
+                meta_film['director'] = director.text.strip()
+            language = soup.find(class_='event_language')
+            if language:
+                meta_film['language'] = language.text.strip()
+            description = soup.find(class_='entry-content')  # description is in two p tags
+            if description:
+                description = description.find_all('p')
+                meta_film['description'] = ''.join([p.text for p in description]).strip()
+            img_poster = soup.find('img', class_='open_entry_image')
+            if img_poster:
+                meta_film['img_poster'] = img_poster.get('src').strip()
+            img_screenshot = soup.find('img', class_='alignright')
+            if img_screenshot:
+                meta_film['img_screenshot'] = img_screenshot.get('src').strip()
+
+            meta_info[title] = meta_film
+        return meta_info
+
 
 class TheaterBremen(Webscraper):
+
+    def create_program_db(self):
+        program = []
+        base_url = 'http://www.theaterbremen.de'
+        urls = TheaterBremen.get_urls(self, base_url)
+        for url in urls:
+            html = TheaterBremen.get_html_from_web_ajax(self, url, class_name='day')
+            program.extend(TheaterBremen.extract_program(self, html, base_url))
+        return program
 
     def get_urls(self, base_url):
         """use today's date to figure out the theaterbremen program url. If date > 20 also get next month"""
@@ -249,6 +331,23 @@ class TheaterBremen(Webscraper):
 
 class Filmkunst(Webscraper):
 
+    def create_program_db(self):
+        complete_program = []
+
+        urls_scrape = ['https://www.kinoheld.de/kino-bremen/schauburg-kino-bremen/shows/shows?mode=widget',
+                       'https://www.kinoheld.de/kino-bremen/gondel-filmtheater-bremen/shows/shows?mode=widget',
+                       'https://www.kinoheld.de/kino-bremen/atlantis-filmtheater-bremen/shows/shows?mode=widget']
+        urls_info = ['http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html',
+                     'http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html',
+                     'http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html']
+        names = ['Schauburg', 'Gondel', 'Atlantis']
+
+        for idx, url in enumerate(urls_scrape):
+            html = Filmkunst.get_html_from_web_ajax(self, url, 'movie.u-px-2.u-py-2')
+            program = Filmkunst.extract_program(self, html, names[idx], urls_info[idx])
+            complete_program.extend(program)
+        return complete_program
+
     def extract_program(self, html, location, program_link):
         program = []
         link = 'https://www.kinoheld.de/'
@@ -281,6 +380,12 @@ class Filmkunst(Webscraper):
 
 class Schwankhalle(Webscraper):
 
+    def create_program_db(self):
+        url = 'http://schwankhalle.de/spielplan-1.html'
+        # at some point requests starting giving SSLError so use selenium for ajax
+        html = Schwankhalle.get_html_from_web_ajax(self, url,'date-container')
+        program = Schwankhalle.extract_program(self, html)
+        return program
 
     def extract_program(self, html):
         program = []
@@ -314,5 +419,12 @@ class Schwankhalle(Webscraper):
                                               location='Schwankhalle', info=info, price="", language_version='')
                     program.append(programinfo)
         return program
+
+
+class Glocke(Webscraper):
+
+    def extract_program(self, html):
+        pass
+
 
 
