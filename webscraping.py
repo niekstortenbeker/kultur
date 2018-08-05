@@ -2,7 +2,6 @@ import bs4
 import requests
 import sys
 import arrow
-import collections
 import re
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -10,13 +9,10 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from selenium.common.exceptions import WebDriverException
-
-ProgramInfo = collections.namedtuple('ProgramInfo',
-                                     'title, artist, datetime, link_info, link_tickets, location, info, price, language_version')
-
+from pprint import pprint
 
 # TODO get individual info of the stuff other than ostertor
-
+# TODO can I remove self?
 
 class Webscraper:
     # def __init__(self):
@@ -30,10 +26,14 @@ class Webscraper:
         print('...loading webpage')
         try:
             response = requests.get(url)
+            if response.status_code == 404:
+                print('tried but failed to retrieve html from: ', url)
+                return None
             # status = response.status_code
             # print(response.text[0:500])
-            print('Retrieved html from: ', url)
-            return response.text
+            else:
+                print('Retrieved html from: ', url)
+                return response.text
         except requests.exceptions.ConnectionError as e:
             print("Error! Connection error: {}".format(e))
             print('the script is aborted')
@@ -93,11 +93,16 @@ class Webscraper:
                     rowspans[row_number] = int(cell['rowspan'])
         return html_table
 
-    def cleanup_programinfo(self, programinfo):
-        """ remove None's, remove duplicates"""
-        programinfo = [show for show in programinfo if show is not None]
-        programinfo = list(set(programinfo))  # remove duplicates
-        return programinfo
+    def german_month_to_int(self, month):
+        month = month.lower().strip('.')
+        if len(month) in [3, 4]:
+            months = {'jan': 1, 'feb': 2, 'mär': 3, 'maer': 3, 'märz': 3, 'apr': 4, 'mai': 5, 'jun': 6, 'jul': 7,
+                      'aug': 8, 'sep': 9, 'sept': 9, 'okt': 10, 'nov': 11, 'dez': 12}
+            return months[month]
+        else:
+            months = {'januar': 1, 'februar': 2, 'märz': 3, 'maerz': 3, 'april': 4, 'mai': 5, 'juni': 6, 'juli': 7,
+                      'august': 8, 'september': 9, 'oktober': 10, 'november': 11, 'dezember': 12}
+            return months[month]
 
 
 class City46(Webscraper):
@@ -109,9 +114,9 @@ class City46(Webscraper):
         links = City46.get_urls(self, base_url)
         for link in links:
             html = City46.get_html_from_web(self, link)
-            table = City46.get_tables_from_html(self, html)
-            program.extend(City46.extract_program(self, table))
-        program = City46.cleanup_programinfo(self, program)
+            if html:
+                table = City46.get_tables_from_html(self, html)
+                program.extend(City46.extract_program(self, table))
         return program
 
     def get_urls(self, url):
@@ -122,10 +127,10 @@ class City46(Webscraper):
                   9: 'september', 10: 'oktober', 11: 'november', 12: 'dezember'}
 
         date = arrow.now('Europe/Berlin')
-        year = date.year
+        #year = date.year
         month = date.month
         day = date.day
-        full_link = "{}{}-{}.html".format(base_link, months[month], year)
+        full_link = "{}{}.html".format(base_link, months[month])  #"{}{}-{}.html".format(base_link, months[month], year)
         urls.append(full_link)
 
         if day > 20:
@@ -137,7 +142,8 @@ class City46(Webscraper):
         return urls
 
     def extract_program(self, html_table):
-        """ save film info in a temporary dictionary that changes throughout the for loop through the table.
+        """ very ugly this, but the HTML is also really ugly.
+        save film info in a temporary dictionary that changes throughout the for loop through the table.
         In this for loop the dictionary is saved as a ProgramInfo namedtuple, which is appended to a list. This dictionary
         is exported +/- every time when the loop encounters a time (indicating a new film)"""
         films = []
@@ -149,12 +155,14 @@ class City46(Webscraper):
             for cell in row:
                 if cell.text:
                     if cell.text in ['MO', 'DI', 'MI', 'DO', 'FR', 'SA', 'SO']:
-                        films.append(self.save_programinfo(temp_dict))  # 1/3 save the last film of the previous day
+                        if temp_dict['date'] and temp_dict['title']:
+                            films.append(self.save_programinfo(temp_dict))  # 1/3 save the last film of the previous day
                         temp_dict['title'] = None
                     elif re_date.match(cell.text):
                         temp_dict['date'] = self.add_dot_to_date(cell.text)
                     elif re_time.match(cell.text):
-                        films.append(self.save_programinfo(temp_dict))  # 2/3 save all other films
+                        if temp_dict['date'] and temp_dict['title']:
+                            films.append(self.save_programinfo(temp_dict))  # 2/3 save all other films
                         temp_dict['time'] = cell.text.strip()
                     elif cell.find('a'):
                         temp_dict['link'] = 'http://www.city46.de/' + cell.find('a').get('href')
@@ -174,18 +182,17 @@ class City46(Webscraper):
             string = string + '.'
             return string.strip()
 
-    def save_programinfo(self, dict):
-        if dict['date'] is not None and dict['title'] is not None:
-            title = dict['title']
-            datetime = arrow.get(dict['date'] + dict['time'], 'D.M.hh:mm', tzinfo='Europe/Berlin')
+    def save_programinfo(self, temp_dict):
+        if temp_dict['date'] and temp_dict['title']: # skip empty
+            title = temp_dict['title']
+            datetime = arrow.get(temp_dict['date'] + temp_dict['time'], 'D.M.hh:mm', tzinfo='Europe/Berlin')
             datetime = datetime.replace(year=arrow.now('Europe/Berlin').year)
-            link = dict['link']
-            info = dict['info']
-            programinfo = ProgramInfo(title=title, datetime=datetime, link_info=link, link_tickets=None,
-                                    location='City46', info=info, price='', artist='', language_version='') #TODO kloppen die links?
+            link = temp_dict['link']
+            info = temp_dict['info']
+            programinfo = dict(title=title, datetime=datetime, link_info=link, link_tickets='',
+                                    location='City46', info=info, price='', artist='', language_version='')
             return programinfo
-        else:
-            return None
+
 
 
 class CinemaOstertor(Webscraper):
@@ -196,11 +203,10 @@ class CinemaOstertor(Webscraper):
         table = CinemaOstertor.get_tables_from_html(self, html)
         table = CinemaOstertor.clean_rowspan_in_table(self, table)
         program = CinemaOstertor.extract_program(self, table)
-        program = CinemaOstertor.cleanup_programinfo(self, program)
         return program
 
     def extract_program(self, html_table):
-        films = []
+        program = []
         day = {}
 
         for row in html_table:
@@ -214,59 +220,68 @@ class CinemaOstertor(Webscraper):
                     datetime = date.replace(hour=int(time[0:2]), minute=int(time[3:5]), tzinfo='Europe/Berlin')
                     title = cell.find('a').text
                     link = cell.find('a').get('href').strip()
-                    programinfo = ProgramInfo(title=title, datetime=datetime, link_info=link, link_tickets=None,
+                    programinfo = dict(title=title, datetime=datetime, link_info=link, link_tickets='',
                                             location='Cinema Ostertor', info ='', price='', artist='', language_version='')
-                    films.append(programinfo)
-        return films
+                    program.append(programinfo)
+            # website has a table for the complete program, and tables for individual films. Therefore remove
+            # duplicates. Cannot only use first table because sometimes two weeks are displayed.
+            program = [dict(t) for t in set([tuple(d.items()) for d in program])]  # remove duplicates
+        return program
 
     def create_meta_db(self, ostertor_programinfo):
         meta_info = {}
-        movie_links = set([programinfo.link_info for programinfo in ostertor_programinfo])
+        movie_links = set([programinfo['link_info'] for programinfo in ostertor_programinfo])
 
         for link in movie_links:
             html = Webscraper.get_html_from_web(self, link)
-            soup = bs4.BeautifulSoup(html, 'html.parser')
-            meta_film = {'title': '', 'country': '', 'year': '', 'genre': '', 'duration': '', 'director': '',
-                         'language': '', 'description': '', 'img_poster': '', 'img_screenshot': ''}  # I want keys to be present also if values are absent
+            if html:
+                soup = bs4.BeautifulSoup(html, 'html.parser')
+                meta_film = {'title': '',
+                             'country': '',
+                             'year': '',
+                             'genre': '',
+                             'duration': '',
+                             'director': '',
+                             'language': '',
+                             'description': '',
+                             'img_poster': '',
+                             'img_screenshot': '',
+                             }  # I want keys to be present also if values are absent # TODO oh yeah why?
 
-            # don't do this anymore, just skip silently when it doesnt work
-            # title = soup.find(class_='page_title').text.strip()
-            # meta_film['title'] = title # should always have a title
+                title = soup.find(class_='page_title')
+                if title:
+                    title = title.text.strip()
+                    meta_film['title'] = title
+                country = soup.find(class_='event_country')
+                if country:
+                    meta_film['country'] = country.text.strip()
+                year = soup.find(class_='event_year')
+                if year:
+                    meta_film['year'] = year.text.strip()
+                genre = soup.find(class_='event_category')
+                if genre:
+                    meta_film['genre'] = genre.text.strip()
+                duration = soup.find(class_='movies_length')
+                if duration:
+                    meta_film['duration'] = duration.text.strip()
+                director = soup.find(class_='event_director')
+                if director:
+                    meta_film['director'] = director.text.strip()
+                language = soup.find(class_='event_language')
+                if language:
+                    meta_film['language'] = language.text.strip()
+                description = soup.find(class_='entry-content')  # description is in two p tags
+                if description:
+                    description = description.find_all('p')
+                    meta_film['description'] = ''.join([p.text for p in description]).strip()
+                img_poster = soup.find('img', class_='open_entry_image')
+                if img_poster:
+                    meta_film['img_poster'] = img_poster.get('src').strip()
+                img_screenshot = soup.find('img', class_='alignright')
+                if img_screenshot:
+                    meta_film['img_screenshot'] = img_screenshot.get('src').strip()
 
-            title = soup.find(class_='page_title')
-            if title:
-                title = title.text.strip()
-                meta_film['title'] = title
-            country = soup.find(class_='event_country')
-            if country:
-                meta_film['country'] = country.text.strip()
-            year = soup.find(class_='event_year')
-            if year:
-                meta_film['year'] = year.text.strip()
-            genre = soup.find(class_='event_category')
-            if genre:
-                meta_film['genre'] = genre.text.strip()
-            duration = soup.find(class_='movies_length')
-            if duration:
-                meta_film['duration'] = duration.text.strip()
-            director = soup.find(class_='event_director')
-            if director:
-                meta_film['director'] = director.text.strip()
-            language = soup.find(class_='event_language')
-            if language:
-                meta_film['language'] = language.text.strip()
-            description = soup.find(class_='entry-content')  # description is in two p tags
-            if description:
-                description = description.find_all('p')
-                meta_film['description'] = ''.join([p.text for p in description]).strip()
-            img_poster = soup.find('img', class_='open_entry_image')
-            if img_poster:
-                meta_film['img_poster'] = img_poster.get('src').strip()
-            img_screenshot = soup.find('img', class_='alignright')
-            if img_screenshot:
-                meta_film['img_screenshot'] = img_screenshot.get('src').strip()
-
-            meta_info[title] = meta_film
+                meta_info[title] = meta_film
         return meta_info
 
 
@@ -324,7 +339,7 @@ class TheaterBremen(Webscraper):
                 title = links[0].text.strip()
                 infos = show.find_all('p')
                 info = '\n'.join(info.text for info in infos)
-                programinfo = ProgramInfo(title=title, datetime=datetime, link_info=link_info, link_tickets=link_tickets,
+                programinfo = dict(title=title, datetime=datetime, link_info=link_info, link_tickets=link_tickets,
                                         location='Theater Bremen', info=info, price=price, artist='', language_version='')
                 program.append(programinfo)
         return program
@@ -361,7 +376,7 @@ class Filmkunst(Webscraper):
                 title = title[:-3].strip()
             language_version = film.find(class_='movie__flags').text.strip()
             link_tickets = link + film.a.get('href')
-            programinfo = ProgramInfo(title=title, datetime=datetime, link_info=program_link, link_tickets=link_tickets,
+            programinfo = dict(title=title, datetime=datetime, link_info=program_link, link_tickets=link_tickets,
                                       location=location, info='', price='', artist='', language_version=language_version)
             program.append(programinfo)
         return program
@@ -376,6 +391,98 @@ class Filmkunst(Webscraper):
             return datetime.replace(year=datetime.year + 1)
         else:
             return datetime
+
+    def create_meta_db(self):
+        meta_db = {}
+        urls = ['https://www.kinoheld.de/kino-bremen/schauburg-kino-bremen/shows/movies?mode=widget',
+                'https://www.kinoheld.de/kino-bremen/gondel-filmtheater-bremen/shows/movies?mode=widget',
+                'https://www.kinoheld.de/kino-bremen/atlantis-filmtheater-bremen/shows/movies?mode=widget']
+        names = ['Schauburg', 'Gondel', 'Atlantis']
+        for idx, url in enumerate(urls):
+            html = Filmkunst.get_meta_html(self, url)
+            meta = Filmkunst.extract_meta(self, html, names[idx])
+            meta_db[names[idx]] = meta
+        return meta_db
+
+
+    def get_meta_html(self, url):
+        """I need to click some buttons to get all the info in the html"""
+        print('...loading webpage')
+        try:
+            driver = webdriver.Firefox()
+            driver.get(url)
+            # there is an overlay while loading that prevents clicking buttons, even when they are already there
+            # it does not click buttons of films without trailers, not sure if this is a problem
+            button_class = 'ui-button.ui-corners-bottom-left.ui-ripple.ui-button--secondary.u-flex-grow-1'
+            overlay_class = "loading-indicator__background.is-loading"
+            WebDriverWait(driver, 10).until_not(EC.visibility_of_element_located((By.CLASS_NAME, overlay_class)))
+            buttons = driver.find_elements_by_class_name(button_class)
+            for button in buttons:
+                button.click()
+            source = driver.page_source
+        except TimeoutException:
+            print("Error! Selenium Timeout: {}".format(url))
+            print('the script is aborted')
+            sys.exit(1)
+        except WebDriverException as e:
+            print("Error! Selenium Exception. {}".format(str(e)))
+            print('the script is aborted')
+            sys.exit(1)
+        finally:
+            driver.close()
+        print('Retrieved html from: ', url)
+        return source
+
+    def extract_meta(self, html, location):
+        meta_info = {}
+        soup = bs4.BeautifulSoup(html, 'html.parser')
+        films = soup.find_all('article')
+
+        for film in films:
+            meta_film = {'title': '',
+                         'title_original': '',
+                         'country': '',
+                         'year': '',
+                         'genre': '',
+                         'duration': '',
+                         'director': '',
+                         'language': '',
+                         'description': '',
+                         'img_poster': '',
+                         'img_screenshot': '',
+                         'location': location,  #TODO maybe remove location in metainfo, this is programinfo
+                         }  # I want keys to be present also if values are absent
+
+            try:
+                dl = film.find(class_='movie__additional-data').find('dl')
+                dt = [tag.text.strip().lower() for tag in dl.find_all('dt')]
+                dd = [tag.text.strip() for tag in dl.find_all('dd')]
+                meta_film['title'] = dd[dt.index('titel')]  # I always need a title
+                if 'originaltitel' in dt:
+                    meta_film['title_original'] = dd[dt.index('originaltitel')]
+                if 'produktion' in dt:
+                    meta_film['country'] = dd[dt.index('produktion')][:-4].strip().rstrip(',')
+                if 'erscheinungsdatum' in dt:
+                    meta_film['year'] = dd[dt.index('erscheinungsdatum')][-4:]
+                if 'regie' in dt:
+                    meta_film['director'] = dd[dt.index('regie')]
+                if 'darsteller' in dt:
+                    meta_film['actors'] = dd[dt.index('darsteller')]
+                meta_film['description'] = ''.join([p.text for p in film.find_all('p')])
+                img_screenshot = film.find('div', class_='movie__scenes')
+                if img_screenshot:
+                    img_screenshot = img_screenshot.find_all('img')
+                    meta_film['img_screenshot'] = [img.get('data-src').strip() for img in img_screenshot]
+                img_poster = film.find('div', class_='movie__image')
+                if img_poster:
+                    img_poster = img_poster.find('img').get('src').strip()
+                    meta_film['img_poster'] = f'https://www.kinoheld.de{img_poster}'
+
+                meta_info[meta_film['title']] = meta_film
+
+            except AttributeError:  # in case there is not enough information for the meta database, such as a <dd>
+                pass
+        return meta_info
 
 
 class Schwankhalle(Webscraper):
@@ -414,7 +521,7 @@ class Schwankhalle(Webscraper):
                     artist = artist.strip()
                     title = title.strip()
 
-                    programinfo = ProgramInfo(title=title, artist=artist, datetime=datetime, link_info=link,
+                    programinfo = dict(title=title, artist=artist, datetime=datetime, link_info=link,
                                               link_tickets=link,
                                               location='Schwankhalle', info=info, price="", language_version='')
                     program.append(programinfo)
@@ -423,8 +530,47 @@ class Schwankhalle(Webscraper):
 
 class Glocke(Webscraper):
 
+    def create_program_db(self):
+        url = 'https://www.glocke.de/de/Home'
+        html = Glocke.get_html_from_web(self, url)
+        program = Glocke.extract_program(self, html)
+        return(program)
+
     def extract_program(self, html):
-        pass
+        program = []
+        soup = bs4.BeautifulSoup(html, 'html.parser')
 
+        program_html = soup.find('div', id='inhalt_mitte')
+        dates = program_html.find_all('div', class_='va_links')
+        other_infos = program_html.find_all('div', class_='va_rechts')
+        if not len(dates) == len(other_infos):
+            print('oh no dicts are not the same size, check webscraping extract program')
+            return None
+        for idx, other_info in enumerate(other_infos):
+            date = dates[idx].find(class_='va_datum').text.strip()
+            month = Glocke.german_month_to_int(self, date[-3:])
+            day = date[:2]
+            time_location = other_info.find(class_='ort_uhrzeit')
+            time = time_location.text.strip()[:6]
+            datetime = Glocke.parse_datetime(self, time, day, month)
 
+            location_details = time_location.text.strip()[10:]
+            title = other_info.find('br').find_next('br').previous_sibling  # for some reason next_sibling didn't always work
+            artist = other_info.find('br').previous_sibling
+            link = 'https://www.glocke.de/de/{}'.format(other_info.a.get('href'))
+            programinfo = dict(title=title, artist=artist, datetime=datetime, link_info=link,
+                               link_tickets=link, location_details=location_details,
+                               location='Glocke', info='', price="", language_version='')
+            program.append(programinfo)
+        return program
+
+    def parse_datetime(self, time, day, month):
+        """get arrow object from date from this, and guess the year"""
+        datetime = arrow.now('Europe/Berlin')
+        datetime = datetime.replace(month=month, day=int(day),
+                                    hour=int(time[:2]), minute=int(time[3:]), second=0, microsecond=0)
+        if datetime < arrow.now("Europe/Berlin").shift(months=-1):
+            return datetime.replace(year=datetime.year + 1)
+        else:
+            return datetime
 
