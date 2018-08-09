@@ -66,13 +66,11 @@ class Webscraper:
         lists, in which the inner lists are the rows. The cells are stored as bs4.element.Tag.
         Note, it does not handle rowspan or colspan"""
         soup = bs4.BeautifulSoup(html, 'html.parser')
-        html_tables = soup.find_all('table')
 
         table = []
-        for html_table in html_tables:
-            for row in html_table.find_all('tr'):  # <tr> = row
-                row_list = [cell for cell in row.find_all(['td', 'th'])]  # <td> = data cell <th> = header cell
-                table.append(row_list)
+        for row in soup.find_all('tr'):  # <tr> = row
+            row_list = [cell for cell in row.find_all(['td', 'th'])]  # <td> = data cell <th> = header cell
+            table.append(row_list)
         return table
 
     def clean_rowspan_in_table(self, html_table):
@@ -116,7 +114,6 @@ class City46(Webscraper):
             html = City46.get_html_from_web(self, link)
             if html:
                 table = City46.get_tables_from_html(self, html)
-                print(table)
                 program.extend(City46.extract_program(self, table))
         return program
 
@@ -161,7 +158,6 @@ class City46(Webscraper):
                         temp_dict['title'] = None
                     elif re_date.match(cell.text):
                         temp_dict['date'] = self.add_dot_to_date(cell.text)
-                        print(cell.text)
                     elif re_time.match(cell.text):
                         if temp_dict['date'] and temp_dict['title']:
                             films.append(self.save_programinfo(temp_dict))  # 2/3 save all other films

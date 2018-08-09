@@ -1,6 +1,5 @@
 import arrow
 import json
-from pprint import pprint
 
 # TODO export to HTML
 # TODO there is stuff here that should be database handling or something
@@ -20,13 +19,19 @@ def db_to_json(db_programinfo, db_metainfo):
         json.dump(db_metainfo, f, indent=2)
         print('saved metainfo to JSON')
 
+    with open('scraping_date.txt', 'w') as f:
+        f.write(arrow.now().format())
+
 def json_to_db():
     with open('db_programinfo.json', 'r') as f:
         db_programinfo = json.load(f)
 
     with open('db_metainfo.json', 'r') as f:
         db_metainfo = json.load(f)
-    return db_programinfo, db_metainfo
+
+    with open('scraping_date.txt', 'r') as f:
+        scraping_date = f.read()
+    return db_programinfo, db_metainfo, scraping_date
 
 
 def insert_arrow_objects_in_programinfo(db_programinfo):
@@ -118,9 +123,9 @@ def print_database(db_programinfo, db_metainfo):
 
 def print_database_header():
     print()
-    print(''.center(50, '-'))
+    print(''.center(70, '-'))
     print('PROGRAM'.center(50, ' '))
-    print(''.center(50, '-'))
+    print(''.center(70, '-'))
     print()
 
 
