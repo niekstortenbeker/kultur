@@ -13,8 +13,8 @@ def main():
                   glocke_program]
     program_db = merge_databases(program_db)
 
-    meta_db = {'Cinema Ostertor': ostertor_meta,
-               'Filmkunst': filmkunst_meta}
+    meta_db = {**ostertor_meta, **filmkunst_meta}
+
     return program_db, meta_db
 
 
@@ -68,7 +68,7 @@ def create_db_schwankhalle():
 
 def create_database_glocke():
     """ only does the first five things because I'm lazy"""
-    print('Working on Glocke')
+    print('\nWorking on Glocke')
     glocke = webscraping.Glocke()
     program = glocke.create_program_db()
     print('Done with Glocke!')

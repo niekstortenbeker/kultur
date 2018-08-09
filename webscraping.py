@@ -116,6 +116,7 @@ class City46(Webscraper):
             html = City46.get_html_from_web(self, link)
             if html:
                 table = City46.get_tables_from_html(self, html)
+                print(table)
                 program.extend(City46.extract_program(self, table))
         return program
 
@@ -160,6 +161,7 @@ class City46(Webscraper):
                         temp_dict['title'] = None
                     elif re_date.match(cell.text):
                         temp_dict['date'] = self.add_dot_to_date(cell.text)
+                        print(cell.text)
                     elif re_time.match(cell.text):
                         if temp_dict['date'] and temp_dict['title']:
                             films.append(self.save_programinfo(temp_dict))  # 2/3 save all other films
@@ -282,6 +284,7 @@ class CinemaOstertor(Webscraper):
                     meta_film['img_screenshot'] = img_screenshot.get('src').strip()
 
                 meta_info[title] = meta_film
+        meta_info = {'Cinema Ostertor': meta_info}
         return meta_info
 
 
@@ -400,7 +403,7 @@ class Filmkunst(Webscraper):
         names = ['Schauburg', 'Gondel', 'Atlantis']
         for idx, url in enumerate(urls):
             html = Filmkunst.get_meta_html(self, url)
-            meta = Filmkunst.extract_meta(self, html, names[idx])
+            meta = Filmkunst.extract_meta(self, html)
             meta_db[names[idx]] = meta
         return meta_db
 
@@ -433,7 +436,7 @@ class Filmkunst(Webscraper):
         print('Retrieved html from: ', url)
         return source
 
-    def extract_meta(self, html, location):
+    def extract_meta(self, html):
         meta_info = {}
         soup = bs4.BeautifulSoup(html, 'html.parser')
         films = soup.find_all('article')
@@ -450,7 +453,6 @@ class Filmkunst(Webscraper):
                          'description': '',
                          'img_poster': '',
                          'img_screenshot': '',
-                         'location': location,  #TODO maybe remove location in metainfo, this is programinfo
                          }  # I want keys to be present also if values are absent
 
             try:
@@ -480,7 +482,7 @@ class Filmkunst(Webscraper):
 
                 meta_info[meta_film['title']] = meta_film
 
-            except AttributeError:  # in case there is not enough information for the meta database, such as a <dd>
+            except AttributeError:  # in case there is not enough information for the meta database, such as no <dd>
                 pass
         return meta_info
 

@@ -37,22 +37,29 @@ def insert_arrow_objects_in_programinfo(db_programinfo):
 
 # TODO this should probably go somewhere else
 def quality_control_dbs(db_programinfo, db_metainfo):
-    db_metainfo = check_meta_for_program(db_programinfo, db_metainfo, 'Cinema Ostertor')
-    db_metainfo = check_meta_for_program(db_programinfo, db_metainfo, 'Filmkunst')
+    """so far only check for shows in programinfo but not in metainfo if there is a case mismatch in the title"""
+    print('\n\nPerforming a quality control on the metainfo and programinfo databases')
+    db_metainfo = find_and_change_case_errors(db_programinfo, db_metainfo, 'Cinema Ostertor')
+    db_metainfo = find_and_change_case_errors(db_programinfo, db_metainfo, 'Schauburg')
+    db_metainfo = find_and_change_case_errors(db_programinfo, db_metainfo, 'Atlantis')
+    db_metainfo = find_and_change_case_errors(db_programinfo, db_metainfo, 'Gondel')
     return db_metainfo
 
-
-def check_meta_for_program(db_programinfo, db_metainfo, location):
-    # Find the titles that are present in programinfo but not in metainfo ("no_matches")
+#TODO probably split the below function
+def find_and_change_case_errors(db_programinfo, db_metainfo, location):
+    """for the shows that don't match (in no_matches) see if there is a difference in case usage for the title in
+       programinfo and metainfo. If so, change the case in metainfo to reflect the case usage in programinfo"""
+    print(f'\nworking on {location}')
     program_titles = set([programinfo['title']
                                    for programinfo in db_programinfo
                                    if programinfo['location'] == location])
     meta_titles = list(db_metainfo[location].keys())
+
     no_matches = find_no_matches_iterables(loop_iterable=program_titles,
                                            search_iterable=meta_titles)
     if no_matches:
-        # see if the no_matches can match when ignoring case, if so adjust the db_metainfo
         matches_after_case_change = []
+
         for no_match in no_matches:
             for meta_title in meta_titles:
                 if no_match.lower() == meta_title.lower():
@@ -76,7 +83,6 @@ def find_no_matches_iterables(loop_iterable, search_iterable):
     return no_matches
 
 
-
 def print_database(db_programinfo, db_metainfo):
     print_database_header()
 
@@ -90,38 +96,21 @@ def print_database(db_programinfo, db_metainfo):
                 print(''.center(50, '-'))
 
             if programinfo['location'] in ['Schauburg', 'Gondel', 'Atlantis']:
-                title = programinfo['title']
                 if programinfo['language_version']:
                     print_programinfo(programinfo) # print OMUs and OV
                 else:
-                    try:
-                        country = db_metainfo['Filmkunst'][title]['country'].lower()
-                        # Otherwise if it is made in a german speaking country chances are it's not dubbed
-                        if 'deutschland' in country:
-                            print_programinfo(programinfo)
-                        elif 'österreich' in country:
-                            print_programinfo(programinfo)
-                        elif 'schweiz' in country:
-                            print_programinfo(programinfo)
-                    except KeyError:
-                        print(f'!keyerror for "{title}" in Filmkunst')
+                    if_german_print_programinfo(programinfo, db_metainfo, programinfo['location'])
 
             elif programinfo['location'] == 'Cinema Ostertor':
+                # If any language info is present it's probably not dubbed and I want to see it
                 title = programinfo['title']
                 try:
-                    country = db_metainfo['Cinema Ostertor'][title]['country'].lower()
-                    # If any language info is present it's probably not dubbed and I want to see it
                     if db_metainfo['Cinema Ostertor'][title]['language']:
-                        print_programinfo(programinfo)
-                    # Otherwise if it is made in a german speaking country chances are it's not dubbed
-                    elif 'deutschland' in country:
-                        print_programinfo(programinfo)
-                    elif 'österreich' in country:
-                        print_programinfo(programinfo)
-                    elif 'schweiz' in country:
                         print_programinfo(programinfo)
                 except KeyError:
                     print(f'!keyerror for "{title}" in Cinema Ostertor')
+                if_german_print_programinfo(programinfo, db_metainfo, 'Cinema Ostertor')
+
 
             else:
                 print_programinfo(programinfo)
@@ -144,3 +133,16 @@ def print_programinfo(programinfo):
                                                   programinfo['info'].replace('\n', '. '),
                                                   programinfo['price']))
 
+def if_german_print_programinfo(programinfo, db_metainfo, location_name):
+    title = programinfo['title']
+    try:
+        country = db_metainfo[location_name][title]['country'].lower()
+        # Otherwise if it is made in a german speaking country chances are it's not dubbed
+        if 'deutschland' in country:
+            print_programinfo(programinfo)
+        elif 'österreich' in country:
+            print_programinfo(programinfo)
+        elif 'schweiz' in country:
+            print_programinfo(programinfo)
+    except KeyError:
+        print(f'!keyerror for "{title}" in {location_name}')
