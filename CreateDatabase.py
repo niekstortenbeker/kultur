@@ -2,6 +2,7 @@ import webscraping
 
 
 def main():
+    print('\nScraping the program web pages')
     webscraping.start_driver()
     city46_program = create_db_city46()
     theater_program = create_db_theater_bremen()
@@ -27,53 +28,47 @@ def print_header():
 
 
 def create_db_city46():
-    print('\nWorking on City 46')
+    print('\n  Working on City 46')
     city46 = webscraping.City46()
     program = city46.create_program_db()
-    print('Done with City 46!')
     return program
 
 
 def create_db_cinema_ostertor():
-    print('\nWorking on Cinema Ostertor')
+    print('\n  Working on Cinema Ostertor')
     ostertor = webscraping.CinemaOstertor()
     program = ostertor.create_program_db()
     meta = ostertor.create_meta_db(program)
-    print('Done with Cinema Ostertor!')
     return program, meta
 
 
 def create_db_theater_bremen():
-    print('\nWorking on Theater Bremen')
+    print('\n  Working on Theater Bremen')
     theater_bremen = webscraping.TheaterBremen()
     program = theater_bremen.create_program_db()
-    print('Done with Theater Bremen!')
     return program
 
 
 def create_db_filmkunst():
-    print('\nWorking on Bremer Filmkunst Theater')
+    print('\n  Working on Bremer Filmkunst Theater')
     filmkunst = webscraping.Filmkunst()
     program = filmkunst.create_program_db()
     meta = filmkunst.create_meta_db()
-    print('Done with filmkunst!')
     return program, meta
 
 
 def create_db_schwankhalle():
-    print('\nWorking on Schwankhalle')
+    print('\n  Working on Schwankhalle')
     schwankhalle = webscraping.Schwankhalle()
     program = schwankhalle.create_program_db()
-    print('Done with Schwankhalle!')
     return program
 
 
 def create_database_glocke():
     """ only does the first five things because I'm lazy"""
-    print('\nWorking on Glocke')
+    print('\n  Working on Glocke')
     glocke = webscraping.Glocke()
     program = glocke.create_program_db()
-    print('Done with Glocke!')
     return program
 
 

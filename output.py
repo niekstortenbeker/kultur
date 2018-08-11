@@ -55,7 +55,7 @@ def quality_control_dbs(db_programinfo, db_metainfo):
 def find_and_change_case_errors(db_programinfo, db_metainfo, location):
     """for the shows that don't match (in no_matches) see if there is a difference in case usage for the title in
        programinfo and metainfo. If so, change the case in metainfo to reflect the case usage in programinfo"""
-    print(f'\nworking on {location}')
+    print(f'\n  working on {location}')
     program_titles = set([programinfo['title']
                                    for programinfo in db_programinfo
                                    if programinfo['location'] == location])
@@ -72,11 +72,13 @@ def find_and_change_case_errors(db_programinfo, db_metainfo, location):
                     matches_after_case_change.append(no_match)
                     metainfo = db_metainfo[location].pop(meta_title)
                     db_metainfo[location][no_match] = metainfo
-                    print(f'adjusted show title "{meta_title}" to "{no_match}" in db_metainfo')
+                    print(f'    adjusted show title "{meta_title}" to "{no_match}" in db_metainfo')
         no_matches_after_case_change = find_no_matches_iterables(loop_iterable=no_matches,
                                                                  search_iterable=matches_after_case_change)
         for title in no_matches_after_case_change:
-            print(f'no meta data found for the show "{title}" in {location}')
+            print(f'    no meta data found for the show "{title}" in {location}')
+    else:
+        print("    lookin' good!")
     return db_metainfo
 
 #TODO are there already functions for this?
@@ -124,9 +126,9 @@ def print_database(db_programinfo, db_metainfo):
 
 def print_database_header():
     print()
-    print(''.center(70, '-'))
-    print('PROGRAM'.center(50, ' '))
-    print(''.center(70, '-'))
+    print(''.center(100, '-'))
+    print('PROGRAM'.center(100, ' '))
+    print(''.center(100, '-'))
     print()
 
 

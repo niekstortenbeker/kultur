@@ -39,39 +39,39 @@ class Webscraper:
         return "some information"
 
     def get_html_from_web(self, url):
-        print('...loading webpage')
+        print('    ...loading webpage')
         try:
             response = requests.get(url)
             if response.status_code == 404:
-                print('tried but failed to retrieve html from: ', url)
+                print('    tried but failed to retrieve html from: ', url)
                 return None
             # status = response.status_code
             # print(response.text[0:500])
             else:
-                print('Retrieved html from: ', url)
+                print('    Retrieved html from: ', url)
                 return response.text
         except requests.exceptions.ConnectionError as e:
-            print("Error! Connection error: {}".format(e))
-            print('the script is aborted')
+            print("    Error! Connection error: {}".format(e))
+            print('    the script is aborted')
             sys.exit(1)
 
     def get_html_from_web_ajax(self, url, class_name):
         """Get page source code from a web page that uses ajax to load elements of the page one at a time.
          Selenium will wait for the element with the class name 'class_name' to load before getting the page source"""
-        print('...loading webpage')
+        print('    ...loading webpage')
         try:
             driver.get(url)
             WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, class_name)))
             source = driver.page_source
         except TimeoutException:
-            print("Error! Selenium Timeout: {}".format(url))
-            print('the script is aborted')
+            print("    Error! Selenium Timeout: {}".format(url))
+            print('    the script is aborted')
             sys.exit(1)
         except WebDriverException as e:
-            print("Error! Selenium Exception. {}".format(str(e)))
-            print('the script is aborted')
+            print("    Error! Selenium Exception. {}".format(str(e)))
+            print('    the script is aborted')
             sys.exit(1)
-        print('Retrieved html from: ', url)
+        print('    Retrieved html from: ', url)
         return source
 
     def get_tables_from_html(self, html):
@@ -419,7 +419,7 @@ class Filmkunst(Webscraper):
 
     def get_meta_html(self, url):
         """I need to click some buttons to get all the info in the html"""
-        print('...loading webpage')
+        print('    ...loading webpage')
         try:
             driver.get(url)
             # there is an overlay while loading that prevents clicking buttons, even when they are already there
@@ -432,14 +432,14 @@ class Filmkunst(Webscraper):
                 button.click()
             source = driver.page_source
         except TimeoutException:
-            print("Error! Selenium Timeout: {}".format(url))
-            print('the script is aborted')
+            print("    Error! Selenium Timeout: {}".format(url))
+            print('    the script is aborted')
             sys.exit(1)
         except WebDriverException as e:
-            print("Error! Selenium Exception. {}".format(str(e)))
-            print('the script is aborted')
+            print("    Error! Selenium Exception. {}".format(str(e)))
+            print('    the script is aborted')
             sys.exit(1)
-        print('Retrieved html from: ', url)
+        print('    Retrieved html from: ', url)
         return source
 
     def extract_meta(self, html):

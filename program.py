@@ -5,11 +5,11 @@ import click
 # TODO add more help info
 
 @click.command()
-@click.option('--scrape/--no-scrape', '-s', default=False,
-              help='Scrape websites to make a fresh database. (Otherwise start from old database)')
-def main(scrape):
+@click.option('--new/--old', '-n', default=False,
+              help='Scrape websites to make a new database. (Otherwise start from old database)')
+def main(new):
     print_header()
-    if scrape:
+    if new:
         start_with_new_database()
     else:
         start_with_old_database()
@@ -34,9 +34,9 @@ def start_with_new_database():
 
 
 def print_header():
-    print(''.center(70, '-'))
-    print('Kultur'.center(70, ' '))
-    print(''.center(70, '-'))
+    print(''.center(100, '-'))
+    print('Kultur'.center(100, ' '))
+    print(''.center(100, '-'))
 
 if __name__ == '__main__':
     main()
