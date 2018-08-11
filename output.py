@@ -83,6 +83,7 @@ def find_and_change_case_errors(db_programinfo, db_metainfo, location):
 
 #TODO are there already functions for this?
 def find_no_matches_iterables(loop_iterable, search_iterable):
+    # TODO can't I use this: set(data1) & set(data2) https://stackoverflow.com/questions/11615041/how-to-find-match-items-from-two-lists
     """loops over one iterable to search if the items are present in the second iterable. If not, append these to a list"""
     no_matches = []
     for title in loop_iterable:

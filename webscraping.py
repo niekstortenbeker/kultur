@@ -20,10 +20,10 @@ def start_driver():
     firefox_profile.set_preference('permissions.default.image', 2)
     # disable flash
     firefox_profile.set_preference('dom.ipc.plugins.enabled.libflashplayer.so', 'false')
-    # Don't disable CSS, filmkunst scraping had issues
+    # Don't disable CSS, otherwise selenium has issues with clicking buttons (necessary for filmkunst)
     # firefox_profile.set_preference('permissions.default.stylesheet', 2)
-    # Disable JavaScript
-    firefox_profile.set_preference('javascript.enabled', False)
+    # Don't disable JavaScript, otherwise selenium has issues with clicking buttons (necessary for filmkunst)
+    # firefox_profile.set_preference('javascript.enabled', False)
     driver = webdriver.Firefox(firefox_profile=firefox_profile)
 
 
@@ -423,11 +423,13 @@ class Filmkunst(Webscraper):
         try:
             driver.get(url)
             # there is an overlay while loading that prevents clicking buttons, even when they are already there
-            # it does not click buttons of films without trailers, not sure if this is a problem
-            button_class = 'ui-button.ui-corners-bottom-left.ui-ripple.ui-button--secondary.u-flex-grow-1'
             overlay_class = "loading-indicator__background.is-loading"
             WebDriverWait(driver, 10).until_not(EC.visibility_of_element_located((By.CLASS_NAME, overlay_class)))
-            buttons = driver.find_elements_by_class_name(button_class)
+            # two button types: one if there is also a trailer, one if there is only info without a trailer
+            button_classes = ['ui-button.ui-corners-bottom-left.ui-ripple.ui-button--secondary.u-flex-grow-1',
+                              'ui-button.ui-corners-bottom.ui-ripple.ui-button--secondary.u-flex-grow-1']
+            buttons = driver.find_elements_by_class_name(button_classes[0])
+            buttons.extend(driver.find_elements_by_class_name(button_classes[1]))
             for button in buttons:
                 button.click()
             source = driver.page_source
