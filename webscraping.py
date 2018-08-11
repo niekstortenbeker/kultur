@@ -9,10 +9,26 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from selenium.common.exceptions import WebDriverException
-from pprint import pprint
 
 # TODO get individual info of the stuff other than ostertor
-# TODO can I remove self?
+
+
+def start_driver():
+    global driver
+    firefox_profile = webdriver.FirefoxProfile()
+    # disable images
+    firefox_profile.set_preference('permissions.default.image', 2)
+    # disable flash
+    firefox_profile.set_preference('dom.ipc.plugins.enabled.libflashplayer.so', 'false')
+    # Don't disable CSS, filmkunst scraping had issues
+    # firefox_profile.set_preference('permissions.default.stylesheet', 2)
+    # Disable JavaScript
+    firefox_profile.set_preference('javascript.enabled', False)
+    driver = webdriver.Firefox(firefox_profile=firefox_profile)
+
+
+def close_driver():
+    driver.quit()
 
 class Webscraper:
     # def __init__(self):
@@ -44,7 +60,6 @@ class Webscraper:
          Selenium will wait for the element with the class name 'class_name' to load before getting the page source"""
         print('...loading webpage')
         try:
-            driver = webdriver.Firefox()
             driver.get(url)
             WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, class_name)))
             source = driver.page_source
@@ -56,8 +71,6 @@ class Webscraper:
             print("Error! Selenium Exception. {}".format(str(e)))
             print('the script is aborted')
             sys.exit(1)
-        finally:
-            driver.close()
         print('Retrieved html from: ', url)
         return source
 
@@ -109,12 +122,12 @@ class City46(Webscraper):
         base_url = 'http://www.city46.de/programm/'
         program = []
 
-        links = City46.get_urls(self, base_url)
+        links = self.get_urls(base_url)
         for link in links:
-            html = City46.get_html_from_web(self, link)
+            html = self.get_html_from_web(link)
             if html:
-                table = City46.get_tables_from_html(self, html)
-                program.extend(City46.extract_program(self, table))
+                table = self.get_tables_from_html(html)
+                program.extend(self.extract_program(table))
         return program
 
     def get_urls(self, url):
@@ -197,10 +210,10 @@ class CinemaOstertor(Webscraper):
 
     def create_program_db(self):
         url = 'http://cinema-ostertor.de/programm/'
-        html = CinemaOstertor.get_html_from_web(self, url)
-        table = CinemaOstertor.get_tables_from_html(self, html)
-        table = CinemaOstertor.clean_rowspan_in_table(self, table)
-        program = CinemaOstertor.extract_program(self, table)
+        html = self.get_html_from_web(url)
+        table = self.get_tables_from_html(html)
+        table = self.clean_rowspan_in_table(table)
+        program = self.extract_program(table)
         return program
 
     def extract_program(self, html_table):
@@ -231,7 +244,7 @@ class CinemaOstertor(Webscraper):
         movie_links = set([programinfo['link_info'] for programinfo in ostertor_programinfo])
 
         for link in movie_links:
-            html = Webscraper.get_html_from_web(self, link)
+            html = self.get_html_from_web(link)
             if html:
                 soup = bs4.BeautifulSoup(html, 'html.parser')
                 meta_film = {'title': '',
@@ -289,10 +302,10 @@ class TheaterBremen(Webscraper):
     def create_program_db(self):
         program = []
         base_url = 'http://www.theaterbremen.de'
-        urls = TheaterBremen.get_urls(self, base_url)
+        urls = self.get_urls(base_url)
         for url in urls:
-            html = TheaterBremen.get_html_from_web_ajax(self, url, class_name='day')
-            program.extend(TheaterBremen.extract_program(self, html, base_url))
+            html = self.get_html_from_web_ajax(url, class_name='day')
+            program.extend(self.extract_program(html, base_url))
         return program
 
     def get_urls(self, base_url):
@@ -357,8 +370,8 @@ class Filmkunst(Webscraper):
         names = ['Schauburg', 'Gondel', 'Atlantis']
 
         for idx, url in enumerate(urls_scrape):
-            html = Filmkunst.get_html_from_web_ajax(self, url, 'movie.u-px-2.u-py-2')
-            program = Filmkunst.extract_program(self, html, names[idx], urls_info[idx])
+            html = self.get_html_from_web_ajax(url, 'movie.u-px-2.u-py-2')
+            program = self.extract_program(html, names[idx], urls_info[idx])
             complete_program.extend(program)
         return complete_program
 
@@ -398,8 +411,8 @@ class Filmkunst(Webscraper):
                 'https://www.kinoheld.de/kino-bremen/atlantis-filmtheater-bremen/shows/movies?mode=widget']
         names = ['Schauburg', 'Gondel', 'Atlantis']
         for idx, url in enumerate(urls):
-            html = Filmkunst.get_meta_html(self, url)
-            meta = Filmkunst.extract_meta(self, html)
+            html = self.get_meta_html(url)
+            meta = self.extract_meta(html)
             meta_db[names[idx]] = meta
         return meta_db
 
@@ -408,7 +421,6 @@ class Filmkunst(Webscraper):
         """I need to click some buttons to get all the info in the html"""
         print('...loading webpage')
         try:
-            driver = webdriver.Firefox()
             driver.get(url)
             # there is an overlay while loading that prevents clicking buttons, even when they are already there
             # it does not click buttons of films without trailers, not sure if this is a problem
@@ -427,8 +439,6 @@ class Filmkunst(Webscraper):
             print("Error! Selenium Exception. {}".format(str(e)))
             print('the script is aborted')
             sys.exit(1)
-        finally:
-            driver.close()
         print('Retrieved html from: ', url)
         return source
 
@@ -488,8 +498,8 @@ class Schwankhalle(Webscraper):
     def create_program_db(self):
         url = 'http://schwankhalle.de/spielplan-1.html'
         # at some point requests starting giving SSLError so use selenium for ajax
-        html = Schwankhalle.get_html_from_web_ajax(self, url,'date-container')
-        program = Schwankhalle.extract_program(self, html)
+        html = self.get_html_from_web_ajax(url,'date-container')
+        program = self.extract_program(html)
         return program
 
     def extract_program(self, html):
@@ -529,12 +539,23 @@ class Schwankhalle(Webscraper):
 class Glocke(Webscraper):
 
     def create_program_db(self):
-        url = 'https://www.glocke.de/de/Home'
-        html = Glocke.get_html_from_web(self, url)
-        program = Glocke.extract_program(self, html)
+        base_url = 'https://www.glocke.de/de/'
+        urls = self.get_urls(base_url)
+        program = []
+        for url in urls:
+            html = self.get_html_from_web(url)
+            program.extend(self.extract_program(html, base_url))
         return(program)
 
-    def extract_program(self, html):
+    def get_urls(self, base_url):
+        month = arrow.now().month
+        year = arrow.now().year
+        url1 = base_url + f'index.php?showcal=true&kalender_monat=true&month={month}&year={year}&nav=1&sub1=1&sub2=0&seite=66'
+        url2 = base_url + f'index.php?showcal=true&kalender_monat=true&month={month+1}&year={year}&nav=1&sub1=1&sub2=0&seite=66'
+        urls = [url1, url2]
+        return urls
+
+    def extract_program(self, html, base_url):
         program = []
         soup = bs4.BeautifulSoup(html, 'html.parser')
 
@@ -555,7 +576,7 @@ class Glocke(Webscraper):
             location_details = time_location.text.strip()[10:]
             title = other_info.find('br').find_next('br').previous_sibling  # for some reason next_sibling didn't always work
             artist = other_info.find('br').previous_sibling
-            link = 'https://www.glocke.de/de/{}'.format(other_info.a.get('href'))
+            link = base_url + '{}'.format(other_info.a.get('href'))
             programinfo = dict(title=title, artist=artist, datetime=datetime, link_info=link,
                                link_tickets=link, location_details=location_details,
                                location='Glocke', info='', price="", language_version='')

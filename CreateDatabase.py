@@ -2,12 +2,14 @@ import webscraping
 
 
 def main():
+    webscraping.start_driver()
     city46_program = create_db_city46()
     theater_program = create_db_theater_bremen()
     filmkunst_program, filmkunst_meta = create_db_filmkunst()
     schwankhalle_program = create_db_schwankhalle()
     ostertor_program, ostertor_meta = create_db_cinema_ostertor()
     glocke_program = create_database_glocke()
+    webscraping.close_driver()
 
     program_db = [city46_program, theater_program, filmkunst_program, schwankhalle_program, ostertor_program,
                   glocke_program]
