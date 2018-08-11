@@ -41,57 +41,6 @@ def insert_arrow_objects_in_programinfo(db_programinfo):
     return db_programinfo
 
 
-# TODO this should probably go somewhere else
-def quality_control_dbs(db_programinfo, db_metainfo):
-    """so far only check for shows in programinfo but not in metainfo if there is a case mismatch in the title"""
-    print('\n\nPerforming a quality control on the metainfo and programinfo databases')
-    db_metainfo = find_and_change_case_errors(db_programinfo, db_metainfo, 'Cinema Ostertor')
-    db_metainfo = find_and_change_case_errors(db_programinfo, db_metainfo, 'Schauburg')
-    db_metainfo = find_and_change_case_errors(db_programinfo, db_metainfo, 'Atlantis')
-    db_metainfo = find_and_change_case_errors(db_programinfo, db_metainfo, 'Gondel')
-    return db_metainfo
-
-#TODO probably split the below function
-def find_and_change_case_errors(db_programinfo, db_metainfo, location):
-    """for the shows that don't match (in no_matches) see if there is a difference in case usage for the title in
-       programinfo and metainfo. If so, change the case in metainfo to reflect the case usage in programinfo"""
-    print(f'\n  working on {location}')
-    program_titles = set([programinfo['title']
-                                   for programinfo in db_programinfo
-                                   if programinfo['location'] == location])
-    meta_titles = list(db_metainfo[location].keys())
-
-    no_matches = find_no_matches_iterables(loop_iterable=program_titles,
-                                           search_iterable=meta_titles)
-    if no_matches:
-        matches_after_case_change = []
-
-        for no_match in no_matches:
-            for meta_title in meta_titles:
-                if no_match.lower() == meta_title.lower():
-                    matches_after_case_change.append(no_match)
-                    metainfo = db_metainfo[location].pop(meta_title)
-                    db_metainfo[location][no_match] = metainfo
-                    print(f'    adjusted show title "{meta_title}" to "{no_match}" in db_metainfo')
-        no_matches_after_case_change = find_no_matches_iterables(loop_iterable=no_matches,
-                                                                 search_iterable=matches_after_case_change)
-        for title in no_matches_after_case_change:
-            print(f'    no meta data found for the show "{title}" in {location}')
-    else:
-        print("    lookin' good!")
-    return db_metainfo
-
-#TODO are there already functions for this?
-def find_no_matches_iterables(loop_iterable, search_iterable):
-    # TODO can't I use this: set(data1) & set(data2) https://stackoverflow.com/questions/11615041/how-to-find-match-items-from-two-lists
-    """loops over one iterable to search if the items are present in the second iterable. If not, append these to a list"""
-    no_matches = []
-    for title in loop_iterable:
-        if title not in search_iterable:
-            no_matches.append(title)
-    return no_matches
-
-
 def print_database(db_programinfo, db_metainfo):
     print_database_header()
 

@@ -25,8 +25,6 @@ def start_with_old_database():
 
 def start_with_new_database():
     db_programinfo, db_metainfo = CreateDatabase.main()
-    db_metainfo = output.quality_control_dbs(db_programinfo, db_metainfo)
-
     output.print_database(db_programinfo, db_metainfo)
 
     db_programinfo_json = output.remove_arrow_objects_in_programinfo(db_programinfo)
