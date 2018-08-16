@@ -2,7 +2,6 @@ import arrow
 import json
 import os
 # TODO export to HTML
-# TODO there is stuff here that should be database handling or something
 
 basepath = os.path.dirname(os.path.abspath(__file__))
 
@@ -66,7 +65,7 @@ def print_database(db_programinfo, db_metainfo):
                     if db_metainfo['Cinema Ostertor'][title]['language']:
                         print_programinfo(programinfo)
                 except KeyError:
-                    print(f'!keyerror for "{title}" in Cinema Ostertor')
+                    pass
                 if_german_print_programinfo(programinfo, db_metainfo, 'Cinema Ostertor')
 
 
@@ -103,5 +102,5 @@ def if_german_print_programinfo(programinfo, db_metainfo, location_name):
         elif 'schweiz' in country:
             print_programinfo(programinfo)
     except KeyError:
-        print(f'!keyerror for "{title}" in {location_name}')
+        pass
 

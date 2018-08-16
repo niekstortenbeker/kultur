@@ -1,5 +1,5 @@
 import CreateDatabase
-import output
+import InputOutput
 import click
 
 # TODO add more help info
@@ -16,19 +16,19 @@ def main(new):
 
 
 def start_with_old_database():
-    db_programinfo, db_metainfo, scraping_date = output.json_to_db()
-    db_programinfo = output.insert_arrow_objects_in_programinfo(db_programinfo)
+    db_programinfo, db_metainfo, scraping_date = InputOutput.json_to_db()
+    db_programinfo = InputOutput.insert_arrow_objects_in_programinfo(db_programinfo)
     print(f'this program uses a database made on: {scraping_date}')
 
-    output.print_database(db_programinfo, db_metainfo)
+    InputOutput.print_database(db_programinfo, db_metainfo)
 
 
 def start_with_new_database():
     db_programinfo, db_metainfo = CreateDatabase.main()
-    output.print_database(db_programinfo, db_metainfo)
+    InputOutput.print_database(db_programinfo, db_metainfo)
 
-    db_programinfo_json = output.remove_arrow_objects_in_programinfo(db_programinfo)
-    output.db_to_json(db_programinfo_json, db_metainfo)
+    db_programinfo_json = InputOutput.remove_arrow_objects_in_programinfo(db_programinfo)
+    InputOutput.db_to_json(db_programinfo_json, db_metainfo)
 
 
 def print_header():
