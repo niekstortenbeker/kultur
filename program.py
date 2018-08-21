@@ -14,6 +14,7 @@ app = Flask(__name__)
               help='make it into a website')
 def main(new, website):
     print_header()
+    global current_program
     if new:
         scraping_date = 'just now!'
         db_programinfo, db_metainfo = make_new_database()
@@ -53,7 +54,7 @@ def print_program(current_program, scraping_date):
 @app.route("/")
 @app.route("/home")
 def make_website():
-    return render_template('home.html')
+    return render_template('home.html', program=current_program)
 
 
 if __name__ == '__main__':

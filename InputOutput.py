@@ -90,7 +90,7 @@ def make_current_program(db_programinfo, db_metainfo):
 
 def save_programinfo(programinfo_old, metainfo=None):
     if metainfo:
-        programinfo = dict(datetime=programinfo_old['datetime'],
+        programinfo = dict(datetime=programinfo_old['datetime'].format('ddd MM-DD HH:mm'),
                            location=programinfo_old['location'],
                            artist=programinfo_old['artist'],
                            title=programinfo_old['title'],
@@ -108,7 +108,7 @@ def save_programinfo(programinfo_old, metainfo=None):
                            img_poster=metainfo['img_poster'],
                            img_screenshot=metainfo['img_screenshot'])
     else:
-        programinfo = dict(datetime=programinfo_old['datetime'],
+        programinfo = dict(datetime=programinfo_old['datetime'].format('ddd MM-DD HH:mm'),
                            location=programinfo_old['location'],
                            artist=programinfo_old['artist'],
                            title=programinfo_old['title'],
@@ -157,7 +157,7 @@ def print_program(program):
         if programinfo['title'] == 'day_separator':
             print(''.center(50, '-'))
         else:
-            print('{} | {} | {} {} | {} | {} | {}'.format(programinfo['datetime'].format('ddd MM-DD HH:mm'),
+            print('{} | {} | {} {} | {} | {} | {}'.format(programinfo['datetime'],
                                                           programinfo['location'].center(15, ' '),
                                                           programinfo['artist'],
                                                           programinfo['title'],
