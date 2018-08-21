@@ -46,8 +46,8 @@ def make_new_database():
 
 def print_program(db_programinfo, db_metainfo, scraping_date):
     print(f'this program uses a database made on: {scraping_date}')
-    InputOutput.print_database(db_programinfo, db_metainfo)
-
+    program = InputOutput.make_current_program(db_programinfo, db_metainfo)
+    InputOutput.print_program(program)
 
 @app.route("/")
 @app.route("/home")

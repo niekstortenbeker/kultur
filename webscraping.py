@@ -248,6 +248,7 @@ class CinemaOstertor(Webscraper):
             if html:
                 soup = bs4.BeautifulSoup(html, 'html.parser')
                 meta_film = {'title': '',
+                             'title_original': '',
                              'country': '',
                              'year': '',
                              'genre': '',
@@ -257,7 +258,7 @@ class CinemaOstertor(Webscraper):
                              'description': '',
                              'img_poster': '',
                              'img_screenshot': '',
-                             }  # I want keys to be present also if values are absent # TODO oh yeah why?
+                             }  # I want keys to be present also if values are absent
 
                 title = soup.find(class_='page_title')
                 if title:
