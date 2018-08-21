@@ -17,12 +17,14 @@ def main(new, website):
     if new:
         scraping_date = 'just now!'
         db_programinfo, db_metainfo = make_new_database()
+        current_program = InputOutput.make_current_program(db_programinfo, db_metainfo)
     else:
         db_programinfo, db_metainfo, scraping_date = use_old_database()
+        current_program = InputOutput.make_current_program(db_programinfo, db_metainfo)
     if website:
         app.run(debug=True)
     else:
-        print_program(db_programinfo, db_metainfo, scraping_date)
+        print_program(current_program, scraping_date)
 
 
 def print_header():
@@ -44,10 +46,9 @@ def make_new_database():
     return db_programinfo, db_metainfo
 
 
-def print_program(db_programinfo, db_metainfo, scraping_date):
+def print_program(current_program, scraping_date):
     print(f'this program uses a database made on: {scraping_date}')
-    program = InputOutput.make_current_program(db_programinfo, db_metainfo)
-    InputOutput.print_program(program)
+    InputOutput.print_program(current_program)
 
 @app.route("/")
 @app.route("/home")
