@@ -3,6 +3,7 @@ import requests
 import sys
 import arrow
 import re
+import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -16,10 +17,11 @@ from selenium.common.exceptions import WebDriverException
 def start_driver():
     global driver
     firefox_profile = webdriver.FirefoxProfile()
+    # DON'T DISABLE ANYTHING, IT GIVES PROBLEMS
     # disable images
-    firefox_profile.set_preference('permissions.default.image', 2)
+    # firefox_profile.set_preference('permissions.default.image', 2)
     # disable flash
-    firefox_profile.set_preference('dom.ipc.plugins.enabled.libflashplayer.so', 'false')
+    # firefox_profile.set_preference('dom.ipc.plugins.enabled.libflashplayer.so', 'false')
     # Don't disable CSS, otherwise selenium has issues with clicking buttons (necessary for filmkunst)
     # firefox_profile.set_preference('permissions.default.stylesheet', 2)
     # Don't disable JavaScript, otherwise selenium has issues with clicking buttons (necessary for filmkunst)
@@ -141,14 +143,14 @@ class City46(Webscraper):
         #year = date.year
         month = date.month
         day = date.day
-        full_link = "{}{}.html".format(base_link, months[month])  #"{}{}-{}.html".format(base_link, months[month], year)
+        full_link = "{}{}.html".format(base_link, months[month])
         urls.append(full_link)
 
         if day > 20:
             date = date.shift(months=+1)
             year = date.year
             month = date.month
-            full_link = "{}{}-{}.html".format(base_link, months[month], year)
+            full_link = "{}{}.html".format(base_link, months[month])
             urls.append(full_link)
         return urls
 
@@ -421,11 +423,16 @@ class Filmkunst(Webscraper):
     def get_meta_html(self, url):
         """I need to click some buttons to get all the info in the html"""
         print('    ...loading webpage')
+        print(url)
         try:
             driver.get(url)
-            # there is an overlay while loading that prevents clicking buttons, even when they are already there
+
+            # Wait until the page has loaded
+            wait = WebDriverWait(driver, 10)
             overlay_class = "loading-indicator__background.is-loading"
-            WebDriverWait(driver, 10).until_not(EC.visibility_of_element_located((By.CLASS_NAME, overlay_class)))
+            element = wait.until_not(EC.visibility_of_element_located((By.CLASS_NAME, overlay_class)))
+
+            # click buttons
             # two button types: one if there is also a trailer, one if there is only info without a trailer
             button_classes = ['ui-button.ui-corners-bottom-left.ui-ripple.ui-button--secondary.u-flex-grow-1',
                               'ui-button.ui-corners-bottom.ui-ripple.ui-button--secondary.u-flex-grow-1']
@@ -551,42 +558,41 @@ class Glocke(Webscraper):
         return(program)
 
     def get_urls(self, base_url):
-        month = arrow.now().month
-        year = arrow.now().year
-        url1 = base_url + f'index.php?showcal=true&kalender_monat=true&month={month}&year={year}&nav=1&sub1=1&sub2=0&seite=66'
-        url2 = base_url + f'index.php?showcal=true&kalender_monat=true&month={month+1}&year={year}&nav=1&sub1=1&sub2=0&seite=66'
+        arw = arrow.now()
+        url1 = base_url + f'Veranstaltungssuche/{arw.month}/{arw.year}'
+        arw = arw.shift(months=+1)
+        url2 = base_url + f'Veranstaltungssuche/{arw.month}/{arw.year}'
         urls = [url1, url2]
         return urls
 
     def extract_program(self, html, base_url):
         program = []
         soup = bs4.BeautifulSoup(html, 'html.parser')
+        shows = soup.find_all('div', class_='va-liste')
+        for show in shows:
+            day = show.find(class_=re.compile(r"va_liste_datum_1")).text.strip()
+            month = show.find(class_=re.compile(r"va_liste_datum_2")).text.strip()
+            month = Glocke.german_month_to_int(self, month)
 
-        program_html = soup.find('div', id='inhalt_mitte')
-        dates = program_html.find_all('div', class_='va_links')
-        other_infos = program_html.find_all('div', class_='va_rechts')
-        if not len(dates) == len(other_infos):
-            print('oh no dicts are not the same size, check webscraping extract program')
-            return None
-        for idx, other_info in enumerate(other_infos):
-            date = dates[idx].find(class_='va_datum').text.strip()
-            month = Glocke.german_month_to_int(self, date[-3:])
-            day = date[:2]
-            time_location = other_info.find(class_='ort_uhrzeit')
-            time = time_location.text.strip()[:6]
+            time_location = show.find('span', style=re.compile(r"color")).text.strip()
+            time = time_location[:6]
             datetime = Glocke.parse_datetime(self, time, day, month)
 
-            location_details = time_location.text.strip()[10:]
-            title = other_info.find('br').find_next('br').previous_sibling  # for some reason next_sibling didn't always work
-            artist = other_info.find('br').previous_sibling
-            link = base_url + '{}'.format(other_info.a.get('href'))
-            programinfo = dict(title=title, artist=artist, datetime=datetime, link_info=link,
+            location_details = time_location[10:]
+            title = str(show.find('h2')).strip()
+            title = title.replace('<h2>', '')
+            title = title.replace('</h2>', '')
+            title = title.replace('<br/>', ' - ')
+            link = base_url + '{}'.format(show.a.get('href'))
+
+            programinfo = dict(title=title, artist='', datetime=datetime, link_info=link,
                                link_tickets=link, location_details=location_details,
                                location='Glocke', info='', price="", language_version='')
             program.append(programinfo)
         return program
 
     def parse_datetime(self, time, day, month):
+        #TODO: change filmkunst as to use this as a class method
         """get arrow object from date from this, and guess the year"""
         datetime = arrow.now('Europe/Berlin')
         datetime = datetime.replace(month=month, day=int(day),

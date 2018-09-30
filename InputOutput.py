@@ -13,11 +13,11 @@ def remove_arrow_objects_in_programinfo(db_programinfo):
 def db_to_json(db_programinfo, db_metainfo):
     with open(os.path.join(basepath, 'db_programinfo.json'), 'w') as f:
         json.dump(db_programinfo, f, indent=2)
-        print('saved programinfo to JSON')
+        print('\nsaved programinfo to JSON')
 
     with open(os.path.join(basepath, 'db_metainfo.json'), 'w') as f:
         json.dump(db_metainfo, f, indent=2)
-        print('saved metainfo to JSON')
+        print('\nsaved metainfo to JSON')
 
     with open(os.path.join(basepath, 'scraping_date.txt'), 'w') as f:
         f.write(arrow.now().format())

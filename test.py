@@ -4,6 +4,7 @@ import InputOutput
 from pprint import pprint
 import os
 
-
-ostertor = webscraping.CinemaOstertor()
-program = ostertor.create_program_db()
+webscraping.start_driver()
+filmkunst = webscraping.Filmkunst()
+meta = filmkunst.create_meta_db()
+webscraping.close_driver()
