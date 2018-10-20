@@ -3,7 +3,6 @@ import requests
 import sys
 import arrow
 import re
-import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -17,20 +16,12 @@ from selenium.common.exceptions import WebDriverException
 def start_driver():
     global driver
     firefox_profile = webdriver.FirefoxProfile()
-    # DON'T DISABLE ANYTHING, IT GIVES PROBLEMS
-    # disable images
-    # firefox_profile.set_preference('permissions.default.image', 2)
-    # disable flash
-    # firefox_profile.set_preference('dom.ipc.plugins.enabled.libflashplayer.so', 'false')
-    # Don't disable CSS, otherwise selenium has issues with clicking buttons (necessary for filmkunst)
-    # firefox_profile.set_preference('permissions.default.stylesheet', 2)
-    # Don't disable JavaScript, otherwise selenium has issues with clicking buttons (necessary for filmkunst)
-    # firefox_profile.set_preference('javascript.enabled', False)
     driver = webdriver.Firefox(firefox_profile=firefox_profile)
 
 
 def close_driver():
     driver.quit()
+
 
 class Webscraper:
     # def __init__(self):
@@ -117,6 +108,19 @@ class Webscraper:
                       'august': 8, 'september': 9, 'oktober': 10, 'november': 11, 'dezember': 12}
             return months[month]
 
+    def parse_datetime(self, month, day, hour, minute):
+        """get arrow object, guess the year"""
+        datetime = arrow.now('Europe/Berlin')
+        datetime = datetime.replace(month=month,
+                                    day=day,
+                                    hour=hour,
+                                    minute=minute,
+                                    second=0,
+                                    microsecond=0)
+        if datetime < arrow.now("Europe/Berlin").shift(months=-1):
+            return datetime.replace(year=datetime.year + 1)
+        else:
+            return datetime
 
 class City46(Webscraper):
 
@@ -124,12 +128,13 @@ class City46(Webscraper):
         base_url = 'http://www.city46.de/programm/'
         program = []
 
-        links = self.get_urls(base_url)
-        for link in links:
-            html = self.get_html_from_web(link)
-            if html:
-                table = self.get_tables_from_html(html)
-                program.extend(self.extract_program(table))
+        urls = self.get_urls(base_url)
+        for url in urls:
+            html = self.get_html_from_web(url)
+            table = self.get_tables_from_html(html)
+            program.extend(self.extract_program(table))
+        if not program:
+            print(f'!Note, no program could be retrieved from City 46 ({url})')
         return program
 
     def get_urls(self, url):
@@ -216,14 +221,19 @@ class CinemaOstertor(Webscraper):
         table = self.get_tables_from_html(html)
         table = self.clean_rowspan_in_table(table)
         program = self.extract_program(table)
+        if not program:
+            print(f'!Note, no program could be retrieved from Cinema Ostertor ({url})')
         return program
 
+    #TODO cinema ostertor doesn't work anymore
     def extract_program(self, html_table):
         program = []
         day = {}
-
         for row in html_table:
+            print(row)
             for column_number, cell in enumerate(row):
+                print('column_number: ', column_number)
+                print('cell: ', cell)
                 if cell.name == 'th':
                     date = arrow.get(cell.text, 'DD.MM.YYYY')
                     day[column_number] = date
@@ -233,8 +243,15 @@ class CinemaOstertor(Webscraper):
                     datetime = date.replace(hour=int(time[0:2]), minute=int(time[3:5]), tzinfo='Europe/Berlin')
                     title = cell.find('a').text
                     link = cell.find('a').get('href').strip()
-                    programinfo = dict(title=title, datetime=datetime, link_info=link, link_tickets='',
-                                            location='Cinema Ostertor', info ='', price='', artist='', language_version='')
+                    programinfo = dict(title=title,
+                                       datetime=datetime,
+                                       link_info=link,
+                                       link_tickets='',
+                                       location='Cinema Ostertor',
+                                       info ='',
+                                       price='',
+                                       artist='',
+                                       language_version='')
                     program.append(programinfo)
             # website has a table for the complete program, and tables for individual films. Therefore remove
             # duplicates. Cannot only use first table because sometimes two weeks are displayed.
@@ -309,6 +326,8 @@ class TheaterBremen(Webscraper):
         for url in urls:
             html = self.get_html_from_web_ajax(url, class_name='day')
             program.extend(self.extract_program(html, base_url))
+        if not program:
+            print(f'!Note, no program could be retrieved from Theater Bremen ({base_url})')
         return program
 
     def get_urls(self, base_url):
@@ -337,26 +356,29 @@ class TheaterBremen(Webscraper):
         program = []
         soup = bs4.BeautifulSoup(html, 'html.parser')
         days = soup.find_all(class_='day')
-        for day in days:
-            date = day.find(class_='date').text.strip()[-10:]
-            shows = day.find_all('article')
-            for show in shows:
-                time = show.find(class_='overview-date-n-flags').text.strip()[0:5]
-                datetime = arrow.get(date+time, 'DD.MM.YYYYHH:mm', tzinfo='Europe/Berlin')
-                links = show.find_all('a')
-                link_info = '{}{}'.format(base_url, links[0].get('href').strip())
-                try:
-                    link_tickets = links[1].get('href').strip()
-                    price = links[1].text.strip()
-                except IndexError:
-                    link_tickets = ''
-                    price = ''
-                title = links[0].text.strip()
-                infos = show.find_all('p')
-                info = '\n'.join(info.text for info in infos)
-                programinfo = dict(title=title, datetime=datetime, link_info=link_info, link_tickets=link_tickets,
-                                        location='Theater Bremen', info=info, price=price, artist='', language_version='')
-                program.append(programinfo)
+        if days:
+            for day in days:
+                date = day.find(class_='date').text.strip()[-10:]
+                shows = day.find_all('article')
+                for show in shows:
+                    time = show.find(class_='overview-date-n-flags').text.strip()[0:5]
+                    datetime = arrow.get(date+time, 'DD.MM.YYYYHH:mm', tzinfo='Europe/Berlin')
+                    links = show.find_all('a')
+                    link_info = '{}{}'.format(base_url, links[0].get('href').strip())
+                    try:
+                        link_tickets = links[1].get('href').strip()
+                        price = links[1].text.strip()
+                    except IndexError:
+                        link_tickets = ''
+                        price = ''
+                    title = links[0].text.strip()
+                    infos = show.find_all('p')
+                    info = '\n'.join(info.text for info in infos)
+                    programinfo = dict(title=title, datetime=datetime, link_info=link_info, link_tickets=link_tickets,
+                                            location='Theater Bremen', info=info, price=price, artist='', language_version='')
+                    program.append(programinfo)
+        else:
+            print('Note, no program could be obtained from Theater Bremen')
         return program
 
 class Filmkunst(Webscraper):
@@ -372,9 +394,11 @@ class Filmkunst(Webscraper):
                      'http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html']
         names = ['Schauburg', 'Gondel', 'Atlantis']
 
-        for idx, url in enumerate(urls_scrape):
-            html = self.get_html_from_web_ajax(url, 'movie.u-px-2.u-py-2')
-            program = self.extract_program(html, names[idx], urls_info[idx])
+        for url_scrape, url_info, name in zip(urls_scrape, urls_info, names):
+            html = self.get_html_from_web_ajax(url_scrape, 'movie.u-px-2.u-py-2')
+            program = self.extract_program(html, name, url_info)
+            if not program:
+                print(f'!Note, no program could be retrieved from {name} ({url_scrape})')
             complete_program.extend(program)
         return complete_program
 
@@ -384,8 +408,15 @@ class Filmkunst(Webscraper):
         soup = bs4.BeautifulSoup(html, 'html.parser')
         films = soup.find_all('article')
         for film in films:
+            # get time info
             datetime = film.find(class_='movie__date').text
-            datetime = Filmkunst.parse_datetime(datetime)
+            month = int(datetime[6:8])
+            day = int(datetime[3:5])
+            hour = int(datetime[10:12])
+            minute = int(datetime[13:15])
+            datetime = self.parse_datetime(month, day, hour, minute)
+
+            # get other info
             title = film.find(class_='movie__title').text.strip()
             if title[-3:] in ['OmU', ' OV']:  # do some cleaning to remove white lines from some titles
                 title = title[:-3].strip()
@@ -396,34 +427,21 @@ class Filmkunst(Webscraper):
             program.append(programinfo)
         return program
 
-    def parse_datetime(datetime_string):
-        """datetime_string: 'So 08.07. 14:15'. Parse date from this, and guess the year"""
-        datetime = arrow.now('Europe/Berlin')
-        datetime = datetime.replace(month=int(datetime_string[6:8]), day=int(datetime_string[3:5]),
-                                    hour=int(datetime_string[10:12]), minute=int(datetime_string[13:15]),
-                                    second=0, microsecond=0)
-        if datetime < arrow.now("Europe/Berlin").shift(months=-1):
-            return datetime.replace(year=datetime.year + 1)
-        else:
-            return datetime
-
     def create_meta_db(self):
         meta_db = {}
         urls = ['https://www.kinoheld.de/kino-bremen/schauburg-kino-bremen/shows/movies?mode=widget',
                 'https://www.kinoheld.de/kino-bremen/gondel-filmtheater-bremen/shows/movies?mode=widget',
                 'https://www.kinoheld.de/kino-bremen/atlantis-filmtheater-bremen/shows/movies?mode=widget']
         names = ['Schauburg', 'Gondel', 'Atlantis']
-        for idx, url in enumerate(urls):
+        for url, name in zip(urls, names):
             html = self.get_meta_html(url)
             meta = self.extract_meta(html)
-            meta_db[names[idx]] = meta
+            meta_db[name] = meta
         return meta_db
-
 
     def get_meta_html(self, url):
         """I need to click some buttons to get all the info in the html"""
         print('    ...loading webpage')
-        print(url)
         try:
             driver.get(url)
 
@@ -510,6 +528,8 @@ class Schwankhalle(Webscraper):
         # at some point requests starting giving SSLError so use selenium for ajax
         html = self.get_html_from_web_ajax(url,'date-container')
         program = self.extract_program(html)
+        if not program:
+            print(f'!Note, no program could be retrieved from Schwankhalle ({url})')
         return program
 
     def extract_program(self, html):
@@ -549,19 +569,21 @@ class Schwankhalle(Webscraper):
 class Glocke(Webscraper):
 
     def create_program_db(self):
-        base_url = 'https://www.glocke.de/de/'
+        base_url = 'https://www.glocke.de/'
         urls = self.get_urls(base_url)
         program = []
         for url in urls:
             html = self.get_html_from_web(url)
             program.extend(self.extract_program(html, base_url))
-        return(program)
+        if not program:
+            print(f'!Note, no program could be retrieved from Glocke ({base_url})')
+        return program
 
     def get_urls(self, base_url):
         arw = arrow.now()
-        url1 = base_url + f'Veranstaltungssuche/{arw.month}/{arw.year}'
+        url1 = base_url + f'/de/Veranstaltungssuche/{arw.month}/{arw.year}'
         arw = arw.shift(months=+1)
-        url2 = base_url + f'Veranstaltungssuche/{arw.month}/{arw.year}'
+        url2 = base_url + f'/de/Veranstaltungssuche/{arw.month}/{arw.year}'
         urls = [url1, url2]
         return urls
 
@@ -570,14 +592,17 @@ class Glocke(Webscraper):
         soup = bs4.BeautifulSoup(html, 'html.parser')
         shows = soup.find_all('div', class_='va-liste')
         for show in shows:
+            # get time information
             day = show.find(class_=re.compile(r"va_liste_datum_1")).text.strip()
             month = show.find(class_=re.compile(r"va_liste_datum_2")).text.strip()
-            month = Glocke.german_month_to_int(self, month)
-
+            month = self.german_month_to_int(month)
             time_location = show.find('span', style=re.compile(r"color")).text.strip()
             time = time_location[:6]
-            datetime = Glocke.parse_datetime(self, time, day, month)
+            hour = int(time[:2])
+            minute = int(time[3:])
+            datetime = self.parse_datetime(month, day, hour, minute)
 
+            # get other information
             location_details = time_location[10:]
             title = str(show.find('h2')).strip()
             title = title.replace('<h2>', '')
@@ -585,20 +610,17 @@ class Glocke(Webscraper):
             title = title.replace('<br/>', ' - ')
             link = base_url + '{}'.format(show.a.get('href'))
 
-            programinfo = dict(title=title, artist='', datetime=datetime, link_info=link,
-                               link_tickets=link, location_details=location_details,
-                               location='Glocke', info='', price="", language_version='')
+            programinfo = dict(title=title,
+                               artist='',
+                               datetime=datetime,
+                               link_info=link,
+                               link_tickets=link,
+                               location_details=location_details,
+                               location='Glocke',
+                               info='',
+                               price="",
+                               language_version='')
             program.append(programinfo)
         return program
 
-    def parse_datetime(self, time, day, month):
-        #TODO: change filmkunst as to use this as a class method
-        """get arrow object from date from this, and guess the year"""
-        datetime = arrow.now('Europe/Berlin')
-        datetime = datetime.replace(month=month, day=int(day),
-                                    hour=int(time[:2]), minute=int(time[3:]), second=0, microsecond=0)
-        if datetime < arrow.now("Europe/Berlin").shift(months=-1):
-            return datetime.replace(year=datetime.year + 1)
-        else:
-            return datetime
 
