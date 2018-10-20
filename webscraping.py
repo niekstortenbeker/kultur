@@ -11,7 +11,7 @@ from selenium.common.exceptions import TimeoutException
 from selenium.common.exceptions import WebDriverException
 
 # TODO get individual info of the stuff other than ostertor
-
+# TODO maybe remove empty strings in programinfo
 
 def start_driver():
     global driver
@@ -207,8 +207,15 @@ class City46(Webscraper):
             datetime = datetime.replace(year=arrow.now('Europe/Berlin').year)
             link = temp_dict['link']
             info = temp_dict['info']
-            programinfo = dict(title=title, datetime=datetime, link_info=link, link_tickets='',
-                                    location='City46', info=info, price='', artist='', language_version='')
+            programinfo = dict(title=title,
+                               datetime=datetime,
+                               link_info=link,
+                               link_tickets='',
+                               location='City46',
+                               info=info,
+                               price='',
+                               artist='',
+                               language_version='')
             return programinfo
 
 
@@ -374,8 +381,15 @@ class TheaterBremen(Webscraper):
                     title = links[0].text.strip()
                     infos = show.find_all('p')
                     info = '\n'.join(info.text for info in infos)
-                    programinfo = dict(title=title, datetime=datetime, link_info=link_info, link_tickets=link_tickets,
-                                            location='Theater Bremen', info=info, price=price, artist='', language_version='')
+                    programinfo = dict(title=title,
+                                       datetime=datetime,
+                                       link_info=link_info,
+                                       link_tickets=link_tickets,
+                                       location='Theater Bremen',
+                                       info=info,
+                                       price=price,
+                                       artist='',
+                                       language_version='')
                     program.append(programinfo)
         else:
             print('Note, no program could be obtained from Theater Bremen')
@@ -422,8 +436,15 @@ class Filmkunst(Webscraper):
                 title = title[:-3].strip()
             language_version = film.find(class_='movie__flags').text.strip()
             link_tickets = link + film.a.get('href')
-            programinfo = dict(title=title, datetime=datetime, link_info=program_link, link_tickets=link_tickets,
-                                      location=location, info='', price='', artist='', language_version=language_version)
+            programinfo = dict(title=title,
+                               datetime=datetime,
+                               link_info=program_link,
+                               link_tickets=link_tickets,
+                               location=location,
+                               info='',
+                               price='',
+                               artist='',
+                               language_version=language_version)
             program.append(programinfo)
         return program
 
@@ -559,9 +580,15 @@ class Schwankhalle(Webscraper):
                     artist = artist.strip()
                     title = title.strip()
 
-                    programinfo = dict(title=title, artist=artist, datetime=datetime, link_info=link,
-                                              link_tickets=link,
-                                              location='Schwankhalle', info=info, price="", language_version='')
+                    programinfo = dict(title=title,
+                                       artist=artist,
+                                       datetime=datetime,
+                                       link_info=link,
+                                       link_tickets=link,
+                                       location='Schwankhalle',
+                                       info=info,
+                                       price="",
+                                       language_version='')
                     program.append(programinfo)
         return program
 
@@ -618,7 +645,7 @@ class Glocke(Webscraper):
                                location_details=location_details,
                                location='Glocke',
                                info='',
-                               price="",
+                               price='',
                                language_version='')
             program.append(programinfo)
         return program
