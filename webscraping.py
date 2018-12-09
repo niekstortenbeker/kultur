@@ -11,11 +11,12 @@ from selenium.common.exceptions import TimeoutException
 from selenium.common.exceptions import WebDriverException
 
 # TODO get individual info of the stuff other than ostertor
-# TODO maybe remove empty strings in programinfo
 
 def start_driver():
     global driver
     firefox_profile = webdriver.FirefoxProfile()
+    firefox_profile.set_preference("intl.accept_languages", 'de')
+    firefox_profile.update_preferences()  #not sure if this is necessary
     driver = webdriver.Firefox(firefox_profile=firefox_profile)
 
 
@@ -32,7 +33,7 @@ class Webscraper:
         return "some information"
 
     def get_html_from_web(self, url):
-        print('    ...loading webpage')
+        print('    ...loading webpage (requests)')
         try:
             response = requests.get(url)
             if response.status_code == 404:
@@ -51,7 +52,7 @@ class Webscraper:
     def get_html_from_web_ajax(self, url, class_name):
         """Get page source code from a web page that uses ajax to load elements of the page one at a time.
          Selenium will wait for the element with the class name 'class_name' to load before getting the page source"""
-        print('    ...loading webpage')
+        print('    ...loading webpage (selenium)')
         try:
             driver.get(url)
             WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, class_name)))
@@ -132,7 +133,8 @@ class City46(Webscraper):
         for url in urls:
             html = self.get_html_from_web(url)
             table = self.get_tables_from_html(html)
-            program.extend(self.extract_program(table))
+            if table:
+                program.extend(self.extract_program(table))
         if not program:
             print(f'!Note, no program could be retrieved from City 46 ({url})')
         return program
@@ -223,54 +225,64 @@ class City46(Webscraper):
 class CinemaOstertor(Webscraper):
 
     def create_program_db(self):
-        url = 'http://cinema-ostertor.de/programm/'
-        html = self.get_html_from_web(url)
-        table = self.get_tables_from_html(html)
-        table = self.clean_rowspan_in_table(table)
-        program = self.extract_program(table)
+        url = 'https://www.kinoheld.de/kino-bremen/cinema-im-ostertor-bremen/shows/shows?mode=widget'
+        html = self.get_html_from_web_ajax(url, 'movie.u-px-2.u-py-2')
+        program = self.extract_program(html)
         if not program:
             print(f'!Note, no program could be retrieved from Cinema Ostertor ({url})')
         return program
 
-    #TODO cinema ostertor doesn't work anymore
-    def extract_program(self, html_table):
+    def extract_program(self, html):
+        # TODO this is the same as Filmkunst, maybe do something to reduce redundancy
         program = []
-        day = {}
-        for row in html_table:
-            print(row)
-            for column_number, cell in enumerate(row):
-                print('column_number: ', column_number)
-                print('cell: ', cell)
-                if cell.name == 'th':
-                    date = arrow.get(cell.text, 'DD.MM.YYYY')
-                    day[column_number] = date
-                elif cell.name == 'td' and cell.text:
-                    date = day[column_number]
-                    time = cell.find(class_='hours').text
-                    datetime = date.replace(hour=int(time[0:2]), minute=int(time[3:5]), tzinfo='Europe/Berlin')
-                    title = cell.find('a').text
-                    link = cell.find('a').get('href').strip()
-                    programinfo = dict(title=title,
-                                       datetime=datetime,
-                                       link_info=link,
-                                       link_tickets='',
-                                       location='Cinema Ostertor',
-                                       info ='',
-                                       price='',
-                                       artist='',
-                                       language_version='')
-                    program.append(programinfo)
-            # website has a table for the complete program, and tables for individual films. Therefore remove
-            # duplicates. Cannot only use first table because sometimes two weeks are displayed.
-            program = [dict(t) for t in set([tuple(d.items()) for d in program])]  # remove duplicates
+        link = 'https://www.kinoheld.de/'
+        soup = bs4.BeautifulSoup(html, 'html.parser')
+        films = soup.find_all('article')
+        for film in films:
+            # get time info
+            datetime = film.find(class_='movie__date').text
+            month = int(datetime[6:8])
+            day = int(datetime[3:5])
+            hour = int(datetime[10:12])
+            minute = int(datetime[13:15])
+            datetime = self.parse_datetime(month, day, hour, minute)
+
+            # get other info
+            title = film.find(class_='movie__title').text.strip()
+            # TODO does this work the same for cinema ostertor?
+            if title[-3:] in ['OmU', ' OV']:  # do some cleaning to remove white lines from some titles
+                title = title[:-3].strip()
+            language_version = film.find(class_='movie__flags').text.strip()
+            link_tickets = link + film.a.get('href')
+            programinfo = dict(title=title,
+                               datetime=datetime,
+                               link_info='',
+                               link_tickets=link_tickets,
+                               location='Cinema Ostertor',
+                               info='',
+                               price='',
+                               artist='',
+                               language_version=language_version)
+            program.append(programinfo)
         return program
 
-    def create_meta_db(self, ostertor_programinfo):
-        meta_info = {}
-        movie_links = set([programinfo['link_info'] for programinfo in ostertor_programinfo])
+    def create_meta_db(self):
+        url = 'https://cinema-ostertor.de/aktuelle-filme'
+        movie_urls = self.get_meta_urls(url)
+        meta = self.extract_meta(movie_urls)
+        return meta
 
-        for link in movie_links:
-            html = self.get_html_from_web(link)
+    def get_meta_urls(self, start_url):
+        html = self.get_html_from_web(start_url)
+        soup = bs4.BeautifulSoup(html, 'html.parser')
+        urls = [url.get('href').strip() for url in soup.find_all('a', class_='details')]
+        return urls
+
+    def extract_meta(self, movie_urls):
+        # TODO update so it works with the new html layout!!!!
+        meta_info = {}
+        for url in movie_urls:
+            html = self.get_html_from_web(url)
             if html:
                 soup = bs4.BeautifulSoup(html, 'html.parser')
                 meta_film = {'title': '',
@@ -457,20 +469,23 @@ class Filmkunst(Webscraper):
         for url, name in zip(urls, names):
             html = self.get_meta_html(url)
             meta = self.extract_meta(html)
+            while meta == 'again':  # TODO see if this works
+                print('    I will try again')
+                meta = self.extract_meta(html)
             meta_db[name] = meta
         return meta_db
 
     def get_meta_html(self, url):
         """I need to click some buttons to get all the info in the html"""
-        print('    ...loading webpage')
+        print('    ...loading webpage meta filmkunst (selenium)')
         try:
             driver.get(url)
 
             # Wait until the page has loaded
             wait = WebDriverWait(driver, 10)
-            overlay_class = "loading-indicator__background.is-loading"
-            element = wait.until_not(EC.visibility_of_element_located((By.CLASS_NAME, overlay_class)))
-
+            # this is a pain in the ass. used "loading-indicator__background.is-loading" which did not work
+            overlay_class = "is-loading"
+            wait.until_not(EC.visibility_of_element_located((By.CLASS_NAME, overlay_class)))
             # click buttons
             # two button types: one if there is also a trailer, one if there is only info without a trailer
             button_classes = ['ui-button.ui-corners-bottom-left.ui-ripple.ui-button--secondary.u-flex-grow-1',
@@ -480,16 +495,14 @@ class Filmkunst(Webscraper):
             for button in buttons:
                 button.click()
             source = driver.page_source
+            print('    Retrieved html from: ', url)
+            return source
         except TimeoutException:
             print("    Error! Selenium Timeout: {}".format(url))
-            print('    the script is aborted')
-            sys.exit(1)
+            return 'again'
         except WebDriverException as e:
             print("    Error! Selenium Exception. {}".format(str(e)))
-            print('    the script is aborted')
-            sys.exit(1)
-        print('    Retrieved html from: ', url)
-        return source
+            return 'again'
 
     def extract_meta(self, html):
         meta_info = {}
@@ -620,7 +633,7 @@ class Glocke(Webscraper):
         shows = soup.find_all('div', class_='va-liste')
         for show in shows:
             # get time information
-            day = show.find(class_=re.compile(r"va_liste_datum_1")).text.strip()
+            day = int(show.find(class_=re.compile(r"va_liste_datum_1")).text.strip())
             month = show.find(class_=re.compile(r"va_liste_datum_2")).text.strip()
             month = self.german_month_to_int(month)
             time_location = show.find('span', style=re.compile(r"color")).text.strip()
