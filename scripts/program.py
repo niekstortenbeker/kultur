@@ -1,5 +1,4 @@
-import CreateDatabase
-import InputOutput
+import CreateDatabase, InputOutput
 import click
 
 
