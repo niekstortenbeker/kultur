@@ -411,13 +411,13 @@ class City46(Webscraper):
             for cell in row:
                 if cell.text:
                     if cell.text in ['MO', 'DI', 'MI', 'DO', 'FR', 'SA', 'SO']:
-                        if temp_dict['date'] and temp_dict['title']:
+                        if temp_dict['date'] and temp_dict['title'] and temp_dict['time']:
                             films.append(self.save_programinfo(temp_dict))  # 1/3 save the last film of the previous day
-                        temp_dict['title'] = None
+                        temp_dict = dict.fromkeys(temp_dict, None)  # remove all values
                     elif re_date.match(cell.text):
                         temp_dict['date'] = self.add_dot_to_date(cell.text)
                     elif re_time.match(cell.text):
-                        if temp_dict['date'] and temp_dict['title']:
+                        if temp_dict['date'] and temp_dict['title'] and temp_dict['time']:
                             films.append(self.save_programinfo(temp_dict))  # 2/3 save all other films
                         temp_dict['time'] = cell.text.strip()
                     elif cell.find('a'):
@@ -426,8 +426,10 @@ class City46(Webscraper):
                         temp_dict['title'] = title
                         temp_dict['info'] = cell.text[len(title):]  # separate the title from the other info
                     else:  # in case there is extra info in the most right column
-                        temp_dict['info'] = temp_dict['info'] + ' | ' + cell.text
-        films.append(self.save_programinfo(temp_dict))  # 3/3 save the last movie of the month
+                        if temp_dict['info']: # this was once necessary
+                            temp_dict['info'] = temp_dict['info'] + ' | ' + cell.text
+        if temp_dict['date'] and temp_dict['title'] and temp_dict['time']:
+            films.append(self.save_programinfo(temp_dict))  # 3/3 save the last movie of the month
         return films
 
     def add_dot_to_date(self, string):
@@ -439,22 +441,21 @@ class City46(Webscraper):
             return string.strip()
 
     def save_programinfo(self, temp_dict):
-        if temp_dict['date'] and temp_dict['title']:  # skip empty
-            title = temp_dict['title']
-            datetime = arrow.get(temp_dict['date'] + temp_dict['time'], 'D.M.hh:mm', tzinfo='Europe/Berlin')
-            datetime = datetime.replace(year=arrow.now('Europe/Berlin').year)
-            link = temp_dict['link']
-            info = temp_dict['info']
-            programinfo = dict(title=title,
-                               datetime=datetime,
-                               link_info=link,
-                               link_tickets='',
-                               location='City46',
-                               info=info,
-                               price='',
-                               artist='',
-                               language_version='')
-            return programinfo
+        title = temp_dict['title']
+        datetime = arrow.get(temp_dict['date'] + temp_dict['time'], 'D.M.hh:mm', tzinfo='Europe/Berlin')
+        datetime = datetime.replace(year=arrow.now('Europe/Berlin').year)
+        link = temp_dict['link']
+        info = temp_dict['info']
+        programinfo = dict(title=title,
+                           datetime=datetime,
+                           link_info=link,
+                           link_tickets='',
+                           location='City46',
+                           info=info,
+                           price='',
+                           artist='',
+                           language_version='')
+        return programinfo
 
 
 class TheaterBremen(Webscraper):
