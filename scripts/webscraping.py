@@ -147,17 +147,17 @@ class City46(Webscraper):
                   9: 'september', 10: 'oktober', 11: 'november', 12: 'dezember'}
 
         date = arrow.now('Europe/Berlin')
-        #year = date.year
+        year = date.year
         month = date.month
         day = date.day
-        full_link = "{}{}.html".format(base_link, months[month])
+        full_link = "{}{}-{}.html".format(base_link, months[month],year)
         urls.append(full_link)
 
         if day > 20:
             date = date.shift(months=+1)
             year = date.year
             month = date.month
-            full_link = "{}{}.html".format(base_link, months[month])
+            full_link = "{}{}-{}.html".format(base_link, months[month], year)
             urls.append(full_link)
         return urls
 
@@ -468,15 +468,18 @@ class Filmkunst(Webscraper):
         names = ['Schauburg', 'Gondel', 'Atlantis']
         for url, name in zip(urls, names):
             html = self.get_meta_html(url)
-            meta = self.extract_meta(html)
-            while meta == 'again':  # TODO see if this works
+            # the clicking should start when the overlay is gone, but sometimes it starts already anyways
+            # if this is the case, try again
+            while html == 'again':
                 print('    I will try again')
-                meta = self.extract_meta(html)
+                html = self.get_meta_html(url)
+            meta = self.extract_meta(html)
             meta_db[name] = meta
         return meta_db
 
     def get_meta_html(self, url):
-        """I need to click some buttons to get all the info in the html"""
+        """I need to click some buttons to get all the info in the html. It should wait for the overlay to be gone.
+        (which doesn't always work. If something goes wrong, don't return html, but the string 'again' """
         print('    ...loading webpage meta filmkunst (selenium)')
         try:
             driver.get(url)
@@ -501,7 +504,7 @@ class Filmkunst(Webscraper):
             print("    Error! Selenium Timeout: {}".format(url))
             return 'again'
         except WebDriverException as e:
-            print("    Error! Selenium Exception. {}".format(str(e)))
+            print("    Error! Selenium Exception. {}".format(str(e).strip()))
             return 'again'
 
     def extract_meta(self, html):
@@ -664,3 +667,40 @@ class Glocke(Webscraper):
         return program
 
 
+class Kukoon(Webscraper):
+
+    def create_program_db(self):
+        url = 'https://kukoon.de/programm/'
+        html = self.get_html_from_web(url)
+        program = self.extract_program(html)
+        return program
+
+    def extract_program(self, html):
+        program = []
+        soup = bs4.BeautifulSoup(html, 'html.parser')
+        shows = soup.find_all('div', class_='event')
+        for show in shows:
+            datetime = show.time
+            if datetime:
+                datetime = arrow.get(datetime.get('datetime'))
+                title = show.find(class_='event__title').a
+                link_info = title.get('href')
+                title = title.text.strip()
+                location_details = show.find(class_='event__venue').text.strip()
+                if location_details == 'Kukoon':
+                    location_details = ''
+                info = show.find(class_='event__categories').text.strip()
+
+                programinfo = dict(title=title,
+                                   artist='',
+                                   datetime=datetime,
+                                   link_info=link_info,
+                                   link_tickets='',
+                                   location_details=location_details,
+                                   location= 'Kukoon',
+                                   info=info,
+                                   price='',
+                                   )
+                if not 'geschlossene gesellschaft' in title.lower():
+                    program.append(programinfo)
+        return program

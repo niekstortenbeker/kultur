@@ -10,7 +10,8 @@ def main():
     schwankhalle_program = create_db_schwankhalle()
     # ostertor_program, ostertor_meta = create_db_cinema_ostertor() # TODO change this when meta works again
     ostertor_program = create_db_cinema_ostertor()
-    glocke_program = create_database_glocke()
+    glocke_program = create_db_glocke()
+    kukoon_program = create_db_kukoon()
     webscraping.close_driver()
 
     program_db = [city46_program, theater_program, filmkunst_program, schwankhalle_program, ostertor_program,
@@ -68,8 +69,16 @@ def create_db_schwankhalle():
     return program
 
 
-def create_database_glocke():
+def create_db_kukoon():
+    print('\n Working on Kukoon')
+    kukoon = webscraping.Kukoon()
+    program = kukoon.create_program_db()
+    return program
+
+
+def create_db_glocke():
     """ only does the first five things because I'm lazy"""
+    # TODO check if this is true and change it
     print('\n  Working on Glocke')
     glocke = webscraping.Glocke()
     program = glocke.create_program_db()
@@ -101,8 +110,8 @@ def find_and_change_case_errors(db_programinfo, db_metainfo, location):
     print(f'\n  working on {location}')
 
     program_titles = set([programinfo['title']
-                                   for programinfo in db_programinfo
-                                   if programinfo['location'] == location])
+                          for programinfo in db_programinfo
+                          if programinfo['location'] == location])
     meta_titles = set(db_metainfo[location].keys())
     no_matches = program_titles - meta_titles
 

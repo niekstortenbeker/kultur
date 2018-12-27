@@ -1,16 +1,25 @@
 import CreateDatabase, InputOutput
 import click
+import arrow
 
 
 @click.command()
 @click.option('--new/--old', '-n', default=False,
               help='Scrape websites to make a new database. (Otherwise start from old database)')
-def main(new):
+@click.option('--today/--week', '-t', default=False,
+              help='Only show today')
+def main(new, today):
     print_header()
     if new:
         make_new_database()
     db_programinfo, db_metainfo, scraping_date = prepare_program_from_JSON()
-    current_program = InputOutput.make_current_program(db_programinfo, db_metainfo)
+
+    now = arrow.utcnow()
+    if not today:  # TODO figure this out, why does it work this stupid way?
+        last_date = now.shift(weeks=+1).replace(hour=0, minute=0, second=0, microsecond=0, tzinfo='Europe/Berlin')
+    else:
+        last_date = now.shift(days=+1).replace(hour=0, minute=0, second=0, microsecond=0, tzinfo='Europe/Berlin')
+    current_program = InputOutput.make_current_program(db_programinfo, db_metainfo, last_date)
     print_program(current_program, scraping_date)
 
 

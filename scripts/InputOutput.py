@@ -43,14 +43,14 @@ def insert_arrow_objects_in_programinfo(db_programinfo):
     return db_programinfo
 
 
-def make_current_program(db_programinfo, db_metainfo):
+def make_current_program(db_programinfo, db_metainfo, last_date):
     #TODO I'm not really happy with this function, its not easy to understand
+    #TODO also want to find a way to only print one day
     current_program = []
     day = arrow.utcnow().day  # necessary to identify day separator
     now = arrow.utcnow()
-    week_later = now.shift(weeks=+1).replace(hour=0, minute=0, second=0, microsecond=0, tzinfo='Europe/Berlin')
     for programinfo in db_programinfo:
-        if now < programinfo['datetime'] < week_later:
+        if now < programinfo['datetime'] < last_date:
             title = programinfo['title']
             if programinfo['datetime'].day != day:  # append a day separator
                 day = programinfo['datetime'].day
