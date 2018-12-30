@@ -15,10 +15,10 @@ def main(new, today):
     db_programinfo, db_metainfo, scraping_date = prepare_program_from_JSON()
 
     now = arrow.utcnow()
-    if not today:  # TODO figure this out, why does it work this stupid way?
-        last_date = now.shift(weeks=+1).replace(hour=0, minute=0, second=0, microsecond=0, tzinfo='Europe/Berlin')
-    else:
+    if today:
         last_date = now.shift(days=+1).replace(hour=0, minute=0, second=0, microsecond=0, tzinfo='Europe/Berlin')
+    else:
+        last_date = now.shift(weeks=+1).replace(hour=0, minute=0, second=0, microsecond=0, tzinfo='Europe/Berlin')
     current_program = InputOutput.make_current_program(db_programinfo, db_metainfo, last_date)
     print_program(current_program, scraping_date)
 

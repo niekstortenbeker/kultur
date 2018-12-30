@@ -12,6 +12,7 @@ from selenium.common.exceptions import WebDriverException
 
 # TODO get individual info of the stuff other than ostertor
 
+
 def start_driver():
     global driver
     firefox_profile = webdriver.FirefoxProfile()
@@ -272,7 +273,6 @@ class CinemaOstertor(Kinoheld):
         return urls
 
     def extract_meta(self, movie_urls):
-        # TODO update so it works with the new html layout!!!!
         meta_info = {}
         for url in movie_urls:
             html = self.get_html_from_web(url)
@@ -291,40 +291,38 @@ class CinemaOstertor(Kinoheld):
                              'img_screenshot': '',
                              }  # I want keys to be present also if values are absent
 
-                title = soup.find(class_='page_title')
-                if title:
-                    title = title.text.strip()
-                    meta_film['title'] = title
-                country = soup.find(class_='event_country')
-                if country:
-                    meta_film['country'] = country.text.strip()
-                year = soup.find(class_='event_year')
-                if year:
-                    meta_film['year'] = year.text.strip()
-                genre = soup.find(class_='event_category')
-                if genre:
-                    meta_film['genre'] = genre.text.strip()
-                duration = soup.find(class_='movies_length')
-                if duration:
-                    meta_film['duration'] = duration.text.strip()
-                director = soup.find(class_='event_director')
-                if director:
-                    meta_film['director'] = director.text.strip()
-                language = soup.find(class_='event_language')
-                if language:
-                    meta_film['language'] = language.text.strip()
-                description = soup.find(class_='entry-content')  # description is in two p tags
-                if description:
-                    description = description.find_all('p')
-                    meta_film['description'] = ''.join([p.text for p in description]).strip()
-                img_poster = soup.find('img', class_='open_entry_image')
-                if img_poster:
-                    meta_film['img_poster'] = img_poster.get('src').strip()
-                img_screenshot = soup.find('img', class_='alignright')
-                if img_screenshot:
-                    meta_film['img_screenshot'] = img_screenshot.get('src').strip()
+                # many stats are hidden in a sloppy bit of html in h6
+                stats = soup.find('h6')
+                d = {}
+                for strong in stats.find_all('strong'):
+                    name = strong.previous_sibling.strip().lower()
+                    description = strong.text.strip()
+                    d[name] = description
 
-                meta_info[title] = meta_film
+                translate = {'title': 'titel:',
+                             'title_original': 'originaler titel:',
+                             'country': 'produktion:',
+                             'year': 'erscheinungsdatum:',
+                             'genre': 'genre:',
+                             'duration': 'dauer:',
+                             'director': 'regie:',
+                             }
+                for key in meta_film.keys():
+                    try:
+                        meta_film[key] = d[translate[key]]
+                    except KeyError:
+                        pass
+                # do some necessary cleaning
+                if meta_film['year']:
+                    meta_film['year'] = meta_film['year'][-4:]
+                if meta_film['duration']:
+                    meta_film['duration'] = meta_film['duration'].replace('\xa0', ' ')
+
+                # get other data
+                meta_film['img_screenshot'] = soup.find('img', class_='rev-slidebg').get('src').strip()
+                meta_film['img_poster'] = soup.find('img', class_='vc_single_image-img').get('src').strip()
+                meta_film['description'] = soup.find('p').text
+                meta_info[meta_film['title']] = meta_film
         meta_info = {'Cinema Ostertor': meta_info}
         return meta_info
 

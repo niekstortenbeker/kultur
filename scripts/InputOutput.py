@@ -45,7 +45,6 @@ def insert_arrow_objects_in_programinfo(db_programinfo):
 
 def make_current_program(db_programinfo, db_metainfo, last_date):
     #TODO I'm not really happy with this function, its not easy to understand
-    #TODO also want to find a way to only print one day
     current_program = []
     day = arrow.utcnow().day  # necessary to identify day separator
     now = arrow.utcnow()

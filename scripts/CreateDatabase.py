@@ -8,18 +8,21 @@ def main():
     theater_program = create_db_theater_bremen()
     filmkunst_program, filmkunst_meta = create_db_filmkunst()
     schwankhalle_program = create_db_schwankhalle()
-    # ostertor_program, ostertor_meta = create_db_cinema_ostertor() # TODO change this when meta works again
-    ostertor_program = create_db_cinema_ostertor()
+    ostertor_program, ostertor_meta = create_db_cinema_ostertor()
     glocke_program = create_db_glocke()
     kukoon_program = create_db_kukoon()
     webscraping.close_driver()
 
-    program_db = [city46_program, theater_program, filmkunst_program, schwankhalle_program, ostertor_program,
-                  glocke_program]
+    program_db = [city46_program,
+                  theater_program,
+                  filmkunst_program,
+                  schwankhalle_program,
+                  ostertor_program,
+                  glocke_program,
+                  kukoon_program]
     program_db = merge_databases(program_db)
 
-    # meta_db = {**ostertor_meta, **filmkunst_meta} # TODO get this back when ostertor works
-    meta_db = {**filmkunst_meta}
+    meta_db = {**ostertor_meta, **filmkunst_meta}
     meta_db = quality_control_dbs(program_db, meta_db)
 
     return program_db, meta_db
@@ -42,9 +45,8 @@ def create_db_cinema_ostertor():
     print('\n  Working on Cinema Ostertor')
     ostertor = webscraping.CinemaOstertor()
     program = ostertor.create_program_db()
-    # meta = ostertor.create_meta_db()
-    # TODO repair meta and return this also
-    return program
+    meta = ostertor.create_meta_db()
+    return program, meta
 
 
 def create_db_theater_bremen():
@@ -96,8 +98,7 @@ def merge_databases(databases):
 def quality_control_dbs(db_programinfo, db_metainfo):
     """so far only check for shows in programinfo but not in metainfo if there is a case mismatch in the title"""
     print('\n\nPerforming a quality control on the metainfo and programinfo databases')
-    # TODO get ostertor back when it works again
-    # db_metainfo = find_and_change_case_errors(db_programinfo, db_metainfo, 'Cinema Ostertor')
+    db_metainfo = find_and_change_case_errors(db_programinfo, db_metainfo, 'Cinema Ostertor')
     db_metainfo = find_and_change_case_errors(db_programinfo, db_metainfo, 'Schauburg')
     db_metainfo = find_and_change_case_errors(db_programinfo, db_metainfo, 'Atlantis')
     db_metainfo = find_and_change_case_errors(db_programinfo, db_metainfo, 'Gondel')

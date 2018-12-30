@@ -2,8 +2,9 @@ import webscraping
 import CreateDatabase
 import InputOutput
 import time
+from pprint import pprint
 
-# webscraping.start_driver()
+webscraping.start_driver()
 
 # try:
 #     filmkunst = webscraping.Filmkunst()
@@ -15,10 +16,13 @@ import time
 
 #
 
-city46 = webscraping.City46()
-program = city46.create_program_db()
-# for thing in program:
-#     print(thing['info'])
+ostertor = webscraping.CinemaOstertor()
+program = ostertor.create_program_db()
+# meta = ostertor.create_meta_db()
+pprint(program)
+
+webscraping.close_driver()
+
 
 # db_programinfo, db_metainfo, scraping_date = InputOutput.json_to_db()
 # db_programinfo = InputOutput.insert_arrow_objects_in_programinfo(db_programinfo)
