@@ -333,12 +333,12 @@ class City46(Webscraper):
         base_url = 'http://www.city46.de/programm/'
         program = []
 
-        urls = self.get_urls(base_url)
-        for url in urls:
+        urls, years = self.get_urls(base_url)
+        for url, year in zip(urls, years):
             html = self.get_html_from_web(url)
             table = self.get_tables_from_html(html)
             if table:
-                program.extend(self.extract_program(table))
+                program.extend(self.extract_program(table, year))
         if not program:
             print(f'!Note, no program could be retrieved from City 46 ({url})')
         return program
@@ -346,6 +346,7 @@ class City46(Webscraper):
     def get_urls(self, url):
         """use today's date to figure out the city 46 program url. If date > 20 also get next month"""
         urls = []
+        years = []
         base_link = url
         months = {1: 'januar', 2: 'februar', 3: 'maerz', 4: 'april', 5: 'mai', 6: 'juni', 7: 'juli', 8: 'august',
                   9: 'september', 10: 'oktober', 11: 'november', 12: 'dezember'}
@@ -356,6 +357,7 @@ class City46(Webscraper):
         day = date.day
         full_link = "{}{}-{}.html".format(base_link, months[month], year)
         urls.append(full_link)
+        years.append(year)
 
         if day > 20:
             date = date.shift(months=+1)
@@ -363,7 +365,8 @@ class City46(Webscraper):
             month = date.month
             full_link = "{}{}-{}.html".format(base_link, months[month], year)
             urls.append(full_link)
-        return urls
+            years.append(year)
+        return urls,years
 
     def get_tables_from_html(self, html):
         """Parses all tables from a website. The tables are merged and are saved as a list of
@@ -395,7 +398,7 @@ class City46(Webscraper):
                     rowspans[row_number] = int(cell['rowspan'])
         return html_table
 
-    def extract_program(self, html_table):
+    def extract_program(self, html_table, year):
         """ very ugly this, but the HTML is also really ugly.
         save film info in a temporary dictionary that changes throughout the for loop through the table.
         In this for loop the dictionary is saved as a ProgramInfo namedtuple, which is appended to a list. This dictionary
@@ -410,13 +413,13 @@ class City46(Webscraper):
                 if cell.text:
                     if cell.text in ['MO', 'DI', 'MI', 'DO', 'FR', 'SA', 'SO']:
                         if temp_dict['date'] and temp_dict['title'] and temp_dict['time']:
-                            films.append(self.save_programinfo(temp_dict))  # 1/3 save the last film of the previous day
+                            films.append(self.save_programinfo(temp_dict, year))  # 1/3 save the last film of the previous day
                         temp_dict = dict.fromkeys(temp_dict, None)  # remove all values
                     elif re_date.match(cell.text):
                         temp_dict['date'] = self.add_dot_to_date(cell.text)
                     elif re_time.match(cell.text):
                         if temp_dict['date'] and temp_dict['title'] and temp_dict['time']:
-                            films.append(self.save_programinfo(temp_dict))  # 2/3 save all other films
+                            films.append(self.save_programinfo(temp_dict, year))  # 2/3 save all other films
                         temp_dict['time'] = cell.text.strip()
                     elif cell.find('a'):
                         temp_dict['link'] = 'http://www.city46.de/' + cell.find('a').get('href')
@@ -427,7 +430,7 @@ class City46(Webscraper):
                         if temp_dict['info']: # this was once necessary
                             temp_dict['info'] = temp_dict['info'] + ' | ' + cell.text
         if temp_dict['date'] and temp_dict['title'] and temp_dict['time']:
-            films.append(self.save_programinfo(temp_dict))  # 3/3 save the last movie of the month
+            films.append(self.save_programinfo(temp_dict, year))  # 3/3 save the last movie of the month
         return films
 
     def add_dot_to_date(self, string):
@@ -438,10 +441,10 @@ class City46(Webscraper):
             string = string + '.'
             return string.strip()
 
-    def save_programinfo(self, temp_dict):
+    def save_programinfo(self, temp_dict, year):
         title = temp_dict['title']
         datetime = arrow.get(temp_dict['date'] + temp_dict['time'], 'D.M.hh:mm', tzinfo='Europe/Berlin')
-        datetime = datetime.replace(year=arrow.now('Europe/Berlin').year)
+        datetime = datetime.replace(year=year)
         link = temp_dict['link']
         info = temp_dict['info']
         programinfo = dict(title=title,
