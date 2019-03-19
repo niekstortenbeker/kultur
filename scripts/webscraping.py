@@ -10,6 +10,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from selenium.common.exceptions import WebDriverException
+from selenium.common.exceptions import ElementClickInterceptedException
 
 # TODO get individual info of the stuff other than ostertor
 # TODO add the empty dictionary as a class thing
@@ -136,39 +137,46 @@ class Kinoheld(Webscraper):
         return program
 
     def get_meta_html(self, url):
-        """I need to click some buttons to get all the info in the html. It should wait for the overlay to be gone.
-        (which doesn't always work. If something goes wrong, don't return html, but the string 'again' """
+        # TODO do I get all the meta info?
+        """I need to click some buttons to get all the info in the html. It should wait for the overlay to be gone."""
         print('    ...loading webpage meta kinoheld (selenium)')
+        driver.get(url)
+        self.wait_for_overlay()
+        source = self.click_buttons(url)
+        return source
+
+    def click_buttons(self, url):
+        """click two button types: one if there is also a trailer, one if there is only info without a trailer"""
+        button_classes = ['ui-button.ui-corners-bottom-left.ui-ripple.ui-button--secondary.u-flex-grow-1',
+                          'ui-button.ui-corners-bottom.ui-ripple.ui-button--secondary.u-flex-grow-1']
+        buttons = driver.find_elements_by_class_name(button_classes[0])
+        buttons.extend(driver.find_elements_by_class_name(button_classes[1]))
+        clicking = self.try_clicking(buttons[0])
+        while not clicking:  # sometimes there are still overlay classes preventing clicking
+            time.sleep(3)
+            clicking = self.try_clicking(buttons[0])
+        del buttons[0]
+        for button in buttons:
+            button.click()
+        source = driver.page_source
+        print('    Retrieved html from: ', url)
+        return source
+
+    def wait_for_overlay(self):
         try:
-            driver.get(url)
+            wait = WebDriverWait(driver, 10)
+            overlay_class = "overlay-container"
+            wait.until_not(EC.visibility_of_element_located((By.CLASS_NAME, overlay_class)))
+            return True
+        except WebDriverException:
+            return False
 
-            # Wait until the page has loaded
-            # TODO maybe break down in functions that return TRUE or FALSE
-            try:
-                wait = WebDriverWait(driver, 10)
-                overlay_class = "overlay-container"
-                wait.until_not(EC.visibility_of_element_located((By.CLASS_NAME, overlay_class)))
-            except WebDriverException:
-                time.sleep(4)
-
-            # click buttons
-            # two button types: one if there is also a trailer, one if there is only info without a trailer
-            button_classes = ['ui-button.ui-corners-bottom-left.ui-ripple.ui-button--secondary.u-flex-grow-1',
-                              'ui-button.ui-corners-bottom.ui-ripple.ui-button--secondary.u-flex-grow-1']
-            buttons = driver.find_elements_by_class_name(button_classes[0])
-            buttons.extend(driver.find_elements_by_class_name(button_classes[1]))
-            for button in buttons:
-                button.click()
-            source = driver.page_source
-            print('    Retrieved html from: ', url)
-            return source
-        # TODO do I still need these?
-        except TimeoutException:
-            print("    Error! Selenium Timeout: {}".format(url))
-            return 'again'
-        except WebDriverException as e:
-            print("    Error! Selenium Exception. {}".format(str(e).strip()))
-            return 'again'
+    def try_clicking(self, button):
+        try:
+            button.click()
+            return True
+        except ElementClickInterceptedException:
+            return False
 
     def extract_meta(self, html):
         meta_info = {}
@@ -250,11 +258,6 @@ class Filmkunst(Kinoheld):
         names = ['Schauburg', 'Gondel', 'Atlantis']
         for url, name in zip(urls, names):
             html = self.get_meta_html(url)
-            # the clicking should start when the overlay is gone, but sometimes it starts already anyways
-            # if this is the case, try again
-            while html == 'again':
-                print('    I will try again')
-                html = self.get_meta_html(url)
             meta = self.extract_meta(html)
             meta_db[name] = meta
         return meta_db
