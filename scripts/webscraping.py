@@ -3,6 +3,7 @@ import requests
 import sys
 import arrow
 import re
+import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -11,6 +12,7 @@ from selenium.common.exceptions import TimeoutException
 from selenium.common.exceptions import WebDriverException
 
 # TODO get individual info of the stuff other than ostertor
+# TODO add the empty dictionary as a class thing
 
 
 def start_driver():
@@ -50,6 +52,7 @@ class Webscraper:
             print('    the script is aborted')
             sys.exit(1)
 
+    # TODO: is this function being used anywhere?
     def get_html_from_web_ajax(self, url, class_name):
         """Get page source code from a web page that uses ajax to load elements of the page one at a time.
          Selenium will wait for the element with the class name 'class_name' to load before getting the page source"""
@@ -115,7 +118,10 @@ class Kinoheld(Webscraper):
             title = film.find(class_='movie__title').text.strip()
             if title[-3:] in ['OmU', ' OV']:  # do some cleaning to remove white lines from some titles
                 title = title[:-3].strip()
-            language_version = film.find(class_='movie__flags').text.strip()
+            if film.find(class_='movie__title').span:
+                language_version = film.find(class_='movie__title').span.text.strip()
+            else:
+                language_version = ''
             link_tickets = link + film.a.get('href')
             programinfo = dict(title=title,
                                datetime=datetime,
@@ -137,10 +143,14 @@ class Kinoheld(Webscraper):
             driver.get(url)
 
             # Wait until the page has loaded
-            wait = WebDriverWait(driver, 10)
-            # this is a pain in the ass. used "loading-indicator__background.is-loading" which did not work
-            overlay_class = "is-loading"
-            wait.until_not(EC.visibility_of_element_located((By.CLASS_NAME, overlay_class)))
+            # TODO maybe break down in functions that return TRUE or FALSE
+            try:
+                wait = WebDriverWait(driver, 10)
+                overlay_class = "overlay-container"
+                wait.until_not(EC.visibility_of_element_located((By.CLASS_NAME, overlay_class)))
+            except WebDriverException:
+                time.sleep(4)
+
             # click buttons
             # two button types: one if there is also a trailer, one if there is only info without a trailer
             button_classes = ['ui-button.ui-corners-bottom-left.ui-ripple.ui-button--secondary.u-flex-grow-1',
@@ -152,6 +162,7 @@ class Kinoheld(Webscraper):
             source = driver.page_source
             print('    Retrieved html from: ', url)
             return source
+        # TODO do I still need these?
         except TimeoutException:
             print("    Error! Selenium Timeout: {}".format(url))
             return 'again'
@@ -293,6 +304,8 @@ class CinemaOstertor(Kinoheld):
 
                 # many stats are hidden in a sloppy bit of html in h6
                 stats = soup.find('h6')
+                if not stats:  # maybe not cleanest but was necessary for film festival
+                    return {'Cinema Ostertor': meta_info}
                 d = {}
                 for strong in stats.find_all('strong'):
                     name = strong.previous_sibling.strip().lower()
@@ -319,12 +332,13 @@ class CinemaOstertor(Kinoheld):
                     meta_film['duration'] = meta_film['duration'].replace('\xa0', ' ')
 
                 # get other data
-                meta_film['img_screenshot'] = soup.find('img', class_='rev-slidebg').get('src').strip()
+                img_screenshot = soup.find('img', class_='rev-slidebg')
+                if img_screenshot:
+                    meta_film['img_screenshot'] = img_screenshot.get('src').strip()
                 meta_film['img_poster'] = soup.find('img', class_='vc_single_image-img').get('src').strip()
                 meta_film['description'] = soup.find('p').text
                 meta_info[meta_film['title']] = meta_film
-        meta_info = {'Cinema Ostertor': meta_info}
-        return meta_info
+        return {'Cinema Ostertor': meta_info}
 
 
 class City46(Webscraper):
@@ -488,8 +502,7 @@ class TheaterBremen(Webscraper):
             date = date.shift(months=+1)
             year = date.year
             month = date.month
-            day = date.day
-            url = "{}#?d={}-{}-{}&f=a".format(base_url, year, month, day)
+            url = "{}#?d={}-{}-{}&f=a".format(base_url, year, month, 20)
             urls.append(url)
         return urls
 
@@ -528,6 +541,7 @@ class TheaterBremen(Webscraper):
                     program.append(programinfo)
         else:
             print('Note, no program could be obtained from Theater Bremen')
+
         return program
 
 

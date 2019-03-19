@@ -14,12 +14,13 @@ webscraping.start_driver()
 # finally:
 #     webscraping.close_driver()
 
-#
 
-ostertor = webscraping.CinemaOstertor()
-program = ostertor.create_program_db()
+filmkunst = webscraping.Filmkunst()
+program = filmkunst.create_program_db()
+print(program)
+# theater_bremen = webscraping.TheaterBremen()
+# program = theater_bremen.create_program_db()
 # meta = ostertor.create_meta_db()
-pprint(program)
 
 webscraping.close_driver()
 
