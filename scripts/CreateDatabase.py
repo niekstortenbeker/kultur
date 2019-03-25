@@ -1,5 +1,5 @@
 import webscraping
-
+import re
 
 def main():
     print('\nScraping the program web pages')
@@ -122,10 +122,9 @@ def find_and_change_case_errors(db_programinfo, db_metainfo, location):
         for no_match in no_matches:
             for meta_title in meta_titles:
                 if no_match.lower() == meta_title.lower():
-                    matches_after_case_change.append(no_match)
-                    metainfo = db_metainfo[location].pop(meta_title)
-                    db_metainfo[location][no_match] = metainfo
-                    print(f'    adjusted show title "{meta_title}" to "{no_match}" in db_metainfo')
+                    adjust_name(db_metainfo, location, matches_after_case_change, meta_title, no_match)
+                elif alphanumeric(no_match) == alphanumeric(meta_title):
+                    adjust_name(db_metainfo, location, matches_after_case_change, meta_title, no_match)
 
         no_matches_after_case_change = no_matches - set(matches_after_case_change)
 
@@ -135,6 +134,17 @@ def find_and_change_case_errors(db_programinfo, db_metainfo, location):
         print("    lookin' good!")
     return db_metainfo
 
+
+def adjust_name(db_metainfo, location, matches_after_case_change, meta_title, no_match):
+    matches_after_case_change.append(no_match)
+    metainfo = db_metainfo[location].pop(meta_title)
+    db_metainfo[location][no_match] = metainfo
+    print(f'    adjusted show title "{meta_title}" to "{no_match}" in db_metainfo')
+
+
+def alphanumeric(s):
+    """convert all adjecent non-alphanumeric characters to a single space"""
+    return re.sub('[^0-9a-zA-Z]+', ' ', s)
 
 if __name__ == '__main__':
     main()

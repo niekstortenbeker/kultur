@@ -4,7 +4,7 @@ import InputOutput
 import time
 from pprint import pprint
 
-webscraping.start_driver()
+# webscraping.start_driver()
 
 # try:
 #     filmkunst = webscraping.Filmkunst()
@@ -15,14 +15,13 @@ webscraping.start_driver()
 #     webscraping.close_driver()
 
 
-filmkunst = webscraping.Filmkunst()
-program = filmkunst.create_program_db()
-print(program)
+ostertor = webscraping.CinemaOstertor()
+meta = ostertor.create_meta_db()
 # theater_bremen = webscraping.TheaterBremen()
 # program = theater_bremen.create_program_db()
 # meta = ostertor.create_meta_db()
 
-webscraping.close_driver()
+# webscraping.close_driver()
 
 
 # db_programinfo, db_metainfo, scraping_date = InputOutput.json_to_db()

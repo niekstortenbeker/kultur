@@ -11,16 +11,19 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from selenium.common.exceptions import WebDriverException
 from selenium.common.exceptions import ElementClickInterceptedException
+from copy import copy
+from pprint import pprint
 
 # TODO get individual info of the stuff other than ostertor
-# TODO add the empty dictionary as a class thing
+# TODO change naming convention all over to follow ostertor
+# TODO did I now solve the meta database problems?
 
 
 def start_driver():
     global driver
     firefox_profile = webdriver.FirefoxProfile()
     firefox_profile.set_preference("intl.accept_languages", 'de')
-    firefox_profile.update_preferences()  #not sure if this is necessary
+    firefox_profile.update_preferences()  # not sure if this is necessary
     driver = webdriver.Firefox(firefox_profile=firefox_profile)
 
 
@@ -29,8 +32,19 @@ def close_driver():
 
 
 class Webscraper:
-    # def __init__(self):
-    #     # maybe get some stuff here TODO and how about title/name etc?
+    def __init__(self):
+        self.meta_film = {'title': '',
+                          'title_original': '',
+                          'country': '',
+                          'year': '',
+                          'genre': '',
+                          'duration': '',
+                          'director': '',
+                          'language': '',
+                          'description': '',
+                          'img_poster': '',
+                          'img_screenshot': '',
+                          }  # I want keys to be present also if values are absent
 
     def __repr__(self):
         # TODO maybe actually use this
@@ -184,24 +198,12 @@ class Kinoheld(Webscraper):
         films = soup.find_all('article')
 
         for film in films:
-            meta_film = {'title': '',
-                         'title_original': '',
-                         'country': '',
-                         'year': '',
-                         'genre': '',
-                         'duration': '',
-                         'director': '',
-                         'language': '',
-                         'description': '',
-                         'img_poster': '',
-                         'img_screenshot': '',
-                         }  # I want keys to be present also if values are absent
-
             try:
                 dl = film.find(class_='movie__additional-data').find('dl')
                 dt = [tag.text.strip().lower() for tag in dl.find_all('dt')]
                 dd = [tag.text.strip() for tag in dl.find_all('dd')]
-                meta_film['title'] = dd[dt.index('titel')]  # I always need a title
+                meta_film = copy(self.meta_film)
+                self.meta_film['title'] = dd[dt.index('titel')]  # I always need a title
                 if 'originaltitel' in dt:
                     meta_film['title_original'] = dd[dt.index('originaltitel')]
                 if 'produktion' in dt:
@@ -264,6 +266,7 @@ class Filmkunst(Kinoheld):
 
 
 class CinemaOstertor(Kinoheld):
+#TODO do I store the language info that is in the kinoheld info?
 
     def create_program_db(self):
         url = 'https://www.kinoheld.de/kino-bremen/cinema-im-ostertor-bremen/shows/shows?mode=widget'
@@ -272,7 +275,6 @@ class CinemaOstertor(Kinoheld):
         if not program:
             print(f'!Note, no program could be retrieved from Cinema Ostertor ({url})')
         return program
-
 
     def create_meta_db(self):
         url = 'https://cinema-ostertor.de/aktuelle-filme'
@@ -287,61 +289,52 @@ class CinemaOstertor(Kinoheld):
         return urls
 
     def extract_meta(self, movie_urls):
-        meta_info = {}
+        meta_info_program = {}
         for url in movie_urls:
             html = self.get_html_from_web(url)
-            if html:
-                soup = bs4.BeautifulSoup(html, 'html.parser')
-                meta_film = {'title': '',
-                             'title_original': '',
-                             'country': '',
-                             'year': '',
-                             'genre': '',
-                             'duration': '',
-                             'director': '',
-                             'language': '',
-                             'description': '',
-                             'img_poster': '',
-                             'img_screenshot': '',
-                             }  # I want keys to be present also if values are absent
+            try:
+                title, meta_info_show = self.parse_show(html)
+                meta_info_program[title] = meta_info_show
+            except TypeError:
+                print(f"No meta info was extracted because of a NoneType (url: {url})")
+        return {'Cinema Ostertor': meta_info_program}
 
-                # many stats are hidden in a sloppy bit of html in h6
-                stats = soup.find('h6')
-                if not stats:  # maybe not cleanest but was necessary for film festival
-                    return {'Cinema Ostertor': meta_info}
-                d = {}
-                for strong in stats.find_all('strong'):
-                    name = strong.previous_sibling.strip().lower()
-                    description = strong.text.strip()
-                    d[name] = description
-
-                translate = {'title': 'titel:',
-                             'title_original': 'originaler titel:',
-                             'country': 'produktion:',
-                             'year': 'erscheinungsdatum:',
-                             'genre': 'genre:',
-                             'duration': 'dauer:',
-                             'director': 'regie:',
-                             }
-                for key in meta_film.keys():
-                    try:
-                        meta_film[key] = d[translate[key]]
-                    except KeyError:
-                        pass
-                # do some necessary cleaning
-                if meta_film['year']:
-                    meta_film['year'] = meta_film['year'][-4:]
-                if meta_film['duration']:
-                    meta_film['duration'] = meta_film['duration'].replace('\xa0', ' ')
-
-                # get other data
-                img_screenshot = soup.find('img', class_='rev-slidebg')
-                if img_screenshot:
-                    meta_film['img_screenshot'] = img_screenshot.get('src').strip()
-                meta_film['img_poster'] = soup.find('img', class_='vc_single_image-img').get('src').strip()
-                meta_film['description'] = soup.find('p').text
-                meta_info[meta_film['title']] = meta_film
-        return {'Cinema Ostertor': meta_info}
+    def parse_show(self, html):
+        # TODO should this maybe be more modular still?
+        soup = bs4.BeautifulSoup(html, 'html.parser')
+        # many stats are hidden in a sloppy bit of html in h6
+        stats = soup.find('h6')
+        d = {}
+        for strong in stats.find_all('strong'):
+            name = strong.previous_sibling.strip().lower()
+            description = strong.text.strip()
+            d[name] = description
+        translate = {'title': 'titel:',
+                     'title_original': 'originaler titel:',
+                     'country': 'produktion:',
+                     'year': 'erscheinungsdatum:',
+                     'genre': 'genre:',
+                     'duration': 'dauer:',
+                     'director': 'regie:',
+                     }
+        meta_film = copy(self.meta_film)
+        for key in meta_film.keys():
+            try:
+                meta_film[key] = d[translate[key]]
+            except KeyError:
+                pass
+        # do some necessary cleaning
+        if meta_film['year']:
+            meta_film['year'] = meta_film['year'][-4:]
+        if meta_film['duration']:
+            meta_film['duration'] = meta_film['duration'].replace('\xa0', ' ')
+        # get other data
+        img_screenshot = soup.find('img', class_='rev-slidebg')
+        if img_screenshot:
+            meta_film['img_screenshot'] = img_screenshot.get('src').strip()
+        meta_film['img_poster'] = soup.find('img', class_='vc_single_image-img').get('src').strip()
+        meta_film['description'] = soup.find('p').text
+        return meta_film['title'], meta_film
 
 
 class City46(Webscraper):
@@ -383,7 +376,7 @@ class City46(Webscraper):
             full_link = "{}{}-{}.html".format(base_link, months[month], year)
             urls.append(full_link)
             years.append(year)
-        return urls,years
+        return urls, years
 
     def get_tables_from_html(self, html):
         """Parses all tables from a website. The tables are merged and are saved as a list of
@@ -430,7 +423,8 @@ class City46(Webscraper):
                 if cell.text:
                     if cell.text in ['MO', 'DI', 'MI', 'DO', 'FR', 'SA', 'SO']:
                         if temp_dict['date'] and temp_dict['title'] and temp_dict['time']:
-                            films.append(self.save_programinfo(temp_dict, year))  # 1/3 save the last film of the previous day
+                            films.append(
+                                self.save_programinfo(temp_dict, year))  # 1/3 save the last film of the previous day
                         temp_dict = dict.fromkeys(temp_dict, None)  # remove all values
                     elif re_date.match(cell.text):
                         temp_dict['date'] = self.add_dot_to_date(cell.text)
@@ -444,7 +438,7 @@ class City46(Webscraper):
                         temp_dict['title'] = title
                         temp_dict['info'] = cell.text[len(title):]  # separate the title from the other info
                     else:  # in case there is extra info in the most right column
-                        if temp_dict['info']: # this was once necessary
+                        if temp_dict['info']:  # this was once necessary
                             temp_dict['info'] = temp_dict['info'] + ' | ' + cell.text
         if temp_dict['date'] and temp_dict['title'] and temp_dict['time']:
             films.append(self.save_programinfo(temp_dict, year))  # 3/3 save the last movie of the month
@@ -510,7 +504,7 @@ class TheaterBremen(Webscraper):
         return urls
 
     def extract_program(self, html, base_url):
-        #TODO get artist
+        # TODO get artist
         program = []
         soup = bs4.BeautifulSoup(html, 'html.parser')
         days = soup.find_all(class_='day')
@@ -520,7 +514,7 @@ class TheaterBremen(Webscraper):
                 shows = day.find_all('article')
                 for show in shows:
                     time = show.find(class_='overview-date-n-flags').text.strip()[0:5]
-                    datetime = arrow.get(date+time, 'DD.MM.YYYYHH:mm', tzinfo='Europe/Berlin')
+                    datetime = arrow.get(date + time, 'DD.MM.YYYYHH:mm', tzinfo='Europe/Berlin')
                     links = show.find_all('a')
                     link_info = '{}{}'.format(base_url, links[0].get('href').strip())
                     try:
@@ -553,7 +547,7 @@ class Schwankhalle(Webscraper):
     def create_program_db(self):
         url = 'http://schwankhalle.de/spielplan-1.html'
         # at some point requests starting giving SSLError so use selenium for ajax
-        html = self.get_html_from_web_ajax(url,'date-container')
+        html = self.get_html_from_web_ajax(url, 'date-container')
         program = self.extract_program(html)
         if not program:
             print(f'!Note, no program could be retrieved from Schwankhalle ({url})')
@@ -580,8 +574,8 @@ class Schwankhalle(Webscraper):
                     title_artist_info = row.find('td', class_='title')
 
                     artist = title_artist_info.a.span.text
-                    title = title_artist_info.a.text[len(artist)+1:]  # title is not separated by tags
-                    info = title_artist_info.text[len(title)+1:].strip() # info is not separated by tags
+                    title = title_artist_info.a.text[len(artist) + 1:]  # title is not separated by tags
+                    info = title_artist_info.text[len(title) + 1:].strip()  # info is not separated by tags
 
                     artist = artist.strip()
                     title = title.strip()
@@ -687,7 +681,7 @@ class Kukoon(Webscraper):
                                    link_info=link_info,
                                    link_tickets='',
                                    location_details=location_details,
-                                   location= 'Kukoon',
+                                   location='Kukoon',
                                    info=info,
                                    price='',
                                    )
