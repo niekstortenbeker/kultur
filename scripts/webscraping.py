@@ -12,12 +12,12 @@ from selenium.common.exceptions import TimeoutException
 from selenium.common.exceptions import WebDriverException
 from selenium.common.exceptions import ElementClickInterceptedException
 from copy import copy
-from pprint import pprint
 
-# TODO get individual info of the stuff other than ostertor
+
+# TODO get individual info of everything
 # TODO change naming convention all over to follow ostertor
-# TODO did I now solve the meta database problems?
-
+# TODO also store the url with the film info in the meta info, and maybe in the programinfo, for ostertor
+# TODO try to use decorators to also log printed info https://realpython.com/primer-on-python-decorators/
 
 def start_driver():
     global driver
@@ -44,7 +44,9 @@ class Webscraper:
                           'description': '',
                           'img_poster': '',
                           'img_screenshot': '',
+                          'link_info': '',
                           }  # I want keys to be present also if values are absent
+        # TODO: maybe also get programinfo in here
 
     def __repr__(self):
         # TODO maybe actually use this
@@ -57,8 +59,6 @@ class Webscraper:
             if response.status_code == 404:
                 print('    tried but failed to retrieve html from: ', url)
                 return None
-            # status = response.status_code
-            # print(response.text[0:500])
             else:
                 print('    Retrieved html from: ', url)
                 return response.text
@@ -67,7 +67,6 @@ class Webscraper:
             print('    the script is aborted')
             sys.exit(1)
 
-    # TODO: is this function being used anywhere?
     def get_html_from_web_ajax(self, url, class_name):
         """Get page source code from a web page that uses ajax to load elements of the page one at a time.
          Selenium will wait for the element with the class name 'class_name' to load before getting the page source"""
@@ -131,7 +130,7 @@ class Kinoheld(Webscraper):
 
             # get other info
             title = film.find(class_='movie__title').text.strip()
-            if title[-3:] in ['OmU', ' OV']:  # do some cleaning to remove white lines from some titles
+            if title[-3:] in ['OmU', ' OV', 'mdU', 'meU']:  # do some cleaning to remove white lines from some titles (OmeU and OmDU are shortened)
                 title = title[:-3].strip()
             if film.find(class_='movie__title').span:
                 language_version = film.find(class_='movie__title').span.text.strip()

@@ -1,4 +1,4 @@
-import CreateDatabase, InputOutput
+import CreateDatabase, InputOutput, PrintProgram
 import click
 import arrow
 
@@ -19,8 +19,8 @@ def main(new, today):
         last_date = now.shift(days=+1).replace(hour=0, minute=0, second=0, microsecond=0, tzinfo='Europe/Berlin')
     else:
         last_date = now.shift(weeks=+1).replace(hour=0, minute=0, second=0, microsecond=0, tzinfo='Europe/Berlin')
-    current_program = InputOutput.make_current_program(db_programinfo, db_metainfo, last_date)
-    print_program(current_program, scraping_date)
+    current_program = PrintProgram.make_current_program(db_programinfo, db_metainfo, last_date)
+    PrintProgram.print_program(current_program, scraping_date)
 
 
 def print_header():
@@ -39,11 +39,6 @@ def make_new_database():
     db_programinfo, db_metainfo = CreateDatabase.main()
     db_programinfo_json = InputOutput.remove_arrow_objects_in_programinfo(db_programinfo)
     InputOutput.db_to_json(db_programinfo_json, db_metainfo)
-
-
-def print_program(current_program, scraping_date):
-    print(f'\nthis program uses a database made on: {scraping_date}')
-    InputOutput.print_program(current_program)
 
 
 if __name__ == '__main__':

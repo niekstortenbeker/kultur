@@ -143,7 +143,8 @@ def adjust_name(db_metainfo, location, matches_after_case_change, meta_title, no
 
 
 def alphanumeric(s):
-    """convert all adjecent non-alphanumeric characters to a single space"""
+    """convert all adjecent non-alphanumeric characters to a single space, and makes lowercase"""
+    s = s.lower()
     return re.sub('[^0-9a-zA-Z]+', ' ', s)
 
 if __name__ == '__main__':
