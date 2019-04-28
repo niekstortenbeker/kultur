@@ -25,8 +25,10 @@ def is_probably_dubbed_film(programinfo, db_metainfo):
     OmU (etc) or if the movie was made in an german speaking country"""
     if not programinfo['location'] in ['Schauburg', 'Gondel', 'Atlantis', 'Cinema Ostertor']:
         return False
-    if film_is_probably_dubbed(db_metainfo, programinfo):
+    elif film_is_probably_dubbed(db_metainfo, programinfo):
         return True
+    else:
+        return False
 
 
 def film_is_probably_dubbed(db_metainfo, programinfo):

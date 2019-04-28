@@ -25,6 +25,7 @@ def start_driver():
     firefox_profile.set_preference("intl.accept_languages", 'de')
     firefox_profile.update_preferences()  # not sure if this is necessary
     driver = webdriver.Firefox(firefox_profile=firefox_profile)
+    driver.minimize_window()
 
 
 def close_driver():
@@ -45,8 +46,18 @@ class Webscraper:
                           'img_poster': '',
                           'img_screenshot': '',
                           'link_info': '',
-                          }  # I want keys to be present also if values are absent
-        # TODO: maybe also get programinfo in here
+                          }
+        self.programinfo = {'title': '',
+                            'artist': '',
+                            'datetime': '',
+                            'link_info': '',
+                            'link_tickets': '',
+                            'location_details': '',
+                            'location': '',
+                            'info': '',
+                            'price': '',
+                            'language_version': ''
+                            }
 
     def __repr__(self):
         # TODO maybe actually use this
@@ -120,34 +131,42 @@ class Kinoheld(Webscraper):
         soup = bs4.BeautifulSoup(html, 'html.parser')
         films = soup.find_all('article')
         for film in films:
-            # get time info
-            datetime = film.find(class_='movie__date').text
-            month = int(datetime[6:8])
-            day = int(datetime[3:5])
-            hour = int(datetime[10:12])
-            minute = int(datetime[13:15])
-            datetime = self.parse_datetime(month, day, hour, minute)
+            programinfo = copy(self.programinfo)
 
-            # get other info
-            title = film.find(class_='movie__title').text.strip()
-            if title[-3:] in ['OmU', ' OV', 'mdU', 'meU']:  # do some cleaning to remove white lines from some titles (OmeU and OmDU are shortened)
-                title = title[:-3].strip()
-            if film.find(class_='movie__title').span:
-                language_version = film.find(class_='movie__title').span.text.strip()
+            programinfo['datetime']= self.get_datetime(film)
+            if location == 'Cinema Ostertor':
+                programinfo['title'] = self.get_title(film).title()
             else:
-                language_version = ''
-            link_tickets = link + film.a.get('href')
-            programinfo = dict(title=title,
-                               datetime=datetime,
-                               link_info=program_link,
-                               link_tickets=link_tickets,
-                               location=location,
-                               info='',
-                               price='',
-                               artist='',
-                               language_version=language_version)
+                programinfo['title'] = self.get_title(film)
+            programinfo['language_version'] = self.get_language_version(film)
+            programinfo['link_tickets'] = link + film.a.get('href')
+            programinfo['link_info'] = program_link
+            programinfo['location'] = location
+
             program.append(programinfo)
         return program
+
+    def get_language_version(self, film):
+        if film.find(class_='movie__title').span:
+            language_version = film.find(class_='movie__title').span.text.strip()
+        else:
+            language_version = ''
+        return language_version
+
+    def get_datetime(self, film):
+        datetime = film.find(class_='movie__date').text
+        month = int(datetime[6:8])
+        day = int(datetime[3:5])
+        hour = int(datetime[10:12])
+        minute = int(datetime[13:15])
+        return self.parse_datetime(month, day, hour, minute)
+
+    def get_title(self, film):
+        """get title from film. do some cleaning to remove white lines from some titles (OmeU and OmDU are shortened)"""
+        title = film.find(class_='movie__title').text.strip()
+        if title[-3:] in ['OmU', ' OV', 'mdU', 'meU']:
+            title = title[:-3].strip()
+        return title
 
     def get_meta_html(self, url):
         # TODO do I get all the meta info?
@@ -202,7 +221,7 @@ class Kinoheld(Webscraper):
                 dt = [tag.text.strip().lower() for tag in dl.find_all('dt')]
                 dd = [tag.text.strip() for tag in dl.find_all('dd')]
                 meta_film = copy(self.meta_film)
-                self.meta_film['title'] = dd[dt.index('titel')]  # I always need a title
+                meta_film['title'] = dd[dt.index('titel')]  # I always need a title
                 if 'originaltitel' in dt:
                     meta_film['title_original'] = dd[dt.index('originaltitel')]
                 if 'produktion' in dt:
@@ -265,12 +284,13 @@ class Filmkunst(Kinoheld):
 
 
 class CinemaOstertor(Kinoheld):
-#TODO do I store the language info that is in the kinoheld info?
 
     def create_program_db(self):
         url = 'https://www.kinoheld.de/kino-bremen/cinema-im-ostertor-bremen/shows/shows?mode=widget'
         html = self.get_html_from_web_ajax(url, 'movie.u-px-2.u-py-2')
-        program = self.extract_program(html, location='Cinema Ostertor', program_link='')
+        program = self.extract_program(html,
+                                       location='Cinema Ostertor',
+                                       program_link='https://cinema-ostertor.de/aktuelle-filme')
         if not program:
             print(f'!Note, no program could be retrieved from Cinema Ostertor ({url})')
         return program
@@ -452,20 +472,14 @@ class City46(Webscraper):
             return string.strip()
 
     def save_programinfo(self, temp_dict, year):
-        title = temp_dict['title']
+        programinfo = copy(self.programinfo)
+
+        programinfo['title'] = temp_dict['title']
         datetime = arrow.get(temp_dict['date'] + temp_dict['time'], 'D.M.hh:mm', tzinfo='Europe/Berlin')
-        datetime = datetime.replace(year=year)
-        link = temp_dict['link']
-        info = temp_dict['info']
-        programinfo = dict(title=title,
-                           datetime=datetime,
-                           link_info=link,
-                           link_tickets='',
-                           location='City46',
-                           info=info,
-                           price='',
-                           artist='',
-                           language_version='')
+        programinfo['datetime'] = datetime.replace(year=year)
+        programinfo['link_info'] = temp_dict['link']
+        programinfo['info'] = temp_dict['info']
+        programinfo['location'] = 'City46'
         return programinfo
 
 
@@ -502,8 +516,8 @@ class TheaterBremen(Webscraper):
             urls.append(url)
         return urls
 
+#TODO refactor this too, but without breaking it this time
     def extract_program(self, html, base_url):
-        # TODO get artist
         program = []
         soup = bs4.BeautifulSoup(html, 'html.parser')
         days = soup.find_all(class_='day')
@@ -541,6 +555,7 @@ class TheaterBremen(Webscraper):
         return program
 
 
+
 class Schwankhalle(Webscraper):
 
     def create_program_db(self):
@@ -559,37 +574,37 @@ class Schwankhalle(Webscraper):
         year = soup.find("td", class_="year-month").text.strip()[0:4]
         table = soup.find('table')
         for row in table.find_all('tr'):  # normal for row in table did not work
-            if not isinstance(row, str):  # skip empty table rows
-                if row.find(class_='date-container'):
-                    date = row.find(class_='date-container').text.strip()
-                    date = date + year
-                if row.find(class_='time-container'):  # going to assume that a program row always has a time cell
-                    time = row.find(class_='time-container').text.strip()[-9:-4]  # in case the time is 'ab ...'
-                    if not time:
-                        time = '09:00'
-                    datetime = arrow.get(date + time, 'D.M.YYYYhh:mm', tzinfo='Europe/Berlin')
-                    link = 'https://schwankhalle.de/{}'.format(row.a.get('href').strip())
+            if isinstance(row, str):  # skip empty table rows
+                continue
+            if not row.find(class_='time-container'):  # going to assume that a program row always has a time cell
+                continue
+            if not row.find(class_='date-container'):  # solves nonetype errors
+                continue
+            programinfo = copy(self.programinfo)
 
-                    title_artist_info = row.find('td', class_='title')
+            title_artist_info = row.find('td', class_='title')
+            artist = title_artist_info.a.span.text
+            title = title_artist_info.a.text[len(artist) + 1:]  # title is not separated by tags
+            programinfo['info'] = title_artist_info.text[len(title) + 1:].strip()  # info is not separated by tags
+            programinfo['artist'] = artist.strip()
+            programinfo['title'] = title.strip()
+            programinfo['datetime'] = self.get_datetime(row, year)
+            link = 'https://schwankhalle.de/{}'.format(row.a.get('href').strip())
+            programinfo['link_info'] = link
+            programinfo['link_tickets'] = link
+            programinfo['location'] = 'Schwankhalle'
 
-                    artist = title_artist_info.a.span.text
-                    title = title_artist_info.a.text[len(artist) + 1:]  # title is not separated by tags
-                    info = title_artist_info.text[len(title) + 1:].strip()  # info is not separated by tags
-
-                    artist = artist.strip()
-                    title = title.strip()
-
-                    programinfo = dict(title=title,
-                                       artist=artist,
-                                       datetime=datetime,
-                                       link_info=link,
-                                       link_tickets=link,
-                                       location='Schwankhalle',
-                                       info=info,
-                                       price="",
-                                       language_version='')
-                    program.append(programinfo)
+            program.append(programinfo)
         return program
+
+    def get_datetime(self, row, year):
+        date = row.find(class_='date-container').text.strip()
+        date = date + year
+        time = row.find(class_='time-container').text.strip()[-9:-4]  # in case the time is 'ab ...'
+        if not time:
+            time = '09:00'
+        datetime = arrow.get(date + time, 'D.M.YYYYhh:mm', tzinfo='Europe/Berlin')
+        return datetime
 
 
 class Glocke(Webscraper):
@@ -618,36 +633,36 @@ class Glocke(Webscraper):
         soup = bs4.BeautifulSoup(html, 'html.parser')
         shows = soup.find_all('div', class_='va-liste')
         for show in shows:
-            # get time information
-            day = int(show.find(class_=re.compile(r"va_liste_datum_1")).text.strip())
-            month = show.find(class_=re.compile(r"va_liste_datum_2")).text.strip()
-            month = self.german_month_to_int(month)
-            time_location = show.find('span', style=re.compile(r"color")).text.strip()
-            time = time_location[:6]
-            hour = int(time[:2])
-            minute = int(time[3:])
-            datetime = self.parse_datetime(month, day, hour, minute)
+            programinfo = copy(self.programinfo)
 
-            # get other information
-            location_details = time_location[10:]
-            title = str(show.find('h2')).strip()
-            title = title.replace('<h2>', '')
-            title = title.replace('</h2>', '')
-            title = title.replace('<br/>', ' - ')
+            programinfo['datetime'], programinfo['location_details'] = self.get_datetime_and_location_details(show)
+            programinfo['title'] = self.get_title(show)
             link = base_url + '{}'.format(show.a.get('href'))
+            programinfo['link_info'] = link
+            programinfo['link_tickets'] = link
+            programinfo['location'] = 'Glocke'
 
-            programinfo = dict(title=title,
-                               artist='',
-                               datetime=datetime,
-                               link_info=link,
-                               link_tickets=link,
-                               location_details=location_details,
-                               location='Glocke',
-                               info='',
-                               price='',
-                               language_version='')
             program.append(programinfo)
         return program
+
+    def get_title(self, show):
+        title = str(show.find('h2')).strip()
+        title = title.replace('<h2>', '')
+        title = title.replace('</h2>', '')
+        title = title.replace('<br/>', ' - ')
+        return title
+
+    def get_datetime_and_location_details(self, show):
+        day = int(show.find(class_=re.compile(r"va_liste_datum_1")).text.strip())
+        month = show.find(class_=re.compile(r"va_liste_datum_2")).text.strip()
+        month = self.german_month_to_int(month)
+        time_location = show.find('span', style=re.compile(r"color")).text.strip()
+        time = time_location[:6]
+        hour = int(time[:2])
+        minute = int(time[3:])
+        datetime = self.parse_datetime(month, day, hour, minute)
+        location_details = time_location[10:]
+        return datetime, location_details
 
 
 class Kukoon(Webscraper):
@@ -664,26 +679,26 @@ class Kukoon(Webscraper):
         shows = soup.find_all('div', class_='event')
         for show in shows:
             datetime = show.time
-            if datetime:
-                datetime = arrow.get(datetime.get('datetime'))
-                title = show.find(class_='event__title').a
-                link_info = title.get('href')
-                title = title.text.strip()
-                location_details = show.find(class_='event__venue').text.strip()
-                if location_details == 'Kukoon':
-                    location_details = ''
-                info = show.find(class_='event__categories').text.strip()
+            title_link = show.find(class_='event__title').a
+            if not datetime:
+                continue
+            if 'geschlossene gesellschaft' in title_link.text.lower():
+                continue
 
-                programinfo = dict(title=title,
-                                   artist='',
-                                   datetime=datetime,
-                                   link_info=link_info,
-                                   link_tickets='',
-                                   location_details=location_details,
-                                   location='Kukoon',
-                                   info=info,
-                                   price='',
-                                   )
-                if not 'geschlossene gesellschaft' in title.lower():
-                    program.append(programinfo)
+            programinfo = copy(self.programinfo)
+
+            programinfo['datetime'] = arrow.get(datetime.get('datetime'))
+            programinfo['link_info'] = title_link.get('href')
+            programinfo['title'] = title_link.text.strip()
+            programinfo['location_details'] = self.get_location_details(show)
+            programinfo['info'] = show.find(class_='event__categories').text.strip()
+            programinfo['location'] = 'Kukoon'
+
+            program.append(programinfo)
         return program
+
+    def get_location_details(self, show):
+        location_details = show.find(class_='event__venue').text.strip()
+        if location_details == 'Kukoon':
+            location_details = ''
+        return location_details
