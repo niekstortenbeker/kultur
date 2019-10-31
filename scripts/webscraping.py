@@ -11,6 +11,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from selenium.common.exceptions import WebDriverException
 from selenium.common.exceptions import ElementClickInterceptedException
+from selenium.webdriver.firefox.options import Options
 from copy import copy
 
 
@@ -23,9 +24,9 @@ def start_driver():
     global driver
     firefox_profile = webdriver.FirefoxProfile()
     firefox_profile.set_preference("intl.accept_languages", 'de')
-    firefox_profile.update_preferences()  # not sure if this is necessary
-    driver = webdriver.Firefox(firefox_profile=firefox_profile)
-    driver.minimize_window()
+    options = Options()
+    options.headless = True
+    driver = webdriver.Firefox(options=options, firefox_profile=firefox_profile)
 
 
 def close_driver():
@@ -179,13 +180,13 @@ class Kinoheld(Webscraper):
 
     def click_buttons(self, url):
         """click two button types: one if there is also a trailer, one if there is only info without a trailer"""
-        button_classes = ['ui-button.ui-corners-bottom-left.ui-ripple.ui-button--secondary.u-flex-grow-1',
-                          'ui-button.ui-corners-bottom.ui-ripple.ui-button--secondary.u-flex-grow-1']
-        buttons = driver.find_elements_by_class_name(button_classes[0])
-        buttons.extend(driver.find_elements_by_class_name(button_classes[1]))
+        buttons = self.get_buttons()
+        while not buttons:  # sometimes this still needs more time
+            time.sleep(1)
+            buttons = self.get_buttons()
         clicking = self.try_clicking(buttons[0])
         while not clicking:  # sometimes there are still overlay classes preventing clicking
-            time.sleep(3)
+            time.sleep(1)
             clicking = self.try_clicking(buttons[0])
         del buttons[0]
         for button in buttons:
@@ -193,6 +194,16 @@ class Kinoheld(Webscraper):
         source = driver.page_source
         print('    Retrieved html from: ', url)
         return source
+
+    def get_buttons(self):
+        button_classes = ['ui-button.ui-corners-bottom-left.ui-ripple.ui-button--secondary.u-flex-grow-1',
+                          'ui-button.ui-corners-bottom.ui-ripple.ui-button--secondary.u-flex-grow-1']
+        buttons = driver.find_elements_by_class_name(button_classes[0])
+        buttons.extend(driver.find_elements_by_class_name(button_classes[1]))
+        if buttons:
+            return buttons
+        else:
+            return None
 
     def wait_for_overlay(self):
         try:
@@ -324,6 +335,9 @@ class CinemaOstertor(Kinoheld):
         # many stats are hidden in a sloppy bit of html in h6
         stats = soup.find('h6')
         d = {}
+        # TODO this is a quick and dirty solve
+        if not stats:
+            return None
         for strong in stats.find_all('strong'):
             name = strong.previous_sibling.strip().lower()
             description = strong.text.strip()
