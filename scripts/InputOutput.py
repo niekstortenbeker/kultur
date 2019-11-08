@@ -9,7 +9,7 @@ scriptpath = basepath / 'scripts'
 
 def remove_arrow_objects_in_programinfo(db_programinfo):
     for programinfo in db_programinfo:
-        programinfo['datetime'] = programinfo['datetime'].for_json()
+        programinfo['date_time'] = programinfo['date_time'].for_json()
     return db_programinfo
 
 
@@ -40,7 +40,7 @@ def json_to_db():
 
 def insert_arrow_objects_in_programinfo(db_programinfo):
     for programinfo in db_programinfo:
-        programinfo['datetime'] = arrow.get(programinfo['datetime'])
+        programinfo['date_time'] = arrow.get(programinfo['date_time'])
     return db_programinfo
 
 

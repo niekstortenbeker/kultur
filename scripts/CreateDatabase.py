@@ -3,26 +3,19 @@ import re
 
 def main():
     print('\nScraping the program web pages')
+
+    p = webscraping.CombinedProgram()
+    p.update_program()
+    program_db = [show.__dict__ for show in p.program.shows]
+    program_db.sort(key=lambda programinfo: programinfo['date_time'])
     webscraping.start_driver()
-    city46_program = create_db_city46()
-    theater_program = create_db_theater_bremen()
-    filmkunst_program, filmkunst_meta = create_db_filmkunst()
-    schwankhalle_program = create_db_schwankhalle()
-    ostertor_program, ostertor_meta = create_db_cinema_ostertor()
-    glocke_program = create_db_glocke()
-    kukoon_program = create_db_kukoon()
+    filmkunst_meta = create_db_filmkunst()
+    ostertor_meta = create_db_cinema_ostertor()
     webscraping.close_driver()
-
-    program_db = [city46_program,
-                  theater_program,
-                  filmkunst_program,
-                  schwankhalle_program,
-                  ostertor_program,
-                  glocke_program,
-                  kukoon_program]
-    program_db = merge_databases(program_db)
-
     meta_db = {**ostertor_meta, **filmkunst_meta}
+    for cinema in meta_db:
+        for show in meta_db[cinema]:
+            meta_db[cinema][show] = meta_db[cinema][show].__dict__
     meta_db = quality_control_dbs(program_db, meta_db)
 
     return program_db, meta_db
@@ -34,65 +27,18 @@ def print_header():
     print(''.center(50, '-'))
 
 
-def create_db_city46():
-    print('\n  Working on City 46')
-    city46 = webscraping.City46()
-    program = city46.create_program_db()
-    return program
-
-
 def create_db_cinema_ostertor():
     print('\n  Working on Cinema Ostertor')
     ostertor = webscraping.CinemaOstertor()
-    program = ostertor.create_program_db()
     meta = ostertor.create_meta_db()
-    return program, meta
-
-
-def create_db_theater_bremen():
-    print('\n  Working on Theater Bremen')
-    theater_bremen = webscraping.TheaterBremen()
-    program = theater_bremen.create_program_db()
-    return program
+    return meta
 
 
 def create_db_filmkunst():
     print('\n  Working on Bremer Filmkunst Theater')
     filmkunst = webscraping.Filmkunst()
-    program = filmkunst.create_program_db()
     meta = filmkunst.create_meta_db()
-    return program, meta
-
-
-def create_db_schwankhalle():
-    print('\n  Working on Schwankhalle')
-    schwankhalle = webscraping.Schwankhalle()
-    program = schwankhalle.create_program_db()
-    return program
-
-
-def create_db_kukoon():
-    print('\n Working on Kukoon')
-    kukoon = webscraping.Kukoon()
-    program = kukoon.create_program_db()
-    return program
-
-
-def create_db_glocke():
-    """ only does the first five things because I'm lazy"""
-    # TODO check if this is true and change it
-    print('\n  Working on Glocke')
-    glocke = webscraping.Glocke()
-    program = glocke.create_program_db()
-    return program
-
-
-def merge_databases(databases):
-    database = []
-    for x in databases:
-        database.extend(x)
-    database.sort(key=lambda programinfo: programinfo['datetime'])
-    return database
+    return meta
 
 
 def quality_control_dbs(db_programinfo, db_metainfo):
