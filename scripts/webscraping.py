@@ -31,7 +31,18 @@ class CombinedProgram:
 
     def __init__(self):
         """theaters should be Theater objects, program should be a Program object"""
-        filmkunst = Filmkunst()
+        schauburg = Kinoheld(name='Schauburg',
+                             url_program_info='http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html',
+                             url_program_scrape='https://www.kinoheld.de/kino-bremen/schauburg-kino-bremen/shows/shows?mode=widget',
+                             url_meta='https://www.kinoheld.de/kino-bremen/schauburg-kino-bremen/shows/movies?mode=widget')
+        gondel = Kinoheld(name='Gondel',
+                          url_program_info='http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html',
+                          url_program_scrape='https://www.kinoheld.de/kino-bremen/gondel-filmtheater-bremen/shows/shows?mode=widget',
+                          url_meta='https://www.kinoheld.de/kino-bremen/gondel-filmtheater-bremen/shows/movies?mode=widget')
+        atlantis = Kinoheld(name='Atlantis',
+                            url_program_info='http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html',
+                            url_program_scrape='https://www.kinoheld.de/kino-bremen/atlantis-filmtheater-bremen/shows/shows?mode=widget',
+                            url_meta='https://www.kinoheld.de/kino-bremen/atlantis-filmtheater-bremen/shows/movies?mode=widget')
         cinema_ostertor = CinemaOstertor()
         city_46 = City46()
         theater_bremen = TheaterBremen()
@@ -39,7 +50,9 @@ class CombinedProgram:
         glocke = Glocke()
         kukoon = Kukoon()
         self.theaters = [
-            filmkunst,
+            schauburg,
+            gondel,
+            atlantis,
             cinema_ostertor,
             city_46,
             theater_bremen,
@@ -69,14 +82,13 @@ and in self.program.
             self.program = self.program + t.program
 
 
-
 class Program(list):
     """should be initialized with either shows: a list of Show objects, or
     with None"""
 
     def __init__(self, shows):
         """shows should be a list of Show objects or None"""
-        # TODO SOME SUPER CALL
+        super().__init__()
         if shows is None:
             self.shows = []
         else:
@@ -129,7 +141,9 @@ class Show:
         self.language_version = language_version
 
     def __repr__(self):
-        return f'Show({self.date_time}, {self.title}, {self.location})'
+        d = self.date_time
+        date_time = f'{d.month:02d}-{d.day:02d} {d.hour:02d}:{d.minute:02d}'
+        return f'Show({date_time}, {self.title}, {self.location})'
 
     def display(self):
         # TODO
@@ -168,10 +182,15 @@ class ShowMetaInfo:
 
 # TODO maybe explain that this class is only meant to inherit from
 class Theater:
-    def __init__(self, program=None, meta_info=None):
+    def __init__(self, name, url, program=None, meta_info=None):
         """program should be a Program object, meta info a dict title as keys and ShowMetaInfo objects as values"""
+        self.name = name
+        self.url = url
         self.program = program
         self.meta_info = meta_info
+
+    def __repr__(self):
+        return f'Theater({self.name})'
 
     def _get_html_from_web(self, url):
         print('    ...loading webpage (requests)')
@@ -220,6 +239,19 @@ class Theater:
 
 class Kinoheld(Theater):
 
+    def __init__(self, name, url_program_info, url_program_scrape, url_meta):
+        super().__init__(name, url_program_info)
+        self.url_program_scrape = url_program_scrape
+        self.url_meta = url_meta
+
+    def update_program(self):
+        print(f'\n updating program {self.name}')
+        html = self._get_html_from_web_ajax(self.url_program_scrape, 'movie.u-px-2.u-py-2')
+        show_list = self._extract_show_list(html,
+                                            location=self.name,
+                                            program_link=self.url)
+        self.program = Program(show_list)
+
     def _extract_show_list(self, html, location, program_link):
         show_list = []
         link = 'https://www.kinoheld.de/'
@@ -259,6 +291,13 @@ class Kinoheld(Theater):
         if title[-3:] in ['OmU', ' OV', 'mdU', 'meU']:
             title = title[:-3].strip()
         return title
+
+    def create_meta_db(self):
+        meta_db = {}
+        html = self._get_meta_html(self.url_meta)
+        meta = self._extract_meta(html)
+        meta_db[self.name] = meta
+        return meta_db
 
     def _get_meta_html(self, url):
         """I need to click some buttons to get all the info in the html. It should wait for the overlay to be gone."""
@@ -321,7 +360,7 @@ class Kinoheld(Theater):
                 dl = film.find(class_='movie__additional-data').find('dl')
                 dt = [tag.text.strip().lower() for tag in dl.find_all('dt')]
                 dd = [tag.text.strip() for tag in dl.find_all('dd')]
-                meta_film = ShowMetaInfo(dd[dt.index('titel')] )
+                meta_film = ShowMetaInfo(dd[dt.index('titel')])
                 if 'originaltitel' in dt:
                     meta_film.title_original = dd[dt.index('originaltitel')]
                 if 'produktion' in dt:
@@ -349,52 +388,18 @@ class Kinoheld(Theater):
         return meta_info
 
 
-class Filmkunst(Kinoheld):
-
-    def update_program(self):
-        print('\n updating program Filmkunst')
-        show_list = []
-        urls_scrape = ['https://www.kinoheld.de/kino-bremen/schauburg-kino-bremen/shows/shows?mode=widget',
-                       'https://www.kinoheld.de/kino-bremen/gondel-filmtheater-bremen/shows/shows?mode=widget',
-                       'https://www.kinoheld.de/kino-bremen/atlantis-filmtheater-bremen/shows/shows?mode=widget']
-        urls_info = ['http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html',
-                     'http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html',
-                     'http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html']
-        names = ['Schauburg', 'Gondel', 'Atlantis']
-
-        for url_scrape, url_info, name in zip(urls_scrape, urls_info, names):
-            html = self._get_html_from_web_ajax(url_scrape, 'movie.u-px-2.u-py-2')
-            show_list.extend(self._extract_show_list(html, name, url_info))
-        self.program = Program(show_list)
-        return self
-
-    def create_meta_db(self):
-        meta_db = {}
-        urls = ['https://www.kinoheld.de/kino-bremen/schauburg-kino-bremen/shows/movies?mode=widget',
-                'https://www.kinoheld.de/kino-bremen/gondel-filmtheater-bremen/shows/movies?mode=widget',
-                'https://www.kinoheld.de/kino-bremen/atlantis-filmtheater-bremen/shows/movies?mode=widget']
-        names = ['Schauburg', 'Gondel', 'Atlantis']
-        for url, name in zip(urls, names):
-            html = self._get_meta_html(url)
-            meta = self._extract_meta(html)
-            meta_db[name] = meta
-        return meta_db
-
-
 class CinemaOstertor(Kinoheld):
+    # TODO use url from meta info for program_link
 
-    def update_program(self):
-        print('\n updating program Cinema Ostertor')
-        url = 'https://www.kinoheld.de/kino-bremen/cinema-im-ostertor-bremen/shows/shows?mode=widget'
-        html = self._get_html_from_web_ajax(url, 'movie.u-px-2.u-py-2')
-        show_list = self._extract_show_list(html,
-                                            location='Cinema Ostertor',
-                                            program_link='https://cinema-ostertor.de/aktuelle-filme')
-        self.program = Program(show_list)
+    def __init__(self):
+        url = 'https://cinema-ostertor.de/aktuelle-filme'
+        super().__init__(name='Cinema Ostertor',
+                         url_program_info=url,
+                         url_program_scrape='https://www.kinoheld.de/kino-bremen/cinema-im-ostertor-bremen/shows/shows?mode=widget',
+                         url_meta=url)
 
     def create_meta_db(self):
-        url = 'https://cinema-ostertor.de/aktuelle-filme'
-        movie_urls = self._get_meta_urls(url)
+        movie_urls = self._get_meta_urls(self.url_meta)
         meta = self._extract_meta(movie_urls)
         return meta
 
@@ -414,7 +419,7 @@ class CinemaOstertor(Kinoheld):
                 meta_info_program[title] = meta_info_show
             except TypeError:
                 print(f"No meta info was extracted because of a NoneType (url: {url})")
-        return {'Cinema Ostertor': meta_info_program}
+        return {self.name: meta_info_program}
 
     def _parse_show(self, html):
         """from a html page with supposedly film info extract meta info in a ShowMetaInfo object.
@@ -432,13 +437,13 @@ class CinemaOstertor(Kinoheld):
         except AttributeError:
             return None
         translate = {
-                     'title_original': 'originaler titel:',
-                     'country': 'produktion:',
-                     'year': 'erscheinungsdatum:',
-                     'genre': 'genre:',
-                     'duration': 'dauer:',
-                     'director': 'regie:',
-                     }
+            'title_original': 'originaler titel:',
+            'country': 'produktion:',
+            'year': 'erscheinungsdatum:',
+            'genre': 'genre:',
+            'duration': 'dauer:',
+            'director': 'regie:',
+        }
         try:
             meta_film = ShowMetaInfo(d['titel:'])
         except KeyError:  # If I can't parse the title I don't want anything
@@ -464,11 +469,13 @@ class CinemaOstertor(Kinoheld):
 
 class City46(Theater):
 
+    def __init__(self):
+        super().__init__('City 46', 'http://www.city46.de/programm/')
+
     def update_program(self):
-        print('\n updating program City 46')
-        base_url = 'http://www.city46.de/programm/'
+        print(f'\n updating program {self.name}')
         show_list = []
-        urls, years = self._get_urls(base_url)
+        urls, years = self._get_urls(self.url)
         for url, year in zip(urls, years):
             html = self._get_html_from_web(url)
             table = self._get_tables_from_html(html)
@@ -572,20 +579,22 @@ class City46(Theater):
         show.title = temp_dict['title']
         show.link_info = temp_dict['link']
         show.info = temp_dict['info']
-        show.location = 'City46'
+        show.location = self.name
         return show
 
 
 class TheaterBremen(Theater):
 
+    def __init__(self):
+        super().__init__('Theater Bremen', 'http://www.theaterbremen.de')
+
     def update_program(self):
-        print('\n updating program Theater Bremen')
+        print(f'\n updating program {self.name}')
         show_list = []
-        base_url = 'http://www.theaterbremen.de'
-        urls = self._get_urls(base_url)
+        urls = self._get_urls(self.url)
         for url in urls:
             html = self._get_html_from_web_ajax(url, class_name='day')
-            show_list.extend(self._extract_show_list(html, base_url))
+            show_list.extend(self._extract_show_list(html, self.url))
         self.program = Program(show_list)
 
     def _get_urls(self, base_url):
@@ -620,18 +629,20 @@ class TheaterBremen(Theater):
                 show.title = links[0].text.strip()
                 infos = s.find_all('p')
                 show.info = '\n'.join(info.text for info in infos)
-                show.location = 'Theater Bremen'
+                show.location = self.name
                 show_list.append(show)
         return show_list
 
 
 class Schwankhalle(Theater):
 
+    def __init__(selfs):
+        super().__init__('Schwankhalle', 'http://schwankhalle.de/spielplan-1.html')
+
     def update_program(self):
-        print('\n updating program Schwankhalle')
-        url = 'http://schwankhalle.de/spielplan-1.html'
+        print(f'\n updating program {self.name}')
         # at some point requests starting giving SSLError so use selenium for ajax
-        html = self._get_html_from_web_ajax(url, 'date-container')
+        html = self._get_html_from_web_ajax(self.url, 'date-container')
         self.program = Program(self._extract_show_list(html))
 
     def _extract_show_list(self, html):
@@ -657,7 +668,7 @@ class Schwankhalle(Theater):
             link = 'https://schwankhalle.de/{}'.format(row.a.get('href').strip())
             show.link_info = link
             show.link_tickets = link
-            show.location = 'Schwankhalle'
+            show.location = self.name
             show_list.append(show)
         return show_list
 
@@ -673,16 +684,16 @@ class Schwankhalle(Theater):
 
 class Glocke(Theater):
 
+    def __init__(self):
+        super().__init__('Glocke', 'https://www.glocke.de/')
+
     def update_program(self):
-        print('\n updating program Glocke')
-        base_url = 'https://www.glocke.de/'
-        urls = self._get_urls(base_url)
+        print(f'\n updating program {self.name}')
+        urls = self._get_urls(self.url)
         show_list = []
         for url in urls:
             html = self._get_html_from_web(url)
-            show_list.extend(self._extract_show_list(html, base_url))
-        if not show_list:
-            print(f'!Note, no program could be retrieved from Glocke ({base_url})')
+            show_list.extend(self._extract_show_list(html, self.url))
         self.program = Program(show_list)
 
     def _get_urls(self, base_url):
@@ -705,7 +716,7 @@ class Glocke(Theater):
             link = base_url + '{}'.format(s.a.get('href'))
             show.link_info = link
             show.link_tickets = link
-            show.location = 'Glocke'
+            show.location = self.name
             show_list.append(show)
         return show_list
 
@@ -731,10 +742,12 @@ class Glocke(Theater):
 
 class Kukoon(Theater):
 
+    def __init__(self):
+        super().__init__('Kukoon', 'https://kukoon.de/programm/')
+
     def update_program(self):
-        print('\n updating program Kukoon')
-        url = 'https://kukoon.de/programm/'
-        html = self._get_html_from_web(url)
+        print(f'\n updating program {self.name}')
+        html = self._get_html_from_web(self.url)
         self.program = Program(self._extract_show_list(html))
 
     def _extract_show_list(self, html):
@@ -754,13 +767,12 @@ class Kukoon(Theater):
             show.title = title_link.text.strip()
             show.location_details = self._get_location_details(s)
             show.info = s.find(class_='event__categories').text.strip()
-            show.location = 'Kukoon'
+            show.location = self.name
             show_list.append(show)
         return show_list
 
     def _get_location_details(self, show):
         location_details = show.find(class_='event__venue').text.strip()
-        if location_details == 'Kukoon':
+        if location_details == self.name:
             location_details = ''
         return location_details
-
