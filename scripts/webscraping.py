@@ -44,21 +44,21 @@ class CombinedProgram:
                             url_program_scrape='https://www.kinoheld.de/kino-bremen/atlantis-filmtheater-bremen/shows/shows?mode=widget',
                             url_meta='https://www.kinoheld.de/kino-bremen/atlantis-filmtheater-bremen/shows/movies?mode=widget')
         cinema_ostertor = CinemaOstertor()
-        city_46 = City46()
-        theater_bremen = TheaterBremen()
-        schwankhalle = Schwankhalle()
-        glocke = Glocke()
-        kukoon = Kukoon()
+        # city_46 = City46()
+        # theater_bremen = TheaterBremen()
+        # schwankhalle = Schwankhalle()
+        # glocke = Glocke()
+        # kukoon = Kukoon()
         self.theaters = [
             schauburg,
             gondel,
             atlantis,
             cinema_ostertor,
-            city_46,
-            theater_bremen,
-            schwankhalle,
-            glocke,
-            kukoon
+            # city_46,
+            # theater_bremen,
+            # schwankhalle,
+            # glocke,
+            # kukoon
         ]
         self.program = Program(None)
 
@@ -69,9 +69,15 @@ update the complete program
 The program is updated both in the theater.program of self.theaters,
 and in self.program.
         """
+        # update program
         start_driver()
         for t in self.theaters:
             t.update_program()
+        # update meta info
+        meta_theaters = ['Schauburg', 'Gondel', 'Atlantis', 'Cinema Ostertor']
+        for t in self.theaters:
+            if t.name in meta_theaters:
+                t.update_meta_info()
         close_driver()
         self.refresh_program()
 
@@ -84,9 +90,8 @@ and in self.program.
 
 
 class Program():
-    # TODO should this class inherit List?
     """should be initialized with either shows: a list of Show objects, or
-    with None"""
+    a list of ShowMetaInfo objects, or with None"""
 
     def __init__(self, shows):
         """shows should be a list of Show objects or None"""
@@ -107,7 +112,10 @@ class Program():
         self.shows = []
 
     def sort(self):
-        self.shows.sort(key=lambda show: show.date_time)
+        if isinstance(self.shows[0], Show):
+            self.shows.sort(key=lambda show: show.date_time)
+        elif isinstance(self.shows[0], ShowMetaInfo):
+            self.shows.sort(key=lambda show: show.title)
 
     def get_next_week(self):
         # TODO
@@ -172,7 +180,7 @@ class ShowMetaInfo:
                  description='',
                  img_poster='',
                  img_screenshot='',
-                 link_info=''
+                 link_info='',
                  ):
         self.title = title
         self.title_original = title_original
@@ -186,6 +194,9 @@ class ShowMetaInfo:
         self.img_poster = img_poster
         self.img_screenshot = img_screenshot
         self.link_info = link_info
+
+    def __repr__(self):
+        return f'ShowMetaInfo({self.title})'
 
 
 # TODO maybe explain that this class is only meant to inherit from
@@ -298,12 +309,11 @@ class Kinoheld(Theater):
             title = title[:-3].strip()
         return title
 
-    def create_meta_db(self):
-        meta_db = {}
+    def update_meta_info(self):
+        print(f'\n updating meta info {self.name}')
         html = self._get_meta_html(self.url_meta)
         meta = self._extract_meta(html)
-        meta_db[self.name] = meta
-        return meta_db
+        self.meta_info = Program(meta)
 
     def _get_meta_html(self, url):
         """I need to click some buttons to get all the info in the html. It should wait for the overlay to be gone."""
@@ -357,10 +367,10 @@ class Kinoheld(Theater):
             return False
 
     def _extract_meta(self, html):
-        meta_info = {}
+        meta_info = []
         soup = bs4.BeautifulSoup(html, 'html.parser')
         films = soup.find_all('article')
-
+        # TODO: organize this more like in cinema ostertor. I think I'm missing a lot
         for film in films:
             try:
                 dl = film.find(class_='movie__additional-data').find('dl')
@@ -387,7 +397,7 @@ class Kinoheld(Theater):
                     img_poster = img_poster.find('img').get('src').strip()
                     meta_film.img_poster = f'https://www.kinoheld.de{img_poster}'
 
-                meta_info[meta_film.title] = meta_film
+                meta_info.append(meta_film)
 
             except AttributeError:  # in case there is not enough information for the meta database, such as no <dd>
                 pass
@@ -404,10 +414,11 @@ class CinemaOstertor(Kinoheld):
                          url_program_scrape='https://www.kinoheld.de/kino-bremen/cinema-im-ostertor-bremen/shows/shows?mode=widget',
                          url_meta=url)
 
-    def create_meta_db(self):
-        movie_urls = self._get_meta_urls()
-        meta = self._extract_meta(movie_urls)
-        return meta
+    def update_meta_info(self):
+        print(f'\n updating meta info {self.name}')
+        urls = self._get_meta_urls()
+        meta = self._extract_meta(urls)
+        self.meta_info = Program(meta)
 
     def _get_meta_urls(self):
         html = self._get_html_from_web(self.url_meta)
@@ -417,12 +428,12 @@ class CinemaOstertor(Kinoheld):
 
     def _extract_meta(self, movie_urls):
         # TODO: film info is actually spread over two pages, right now only gets first page
-        meta_info_program = {}
+        meta_info_program = []
         for url in movie_urls:
             html = self._get_html_from_web(url)
             try:
-                title, meta_info_show = self._parse_show(html)
-                meta_info_program[title] = meta_info_show
+                meta_info_show = self._parse_show(html)
+                meta_info_program.append(meta_info_show)
             except TypeError:
                 print(f"No meta info was extracted because of a NoneType (url: {url})")
         return {self.name: meta_info_program}
@@ -470,7 +481,7 @@ class CinemaOstertor(Kinoheld):
             meta_film.img_screenshot = img_screenshot.get('src').strip()
         meta_film.img_poster = soup.find('img', class_='vc_single_image-img').get('src').strip()
         meta_film.description = soup.find('p').text
-        return meta_film.title, meta_film
+        return meta_film
 
 
 class City46(Theater):

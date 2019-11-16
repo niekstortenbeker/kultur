@@ -30,14 +30,14 @@ def print_header():
 def create_db_cinema_ostertor():
     print('\n  Working on Cinema Ostertor')
     ostertor = webscraping.CinemaOstertor()
-    meta = ostertor.create_meta_db()
+    meta = ostertor.update_meta_info()
     return meta
 
 
 def create_db_filmkunst():
     print('\n  Working on Bremer Filmkunst Theater')
     filmkunst = webscraping.Filmkunst()
-    meta = filmkunst.create_meta_db()
+    meta = filmkunst.update_meta_info()
     return meta
 
 
