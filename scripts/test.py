@@ -6,7 +6,7 @@ from pprint import pprint
 
 webscraping.start_driver()
 
-# try:
+try:
     # filmkunst = webscraping.Filmkunst()
     # filmkunst.update_program()
     # print(filmkunst.create_meta_db())
@@ -14,8 +14,8 @@ webscraping.start_driver()
     # city46.update_program()
     # ostertor = webscraping.CinemaOstertor()
     # ostertor.update_program()
-    # theater_bremen = webscraping.TheaterBremen()
-    # theater_bremen.update_program()
+    theater_bremen = webscraping.TheaterBremen()
+    theater_bremen.update_program()
     # filmkunst = webscraping.Filmkunst()
     # filmkunst.update_program()
     # schwankhalle = webscraping.Schwankhalle()
@@ -24,17 +24,19 @@ webscraping.start_driver()
     # kukoon.update_program()
     # glocke = webscraping.Glocke()
     # glocke = glocke.update_program()
-# finally:
-#     webscraping.close_driver()
+finally:
+    webscraping.close_driver()
 
 
-p = webscraping.CombinedProgram()
-print([t.program for t in p.theaters])
-print(p.program)
-p.update_program()
-print([t.program for t in p.theaters])
-print(p.theaters[0].program.shows[0].title)
-print(p.program)
-print(len(p.program.shows))
-print(p.program.shows[0].title)
+# p = webscraping.CombinedProgram()
+# print(f'program / theater: {[t.program for t in p.theaters]}')
+# print(f'combined program: {p.program}')
+# p.update_program()
+#
+# program = [t.program for t in p.theaters]
+# print(f'program / theater: {program}')
+# length = [len(p.shows) for p in program]
+# print(sum(length))
+# print(f'combined program: {p.program}')
+# print(len(p.program.shows))
 #

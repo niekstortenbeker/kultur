@@ -77,12 +77,14 @@ and in self.program.
 
     def refresh_program(self):
         """make a new self.program based on the programs in self.theaters"""
-        self.program.shows = []
+        self.program.empty()
         for t in self.theaters:
             self.program = self.program + t.program
+        self.program.sort()
 
 
-class Program(list):
+class Program():
+    # TODO should this class inherit List?
     """should be initialized with either shows: a list of Show objects, or
     with None"""
 
@@ -100,6 +102,12 @@ class Program(list):
     def __add__(self, other):
         shows = self.shows + other.shows
         return Program(shows)
+
+    def empty(self):
+        self.shows = []
+
+    def sort(self):
+        self.shows.sort(key=lambda show: show.date_time)
 
     def get_next_week(self):
         # TODO
@@ -227,11 +235,11 @@ class Theater:
         return source
 
     def _parse_date_without_year(self, month, day, hour, minute):
-        """get arrow object, guess the year. Assumes that dates don't go back more than 6 months.
+        """get arrow object, guess the year. Assumes that dates don't go back more than 2 months.
         Useful when year is not available"""
         year = arrow.now('Europe/Berlin').year  # get current year
         date_time = arrow.get(year, month, day, hour, minute, tzinfo="Europe/Berlin")
-        if date_time < arrow.now("Europe/Berlin").shift(months=-6):
+        if date_time < arrow.now("Europe/Berlin").shift(months=-2):
             return date_time.replace(year=date_time.year + 1)
         else:
             return date_time
@@ -249,6 +257,7 @@ class Kinoheld(Theater):
         html = self._get_html_from_web_ajax(self.url_program_scrape, 'movie.u-px-2.u-py-2')
         show_list = self._extract_show_list(html)
         self.program = Program(show_list)
+        self.program.sort()
 
     def _extract_show_list(self, html):
         show_list = []
@@ -480,6 +489,7 @@ class City46(Theater):
             if table:
                 show_list.extend(self._extract_show_list(table, year))
         self.program = Program(show_list)
+        self.program.sort()
 
     def _get_urls(self):
         """use today's date to figure out the city 46 program url. If date > 20 also get next month"""
@@ -582,7 +592,7 @@ class City46(Theater):
 
 
 class TheaterBremen(Theater):
-
+    # TODO IT DOESN'T GET THE TITLE RIGHT! ARGG
     def __init__(self):
         super().__init__('Theater Bremen', 'http://www.theaterbremen.de')
 
@@ -594,6 +604,7 @@ class TheaterBremen(Theater):
             html = self._get_html_from_web_ajax(url, class_name='day')
             show_list.extend(self._extract_show_list(html))
         self.program = Program(show_list)
+        self.program.sort()
 
     def _get_urls(self):
         """use today's date to figure out the theaterbremen program url. If date > 20 also get next month"""
@@ -625,6 +636,9 @@ class TheaterBremen(Theater):
                 except IndexError:
                     pass
                 show.title = links[0].text.strip()
+                print(f'show.title: {show.title}')
+                print(f'links[0].text: {links[0].text}')
+                print(f'links[0]: {links[0]}')
                 infos = s.find_all('p')
                 show.info = '\n'.join(info.text for info in infos)
                 show.location = self.name
@@ -641,7 +655,9 @@ class Schwankhalle(Theater):
         print(f'\n updating program {self.name}')
         # at some point requests starting giving SSLError so use selenium for ajax
         html = self._get_html_from_web_ajax(self.url, 'date-container')
-        self.program = Program(self._extract_show_list(html))
+        show_list = self._extract_show_list(html)
+        self.program = Program(show_list)
+        self.program.sort()
 
     def _extract_show_list(self, html):
         show_list = []
@@ -693,6 +709,7 @@ class Glocke(Theater):
             html = self._get_html_from_web(url)
             show_list.extend(self._extract_show_list(html))
         self.program = Program(show_list)
+        self.program.sort()
 
     def _get_urls(self):
         arw = arrow.now()
@@ -746,7 +763,9 @@ class Kukoon(Theater):
     def update_program(self):
         print(f'\n updating program {self.name}')
         html = self._get_html_from_web(self.url)
-        self.program = Program(self._extract_show_list(html))
+        show_list = self._extract_show_list(html)
+        self.program = Program(show_list)
+        self.program.sort()
 
     def _extract_show_list(self, html):
         show_list = []
