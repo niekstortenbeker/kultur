@@ -592,7 +592,6 @@ class City46(Theater):
 
 
 class TheaterBremen(Theater):
-    # TODO IT DOESN'T GET THE TITLE RIGHT! ARGG
     def __init__(self):
         super().__init__('Theater Bremen', 'http://www.theaterbremen.de')
 
@@ -629,16 +628,13 @@ class TheaterBremen(Theater):
                 time = s.find(class_='overview-date-n-flags').text.strip()[0:5]
                 show = Show(arrow.get(date + time, 'DD.MM.YYYYHH:mm', tzinfo='Europe/Berlin'))
                 links = s.find_all('a')
-                show.link_info = '{}{}'.format(self.url, links[0].get('href').strip())
+                show.link_info = '{}{}'.format(self.url, links[1].get('href').strip())
                 try:
-                    show.link_tickets = links[1].get('href').strip()
-                    show.price = links[1].text.strip()
+                    show.link_tickets = links[2].get('href').strip()
+                    show.price = links[2].text.strip()
                 except IndexError:
                     pass
-                show.title = links[0].text.strip()
-                print(f'show.title: {show.title}')
-                print(f'links[0].text: {links[0].text}')
-                print(f'links[0]: {links[0]}')
+                show.title = links[1].text.strip()
                 infos = s.find_all('p')
                 show.info = '\n'.join(info.text for info in infos)
                 show.location = self.name
