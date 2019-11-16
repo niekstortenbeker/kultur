@@ -247,26 +247,23 @@ class Kinoheld(Theater):
     def update_program(self):
         print(f'\n updating program {self.name}')
         html = self._get_html_from_web_ajax(self.url_program_scrape, 'movie.u-px-2.u-py-2')
-        show_list = self._extract_show_list(html,
-                                            location=self.name,
-                                            program_link=self.url)
+        show_list = self._extract_show_list(html)
         self.program = Program(show_list)
 
-    def _extract_show_list(self, html, location, program_link):
+    def _extract_show_list(self, html):
         show_list = []
-        link = 'https://www.kinoheld.de/'
         soup = bs4.BeautifulSoup(html, 'html.parser')
         shows = soup.find_all('article')
         for s in shows:
             show = Show(self._get_date_time(s))
-            if location == 'Cinema Ostertor':
+            if self.name == 'Cinema Ostertor':
                 show.title = self._get_title(s).title()
             else:
                 show.title = self._get_title(s)
             show.language_version = self._get_language_version(s)
-            show.link_tickets = link + s.a.get('href')
-            show.link_info = program_link
-            show.location = location
+            show.link_tickets = 'https://www.kinoheld.de/' + s.a.get('href')
+            show.link_info = self.url
+            show.location = self.name
             show_list.append(show)
         return show_list
 
@@ -399,12 +396,12 @@ class CinemaOstertor(Kinoheld):
                          url_meta=url)
 
     def create_meta_db(self):
-        movie_urls = self._get_meta_urls(self.url_meta)
+        movie_urls = self._get_meta_urls()
         meta = self._extract_meta(movie_urls)
         return meta
 
-    def _get_meta_urls(self, start_url):
-        html = self._get_html_from_web(start_url)
+    def _get_meta_urls(self):
+        html = self._get_html_from_web(self.url_meta)
         soup = bs4.BeautifulSoup(html, 'html.parser')
         urls = [url.get('href').strip() for url in soup.find_all('a', class_='details')]
         return urls
@@ -473,9 +470,10 @@ class City46(Theater):
         super().__init__('City 46', 'http://www.city46.de/programm/')
 
     def update_program(self):
+        # TODO maybe use pandas pd.read_html(str(soup.find('table')))[0]
         print(f'\n updating program {self.name}')
         show_list = []
-        urls, years = self._get_urls(self.url)
+        urls, years = self._get_urls()
         for url, year in zip(urls, years):
             html = self._get_html_from_web(url)
             table = self._get_tables_from_html(html)
@@ -483,19 +481,19 @@ class City46(Theater):
                 show_list.extend(self._extract_show_list(table, year))
         self.program = Program(show_list)
 
-    def _get_urls(self, url):
+    def _get_urls(self):
         """use today's date to figure out the city 46 program url. If date > 20 also get next month"""
         urls, years = [], []
         months = {1: 'januar', 2: 'februar', 3: 'maerz', 4: 'april', 5: 'mai', 6: 'juni', 7: 'juli', 8: 'august',
                   9: 'september', 10: 'oktober', 11: 'november', 12: 'dezember'}
         date = arrow.now('Europe/Berlin')
         year, month, day = date.year, date.month, date.day
-        urls.append("{}{}-{}.html".format(url, months[month], year))
+        urls.append("{}{}-{}.html".format(self.url, months[month], year))
         years.append(year)
         if day > 20:
             date = date.shift(months=+1)
             year, month = date.year, date.month
-            urls.append("{}{}-{}.html".format(url, months[month], year))
+            urls.append("{}{}-{}.html".format(self.url, months[month], year))
             years.append(year)
         return urls, years
 
@@ -591,25 +589,25 @@ class TheaterBremen(Theater):
     def update_program(self):
         print(f'\n updating program {self.name}')
         show_list = []
-        urls = self._get_urls(self.url)
+        urls = self._get_urls()
         for url in urls:
             html = self._get_html_from_web_ajax(url, class_name='day')
-            show_list.extend(self._extract_show_list(html, self.url))
+            show_list.extend(self._extract_show_list(html))
         self.program = Program(show_list)
 
-    def _get_urls(self, base_url):
+    def _get_urls(self):
         """use today's date to figure out the theaterbremen program url. If date > 20 also get next month"""
         urls = []
         date = arrow.now('Europe/Berlin')
         year, month, day = date.year, date.month, date.day
-        urls.append("{}#?d={}-{}-{}&f=a".format(base_url, year, month, day))
+        urls.append("{}#?d={}-{}-{}&f=a".format(self.url, year, month, day))
         if day > 20:
             date = date.shift(months=+1)
             year, month = date.year, date.month
-            urls.append("{}#?d={}-{}-{}&f=a".format(base_url, year, month, 20))
+            urls.append("{}#?d={}-{}-{}&f=a".format(self.url, year, month, 20))
         return urls
 
-    def _extract_show_list(self, html, base_url):
+    def _extract_show_list(self, html):
         show_list = []
         soup = bs4.BeautifulSoup(html, 'html.parser')
         days = soup.find_all(class_='day')
@@ -620,7 +618,7 @@ class TheaterBremen(Theater):
                 time = s.find(class_='overview-date-n-flags').text.strip()[0:5]
                 show = Show(arrow.get(date + time, 'DD.MM.YYYYHH:mm', tzinfo='Europe/Berlin'))
                 links = s.find_all('a')
-                show.link_info = '{}{}'.format(base_url, links[0].get('href').strip())
+                show.link_info = '{}{}'.format(self.url, links[0].get('href').strip())
                 try:
                     show.link_tickets = links[1].get('href').strip()
                     show.price = links[1].text.strip()
@@ -636,7 +634,7 @@ class TheaterBremen(Theater):
 
 class Schwankhalle(Theater):
 
-    def __init__(selfs):
+    def __init__(self):
         super().__init__('Schwankhalle', 'http://schwankhalle.de/spielplan-1.html')
 
     def update_program(self):
@@ -689,22 +687,22 @@ class Glocke(Theater):
 
     def update_program(self):
         print(f'\n updating program {self.name}')
-        urls = self._get_urls(self.url)
+        urls = self._get_urls()
         show_list = []
         for url in urls:
             html = self._get_html_from_web(url)
-            show_list.extend(self._extract_show_list(html, self.url))
+            show_list.extend(self._extract_show_list(html))
         self.program = Program(show_list)
 
-    def _get_urls(self, base_url):
+    def _get_urls(self):
         arw = arrow.now()
-        url1 = base_url + f'/de/Veranstaltungssuche/{arw.month}/{arw.year}'
+        url1 = self.url + f'/de/Veranstaltungssuche/{arw.month}/{arw.year}'
         arw = arw.shift(months=+1)
-        url2 = base_url + f'/de/Veranstaltungssuche/{arw.month}/{arw.year}'
+        url2 = self.url + f'/de/Veranstaltungssuche/{arw.month}/{arw.year}'
         urls = [url1, url2]
         return urls
 
-    def _extract_show_list(self, html, base_url):
+    def _extract_show_list(self, html):
         show_list = []
         soup = bs4.BeautifulSoup(html, 'html.parser')
         shows = soup.find_all('div', class_='va-liste')
@@ -713,7 +711,7 @@ class Glocke(Theater):
             show = Show(date_time)
             show.location_details = location_details
             show.title = self._get_title(s)
-            link = base_url + '{}'.format(s.a.get('href'))
+            link = self.url + '{}'.format(s.a.get('href'))
             show.link_info = link
             show.link_tickets = link
             show.location = self.name
