@@ -236,12 +236,12 @@ class Theater:
             source = driver.page_source
         except TimeoutException:
             print("    Error! Selenium Timeout: {}".format(url))
-            print('    the script is aborted')
-            sys.exit(1)
+            print('    tried but failed to retrieve html from: ', url)
+            return None
         except WebDriverException as e:
             print("    Error! Selenium Exception. {}".format(str(e)))
-            print('    the script is aborted')
-            sys.exit(1)
+            print('    tried but failed to retrieve html from: ', url)
+            return None
         print('    Retrieved html from: ', url)
         return source
 
@@ -255,6 +255,43 @@ class Theater:
         else:
             return date_time
 
+    def find_and_change_case_errors(self):
+        """for the shows in db_programinfo with no entry in db_metainfo, see if these no matches can be resolved when
+        ignoring case. If so, change case of the title db_metainfo to reflect the case in db_programinfo"""
+        print(f'\n  finding case errors in show names of {self.name}')
+        program_titles = set([s.title for s in self.program])
+        meta_titles = set([s.title for s in self.meta_info])
+        no_matches = program_titles - meta_titles
+        if no_matches:
+            matches_after_case_change = []
+            # TODO make this more obvious
+            for no_match in no_matches:
+                for meta_title in meta_titles:
+                    if no_match.lower() == meta_title.lower():
+                        self.adjust_name(matches_after_case_change, meta_title, no_match)
+                    elif self.alphanumeric(no_match) == self.alphanumeric(meta_title):
+                        self.adjust_name(matches_after_case_change, meta_title, no_match)
+
+            no_matches_after_case_change = no_matches - set(matches_after_case_change)
+
+            for title in no_matches_after_case_change:
+                print(f'    no meta data found for the show "{title}" in {self.name}')
+        else:
+            print("    lookin' good!")
+
+    def adjust_name(self,  matches_after_case_change, meta_title, no_match):
+        # TODO make this work
+        matches_after_case_change.append(no_match)
+        metainfo = db_metainfo[location].pop(meta_title)
+        db_metainfo[location][no_match] = metainfo
+        print(f'    adjusted show title "{meta_title}" to "{no_match}" in db_metainfo')
+
+    def alphanumeric(self, s):
+        """convert all adjecent non-alphanumeric characters to a single space, and makes lowercase"""
+        s = s.lower()
+        # TODO this would ignore german umlaud etc
+        return re.sub('[^0-9a-zA-Z]+', ' ', s)
+
 
 class Kinoheld(Theater):
 
@@ -266,9 +303,13 @@ class Kinoheld(Theater):
     def update_program(self):
         print(f'\n updating program {self.name}')
         html = self._get_html_from_web_ajax(self.url_program_scrape, 'movie.u-px-2.u-py-2')
-        show_list = self._extract_show_list(html)
-        self.program = Program(show_list)
-        self.program.sort()
+        try:
+            show_list = self._extract_show_list(html)
+            self.program = Program(show_list)
+            self.program.sort()
+        except (TypeError, AttributeError, ValueError):
+            print(f"Note! Program from {self.name} was not updated because of an error")
+
 
     def _extract_show_list(self, html):
         show_list = []
@@ -312,8 +353,11 @@ class Kinoheld(Theater):
     def update_meta_info(self):
         print(f'\n updating meta info {self.name}')
         html = self._get_meta_html(self.url_meta)
-        meta = self._extract_meta(html)
-        self.meta_info = Program(meta)
+        try:
+            meta = self._extract_meta(html)
+            self.meta_info = Program(meta)
+        except (TypeError, AttributeError, ValueError):
+            print(f"Note! Meta info from {self.name} was not updated because of an error")
 
     def _get_meta_html(self, url):
         """I need to click some buttons to get all the info in the html. It should wait for the overlay to be gone."""
@@ -416,9 +460,12 @@ class CinemaOstertor(Kinoheld):
 
     def update_meta_info(self):
         print(f'\n updating meta info {self.name}')
-        urls = self._get_meta_urls()
-        meta = self._extract_meta(urls)
-        self.meta_info = Program(meta)
+        try:
+            urls = self._get_meta_urls()
+            meta = self._extract_meta(urls)
+            self.meta_info = Program(meta)
+        except (TypeError, AttributeError, ValueError):
+            print(f"Note! meta info from {self.name} was not updated because of an error")
 
     def _get_meta_urls(self):
         html = self._get_html_from_web(self.url_meta)
@@ -494,13 +541,15 @@ class City46(Theater):
         print(f'\n updating program {self.name}')
         show_list = []
         urls, years = self._get_urls()
-        for url, year in zip(urls, years):
-            html = self._get_html_from_web(url)
-            table = self._get_tables_from_html(html)
-            if table:
+        try:
+            for url, year in zip(urls, years):
+                html = self._get_html_from_web(url)
+                table = self._get_tables_from_html(html)
                 show_list.extend(self._extract_show_list(table, year))
-        self.program = Program(show_list)
-        self.program.sort()
+            self.program = Program(show_list)
+            self.program.sort()
+        except (TypeError, AttributeError, ValueError):
+            print(f"Note! Program from {self.name} was not updated because of an error")
 
     def _get_urls(self):
         """use today's date to figure out the city 46 program url. If date > 20 also get next month"""
@@ -610,11 +659,14 @@ class TheaterBremen(Theater):
         print(f'\n updating program {self.name}')
         show_list = []
         urls = self._get_urls()
-        for url in urls:
-            html = self._get_html_from_web_ajax(url, class_name='day')
-            show_list.extend(self._extract_show_list(html))
-        self.program = Program(show_list)
-        self.program.sort()
+        try:
+            for url in urls:
+                html = self._get_html_from_web_ajax(url, class_name='day')
+                show_list.extend(self._extract_show_list(html))
+            self.program = Program(show_list)
+            self.program.sort()
+        except (TypeError, AttributeError, ValueError):
+            print(f"Note! Program from {self.name} was not updated because of an error")
 
     def _get_urls(self):
         """use today's date to figure out the theaterbremen program url. If date > 20 also get next month"""
@@ -662,9 +714,12 @@ class Schwankhalle(Theater):
         print(f'\n updating program {self.name}')
         # at some point requests starting giving SSLError so use selenium for ajax
         html = self._get_html_from_web_ajax(self.url, 'date-container')
-        show_list = self._extract_show_list(html)
-        self.program = Program(show_list)
-        self.program.sort()
+        try:
+            show_list = self._extract_show_list(html)
+            self.program = Program(show_list)
+            self.program.sort()
+        except (TypeError, AttributeError, ValueError):
+            print(f"Note! Program from {self.name} was not updated because of an error")
 
     def _extract_show_list(self, html):
         show_list = []
@@ -712,11 +767,14 @@ class Glocke(Theater):
         print(f'\n updating program {self.name}')
         urls = self._get_urls()
         show_list = []
-        for url in urls:
-            html = self._get_html_from_web(url)
-            show_list.extend(self._extract_show_list(html))
-        self.program = Program(show_list)
-        self.program.sort()
+        try:
+            for url in urls:
+                html = self._get_html_from_web(url)
+                show_list.extend(self._extract_show_list(html))
+            self.program = Program(show_list)
+            self.program.sort()
+        except (TypeError, AttributeError, ValueError):
+            print(f"Note! Program from {self.name} was not updated because of an error")
 
     def _get_urls(self):
         arw = arrow.now()
@@ -770,9 +828,12 @@ class Kukoon(Theater):
     def update_program(self):
         print(f'\n updating program {self.name}')
         html = self._get_html_from_web(self.url)
-        show_list = self._extract_show_list(html)
-        self.program = Program(show_list)
-        self.program.sort()
+        try:
+            show_list = self._extract_show_list(html)
+            self.program = Program(show_list)
+            self.program.sort()
+        except (TypeError, AttributeError, ValueError):
+            print(f"Note! Program from {self.name} was not updated because of an error")
 
     def _extract_show_list(self, html):
         show_list = []

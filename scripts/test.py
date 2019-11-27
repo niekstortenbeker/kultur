@@ -4,16 +4,16 @@ import InputOutput
 import time
 from pprint import pprint
 
-# webscraping.start_driver()
+webscraping.start_driver()
 
 # try:
     # filmkunst = webscraping.Filmkunst()
     # filmkunst.update_program()
-    # print(filmkunst.update_meta_info())
     # city46 = webscraping.City46()
     # city46.update_program()
     # ostertor = webscraping.CinemaOstertor()
     # ostertor.update_program()
+    # ostertor.update_meta_info()
     # theater_bremen = webscraping.TheaterBremen()
     # theater_bremen.update_program()
     # filmkunst = webscraping.Filmkunst()
@@ -25,7 +25,7 @@ from pprint import pprint
     # glocke = webscraping.Glocke()
     # glocke = glocke.update_program()
 # finally:
-    # webscraping.close_driver()
+#     webscraping.close_driver()
 
 
 p = webscraping.CombinedProgram()
