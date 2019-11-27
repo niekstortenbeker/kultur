@@ -167,7 +167,8 @@ class Show:
 
 
 class ShowMetaInfo:
-
+    """so far only really used for the country of movies to see if it might be
+    an original german production"""
     def __init__(self,
                  title,
                  title_original='',
@@ -452,7 +453,7 @@ class CinemaOstertor(Kinoheld):
     # TODO use url from meta info for program_link
 
     def __init__(self):
-        url = 'https://cinema-ostertor.de/aktuelle-filme'
+        url = 'https://cinema-ostertor.de/programm'
         super().__init__(name='Cinema Ostertor',
                          url_program_info=url,
                          url_program_scrape='https://www.kinoheld.de/kino-bremen/cinema-im-ostertor-bremen/shows/shows?mode=widget',
@@ -470,11 +471,10 @@ class CinemaOstertor(Kinoheld):
     def _get_meta_urls(self):
         html = self._get_html_from_web(self.url_meta)
         soup = bs4.BeautifulSoup(html, 'html.parser')
-        urls = [url.get('href').strip() for url in soup.find_all('a', class_='details')]
-        return urls
+        urls = [url.get('href').strip() for url in soup.find_all('a', class_='elementor-post__read-more')]
+        return set(urls)
 
     def _extract_meta(self, movie_urls):
-        # TODO: film info is actually spread over two pages, right now only gets first page
         meta_info_program = []
         for url in movie_urls:
             html = self._get_html_from_web(url)
@@ -492,7 +492,7 @@ class CinemaOstertor(Kinoheld):
         # many stats are hidden in a sloppy bit of html in h6
         # in case there is a web page that doesn't display a normal film have this bit in a try except block
         try:
-            stats = soup.find('h6')
+            stats = soup.find('div', class_='elementor-element-bf542d7')
             d = {}
             for strong in stats.find_all('strong'):
                 name = strong.previous_sibling.strip().lower()
@@ -522,11 +522,8 @@ class CinemaOstertor(Kinoheld):
             meta_film.year = meta_film.year[-4:]
         if meta_film.duration:
             meta_film.duration = meta_film.duration.replace('\xa0', ' ')
-        # get other data
-        img_screenshot = soup.find('img', class_='rev-slidebg')
-        if img_screenshot:
-            meta_film.img_screenshot = img_screenshot.get('src').strip()
-        meta_film.img_poster = soup.find('img', class_='vc_single_image-img').get('src').strip()
+        poster = soup.find('div', class_='elementor-element-f5652a8')
+        meta_film.img_poster = poster.find('img').get('src').strip()
         meta_film.description = soup.find('p').text
         return meta_film
 
