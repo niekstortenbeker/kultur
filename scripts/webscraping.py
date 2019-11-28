@@ -31,34 +31,34 @@ class CombinedProgram:
 
     def __init__(self):
         """theaters should be Theater objects, program should be a Program object"""
-        schauburg = Kinoheld(name='Schauburg',
-                             url_program_info='http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html',
-                             url_program_scrape='https://www.kinoheld.de/kino-bremen/schauburg-kino-bremen/shows/shows?mode=widget',
-                             url_meta='https://www.kinoheld.de/kino-bremen/schauburg-kino-bremen/shows/movies?mode=widget')
-        gondel = Kinoheld(name='Gondel',
-                          url_program_info='http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html',
-                          url_program_scrape='https://www.kinoheld.de/kino-bremen/gondel-filmtheater-bremen/shows/shows?mode=widget',
-                          url_meta='https://www.kinoheld.de/kino-bremen/gondel-filmtheater-bremen/shows/movies?mode=widget')
-        atlantis = Kinoheld(name='Atlantis',
-                            url_program_info='http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html',
-                            url_program_scrape='https://www.kinoheld.de/kino-bremen/atlantis-filmtheater-bremen/shows/shows?mode=widget',
-                            url_meta='https://www.kinoheld.de/kino-bremen/atlantis-filmtheater-bremen/shows/movies?mode=widget')
-        cinema_ostertor = CinemaOstertor()
-        # city_46 = City46()
-        # theater_bremen = TheaterBremen()
-        # schwankhalle = Schwankhalle()
-        # glocke = Glocke()
-        # kukoon = Kukoon()
+        # schauburg = Kinoheld(name='Schauburg',
+        #                      url_program_info='http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html',
+        #                      url_program_scrape='https://www.kinoheld.de/kino-bremen/schauburg-kino-bremen/shows/shows?mode=widget',
+        #                      url_meta='https://www.kinoheld.de/kino-bremen/schauburg-kino-bremen/shows/movies?mode=widget')
+        # gondel = Kinoheld(name='Gondel',
+        #                   url_program_info='http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html',
+        #                   url_program_scrape='https://www.kinoheld.de/kino-bremen/gondel-filmtheater-bremen/shows/shows?mode=widget',
+        #                   url_meta='https://www.kinoheld.de/kino-bremen/gondel-filmtheater-bremen/shows/movies?mode=widget')
+        # atlantis = Kinoheld(name='Atlantis',
+        #                     url_program_info='http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html',
+        #                     url_program_scrape='https://www.kinoheld.de/kino-bremen/atlantis-filmtheater-bremen/shows/shows?mode=widget',
+        #                     url_meta='https://www.kinoheld.de/kino-bremen/atlantis-filmtheater-bremen/shows/movies?mode=widget')
+        # cinema_ostertor = CinemaOstertor()
+        city_46 = City46()
+        theater_bremen = TheaterBremen()
+        schwankhalle = Schwankhalle()
+        glocke = Glocke()
+        kukoon = Kukoon()
         self.theaters = [
-            schauburg,
-            gondel,
-            atlantis,
-            cinema_ostertor,
-            # city_46,
-            # theater_bremen,
-            # schwankhalle,
-            # glocke,
-            # kukoon
+            # schauburg,
+            # gondel,
+            # atlantis,
+            # cinema_ostertor,
+            city_46,
+            theater_bremen,
+            schwankhalle,
+            glocke,
+            kukoon
         ]
         self.program = Program(None)
 
@@ -85,7 +85,10 @@ and in self.program.
         """make a new self.program based on the programs in self.theaters"""
         self.program.empty()
         for t in self.theaters:
-            self.program = self.program + t.program
+            try:
+                self.program = self.program + t.program
+            except AttributeError:  # if theater has None as program
+                continue
         self.program.sort()
 
 
@@ -212,6 +215,18 @@ class Theater:
     def __repr__(self):
         return f'Theater({self.name})'
 
+    def update_program(self):
+        """uses _get_shows() which should be an available method in each child
+        class"""
+        print(f'\n updating program {self.name}')
+        try:
+            shows = self._get_shows()
+            print(f'{self.name}: {shows}')
+            self.program = Program(shows)
+            self.program.sort()
+        except (TypeError, AttributeError, ValueError):
+            print(f"Note! Program from {self.name} was not updated because of an error")
+
     def _get_html_from_web(self, url):
         print('    ...loading webpage (requests)')
         try:
@@ -256,42 +271,42 @@ class Theater:
         else:
             return date_time
 
-    def find_and_change_case_errors(self):
-        """for the shows in db_programinfo with no entry in db_metainfo, see if these no matches can be resolved when
-        ignoring case. If so, change case of the title db_metainfo to reflect the case in db_programinfo"""
-        print(f'\n  finding case errors in show names of {self.name}')
-        program_titles = set([s.title for s in self.program])
-        meta_titles = set([s.title for s in self.meta_info])
-        no_matches = program_titles - meta_titles
-        if no_matches:
-            matches_after_case_change = []
-            # TODO make this more obvious
-            for no_match in no_matches:
-                for meta_title in meta_titles:
-                    if no_match.lower() == meta_title.lower():
-                        self.adjust_name(matches_after_case_change, meta_title, no_match)
-                    elif self.alphanumeric(no_match) == self.alphanumeric(meta_title):
-                        self.adjust_name(matches_after_case_change, meta_title, no_match)
-
-            no_matches_after_case_change = no_matches - set(matches_after_case_change)
-
-            for title in no_matches_after_case_change:
-                print(f'    no meta data found for the show "{title}" in {self.name}')
-        else:
-            print("    lookin' good!")
-
-    def adjust_name(self,  matches_after_case_change, meta_title, no_match):
-        # TODO make this work
-        matches_after_case_change.append(no_match)
-        metainfo = db_metainfo[location].pop(meta_title)
-        db_metainfo[location][no_match] = metainfo
-        print(f'    adjusted show title "{meta_title}" to "{no_match}" in db_metainfo')
-
-    def alphanumeric(self, s):
-        """convert all adjecent non-alphanumeric characters to a single space, and makes lowercase"""
-        s = s.lower()
-        # TODO this would ignore german umlaud etc
-        return re.sub('[^0-9a-zA-Z]+', ' ', s)
+    # def find_and_change_case_errors(self):
+    #     """for the shows in db_programinfo with no entry in db_metainfo, see if these no matches can be resolved when
+    #     ignoring case. If so, change case of the title db_metainfo to reflect the case in db_programinfo"""
+    #     print(f'\n  finding case errors in show names of {self.name}')
+    #     program_titles = set([s.title for s in self.program])
+    #     meta_titles = set([s.title for s in self.meta_info])
+    #     no_matches = program_titles - meta_titles
+    #     if no_matches:
+    #         matches_after_case_change = []
+    #         # TODO make this more obvious
+    #         for no_match in no_matches:
+    #             for meta_title in meta_titles:
+    #                 if no_match.lower() == meta_title.lower():
+    #                     self.adjust_name(matches_after_case_change, meta_title, no_match)
+    #                 elif self.alphanumeric(no_match) == self.alphanumeric(meta_title):
+    #                     self.adjust_name(matches_after_case_change, meta_title, no_match)
+    #
+    #         no_matches_after_case_change = no_matches - set(matches_after_case_change)
+    #
+    #         for title in no_matches_after_case_change:
+    #             print(f'    no meta data found for the show "{title}" in {self.name}')
+    #     else:
+    #         print("    lookin' good!")
+    #
+    # def adjust_name(self,  matches_after_case_change, meta_title, no_match):
+    #     # TODO make this work
+    #     matches_after_case_change.append(no_match)
+    #     metainfo = db_metainfo[location].pop(meta_title)
+    #     db_metainfo[location][no_match] = metainfo
+    #     print(f'    adjusted show title "{meta_title}" to "{no_match}" in db_metainfo')
+    #
+    # def alphanumeric(self, s):
+    #     """convert all adjecent non-alphanumeric characters to a single space, and makes lowercase"""
+    #     s = s.lower()
+    #     # TODO this would ignore german umlaud etc
+    #     return re.sub('[^0-9a-zA-Z]+', ' ', s)
 
 
 class Kinoheld(Theater):
@@ -301,16 +316,9 @@ class Kinoheld(Theater):
         self.url_program_scrape = url_program_scrape
         self.url_meta = url_meta
 
-    def update_program(self):
-        print(f'\n updating program {self.name}')
+    def _get_shows(self):
         html = self._get_html_from_web_ajax(self.url_program_scrape, 'movie.u-px-2.u-py-2')
-        try:
-            show_list = self._extract_show_list(html)
-            self.program = Program(show_list)
-            self.program.sort()
-        except (TypeError, AttributeError, ValueError):
-            print(f"Note! Program from {self.name} was not updated because of an error")
-
+        return self._extract_show_list(html)
 
     def _extract_show_list(self, html):
         show_list = []
@@ -489,7 +497,7 @@ class CinemaOstertor(Kinoheld):
         """from a html page with supposedly film info extract meta info in a ShowMetaInfo object.
         Return the title and the object. Should return a None if it doesn't work"""
         soup = bs4.BeautifulSoup(html, 'html.parser')
-        # many stats are hidden in a sloppy bit of html in h6
+        # many stats are hidden in a sloppy bit of html
         # in case there is a web page that doesn't display a normal film have this bit in a try except block
         try:
             stats = soup.find('div', class_='elementor-element-bf542d7')
@@ -533,20 +541,15 @@ class City46(Theater):
     def __init__(self):
         super().__init__('City 46', 'http://www.city46.de/programm/')
 
-    def update_program(self):
+    def _get_shows(self):
         # TODO maybe use pandas pd.read_html(str(soup.find('table')))[0]
-        print(f'\n updating program {self.name}')
-        show_list = []
+        shows = []
         urls, years = self._get_urls()
-        try:
-            for url, year in zip(urls, years):
-                html = self._get_html_from_web(url)
-                table = self._get_tables_from_html(html)
-                show_list.extend(self._extract_show_list(table, year))
-            self.program = Program(show_list)
-            self.program.sort()
-        except (TypeError, AttributeError, ValueError):
-            print(f"Note! Program from {self.name} was not updated because of an error")
+        for url, year in zip(urls, years):
+            html = self._get_html_from_web(url)
+            table = self._get_tables_from_html(html)
+            shows.extend(self._extract_show_list(table, year))
+        return shows
 
     def _get_urls(self):
         """use today's date to figure out the city 46 program url. If date > 20 also get next month"""
@@ -652,18 +655,13 @@ class TheaterBremen(Theater):
     def __init__(self):
         super().__init__('Theater Bremen', 'http://www.theaterbremen.de')
 
-    def update_program(self):
-        print(f'\n updating program {self.name}')
-        show_list = []
+    def _get_shows(self):
+        shows = []
         urls = self._get_urls()
-        try:
-            for url in urls:
-                html = self._get_html_from_web_ajax(url, class_name='day')
-                show_list.extend(self._extract_show_list(html))
-            self.program = Program(show_list)
-            self.program.sort()
-        except (TypeError, AttributeError, ValueError):
-            print(f"Note! Program from {self.name} was not updated because of an error")
+        for url in urls:
+            html = self._get_html_from_web_ajax(url, class_name='day')
+            shows.extend(self._extract_show_list(html))
+        return shows
 
     def _get_urls(self):
         """use today's date to figure out the theaterbremen program url. If date > 20 also get next month"""
@@ -707,16 +705,10 @@ class Schwankhalle(Theater):
     def __init__(self):
         super().__init__('Schwankhalle', 'http://schwankhalle.de/spielplan-1.html')
 
-    def update_program(self):
-        print(f'\n updating program {self.name}')
+    def _get_shows(self):
         # at some point requests starting giving SSLError so use selenium for ajax
         html = self._get_html_from_web_ajax(self.url, 'date-container')
-        try:
-            show_list = self._extract_show_list(html)
-            self.program = Program(show_list)
-            self.program.sort()
-        except (TypeError, AttributeError, ValueError):
-            print(f"Note! Program from {self.name} was not updated because of an error")
+        return self._extract_show_list(html)
 
     def _extract_show_list(self, html):
         show_list = []
@@ -760,18 +752,13 @@ class Glocke(Theater):
     def __init__(self):
         super().__init__('Glocke', 'https://www.glocke.de/')
 
-    def update_program(self):
-        print(f'\n updating program {self.name}')
+    def _get_shows(self):
         urls = self._get_urls()
-        show_list = []
-        try:
-            for url in urls:
-                html = self._get_html_from_web(url)
-                show_list.extend(self._extract_show_list(html))
-            self.program = Program(show_list)
-            self.program.sort()
-        except (TypeError, AttributeError, ValueError):
-            print(f"Note! Program from {self.name} was not updated because of an error")
+        shows = []
+        for url in urls:
+            html = self._get_html_from_web(url)
+            shows.extend(self._extract_show_list(html))
+        return shows
 
     def _get_urls(self):
         arw = arrow.now()
@@ -822,15 +809,9 @@ class Kukoon(Theater):
     def __init__(self):
         super().__init__('Kukoon', 'https://kukoon.de/programm/')
 
-    def update_program(self):
-        print(f'\n updating program {self.name}')
+    def _get_shows(self):
         html = self._get_html_from_web(self.url)
-        try:
-            show_list = self._extract_show_list(html)
-            self.program = Program(show_list)
-            self.program.sort()
-        except (TypeError, AttributeError, ValueError):
-            print(f"Note! Program from {self.name} was not updated because of an error")
+        return self._extract_show_list(html)
 
     def _extract_show_list(self, html):
         show_list = []
