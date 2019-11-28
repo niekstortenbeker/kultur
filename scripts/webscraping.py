@@ -31,29 +31,29 @@ class CombinedProgram:
 
     def __init__(self):
         """theaters should be Theater objects, program should be a Program object"""
-        # schauburg = Kinoheld(name='Schauburg',
-        #                      url_program_info='http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html',
-        #                      url_program_scrape='https://www.kinoheld.de/kino-bremen/schauburg-kino-bremen/shows/shows?mode=widget',
-        #                      url_meta='https://www.kinoheld.de/kino-bremen/schauburg-kino-bremen/shows/movies?mode=widget')
-        # gondel = Kinoheld(name='Gondel',
-        #                   url_program_info='http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html',
-        #                   url_program_scrape='https://www.kinoheld.de/kino-bremen/gondel-filmtheater-bremen/shows/shows?mode=widget',
-        #                   url_meta='https://www.kinoheld.de/kino-bremen/gondel-filmtheater-bremen/shows/movies?mode=widget')
-        # atlantis = Kinoheld(name='Atlantis',
-        #                     url_program_info='http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html',
-        #                     url_program_scrape='https://www.kinoheld.de/kino-bremen/atlantis-filmtheater-bremen/shows/shows?mode=widget',
-        #                     url_meta='https://www.kinoheld.de/kino-bremen/atlantis-filmtheater-bremen/shows/movies?mode=widget')
-        # cinema_ostertor = CinemaOstertor()
+        schauburg = Kinoheld(name='Schauburg',
+                             url_program_info='http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html',
+                             url_program_scrape='https://www.kinoheld.de/kino-bremen/schauburg-kino-bremen/shows/shows?mode=widget',
+                             url_meta='https://www.kinoheld.de/kino-bremen/schauburg-kino-bremen/shows/movies?mode=widget')
+        gondel = Kinoheld(name='Gondel',
+                          url_program_info='http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html',
+                          url_program_scrape='https://www.kinoheld.de/kino-bremen/gondel-filmtheater-bremen/shows/shows?mode=widget',
+                          url_meta='https://www.kinoheld.de/kino-bremen/gondel-filmtheater-bremen/shows/movies?mode=widget')
+        atlantis = Kinoheld(name='Atlantis',
+                            url_program_info='http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html',
+                            url_program_scrape='https://www.kinoheld.de/kino-bremen/atlantis-filmtheater-bremen/shows/shows?mode=widget',
+                            url_meta='https://www.kinoheld.de/kino-bremen/atlantis-filmtheater-bremen/shows/movies?mode=widget')
+        cinema_ostertor = CinemaOstertor()
         city_46 = City46()
         theater_bremen = TheaterBremen()
         schwankhalle = Schwankhalle()
         glocke = Glocke()
         kukoon = Kukoon()
         self.theaters = [
-            # schauburg,
-            # gondel,
-            # atlantis,
-            # cinema_ostertor,
+            schauburg,
+            gondel,
+            atlantis,
+            cinema_ostertor,
             city_46,
             theater_bremen,
             schwankhalle,
@@ -93,16 +93,14 @@ and in self.program.
 
 
 class Program():
+    # todo: maybe inherit from list. maybe add __len__() method
     """should be initialized with either shows: a list of Show objects, or
     a list of ShowMetaInfo objects, or with None"""
 
     def __init__(self, shows=None):
         """shows should be a list of Show objects or absent"""
         super().__init__()
-        if shows is None:
-            self.shows = []
-        else:
-            self.shows = shows
+        self.shows = shows if shows else []
 
     def __repr__(self):
         return f'Program({self.shows})'
@@ -136,28 +134,17 @@ class Program():
 class Show:
     """TODO explain what this object is. A date_time is always required"""
 
-    def __init__(self,
-                 date_time,
-                 title='',
-                 artist='',
-                 link_info='',
-                 link_tickets='',
-                 location_details='',
-                 location='',
-                 info='',
-                 price='',
-                 language_version=''
-                 ):
+    def __init__(self, date_time):
         self.date_time = date_time
-        self.title = title
-        self.artist = artist
-        self.link_info = link_info
-        self.link_tickets = link_tickets
-        self.location_details = location_details
-        self.location = location
-        self.info = info
-        self.price = price
-        self.language_version = language_version
+        self.title = ''
+        self.artist = ''
+        self.link_info = ''
+        self.link_tickets = ''
+        self.location_details = ''
+        self.location = ''
+        self.info = ''
+        self.price = ''
+        self.language_version = ''
 
     def __repr__(self):
         d = self.date_time
@@ -172,49 +159,34 @@ class Show:
 class ShowMetaInfo:
     """so far only really used for the country of movies to see if it might be
     an original german production"""
-    def __init__(self,
-                 title,
-                 title_original='',
-                 country='',
-                 year='',
-                 genre='',
-                 duration='',
-                 director='',
-                 language='',
-                 description='',
-                 img_poster='',
-                 img_screenshot='',
-                 link_info='',
-                 ):
+    # todo maybe use a data structure. And maybe remove all keyword arguments
+    def __init__(self, title):
         self.title = title
-        self.title_original = title_original
-        self.country = country
-        self.year = year
-        self.genre = genre
-        self.duration = duration
-        self.director = director
-        self.language = language
-        self.description = description
-        self.img_poster = img_poster
-        self.img_screenshot = img_screenshot
-        self.link_info = link_info
+        self.title_original = ''
+        self.country = ''
+        self.year = ''
+        self.genre = ''
+        self.duration = ''
+        self.director = ''
+        self.language = ''
+        self.description = ''
+        self.img_poster = ''
+        self.img_screenshot = ''
+        self.link_info = ''
 
     def __repr__(self):
         return f'ShowMetaInfo({self.title})'
 
 
-# TODO maybe explain that this class is only meant to inherit from
 class Theater:
-    def __init__(self, name, url, program=None, meta_info=None):
+    """Theater class should not be instantiated directly, but only be used
+    to inherit from"""
+    def __init__(self, name, url):
         """program and meta_info should be a Program object"""
         self.name = name
         self.url = url
-        self.program = program
-        self.meta_info = meta_info
-        if program is None:
-            self.program = Program()
-        if meta_info is None:
-            self.meta_info = Program()
+        self.program = Program()
+        self.meta_info = Program()
 
     def __repr__(self):
         return f'Theater({self.name})'
@@ -225,11 +197,15 @@ class Theater:
         print(f'\n updating program {self.name}')
         try:
             shows = self._get_shows()
-            print(f'{self.name}: {shows}')
             self.program = Program(shows)
             self.program.sort()
         except (TypeError, AttributeError, ValueError):
             print(f"Note! Program from {self.name} was not updated because of an error")
+
+    def _get_shows(self):
+        """a dummy method that should be overridden by child classes"""
+        print('Note! this class should be present in the child class')
+        return []
 
     def _get_html_from_web(self, url):
         print('    ...loading webpage (requests)')
@@ -265,11 +241,24 @@ class Theater:
         print('    Retrieved html from: ', url)
         return source
 
-    def _parse_date_without_year(self, month, day, hour, minute):
-        """get arrow object, guess the year. Assumes that dates don't go back more than 2 months.
-        Useful when year is not available"""
-        year = arrow.now('Europe/Berlin').year  # get current year
-        date_time = arrow.get(year, month, day, hour, minute, tzinfo="Europe/Berlin")
+    def _parse_date_without_year(self, *args):
+        """Guess the year and return arrow object.
+        Assumes that dates don't go back more than 2 months. Useful when year
+        is not available. accepts either an arrow object, or arguments for
+        month, day, hour and minute."""
+        # if arrow object was supplied
+        if len(args) == 1 and isinstance(args[0], arrow.arrow.Arrow):
+            date_time = args[0]
+            if date_time.year == 1:  # if year not specified in arrow year 1 is used
+                year = arrow.now('Europe/Berlin').year  # get current year
+                date_time = date_time.replace(year=year)
+        elif len(args) == 4:
+            year = arrow.now('Europe/Berlin').year  # get current year
+            date_time = arrow.get(year, args[0], args[1],
+                                  args[2], args[3],
+                                  tzinfo="Europe/Berlin")
+        else:
+            raise TypeError("_parse_date_without_year() only accepts (arrow objects) or (month, day, hour, minute)")
         if date_time < arrow.now("Europe/Berlin").shift(months=-2):
             return date_time.replace(year=date_time.year + 1)
         else:
@@ -552,7 +541,7 @@ class City46(Theater):
         for url, year in zip(urls, years):
             html = self._get_html_from_web(url)
             table = self._get_tables_from_html(html)
-            shows.extend(self._extract_show_list(table, year))
+            shows.extend(self._extract_show_list(table))
         return shows
 
     def _get_urls(self):
@@ -601,7 +590,7 @@ class City46(Theater):
                     rowspans[row_number] = int(cell['rowspan'])
         return html_table
 
-    def _extract_show_list(self, html_table, year):
+    def _extract_show_list(self, html_table):
         """ very ugly this, but the HTML is also really ugly.
         save film info in a temporary dictionary that changes throughout the for loop through the table.
         In this for loop the dictionary is saved as a ProgramInfo namedtuple, which is appended to a list. This dictionary
@@ -617,13 +606,13 @@ class City46(Theater):
                     if cell.text in ['MO', 'DI', 'MI', 'DO', 'FR', 'SA', 'SO']:
                         if temp_dict['date'] and temp_dict['title'] and temp_dict['time']:
                             show_list.append(
-                                self._save_show(temp_dict, year))  # 1/3 save the last film of the previous day
+                                self._save_show(temp_dict))  # 1/3 save the last film of the previous day
                         temp_dict = dict.fromkeys(temp_dict, None)  # remove all values
                     elif re_date.match(cell.text):
                         temp_dict['date'] = self._add_dot_to_date(cell.text)
                     elif re_time.match(cell.text):
                         if temp_dict['date'] and temp_dict['title'] and temp_dict['time']:
-                            show_list.append(self._save_show(temp_dict, year))  # 2/3 save all other films
+                            show_list.append(self._save_show(temp_dict))  # 2/3 save all other films
                         temp_dict['time'] = cell.text.strip()
                     elif cell.find('a'):
                         temp_dict['link'] = 'http://www.city46.de/' + cell.find('a').get('href')
@@ -634,7 +623,7 @@ class City46(Theater):
                         if temp_dict['info']:  # this was once necessary
                             temp_dict['info'] = temp_dict['info'] + ' | ' + cell.text
         if temp_dict['date'] and temp_dict['title'] and temp_dict['time']:
-            show_list.append(self._save_show(temp_dict, year))  # 3/3 save the last movie of the month
+            show_list.append(self._save_show(temp_dict))  # 3/3 save the last movie of the month
         return show_list
 
     def _add_dot_to_date(self, string):
@@ -645,9 +634,10 @@ class City46(Theater):
             string = string + '.'
             return string.strip()
 
-    def _save_show(self, temp_dict, year):
+    def _save_show(self, temp_dict):
         date_time = arrow.get(temp_dict['date'] + temp_dict['time'], 'D.M.hh:mm', tzinfo='Europe/Berlin')
-        show = Show(date_time.replace(year=year))
+        date_time = self._parse_date_without_year(date_time)
+        show = Show(date_time)
         show.title = temp_dict['title']
         show.link_info = temp_dict['link']
         show.info = temp_dict['info']
@@ -710,6 +700,7 @@ class Schwankhalle(Theater):
         super().__init__('Schwankhalle', 'http://schwankhalle.de/spielplan-1.html')
 
     def _get_shows(self):
+        # TODO fix scraping problem
         # at some point requests starting giving SSLError so use selenium for ajax
         html = self._get_html_from_web_ajax(self.url, 'date-container')
         return self._extract_show_list(html)
