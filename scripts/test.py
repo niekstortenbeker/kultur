@@ -35,6 +35,7 @@ print(f'combined program: {p.program}')
 p.update_program()
 
 print('---------------------------')
+print('---')
 print('programs in the separate theater objects')
 for t in p.theaters:
     print(f'{t.name}: {t.program}')
@@ -42,6 +43,7 @@ for t in p.theaters:
 program = [t.program for t in p.theaters]
 length = [len(p.shows) for p in program]
 print(f'{sum(length)}: length shows in separate theaters')
+print('---')
 print(f'combined program: {p.program}')
 print(f'{len(p.program.shows)}: lenghts shows in the combined program')
 

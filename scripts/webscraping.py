@@ -96,8 +96,8 @@ class Program():
     """should be initialized with either shows: a list of Show objects, or
     a list of ShowMetaInfo objects, or with None"""
 
-    def __init__(self, shows):
-        """shows should be a list of Show objects or None"""
+    def __init__(self, shows=None):
+        """shows should be a list of Show objects or absent"""
         super().__init__()
         if shows is None:
             self.shows = []
@@ -206,11 +206,15 @@ class ShowMetaInfo:
 # TODO maybe explain that this class is only meant to inherit from
 class Theater:
     def __init__(self, name, url, program=None, meta_info=None):
-        """program should be a Program object, meta info a dict title as keys and ShowMetaInfo objects as values"""
+        """program and meta_info should be a Program object"""
         self.name = name
         self.url = url
         self.program = program
         self.meta_info = meta_info
+        if program is None:
+            self.program = Program()
+        if meta_info is None:
+            self.meta_info = Program()
 
     def __repr__(self):
         return f'Theater({self.name})'
