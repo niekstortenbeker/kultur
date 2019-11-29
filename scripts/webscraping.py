@@ -1,9 +1,11 @@
+import InputOutput
 import bs4
 import requests
 import sys
 import arrow
 import re
 import time
+import copy
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -14,6 +16,7 @@ from selenium.common.exceptions import ElementClickInterceptedException
 from selenium.webdriver.firefox.options import Options
 
 
+# TODO not sure what to do with this when moving HTML stuff
 def start_driver():
     global driver
     firefox_profile = webdriver.FirefoxProfile()
@@ -62,6 +65,33 @@ class CombinedProgram:
         ]
         self.program = Program(None)
 
+    def program_from_file(self):
+        """use json with
+        one file that combines the program.shows
+        as a dictionary with theater names as keys and the program.shows
+        as values, and one file similarly for meta_info.shows.
+        populate these back to the self.theaters, and then refresh self.program
+        """
+        program, meta, date = InputOutput.json_to_db()
+        print(f'using a program scraped on {date}')
+        for t in self.theaters:
+            if t.name in program:
+                t.program = Program(shows=program[t.name])
+        for t in self.theaters:
+            if t.name in meta:
+                t.meta_info = MetaInfo(shows=meta[t.name])
+        self._refresh_program()
+
+    def _program_to_file(self):
+        """for all self.theaters, make one file that combines the program.shows
+        as a dictionary with theater names as keys and the program.shows
+        as values, and one file similarly for meta_info.shows """
+        program_db = {t.name: t.program.shows for t in self.theaters}
+        program_db = copy.deepcopy(program_db)
+        meta_db = {t.name: t.meta_info.shows for t in self.theaters}
+        meta_db = copy.deepcopy(meta_db)
+        InputOutput.db_to_json(program_db, meta_db)
+
     def update_program(self):
         """
 update the complete program
@@ -79,9 +109,10 @@ and in self.program.
             if t.name in meta_theaters:
                 t.update_meta_info()
         close_driver()
-        self.refresh_program()
+        self._refresh_program()
+        self._program_to_file()
 
-    def refresh_program(self):
+    def _refresh_program(self):
         """make a new self.program based on the programs in self.theaters"""
         self.program.empty()
         for t in self.theaters:
@@ -92,50 +123,13 @@ and in self.program.
         self.program.sort()
 
 
-class Program():
-    # todo: maybe inherit from list. maybe add __len__() method
+class Program:
     """should be initialized with either shows: a list of Show objects, or
-    a list of ShowMetaInfo objects, or with None"""
+    a list of ShowMetaInfo objects, or with None
 
-    def __init__(self, shows=None):
-        """shows should be a list of Show objects or absent"""
-        super().__init__()
-        self.shows = shows if shows else []
-
-    def __repr__(self):
-        return f'Program({self.shows})'
-
-    def __add__(self, other):
-        shows = self.shows + other.shows
-        return Program(shows)
-
-    def empty(self):
-        self.shows = []
-
-    def sort(self):
-        if isinstance(self.shows[0], Show):
-            self.shows.sort(key=lambda show: show.date_time)
-        elif isinstance(self.shows[0], ShowMetaInfo):
-            self.shows.sort(key=lambda show: show.title)
-
-    def get_next_week(self):
-        # TODO
-        pass
-
-    def get_day(self):
-        # TODO
-        pass
-
-    def sort_name(self):
-        # TODO
-        pass
-
-
-class Show:
-    """TODO explain what this object is. A date_time is always required"""
-
-    def __init__(self, date_time):
-        self.date_time = date_time
+    show dict should have
+    self.date_time = date_time
+    show dict could have
         self.title = ''
         self.artist = ''
         self.link_info = ''
@@ -146,22 +140,46 @@ class Show:
         self.price = ''
         self.language_version = ''
 
-    def __repr__(self):
-        d = self.date_time
-        date_time = f'{d.month:02d}-{d.day:02d} {d.hour:02d}:{d.minute:02d}'
-        return f'Show({date_time}, {self.title}, {self.location})'
+    """
 
-    def display(self):
+    def __init__(self, shows=None):
+        """shows should be a list of Show or ShowMetaInfo objects or absent"""
+        super().__init__()
+        self.shows = shows if shows else []
+
+    def __repr__(self):
+        return f'Program({self.shows})'
+
+    def __add__(self, other):
+        shows = self.shows + other.shows
+        return Program(shows)
+
+    def __len__(self):
+        return len(self.shows)
+
+    def empty(self):
+        self.shows = []
+
+    def sort(self):
+        self.shows.sort(key=lambda show: show['date_time'])
+
+    def get_next_week(self):
+        # TODO
+        pass
+
+    def get_day(self):
         # TODO
         pass
 
 
-class ShowMetaInfo:
-    """so far only really used for the country of movies to see if it might be
-    an original german production"""
-    # todo maybe use a data structure. And maybe remove all keyword arguments
-    def __init__(self, title):
-        self.title = title
+class MetaInfo:
+    """should be initialized with
+    a list of ShowMetaInfo objects, or with None
+
+
+    show metainfo dict should have
+    self.title = title
+    show metainfo dict could have
         self.title_original = ''
         self.country = ''
         self.year = ''
@@ -174,39 +192,64 @@ class ShowMetaInfo:
         self.img_screenshot = ''
         self.link_info = ''
 
+
+    """
+
+    def __init__(self, shows=None):
+        """shows should be a list of Show or ShowMetaInfo objects or absent"""
+        super().__init__()
+        self.shows = shows if shows else []
+
     def __repr__(self):
-        return f'ShowMetaInfo({self.title})'
+        return f'MetaInfo({self.shows})'
+
+    def __add__(self, other):
+        shows = self.shows + other.shows
+        return Program(shows)
+
+    def __len__(self):
+        return len(self.shows)
+
+    def empty(self):
+        self.shows = []
+
+    def sort(self):
+        self.shows.sort(key=lambda show: show['title'])
+
 
 
 class Theater:
     """Theater class should not be instantiated directly, but only be used
     to inherit from"""
+
     def __init__(self, name, url):
         """program and meta_info should be a Program object"""
         self.name = name
         self.url = url
         self.program = Program()
-        self.meta_info = Program()
+        self.meta_info = MetaInfo()
 
     def __repr__(self):
         return f'Theater({self.name})'
 
     def update_program(self):
         """uses _get_shows() which should be an available method in each child
-        class"""
+        class. maybe explain here or in the dummmy method which keys should and
+        could be present"""
         print(f'\n updating program {self.name}')
         try:
             shows = self._get_shows()
             self.program = Program(shows)
             self.program.sort()
-        except (TypeError, AttributeError, ValueError):
-            print(f"Note! Program from {self.name} was not updated because of an error")
+        except (TypeError, AttributeError, ValueError) as e:
+            print(f"Note! Program from {self.name} was not updated because of an error: {e}")
 
     def _get_shows(self):
         """a dummy method that should be overridden by child classes"""
         print('Note! this class should be present in the child class')
         return []
 
+    # TODO move HTML stuff to a module
     def _get_html_from_web(self, url):
         print('    ...loading webpage (requests)')
         try:
@@ -252,13 +295,14 @@ class Theater:
             if date_time.year == 1:  # if year not specified in arrow year 1 is used
                 year = arrow.now('Europe/Berlin').year  # get current year
                 date_time = date_time.replace(year=year)
+        # if month, day, hour, minute was supplied
         elif len(args) == 4:
             year = arrow.now('Europe/Berlin').year  # get current year
             date_time = arrow.get(year, args[0], args[1],
                                   args[2], args[3],
                                   tzinfo="Europe/Berlin")
         else:
-            raise TypeError("_parse_date_without_year() only accepts (arrow objects) or (month, day, hour, minute)")
+            raise TypeError("_parse_date_without_year() only accepts arrow objects or month, day, hour, minute")
         if date_time < arrow.now("Europe/Berlin").shift(months=-2):
             return date_time.replace(year=date_time.year + 1)
         else:
@@ -318,15 +362,16 @@ class Kinoheld(Theater):
         soup = bs4.BeautifulSoup(html, 'html.parser')
         shows = soup.find_all('article')
         for s in shows:
-            show = Show(self._get_date_time(s))
+            show = {}
+            show['date_time'] = self._get_date_time(s)
             if self.name == 'Cinema Ostertor':
-                show.title = self._get_title(s).title()
+                showtitle = self._get_title(s).title()
             else:
-                show.title = self._get_title(s)
-            show.language_version = self._get_language_version(s)
-            show.link_tickets = 'https://www.kinoheld.de/' + s.a.get('href')
-            show.link_info = self.url
-            show.location = self.name
+                show['title'] = self._get_title(s)
+            show['language_version'] = self._get_language_version(s)
+            show['link_tickets'] = 'https://www.kinoheld.de/' + s.a.get('href')
+            show['link_info'] = self.url
+            show['location'] = self.name
             show_list.append(show)
         return show_list
 
@@ -357,10 +402,11 @@ class Kinoheld(Theater):
         html = self._get_meta_html(self.url_meta)
         try:
             meta = self._extract_meta(html)
-            self.meta_info = Program(meta)
+            self.meta_info = MetaInfo(meta)
         except (TypeError, AttributeError, ValueError):
             print(f"Note! Meta info from {self.name} was not updated because of an error")
 
+    # TODO maybe move to get html module
     def _get_meta_html(self, url):
         """I need to click some buttons to get all the info in the html. It should wait for the overlay to be gone."""
         print('    ...loading webpage meta kinoheld (selenium)')
@@ -422,26 +468,27 @@ class Kinoheld(Theater):
                 dl = film.find(class_='movie__additional-data').find('dl')
                 dt = [tag.text.strip().lower() for tag in dl.find_all('dt')]
                 dd = [tag.text.strip() for tag in dl.find_all('dd')]
-                meta_film = ShowMetaInfo(dd[dt.index('titel')])
+                meta_film = {}
+                meta_film['title'] = dd[dt.index('titel')]
                 if 'originaltitel' in dt:
-                    meta_film.title_original = dd[dt.index('originaltitel')]
+                    meta_film['title_original'] = dd[dt.index('originaltitel')]
                 if 'produktion' in dt:
-                    meta_film.country = dd[dt.index('produktion')][:-4].strip().rstrip(',')
+                    meta_film['country'] = dd[dt.index('produktion')][:-4].strip().rstrip(',')
                 if 'erscheinungsdatum' in dt:
-                    meta_film.year = dd[dt.index('erscheinungsdatum')][-4:]
+                    meta_film['year'] = dd[dt.index('erscheinungsdatum')][-4:]
                 if 'regie' in dt:
-                    meta_film.director = dd[dt.index('regie')]
+                    meta_film['director'] = dd[dt.index('regie')]
                 if 'darsteller' in dt:
-                    meta_film.actors = dd[dt.index('darsteller')]
-                meta_film.description = ''.join([p.text for p in film.find_all('p')])
+                    meta_film['actors'] = dd[dt.index('darsteller')]
+                meta_film['description'] = ''.join([p.text for p in film.find_all('p')])
                 img_screenshot = film.find('div', class_='movie__scenes')
                 if img_screenshot:
                     img_screenshot = img_screenshot.find_all('img')
-                    meta_film.img_screenshot = [img.get('data-src').strip() for img in img_screenshot]
+                    meta_film['img_screenshot'] = [img.get('data-src').strip() for img in img_screenshot]
                 img_poster = film.find('div', class_='movie__image')
                 if img_poster:
                     img_poster = img_poster.find('img').get('src').strip()
-                    meta_film.img_poster = f'https://www.kinoheld.de{img_poster}'
+                    meta_film['img_poster'] = f'https://www.kinoheld.de{img_poster}'
 
                 meta_info.append(meta_film)
 
@@ -465,7 +512,7 @@ class CinemaOstertor(Kinoheld):
         try:
             urls = self._get_meta_urls()
             meta = self._extract_meta(urls)
-            self.meta_info = Program(meta)
+            self.meta_info = MetaInfo(meta)
         except (TypeError, AttributeError, ValueError):
             print(f"Note! meta info from {self.name} was not updated because of an error")
 
@@ -510,22 +557,23 @@ class CinemaOstertor(Kinoheld):
             'director': 'regie:',
         }
         try:
-            meta_film = ShowMetaInfo(d['titel:'])
+            meta_film = {}
+            meta_film['title'] = d['titel:']
         except KeyError:  # If I can't parse the title I don't want anything
             return None
         for key in translate.keys():
             try:
-                meta_film.key = d[translate[key]]
+                meta_film['key'] = d[translate[key]]
             except KeyError:
                 continue
         # do some necessary cleaning
-        if meta_film.year:
-            meta_film.year = meta_film.year[-4:]
-        if meta_film.duration:
-            meta_film.duration = meta_film.duration.replace('\xa0', ' ')
+        if 'year' in meta_film:
+            meta_film['year'] = meta_film['year'][-4:]
+        if 'duration' in meta_film:
+            meta_film['duration'] = meta_film['duration'].replace('\xa0', ' ')
         poster = soup.find('div', class_='elementor-element-f5652a8')
-        meta_film.img_poster = poster.find('img').get('src').strip()
-        meta_film.description = soup.find('p').text
+        meta_film['img_poster'] = poster.find('img').get('src').strip()
+        meta_film['description'] = soup.find('p').text
         return meta_film
 
 
@@ -635,13 +683,13 @@ class City46(Theater):
             return string.strip()
 
     def _save_show(self, temp_dict):
+        show = {}
         date_time = arrow.get(temp_dict['date'] + temp_dict['time'], 'D.M.hh:mm', tzinfo='Europe/Berlin')
-        date_time = self._parse_date_without_year(date_time)
-        show = Show(date_time)
-        show.title = temp_dict['title']
-        show.link_info = temp_dict['link']
-        show.info = temp_dict['info']
-        show.location = self.name
+        show['date_time'] = self._parse_date_without_year(date_time)
+        show['title'] = temp_dict['title']
+        show['link_info'] = temp_dict['link']
+        show['info'] = temp_dict['info']
+        show['location'] = self.name
         return show
 
 
@@ -677,19 +725,20 @@ class TheaterBremen(Theater):
             date = day.find(class_='date').text.strip()[-10:]
             shows = day.find_all('article')
             for s in shows:
+                show = {}
                 time = s.find(class_='overview-date-n-flags').text.strip()[0:5]
-                show = Show(arrow.get(date + time, 'DD.MM.YYYYHH:mm', tzinfo='Europe/Berlin'))
+                show['date_time'] = arrow.get(date + time, 'DD.MM.YYYYHH:mm', tzinfo='Europe/Berlin')
                 links = s.find_all('a')
-                show.link_info = '{}{}'.format(self.url, links[1].get('href').strip())
+                show['link_info'] = '{}{}'.format(self.url, links[1].get('href').strip())
                 try:
-                    show.link_tickets = links[2].get('href').strip()
-                    show.price = links[2].text.strip()
+                    show['link_tickets'] = links[2].get('href').strip()
+                    show['price'] = links[2].text.strip()
                 except IndexError:
                     pass
-                show.title = links[1].text.strip()
+                show['title'] = links[1].text.strip()
                 infos = s.find_all('p')
-                show.info = '\n'.join(info.text for info in infos)
-                show.location = self.name
+                show['info'] = '\n'.join(info.text for info in infos)
+                show['location'] = self.name
                 show_list.append(show)
         return show_list
 
@@ -718,17 +767,18 @@ class Schwankhalle(Theater):
                 continue
             if not row.find(class_='date-container'):  # solves nonetype errors
                 continue
-            show = Show(self._get_date_time(row, year))
+            show = {}
+            show['date_time'] = self._get_date_time(row, year)
             title_artist_info = row.find('td', class_='title')
             artist = title_artist_info.a.span.text
             title = title_artist_info.a.text[len(artist) + 1:]  # title is not separated by tags
-            show.info = title_artist_info.text[len(title) + 1:].strip()  # info is not separated by tags
-            show.artist = artist.strip()
-            show.title = title.strip()
+            show['info'] = title_artist_info.text[len(title) + 1:].strip()  # info is not separated by tags
+            show['artist'] = artist.strip()
+            show['title'] = title.strip()
             link = 'https://schwankhalle.de/{}'.format(row.a.get('href').strip())
-            show.link_info = link
-            show.link_tickets = link
-            show.location = self.name
+            show['link_info'] = link
+            show['link_tickets'] = link
+            show['location'] = self.name
             show_list.append(show)
         return show_list
 
@@ -768,14 +818,15 @@ class Glocke(Theater):
         soup = bs4.BeautifulSoup(html, 'html.parser')
         shows = soup.find_all('div', class_='va-liste')
         for s in shows:
+            show = {}
             date_time, location_details = self._get_date_time_and_location_details(s)
-            show = Show(date_time)
-            show.location_details = location_details
-            show.title = self._get_title(s)
+            show['date_time'] = date_time
+            show['location_details'] = location_details
+            show['title'] = self._get_title(s)
             link = self.url + '{}'.format(s.a.get('href'))
-            show.link_info = link
-            show.link_tickets = link
-            show.location = self.name
+            show['link_info'] = link
+            show['link_tickets'] = link
+            show['location'] = self.name
             show_list.append(show)
         return show_list
 
@@ -819,13 +870,13 @@ class Kukoon(Theater):
                 continue
             if 'geschlossene gesellschaft' in title_link.text.lower():
                 continue
-
-            show = Show(date_time=arrow.get(date_time.get('datetime')))
-            show.link_info = title_link.get('href')
-            show.title = title_link.text.strip()
-            show.location_details = self._get_location_details(s)
-            show.info = s.find(class_='event__categories').text.strip()
-            show.location = self.name
+            show = {}
+            show['date_time'] = date_time=arrow.get(date_time.get('datetime'))
+            show['link_info'] = title_link.get('href')
+            show['title'] = title_link.text.strip()
+            show['location_details'] = self._get_location_details(s)
+            show['info'] = s.find(class_='event__categories').text.strip()
+            show['location'] = self.name
             show_list.append(show)
         return show_list
 
