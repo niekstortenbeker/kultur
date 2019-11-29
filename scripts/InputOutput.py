@@ -37,7 +37,7 @@ def json_to_db():
         db_metainfo = json.load(f)
 
     with open(datapath / 'scraping_date.txt', 'r') as f:
-        scraping_date = f.read()
+        scraping_date = arrow.get(f.read())
     return db_programinfo, db_metainfo, scraping_date
 
 

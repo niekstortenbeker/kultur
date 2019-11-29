@@ -63,7 +63,7 @@ class CombinedProgram:
             glocke,
             kukoon
         ]
-        self.program = Program(None)
+        self.program = Program()
 
     def program_from_file(self):
         """use json with
@@ -73,14 +73,15 @@ class CombinedProgram:
         populate these back to the self.theaters, and then refresh self.program
         """
         program, meta, date = InputOutput.json_to_db()
-        print(f'using a program scraped on {date}')
         for t in self.theaters:
             if t.name in program:
                 t.program = Program(shows=program[t.name])
+                t.program.date = date
         for t in self.theaters:
             if t.name in meta:
                 t.meta_info = MetaInfo(shows=meta[t.name])
-        self._refresh_program()
+                t.meta_info.date = date
+        self._refresh_program(date=date)
 
     def _program_to_file(self):
         """for all self.theaters, make one file that combines the program.shows
@@ -94,10 +95,10 @@ class CombinedProgram:
 
     def update_program(self):
         """
-update the complete program
+        update the complete program
 
-The program is updated both in the theater.program of self.theaters,
-and in self.program.
+        The program is updated both in the theater.program of self.theaters,
+        and in self.program.
         """
         # update program
         start_driver()
@@ -109,10 +110,10 @@ and in self.program.
             if t.name in meta_theaters:
                 t.update_meta_info()
         close_driver()
-        self._refresh_program()
+        self._refresh_program(date=arrow.now())
         self._program_to_file()
 
-    def _refresh_program(self):
+    def _refresh_program(self, date):
         """make a new self.program based on the programs in self.theaters"""
         self.program.empty()
         for t in self.theaters:
@@ -121,6 +122,7 @@ and in self.program.
             except AttributeError:  # if theater has None as program
                 continue
         self.program.sort()
+        self.program.date = date
 
 
 class Program:
@@ -144,8 +146,8 @@ class Program:
 
     def __init__(self, shows=None):
         """shows should be a list of Show or ShowMetaInfo objects or absent"""
-        super().__init__()
         self.shows = shows if shows else []
+        self.date = arrow.get(0)
 
     def __repr__(self):
         return f'Program({self.shows})'
@@ -163,13 +165,54 @@ class Program:
     def sort(self):
         self.shows.sort(key=lambda show: show['date_time'])
 
-    def get_next_week(self):
-        # TODO
-        pass
+    def print_next_week(self):
+        """get the program of the next week. If today=True instead get only today
+        """
+        now = arrow.utcnow()
+        stop_day = now.shift(weeks=+1).replace(hour=0, minute=0, second=0, microsecond=0, tzinfo='Europe/Berlin')
+        self.print(program=self._filter_program(stop_day))
 
-    def get_day(self):
-        # TODO
-        pass
+    def print_today(self):
+        now = arrow.utcnow()
+        stop_day = now.shift(days=+1).replace(hour=0, minute=0, second=0, microsecond=0, tzinfo='Europe/Berlin')
+        self.print(program=self._filter_program(stop_day))
+
+    def _filter_program(self, stop_day):
+        program = []
+        now = arrow.utcnow()
+        for show in self.shows:
+            if show['date_time'] < now:
+                continue
+            elif show['date_time'] > stop_day:
+                break
+            elif show.get('is_probably_dubbed_film'):
+                continue
+            else:
+                program.append(show)
+        return program
+
+    def print(self, program=None):
+        if not program:
+            program = self.shows
+        print(f'\nthis program uses a database made {self.date.humanize()}')
+        print(''.center(50, '-'))
+        old_day = program[0]['date_time'].date()
+        for s in program:
+            # print day separator
+            day = s['date_time'].date()
+            if day != old_day:
+                print(''.center(50, '-'))
+                old_day = day
+            # print program
+            print('{} | {} | {} {} | {} | {} | {}'.format(
+                s['date_time'].format('ddd MM-DD HH:mm'),
+                s.get('location', ''),
+                s.get('artist', ''),
+                s.get('title', ''),
+                s.get('link_info', ''),
+                s.get('info', ''),
+                s.get('price', '')
+            ))
 
 
 class MetaInfo:
@@ -197,8 +240,8 @@ class MetaInfo:
 
     def __init__(self, shows=None):
         """shows should be a list of Show or ShowMetaInfo objects or absent"""
-        super().__init__()
         self.shows = shows if shows else []
+        self.date = arrow.get(0)
 
     def __repr__(self):
         return f'MetaInfo({self.shows})'
@@ -210,12 +253,8 @@ class MetaInfo:
     def __len__(self):
         return len(self.shows)
 
-    def empty(self):
-        self.shows = []
-
     def sort(self):
         self.shows.sort(key=lambda show: show['title'])
-
 
 
 class Theater:
@@ -308,6 +347,9 @@ class Theater:
         else:
             return date_time
 
+    def program_cleanup(self):
+        pass
+
     # def find_and_change_case_errors(self):
     #     """for the shows in db_programinfo with no entry in db_metainfo, see if these no matches can be resolved when
     #     ignoring case. If so, change case of the title db_metainfo to reflect the case in db_programinfo"""
@@ -344,6 +386,49 @@ class Theater:
     #     s = s.lower()
     #     # TODO this would ignore german umlaud etc
     #     return re.sub('[^0-9a-zA-Z]+', ' ', s)
+    #
+    # def _is_probably_dubbed_film(programinfo, db_metainfo):
+    #     """Return True if programinfo is probably dubbed. Of cinemas with dubbed films, return False if it is explicitely an
+    #     OmU (etc) or if the movie was made in an german speaking country"""
+    #     if not programinfo['location'] in ['Schauburg', 'Gondel', 'Atlantis', 'Cinema Ostertor']:
+    #         return False
+    #     elif film_is_probably_dubbed(db_metainfo, programinfo):
+    #         return True
+    #     else:
+    #         return False
+    #
+    # def _film_is_probably_dubbed(db_metainfo, programinfo):
+    #     title = programinfo['title']
+    #     if programinfo['language_version']:  # OMUs and OV
+    #         return False
+    #     elif is_german(title, programinfo['location'], db_metainfo):
+    #         return False
+    #     else:
+    #         return True
+    #
+    # def _is_german(title, location_name, db_metainfo):
+    #     """
+    #     Test if film is made in a german speaking country
+    #
+    #     :param title: string
+    #     :param location_name: string with Theater name (e.g. Ostertor)
+    #     :param db_metainfo: list of ShowMetaInfo objects
+    #     :return: True if from German speaking country
+    #     """
+    #
+    #     try:
+    #         country = db_metainfo[location_name][title]['country'].lower()
+    #         # Otherwise if it is made in a german speaking country chances are it's not dubbed
+    #         if 'deutschland' in country:
+    #             return True
+    #         elif 'österreich' in country:
+    #             return True
+    #         elif 'schweiz' in country:
+    #             return True
+    #         else:
+    #             return False
+    #     except KeyError:
+    #         return False
 
 
 class Kinoheld(Theater):
@@ -737,7 +822,7 @@ class TheaterBremen(Theater):
                     pass
                 show['title'] = links[1].text.strip()
                 infos = s.find_all('p')
-                show['info'] = '\n'.join(info.text for info in infos)
+                show['info'] = '\n'.join(info.text for info in infos)  #TODO remove white lines
                 show['location'] = self.name
                 show_list.append(show)
         return show_list
@@ -871,7 +956,7 @@ class Kukoon(Theater):
             if 'geschlossene gesellschaft' in title_link.text.lower():
                 continue
             show = {}
-            show['date_time'] = date_time=arrow.get(date_time.get('datetime'))
+            show['date_time'] = date_time = arrow.get(date_time.get('datetime'))
             show['link_info'] = title_link.get('href')
             show['title'] = title_link.text.strip()
             show['location_details'] = self._get_location_details(s)

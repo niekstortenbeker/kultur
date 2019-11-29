@@ -1,8 +1,5 @@
 import webscraping
-import CreateDatabase
-import InputOutput
-import time
-from pprint import pprint
+import program as pro
 
 # webscraping.start_driver()
 # try:
@@ -30,24 +27,34 @@ from pprint import pprint
 p = webscraping.CombinedProgram()
 print(f'program / theater: {[t.program for t in p.theaters]}')
 print(f'combined program: {p.program}')
+
+# SELECT ONE OF THE TWO
 # p.update_program()
 p.program_from_file()
 
-print('---------------------------')
-print('---')
-print('programs in the separate theater objects')
+print(''.center(100, '-'))
+print('programs in the separate theater objects'.center(100, ' '))
 for t in p.theaters:
     print(f'{t.name}: {t.program}')
 
 program = [t.program for t in p.theaters]
 length = [len(p.shows) for p in program]
 print(f'{sum(length)}: length shows in separate theaters')
-print('---')
-print(f'combined program: {p.program}')
+
+print(f'combined program'.center(100, ' '))
+print(p.program)
 print(f'{len(p.program.shows)}: lenghts shows in the combined program')
 
-
-print('\n------------------------------\n')
-print('and now meta info')
+print(''.center(100, '-'))
+print('and now meta info'.center(100, ' '))
 for t in p.theaters:
     print(t.name, t.meta_info)
+
+print(''.center(100, '-'))
+print('and finally test program'.center(100, ' '))
+pro.print_header()
+p.program.print_next_week()
+
+print(''.center(100, '-'))
+pro.print_header()
+p.program.print_today()
