@@ -1,4 +1,4 @@
-import webscraping
+import kultur
 import click
 
 
@@ -8,7 +8,7 @@ import click
 @click.option('--today/--week', '-t', default=False,
               help='Only show today')
 def main(new, today):
-    p = webscraping.CombinedProgram()
+    p = kultur.CombinedProgram()
     print_header()
     if new:
         p.update_program()

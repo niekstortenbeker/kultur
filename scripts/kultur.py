@@ -1,37 +1,14 @@
 import InputOutput
+import helper
 import bs4
-import requests
-import sys
 import arrow
 import re
-import time
 import copy
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import TimeoutException
-from selenium.common.exceptions import WebDriverException
-from selenium.common.exceptions import ElementClickInterceptedException
-from selenium.webdriver.firefox.options import Options
-
-
-# TODO not sure what to do with this when moving HTML stuff
-def start_driver():
-    global driver
-    firefox_profile = webdriver.FirefoxProfile()
-    firefox_profile.set_preference("intl.accept_languages", 'de')
-    options = Options()
-    options.headless = True
-    driver = webdriver.Firefox(options=options, firefox_profile=firefox_profile)
-
-
-def close_driver():
-    driver.quit()
 
 
 class CombinedProgram:
-
+    """this is the main functional unit, it is thought to be the only thing to be directly interacted with
+    contains blabla"""
     def __init__(self):
         """theaters should be Theater objects, program should be a Program object"""
         schauburg = Kinoheld(name='Schauburg',
@@ -101,7 +78,7 @@ class CombinedProgram:
         and in self.program.
         """
         # update program
-        start_driver()
+        helper.start_driver()
         for t in self.theaters:
             t.update_program()
         # update meta info
@@ -109,7 +86,8 @@ class CombinedProgram:
         for t in self.theaters:
             if t.name in meta_theaters:
                 t.update_meta_info()
-        close_driver()
+                t.annotate_dubbed_films()
+        helper.close_driver()
         self._refresh_program(date=arrow.now())
         self._program_to_file()
 
@@ -158,6 +136,12 @@ class Program:
 
     def __len__(self):
         return len(self.shows)
+
+    def __iter__(self):
+        return iter(self.shows)
+
+    def __contains__(self, item):
+        return item in [s['title'] for s in self.shows]
 
     def empty(self):
         self.shows = []
@@ -253,8 +237,17 @@ class MetaInfo:
     def __len__(self):
         return len(self.shows)
 
+    def __iter__(self):
+        return iter(self.shows)
+
+    def __contains__(self, item):
+        return item in self.shows
+
     def sort(self):
         self.shows.sort(key=lambda show: show['title'])
+
+    def get(self, title):
+        return self.shows[title]
 
 
 class Theater:
@@ -262,7 +255,6 @@ class Theater:
     to inherit from"""
 
     def __init__(self, name, url):
-        """program and meta_info should be a Program object"""
         self.name = name
         self.url = url
         self.program = Program()
@@ -285,150 +277,26 @@ class Theater:
 
     def _get_shows(self):
         """a dummy method that should be overridden by child classes"""
-        print('Note! this class should be present in the child class')
-        return []
+        print('Note! _get_shows() should be present in the child class')
+        return True
 
-    # TODO move HTML stuff to a module
-    def _get_html_from_web(self, url):
-        print('    ...loading webpage (requests)')
-        try:
-            response = requests.get(url)
-            if response.status_code == 404:
-                print('    tried but failed to retrieve html from: ', url)
-                return None
-            else:
-                print('    Retrieved html from: ', url)
-                return response.text
-        except requests.exceptions.ConnectionError as e:
-            print("    Error! Connection error: {}".format(e))
-            print('    the script is aborted')
-            sys.exit(1)
+    def annotate_dubbed_films(self):
+        for s in self.program.shows:
+            if self._film_is_probably_dubbed(s):
+                s['is_probably_dubbed_film'] = True
 
-    def _get_html_from_web_ajax(self, url, class_name):
-        """Get page source code from a web page that uses ajax to load elements of the page one at a time.
-         Selenium will wait for the element with the class name 'class_name' to load before getting the page source"""
-        print('    ...loading webpage (selenium)')
-        try:
-            driver.get(url)
-            WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, class_name)))
-            source = driver.page_source
-        except TimeoutException:
-            print("    Error! Selenium Timeout: {}".format(url))
-            print('    tried but failed to retrieve html from: ', url)
-            return None
-        except WebDriverException as e:
-            print("    Error! Selenium Exception. {}".format(str(e)))
-            print('    tried but failed to retrieve html from: ', url)
-            return None
-        print('    Retrieved html from: ', url)
-        return source
-
-    def _parse_date_without_year(self, *args):
-        """Guess the year and return arrow object.
-        Assumes that dates don't go back more than 2 months. Useful when year
-        is not available. accepts either an arrow object, or arguments for
-        month, day, hour and minute."""
-        # if arrow object was supplied
-        if len(args) == 1 and isinstance(args[0], arrow.arrow.Arrow):
-            date_time = args[0]
-            if date_time.year == 1:  # if year not specified in arrow year 1 is used
-                year = arrow.now('Europe/Berlin').year  # get current year
-                date_time = date_time.replace(year=year)
-        # if month, day, hour, minute was supplied
-        elif len(args) == 4:
-            year = arrow.now('Europe/Berlin').year  # get current year
-            date_time = arrow.get(year, args[0], args[1],
-                                  args[2], args[3],
-                                  tzinfo="Europe/Berlin")
+    def _film_is_probably_dubbed(self, show):
+        if show['language_version']:  # OMUs and OV
+            return False
+        elif self._is_german(show['title']):  # should be in child
+            return False
         else:
-            raise TypeError("_parse_date_without_year() only accepts arrow objects or month, day, hour, minute")
-        if date_time < arrow.now("Europe/Berlin").shift(months=-2):
-            return date_time.replace(year=date_time.year + 1)
-        else:
-            return date_time
+            return True
 
-    def program_cleanup(self):
-        pass
-
-    # def find_and_change_case_errors(self):
-    #     """for the shows in db_programinfo with no entry in db_metainfo, see if these no matches can be resolved when
-    #     ignoring case. If so, change case of the title db_metainfo to reflect the case in db_programinfo"""
-    #     print(f'\n  finding case errors in show names of {self.name}')
-    #     program_titles = set([s.title for s in self.program])
-    #     meta_titles = set([s.title for s in self.meta_info])
-    #     no_matches = program_titles - meta_titles
-    #     if no_matches:
-    #         matches_after_case_change = []
-    #         # TODO make this more obvious
-    #         for no_match in no_matches:
-    #             for meta_title in meta_titles:
-    #                 if no_match.lower() == meta_title.lower():
-    #                     self.adjust_name(matches_after_case_change, meta_title, no_match)
-    #                 elif self.alphanumeric(no_match) == self.alphanumeric(meta_title):
-    #                     self.adjust_name(matches_after_case_change, meta_title, no_match)
-    #
-    #         no_matches_after_case_change = no_matches - set(matches_after_case_change)
-    #
-    #         for title in no_matches_after_case_change:
-    #             print(f'    no meta data found for the show "{title}" in {self.name}')
-    #     else:
-    #         print("    lookin' good!")
-    #
-    # def adjust_name(self,  matches_after_case_change, meta_title, no_match):
-    #     # TODO make this work
-    #     matches_after_case_change.append(no_match)
-    #     metainfo = db_metainfo[location].pop(meta_title)
-    #     db_metainfo[location][no_match] = metainfo
-    #     print(f'    adjusted show title "{meta_title}" to "{no_match}" in db_metainfo')
-    #
-    # def alphanumeric(self, s):
-    #     """convert all adjecent non-alphanumeric characters to a single space, and makes lowercase"""
-    #     s = s.lower()
-    #     # TODO this would ignore german umlaud etc
-    #     return re.sub('[^0-9a-zA-Z]+', ' ', s)
-    #
-    # def _is_probably_dubbed_film(programinfo, db_metainfo):
-    #     """Return True if programinfo is probably dubbed. Of cinemas with dubbed films, return False if it is explicitely an
-    #     OmU (etc) or if the movie was made in an german speaking country"""
-    #     if not programinfo['location'] in ['Schauburg', 'Gondel', 'Atlantis', 'Cinema Ostertor']:
-    #         return False
-    #     elif film_is_probably_dubbed(db_metainfo, programinfo):
-    #         return True
-    #     else:
-    #         return False
-    #
-    # def _film_is_probably_dubbed(db_metainfo, programinfo):
-    #     title = programinfo['title']
-    #     if programinfo['language_version']:  # OMUs and OV
-    #         return False
-    #     elif is_german(title, programinfo['location'], db_metainfo):
-    #         return False
-    #     else:
-    #         return True
-    #
-    # def _is_german(title, location_name, db_metainfo):
-    #     """
-    #     Test if film is made in a german speaking country
-    #
-    #     :param title: string
-    #     :param location_name: string with Theater name (e.g. Ostertor)
-    #     :param db_metainfo: list of ShowMetaInfo objects
-    #     :return: True if from German speaking country
-    #     """
-    #
-    #     try:
-    #         country = db_metainfo[location_name][title]['country'].lower()
-    #         # Otherwise if it is made in a german speaking country chances are it's not dubbed
-    #         if 'deutschland' in country:
-    #             return True
-    #         elif 'österreich' in country:
-    #             return True
-    #         elif 'schweiz' in country:
-    #             return True
-    #         else:
-    #             return False
-    #     except KeyError:
-    #         return False
+    def _is_german(self, title):
+        """a dummy method that should be overridden by child classes"""
+        print('Note! _is_german() should be present in the child class')
+        return False
 
 
 class Kinoheld(Theater):
@@ -439,7 +307,7 @@ class Kinoheld(Theater):
         self.url_meta = url_meta
 
     def _get_shows(self):
-        html = self._get_html_from_web_ajax(self.url_program_scrape, 'movie.u-px-2.u-py-2')
+        html = helper.get_html_from_web_ajax(self.url_program_scrape, 'movie.u-px-2.u-py-2')
         return self._extract_show_list(html)
 
     def _extract_show_list(self, html):
@@ -447,104 +315,36 @@ class Kinoheld(Theater):
         soup = bs4.BeautifulSoup(html, 'html.parser')
         shows = soup.find_all('article')
         for s in shows:
-            show = {}
-            show['date_time'] = self._get_date_time(s)
-            if self.name == 'Cinema Ostertor':
-                showtitle = self._get_title(s).title()
+            date_time = s.find(class_='movie__date').text
+            month, day = int(date_time[6:8]), int(date_time[3:5])
+            hour, minute = int(date_time[10:12]), int(date_time[13:15])
+            date_time = helper.parse_date_without_year(month, day, hour, minute)
+            show = {'date_time': date_time}
+            title = s.find(class_='movie__title').text.strip()
+            if title[-3:] in ['OmU', ' OV', 'mdU', 'meU']:
+                title = title[:-3].strip()
+            show['title'] = title
+            if s.find(class_='movie__title').span:
+                show['language_version'] = s.find(class_='movie__title').span.text.strip()
             else:
-                show['title'] = self._get_title(s)
-            show['language_version'] = self._get_language_version(s)
+                show['language_version'] = ''
             show['link_tickets'] = 'https://www.kinoheld.de/' + s.a.get('href')
             show['link_info'] = self.url
             show['location'] = self.name
             show_list.append(show)
         return show_list
 
-    def _get_language_version(self, film):
-        if film.find(class_='movie__title').span:
-            language_version = film.find(class_='movie__title').span.text.strip()
-        else:
-            language_version = ''
-        return language_version
-
-    def _get_date_time(self, film):
-        date_time = film.find(class_='movie__date').text
-        month = int(date_time[6:8])
-        day = int(date_time[3:5])
-        hour = int(date_time[10:12])
-        minute = int(date_time[13:15])
-        return self._parse_date_without_year(month, day, hour, minute)
-
-    def _get_title(self, film):
-        """get title from film. do some cleaning to remove white lines from some titles (OmeU and OmDU are shortened)"""
-        title = film.find(class_='movie__title').text.strip()
-        if title[-3:] in ['OmU', ' OV', 'mdU', 'meU']:
-            title = title[:-3].strip()
-        return title
-
     def update_meta_info(self):
         print(f'\n updating meta info {self.name}')
-        html = self._get_meta_html(self.url_meta)
+        html = helper.get_meta_html(self.url_meta)
         try:
             meta = self._extract_meta(html)
             self.meta_info = MetaInfo(meta)
         except (TypeError, AttributeError, ValueError):
             print(f"Note! Meta info from {self.name} was not updated because of an error")
 
-    # TODO maybe move to get html module
-    def _get_meta_html(self, url):
-        """I need to click some buttons to get all the info in the html. It should wait for the overlay to be gone."""
-        print('    ...loading webpage meta kinoheld (selenium)')
-        driver.get(url)
-        self._wait_for_overlay()
-        source = self._click_buttons(url)
-        return source
-
-    def _click_buttons(self, url):
-        """click two button types: one if there is also a trailer, one if there is only info without a trailer"""
-        buttons = self._get_buttons()
-        while not buttons:  # sometimes this still needs more time
-            time.sleep(1)
-            buttons = self._get_buttons()
-        clicking = self._try_clicking(buttons[0])
-        while not clicking:  # sometimes there are still overlay classes preventing clicking
-            time.sleep(1)
-            clicking = self._try_clicking(buttons[0])
-        del buttons[0]
-        for button in buttons:
-            button.click()
-        source = driver.page_source
-        print('    Retrieved html from: ', url)
-        return source
-
-    def _get_buttons(self):
-        button_classes = ['ui-button.ui-corners-bottom-left.ui-ripple.ui-button--secondary.u-flex-grow-1',
-                          'ui-button.ui-corners-bottom.ui-ripple.ui-button--secondary.u-flex-grow-1']
-        buttons = driver.find_elements_by_class_name(button_classes[0])
-        buttons.extend(driver.find_elements_by_class_name(button_classes[1]))
-        if buttons:
-            return buttons
-        else:
-            return None
-
-    def _wait_for_overlay(self):
-        try:
-            wait = WebDriverWait(driver, 10)
-            overlay_class = "overlay-container"
-            wait.until_not(EC.visibility_of_element_located((By.CLASS_NAME, overlay_class)))
-            return True
-        except WebDriverException:
-            return False
-
-    def _try_clicking(self, button):
-        try:
-            button.click()
-            return True
-        except ElementClickInterceptedException:
-            return False
-
     def _extract_meta(self, html):
-        meta_info = []
+        meta_info = {}
         soup = bs4.BeautifulSoup(html, 'html.parser')
         films = soup.find_all('article')
         # TODO: organize this more like in cinema ostertor. I think I'm missing a lot
@@ -565,7 +365,7 @@ class Kinoheld(Theater):
                     meta_film['director'] = dd[dt.index('regie')]
                 if 'darsteller' in dt:
                     meta_film['actors'] = dd[dt.index('darsteller')]
-                meta_film['description'] = ''.join([p.text for p in film.find_all('p')])
+                meta_film['description'] = film.find('div', class_='movie__info-description').text
                 img_screenshot = film.find('div', class_='movie__scenes')
                 if img_screenshot:
                     img_screenshot = img_screenshot.find_all('img')
@@ -575,11 +375,36 @@ class Kinoheld(Theater):
                     img_poster = img_poster.find('img').get('src').strip()
                     meta_film['img_poster'] = f'https://www.kinoheld.de{img_poster}'
 
-                meta_info.append(meta_film)
+                meta_info[meta_film['title']] = meta_film
 
             except AttributeError:  # in case there is not enough information for the meta database, such as no <dd>
                 pass
         return meta_info
+
+    def _is_german(self, title):
+        """
+        Test if film is made in a german speaking country
+
+        :param title: string
+        :param location_name: string with Theater name (e.g. Ostertor)
+        :param db_metainfo: list of ShowMetaInfo objects
+        :return: True if from German speaking country
+        """
+
+        try:
+            # this info is hidden in the first part of the description
+            country = self.meta_info.get(title)['description'][0:100].lower()
+            # Otherwise if it is made in a german speaking country chances are it's not dubbed
+            if 'deutschland' in country:
+                return True
+            elif 'österreich' in country:
+                return True
+            elif 'schweiz' in country:
+                return True
+            else:
+                return False
+        except KeyError:
+            return False
 
 
 class CinemaOstertor(Kinoheld):
@@ -602,22 +427,23 @@ class CinemaOstertor(Kinoheld):
             print(f"Note! meta info from {self.name} was not updated because of an error")
 
     def _get_meta_urls(self):
-        html = self._get_html_from_web(self.url_meta)
+        html = helper.get_html_from_web(self.url_meta)
         soup = bs4.BeautifulSoup(html, 'html.parser')
         urls = [url.get('href').strip() for url in soup.find_all('a', class_='elementor-post__read-more')]
         return set(urls)
 
     def _extract_meta(self, movie_urls):
-        meta_info_program = []
+        meta_info_program = {}
         for url in movie_urls:
-            html = self._get_html_from_web(url)
+            html = helper.get_html_from_web(url)
             try:
                 meta_info_show = self._parse_show(html)
-                meta_info_program.append(meta_info_show)
+                meta_info_program[meta_info_show['title']] = meta_info_show
             except TypeError:
                 print(f"No meta info was extracted because of a NoneType (url: {url})")
-        return {self.name: meta_info_program}
+        return meta_info_program
 
+    # noinspection PyMethodMayBeStatic
     def _parse_show(self, html):
         """from a html page with supposedly film info extract meta info in a ShowMetaInfo object.
         Return the title and the object. Should return a None if it doesn't work"""
@@ -642,13 +468,12 @@ class CinemaOstertor(Kinoheld):
             'director': 'regie:',
         }
         try:
-            meta_film = {}
-            meta_film['title'] = d['titel:']
+            meta_film = {'title': d['titel:']}
         except KeyError:  # If I can't parse the title I don't want anything
             return None
         for key in translate.keys():
             try:
-                meta_film['key'] = d[translate[key]]
+                meta_film[key] = d[translate[key]]
             except KeyError:
                 continue
         # do some necessary cleaning
@@ -661,6 +486,30 @@ class CinemaOstertor(Kinoheld):
         meta_film['description'] = soup.find('p').text
         return meta_film
 
+    def _is_german(self, title):
+        """
+        Test if film is made in a german speaking country
+
+        :param title: string
+        :param location_name: string with Theater name (e.g. Ostertor)
+        :param db_metainfo: list of ShowMetaInfo objects
+        :return: True if from German speaking country
+        """
+        try:
+            # TODO also check for title and original title if this is passed
+            country = self.meta_info.get(title)['country'].lower()
+            # Otherwise if it is made in a german speaking country chances are it's not dubbed
+            if 'deutschland' in country:
+                return True
+            elif 'österreich' in country:
+                return True
+            elif 'schweiz' in country:
+                return True
+            else:
+                return False
+        except KeyError:
+            return False
+
 
 class City46(Theater):
 
@@ -672,7 +521,7 @@ class City46(Theater):
         shows = []
         urls, years = self._get_urls()
         for url, year in zip(urls, years):
-            html = self._get_html_from_web(url)
+            html = helper.get_html_from_web(url)
             table = self._get_tables_from_html(html)
             shows.extend(self._extract_show_list(table))
         return shows
@@ -770,7 +619,7 @@ class City46(Theater):
     def _save_show(self, temp_dict):
         show = {}
         date_time = arrow.get(temp_dict['date'] + temp_dict['time'], 'D.M.hh:mm', tzinfo='Europe/Berlin')
-        show['date_time'] = self._parse_date_without_year(date_time)
+        show['date_time'] = helper.parse_date_without_year(date_time)
         show['title'] = temp_dict['title']
         show['link_info'] = temp_dict['link']
         show['info'] = temp_dict['info']
@@ -786,7 +635,7 @@ class TheaterBremen(Theater):
         shows = []
         urls = self._get_urls()
         for url in urls:
-            html = self._get_html_from_web_ajax(url, class_name='day')
+            html = helper.get_html_from_web_ajax(url, class_name='day')
             shows.extend(self._extract_show_list(html))
         return shows
 
@@ -836,7 +685,7 @@ class Schwankhalle(Theater):
     def _get_shows(self):
         # TODO fix scraping problem
         # at some point requests starting giving SSLError so use selenium for ajax
-        html = self._get_html_from_web_ajax(self.url, 'date-container')
+        html = helper.get_html_from_web_ajax(self.url, 'date-container')
         return self._extract_show_list(html)
 
     def _extract_show_list(self, html):
@@ -867,6 +716,7 @@ class Schwankhalle(Theater):
             show_list.append(show)
         return show_list
 
+    # noinspection PyMethodMayBeStatic
     def _get_date_time(self, row, year):
         date = row.find(class_='date-container').text.strip()
         date = date + year
@@ -886,7 +736,7 @@ class Glocke(Theater):
         urls = self._get_urls()
         shows = []
         for url in urls:
-            html = self._get_html_from_web(url)
+            html = helper.get_html_from_web(url)
             shows.extend(self._extract_show_list(html))
         return shows
 
@@ -907,7 +757,12 @@ class Glocke(Theater):
             date_time, location_details = self._get_date_time_and_location_details(s)
             show['date_time'] = date_time
             show['location_details'] = location_details
-            show['title'] = self._get_title(s)
+            # TODO can this be in less lines
+            title = str(s.find('h2')).strip()
+            title = title.replace('<h2>', '')
+            title = title.replace('</h2>', '')
+            title = title.replace('<br/>', ' - ')
+            show['title'] = title
             link = self.url + '{}'.format(s.a.get('href'))
             show['link_info'] = link
             show['link_tickets'] = link
@@ -915,13 +770,7 @@ class Glocke(Theater):
             show_list.append(show)
         return show_list
 
-    def _get_title(self, show):
-        title = str(show.find('h2')).strip()
-        title = title.replace('<h2>', '')
-        title = title.replace('</h2>', '')
-        title = title.replace('<br/>', ' - ')
-        return title
-
+    # noinspection PyMethodMayBeStatic
     def _get_date_time_and_location_details(self, show):
         day = int(show.find(class_=re.compile(r"va_liste_datum_1")).text.strip())
         month = show.find(class_=re.compile(r"va_liste_datum_2")).text.strip().lower()
@@ -930,7 +779,7 @@ class Glocke(Theater):
         month = months[month]
         time_location = show.find('span', style=re.compile(r"color")).text.strip()
         hour, minute = int(time_location[:2]), int(time_location[3:6])
-        date_time = self._parse_date_without_year(month, day, hour, minute)
+        date_time = helper.parse_date_without_year(month, day, hour, minute)
         location_details = time_location[10:]
         return date_time, location_details
 
@@ -941,7 +790,7 @@ class Kukoon(Theater):
         super().__init__('Kukoon', 'https://kukoon.de/programm/')
 
     def _get_shows(self):
-        html = self._get_html_from_web(self.url)
+        html = helper.get_html_from_web(self.url)
         return self._extract_show_list(html)
 
     def _extract_show_list(self, html):
@@ -955,18 +804,13 @@ class Kukoon(Theater):
                 continue
             if 'geschlossene gesellschaft' in title_link.text.lower():
                 continue
-            show = {}
-            show['date_time'] = date_time = arrow.get(date_time.get('datetime'))
+            show = {'date_time': arrow.get(date_time.get('datetime'))}
             show['link_info'] = title_link.get('href')
             show['title'] = title_link.text.strip()
-            show['location_details'] = self._get_location_details(s)
+            location_details = s.find(class_='event__venue').text.strip()
+            if not location_details == self.name:
+                show['location_details'] = location_details
             show['info'] = s.find(class_='event__categories').text.strip()
             show['location'] = self.name
             show_list.append(show)
         return show_list
-
-    def _get_location_details(self, show):
-        location_details = show.find(class_='event__venue').text.strip()
-        if location_details == self.name:
-            location_details = ''
-        return location_details

@@ -1,4 +1,4 @@
-import webscraping
+import kultur
 import program as pro
 
 # webscraping.start_driver()
@@ -24,14 +24,15 @@ import program as pro
 #     webscraping.close_driver()
 
 
-p = webscraping.CombinedProgram()
+p = kultur.CombinedProgram()
 print(f'program / theater: {[t.program for t in p.theaters]}')
 print(f'combined program: {p.program}')
 
 # SELECT ONE OF THE TWO
-# p.update_program()
-p.program_from_file()
+p.update_program()
+# p.program_from_file()
 
+# PRINTING INFO
 print(''.center(100, '-'))
 print('programs in the separate theater objects'.center(100, ' '))
 for t in p.theaters:
