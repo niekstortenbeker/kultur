@@ -1,4 +1,4 @@
-import InputOutput
+import file
 import helper
 import bs4
 import arrow
@@ -49,7 +49,7 @@ class CombinedProgram:
         as values, and one file similarly for meta_info.shows.
         populate these back to the self.theaters, and then refresh self.program
         """
-        program, meta, date = InputOutput.json_to_db()
+        program, meta, date = file.open_from_file()
         for t in self.theaters:
             if t.name in program:
                 t.program = Program(shows=program[t.name])
@@ -68,7 +68,7 @@ class CombinedProgram:
         program_db = copy.deepcopy(program_db)
         meta_db = {t.name: t.meta_info.shows for t in self.theaters}
         meta_db = copy.deepcopy(meta_db)
-        InputOutput.db_to_json(program_db, meta_db)
+        file.save_to_file(program_db, meta_db)
 
     def update_program(self):
         """
