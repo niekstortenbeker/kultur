@@ -73,6 +73,7 @@ class CombinedProgram:
         meta_db = copy.deepcopy(meta_db)
         file.save_to_file(program_db, meta_db)
 
+    # TODO make method that can update one theater only
     def update_program(self):
         """
         update the complete program
@@ -134,7 +135,7 @@ class Program:
         return f'Program({self.shows})'
 
     def __str__(self):
-        return self.shows
+        return str(self.shows)
 
     def __add__(self, other):
         shows = self.shows + other.shows
@@ -237,7 +238,7 @@ class MetaInfo:
         return f'MetaInfo({self.shows})'
 
     def __str__(self):
-        return self.shows
+        return str(self.shows)
 
     def __add__(self, other):
         shows = self.shows + other.shows
@@ -362,14 +363,12 @@ class Kinoheld(Theater):
         meta_info = {}
         soup = bs4.BeautifulSoup(html, 'html.parser')
         films = soup.find_all('article')
-        # TODO: organize this more like in cinema ostertor. I think I'm missing a lot
         for film in films:
             try:
                 dl = film.find(class_='movie__additional-data').find('dl')
                 dt = [tag.text.strip().lower() for tag in dl.find_all('dt')]
                 dd = [tag.text.strip() for tag in dl.find_all('dd')]
-                meta_film = {}
-                meta_film['title'] = dd[dt.index('titel')]
+                meta_film = {'title': dd[dt.index('titel')]}
                 if 'originaltitel' in dt:
                     meta_film['title_original'] = dd[dt.index('originaltitel')]
                 if 'produktion' in dt:
@@ -389,9 +388,7 @@ class Kinoheld(Theater):
                 if img_poster:
                     img_poster = img_poster.find('img').get('src').strip()
                     meta_film['img_poster'] = f'https://www.kinoheld.de{img_poster}'
-
                 meta_info[meta_film['title']] = meta_film
-
             except AttributeError:  # in case there is not enough information for the meta database, such as no <dd>
                 pass
         return meta_info
@@ -685,8 +682,8 @@ class TheaterBremen(Theater):
                 except IndexError:
                     pass
                 show['title'] = links[1].text.strip()
-                infos = s.find_all('p')
-                show['info'] = '\n'.join(info.text for info in infos)  #TODO remove white lines
+                info = ''.join([info.text for info in s.find_all('p')])
+                show['info'] = info.replace('\n', '. ')
                 show['location'] = self.name
                 show_list.append(show)
         return show_list
