@@ -42,6 +42,9 @@ class CombinedProgram:
         ]
         self.program = Program()
 
+    def __repr(self):
+        return 'CombinedProgram()'
+
     def program_from_file(self):
         """use json with
         one file that combines the program.shows
@@ -129,6 +132,9 @@ class Program:
 
     def __repr__(self):
         return f'Program({self.shows})'
+
+    def __str__(self):
+        return self.shows
 
     def __add__(self, other):
         shows = self.shows + other.shows
@@ -230,6 +236,9 @@ class MetaInfo:
     def __repr__(self):
         return f'MetaInfo({self.shows})'
 
+    def __str__(self):
+        return self.shows
+
     def __add__(self, other):
         shows = self.shows + other.shows
         return Program(shows)
@@ -261,6 +270,9 @@ class Theater:
         self.meta_info = MetaInfo()
 
     def __repr__(self):
+        return f'Theater({self.name, self.url})'
+
+    def __str__(self):
         return f'Theater({self.name})'
 
     def update_program(self):
@@ -307,7 +319,7 @@ class Kinoheld(Theater):
         self.url_meta = url_meta
 
     def _get_shows(self):
-        html = helper.get_html_from_web_ajax(self.url_program_scrape, 'movie.u-px-2.u-py-2')
+        html = helper.get_html_ajax(self.url_program_scrape, 'movie.u-px-2.u-py-2')
         return self._extract_show_list(html)
 
     def _extract_show_list(self, html):
@@ -336,7 +348,10 @@ class Kinoheld(Theater):
 
     def update_meta_info(self):
         print(f'\n updating meta info {self.name}')
-        html = helper.get_meta_html(self.url_meta)
+        button_classes = ['ui-button.ui-corners-bottom-left.ui-ripple.ui-button--secondary.u-flex-grow-1',
+                          'ui-button.ui-corners-bottom.ui-ripple.ui-button--secondary.u-flex-grow-1']
+        overlay_class = "overlay-container"
+        html = helper.get_html_buttons(self.url_meta, button_classes, overlay_class)
         try:
             meta = self._extract_meta(html)
             self.meta_info = MetaInfo(meta)
@@ -427,7 +442,7 @@ class CinemaOstertor(Kinoheld):
             print(f"Note! meta info from {self.name} was not updated because of an error")
 
     def _get_meta_urls(self):
-        html = helper.get_html_from_web(self.url_meta)
+        html = helper.get_html(self.url_meta)
         soup = bs4.BeautifulSoup(html, 'html.parser')
         urls = [url.get('href').strip() for url in soup.find_all('a', class_='elementor-post__read-more')]
         return set(urls)
@@ -435,7 +450,7 @@ class CinemaOstertor(Kinoheld):
     def _extract_meta(self, movie_urls):
         meta_info_program = {}
         for url in movie_urls:
-            html = helper.get_html_from_web(url)
+            html = helper.get_html(url)
             try:
                 meta_info_show = self._parse_show(html)
                 meta_info_program[meta_info_show['title']] = meta_info_show
@@ -521,7 +536,7 @@ class City46(Theater):
         shows = []
         urls, years = self._get_urls()
         for url, year in zip(urls, years):
-            html = helper.get_html_from_web(url)
+            html = helper.get_html(url)
             table = self._get_tables_from_html(html)
             shows.extend(self._extract_show_list(table))
         return shows
@@ -635,7 +650,7 @@ class TheaterBremen(Theater):
         shows = []
         urls = self._get_urls()
         for url in urls:
-            html = helper.get_html_from_web_ajax(url, class_name='day')
+            html = helper.get_html_ajax(url, class_name='day')
             shows.extend(self._extract_show_list(html))
         return shows
 
@@ -685,7 +700,7 @@ class Schwankhalle(Theater):
     def _get_shows(self):
         # TODO fix scraping problem
         # at some point requests starting giving SSLError so use selenium for ajax
-        html = helper.get_html_from_web_ajax(self.url, 'date-container')
+        html = helper.get_html_ajax(self.url, 'date-container')
         return self._extract_show_list(html)
 
     def _extract_show_list(self, html):
@@ -736,7 +751,7 @@ class Glocke(Theater):
         urls = self._get_urls()
         shows = []
         for url in urls:
-            html = helper.get_html_from_web(url)
+            html = helper.get_html(url)
             shows.extend(self._extract_show_list(html))
         return shows
 
@@ -790,7 +805,7 @@ class Kukoon(Theater):
         super().__init__('Kukoon', 'https://kukoon.de/programm/')
 
     def _get_shows(self):
-        html = helper.get_html_from_web(self.url)
+        html = helper.get_html(self.url)
         return self._extract_show_list(html)
 
     def _extract_show_list(self, html):

@@ -1,5 +1,4 @@
 import requests
-import sys
 import arrow
 import time
 from selenium import webdriver
@@ -25,8 +24,8 @@ def close_driver():
     driver.quit()
 
 
-def get_html_from_web(url):
-    print('    ...loading webpage (requests)')
+def get_html(url):
+    print('    ...loading web page (requests)')
     try:
         response = requests.get(url)
         if response.status_code == 404:
@@ -38,17 +37,19 @@ def get_html_from_web(url):
     except requests.exceptions.ConnectionError as e:
         print("    Error! Connection error: {}".format(e))
         print('    the script is aborted')
-        sys.exit(1)
+        return None
 
 
-def get_html_from_web_ajax(url, class_name):
+def get_html_ajax(url, class_name):
     """Get page source code from a web page that uses ajax to load elements of the page one at a time.
      Selenium will wait for the element with the class name 'class_name' to load before getting the page source"""
-    print('    ...loading webpage (selenium)')
+    print('    ...loading web page (selenium)')
     try:
         driver.get(url)
         WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, class_name)))
         source = driver.page_source
+        print('    Retrieved html from: ', url)
+        return source
     except TimeoutException:
         print("    Error! Selenium Timeout: {}".format(url))
         print('    tried but failed to retrieve html from: ', url)
@@ -57,26 +58,46 @@ def get_html_from_web_ajax(url, class_name):
         print("    Error! Selenium Exception. {}".format(str(e)))
         print('    tried but failed to retrieve html from: ', url)
         return None
-    print('    Retrieved html from: ', url)
-    return source
 
 
-# TODO write the below functions more general
-def get_meta_html(url):
-    """I need to click some buttons to get all the info in the html. It should wait for the overlay to be gone."""
-    print('    ...loading webpage meta kinoheld (selenium)')
-    driver.get(url)
-    wait_for_overlay()
-    source = click_buttons(url)
-    return source
+def get_html_buttons(url, button_classes, overlay_class=None):
+    """I need to click some buttons to get all the info in the html. It should wait for the overlay to be gone.
+    button_classes should be a list with the class names of buttons"""
+    print('    ...loading web page and clicking buttons (selenium)')
+    try:
+        driver.get(url)
+        if overlay_class:
+            wait_for_overlay(overlay_class)
+        click_buttons(button_classes)
+        source = driver.page_source
+        print('    Retrieved html from: ', url)
+        return source
+    except TimeoutException:
+        print("    Error! Selenium Timeout: {}".format(url))
+        print('    tried but failed to retrieve html from: ', url)
+        return None
+    except WebDriverException as e:
+        print("    Error! Selenium Exception. {}".format(str(e)))
+        print('    tried but failed to retrieve html from: ', url)
+        return None
 
 
-def click_buttons(url):
-    """click two button types: one if there is also a trailer, one if there is only info without a trailer"""
-    buttons = get_buttons()
+def wait_for_overlay(overlay_class):
+    try:
+        wait = WebDriverWait(driver, 10)
+        wait.until_not(EC.visibility_of_element_located((By.CLASS_NAME, overlay_class)))
+        return True
+    except WebDriverException:
+        return False
+
+
+def click_buttons(button_classes):
+    """click two button types: one if there is also a trailer, one if there is only info without a trailer
+    button_classes should be a list with the class names of buttons"""
+    buttons = get_buttons(button_classes)
     while not buttons:  # sometimes this still needs more time
         time.sleep(1)
-        buttons = get_buttons()
+        buttons = get_buttons(button_classes)
     clicking = try_clicking(buttons[0])
     while not clicking:  # sometimes there are still overlay classes preventing clicking
         time.sleep(1)
@@ -84,30 +105,16 @@ def click_buttons(url):
     del buttons[0]
     for button in buttons:
         button.click()
-    source = driver.page_source
-    print('    Retrieved html from: ', url)
-    return source
 
 
-def get_buttons():
-    button_classes = ['ui-button.ui-corners-bottom-left.ui-ripple.ui-button--secondary.u-flex-grow-1',
-                      'ui-button.ui-corners-bottom.ui-ripple.ui-button--secondary.u-flex-grow-1']
+def get_buttons(button_classes):
+    """button_classes should be a list with the class names of buttons"""
     buttons = driver.find_elements_by_class_name(button_classes[0])
     buttons.extend(driver.find_elements_by_class_name(button_classes[1]))
     if buttons:
         return buttons
     else:
         return None
-
-
-def wait_for_overlay():
-    try:
-        wait = WebDriverWait(driver, 10)
-        overlay_class = "overlay-container"
-        wait.until_not(EC.visibility_of_element_located((By.CLASS_NAME, overlay_class)))
-        return True
-    except WebDriverException:
-        return False
 
 
 def try_clicking(button):
