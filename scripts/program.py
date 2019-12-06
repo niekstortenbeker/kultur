@@ -3,10 +3,13 @@ import click
 
 
 @click.command()
-@click.option('--new/--old', '-n', default=False,
-              help='Scrape websites to make a new database. (Otherwise start from old database)')
-@click.option('--today/--week', '-t', default=False,
-              help='Only show today')
+@click.option(
+    "--new/--old",
+    "-n",
+    default=False,
+    help="Scrape websites to make a new database. (Otherwise start from old database)",
+)
+@click.option("--today/--week", "-t", default=False, help="Only show today")
 def main(new, today):
     p = kultur.CombinedProgram()
     print_header()
@@ -22,10 +25,10 @@ def main(new, today):
 
 
 def print_header():
-    print(''.center(100, '-'))
-    print('Kultur Factory'.center(100, ' '))
-    print(''.center(100, '-'))
+    print("".center(100, "-"))
+    print("Kultur Factory".center(100, " "))
+    print("".center(100, "-"))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

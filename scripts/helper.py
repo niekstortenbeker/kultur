@@ -14,7 +14,7 @@ from selenium.webdriver.firefox.options import Options
 def start_driver():
     global driver
     firefox_profile = webdriver.FirefoxProfile()
-    firefox_profile.set_preference("intl.accept_languages", 'de')
+    firefox_profile.set_preference("intl.accept_languages", "de")
     options = Options()
     options.headless = True
     driver = webdriver.Firefox(options=options, firefox_profile=firefox_profile)
@@ -25,60 +25,62 @@ def close_driver():
 
 
 def get_html(url):
-    print('    ...loading web page (requests)')
+    print("    ...loading web page (requests)")
     try:
         response = requests.get(url)
         if response.status_code == 404:
-            print('    tried but failed to retrieve html from: ', url)
+            print("    tried but failed to retrieve html from: ", url)
             return None
         else:
-            print('    Retrieved html from: ', url)
+            print("    Retrieved html from: ", url)
             return response.text
     except requests.exceptions.ConnectionError as e:
         print("    Error! Connection error: {}".format(e))
-        print('    the script is aborted')
+        print("    the script is aborted")
         return None
 
 
 def get_html_ajax(url, class_name):
     """Get page source code from a web page that uses ajax to load elements of the page one at a time.
      Selenium will wait for the element with the class name 'class_name' to load before getting the page source"""
-    print('    ...loading web page (selenium)')
+    print("    ...loading web page (selenium)")
     try:
         driver.get(url)
-        WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, class_name)))
+        WebDriverWait(driver, 10).until(
+            EC.presence_of_element_located((By.CLASS_NAME, class_name))
+        )
         source = driver.page_source
-        print('    Retrieved html from: ', url)
+        print("    Retrieved html from: ", url)
         return source
     except TimeoutException:
         print("    Error! Selenium Timeout: {}".format(url))
-        print('    tried but failed to retrieve html from: ', url)
+        print("    tried but failed to retrieve html from: ", url)
         return None
     except WebDriverException as e:
         print("    Error! Selenium Exception. {}".format(str(e)))
-        print('    tried but failed to retrieve html from: ', url)
+        print("    tried but failed to retrieve html from: ", url)
         return None
 
 
 def get_html_buttons(url, button_classes, overlay_class=None):
     """I need to click some buttons to get all the info in the html. It should wait for the overlay to be gone.
     button_classes should be a list with the class names of buttons"""
-    print('    ...loading web page and clicking buttons (selenium)')
+    print("    ...loading web page and clicking buttons (selenium)")
     try:
         driver.get(url)
         if overlay_class:
             wait_for_overlay(overlay_class)
         click_buttons(button_classes)
         source = driver.page_source
-        print('    Retrieved html from: ', url)
+        print("    Retrieved html from: ", url)
         return source
     except TimeoutException:
         print("    Error! Selenium Timeout: {}".format(url))
-        print('    tried but failed to retrieve html from: ', url)
+        print("    tried but failed to retrieve html from: ", url)
         return None
     except WebDriverException as e:
         print("    Error! Selenium Exception. {}".format(str(e)))
-        print('    tried but failed to retrieve html from: ', url)
+        print("    tried but failed to retrieve html from: ", url)
         return None
 
 
@@ -134,16 +136,18 @@ def parse_date_without_year(*args):
     if len(args) == 1 and isinstance(args[0], arrow.arrow.Arrow):
         date_time = args[0]
         if date_time.year == 1:  # if year not specified in arrow year 1 is used
-            year = arrow.now('Europe/Berlin').year  # get current year
+            year = arrow.now("Europe/Berlin").year  # get current year
             date_time = date_time.replace(year=year)
     # if month, day, hour, minute was supplied
     elif len(args) == 4:
-        year = arrow.now('Europe/Berlin').year  # get current year
-        date_time = arrow.get(year, args[0], args[1],
-                              args[2], args[3],
-                              tzinfo="Europe/Berlin")
+        year = arrow.now("Europe/Berlin").year  # get current year
+        date_time = arrow.get(
+            year, args[0], args[1], args[2], args[3], tzinfo="Europe/Berlin"
+        )
     else:
-        raise TypeError("_parse_date_without_year() only accepts arrow objects or month, day, hour, minute")
+        raise TypeError(
+            "_parse_date_without_year() only accepts arrow objects or month, day, hour, minute"
+        )
     if date_time < arrow.now("Europe/Berlin").shift(months=-2):
         return date_time.replace(year=date_time.year + 1)
     else:
