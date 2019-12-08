@@ -4,7 +4,7 @@ import bs4
 import arrow
 import re
 import copy
-
+from itertools import chain
 
 class CombinedProgram:
     """this is the main functional unit, it is thought to be the only thing to be directly interacted with
@@ -119,17 +119,17 @@ class Program:
     a list of ShowMetaInfo objects, or with None
 
     show dict should have
-    self.date_time = date_time
+    date_time = date_time
     show dict could have
-        self.title = ''
-        self.artist = ''
-        self.link_info = ''
-        self.link_tickets = ''
-        self.location_details = ''
-        self.location = ''
-        self.info = ''
-        self.price = ''
-        self.language_version = ''
+        {title: '',
+        artist: '',
+        link_info: '',
+        link_tickets: ''
+        location_details: ''
+        location: ''
+        info: ''
+        price: ''
+        language_version: ''}
 
     """
 
@@ -274,7 +274,8 @@ class MetaInfo:
 
 
 class Theater:
-    """Theater class should not be instantiated directly, but only be used
+    """Base class for ...
+    Theater class should not be instantiated directly, but only be used
     to inherit from"""
 
     def __init__(self, name, url):
@@ -561,18 +562,16 @@ class City46(Theater):
         super().__init__("City 46", "http://www.city46.de/programm/")
 
     def _get_shows(self):
-        # TODO maybe use pandas pd.read_html(str(soup.find('table')))[0]
         shows = []
         urls, years = self._get_urls()
         for url, year in zip(urls, years):
             html = helper.get_html(url)
-            table = self._get_tables_from_html(html)
-            shows.extend(self._extract_show_list(table))
+            table = self._get_program_table(html)
+            shows.extend(self._extract_show_list(table, str(year)))
         return shows
 
     def _get_urls(self):
         """use today's date to figure out the city 46 program url. If date > 20 also get next month"""
-        urls, years = [], []
         months = {
             1: "januar",
             2: "februar",
@@ -587,131 +586,69 @@ class City46(Theater):
             11: "november",
             12: "dezember",
         }
+        urls, years = [], []
         date = arrow.now("Europe/Berlin")
         year, month, day = date.year, date.month, date.day
-        urls.append("{}{}-{}.html".format(self.url, months[month], year))
+        urls.append(f"{self.url}{months[month]}-{year}.html")
         years.append(year)
         if day > 20:
             date = date.shift(months=+1)
             year, month = date.year, date.month
-            urls.append("{}{}-{}.html".format(self.url, months[month], year))
+            urls.append(f"{self.url}{months[month]}-{year}.html")
             years.append(year)
         return urls, years
 
-    def _get_tables_from_html(self, html):
-        """Parses all tables from a website. The tables are merged and are saved as a list of
-        lists, in which the inner lists are the rows. The cells are stored as bs4.element.Tag.
-        Note, it does not handle rowspan or colspan"""
+    def _get_program_table(self, html):
+        """the program table is made of several tables that should be combined"""
         soup = bs4.BeautifulSoup(html, "html.parser")
-
-        table = []
-        for row in soup.find_all("tr"):  # <tr> = row
-            row_list = [
-                cell for cell in row.find_all(["td", "th"])
-            ]  # <td> = data cell <th> = header cell
-            table.append(row_list)
+        table = soup.find_all('div', id=re.compile(r'c367\d\d'))  # relevant tables have an id number starting with 367
+        table = [t.find_all('tr') for t in table]
+        table = list(chain.from_iterable(table))  # unnest the lists to make one big table
         return table
 
-    def _clean_rowspan_in_table(self, html_table):
-        """ adjust the layout of and html_table if rowspan is used to still include the cells in the row below.
-        Note that if you would display this in HTML it would have extra cells"""
-        rowspans = {}
+    def _extract_show_list(self, table, year):
+        """
 
-        for row in html_table:
-            # first insert empty cells if rowspan was defined
-            if rowspans:
-                for column_number in rowspans:
-                    if rowspans[column_number] > 1:
-                        row.insert(
-                            column_number, bs4.BeautifulSoup("<td></td>", "html.parser")
-                        )
-                        rowspans[column_number] -= 1
-            # then look for new rowspans in the row
-            for row_number, cell in enumerate(row):
-                if cell.has_attr("rowspan"):
-                    rowspans[row_number] = int(cell["rowspan"])
-        return html_table
-
-    def _extract_show_list(self, html_table):
-        """ very ugly this, but the HTML is also really ugly.
-        save film info in a temporary dictionary that changes throughout the for loop through the table.
-        In this for loop the dictionary is saved as a ProgramInfo namedtuple, which is appended to a list. This dictionary
-        is exported +/- every time when the loop encounters a time (indicating a new film)"""
+        :param table: list of html <tr> elements
+        :param year: str
+        :return:
+        """
+        date = ''
         show_list = []
-        temp_dict = {
-            "date": None,
-            "time": None,
-            "link": None,
-            "title": None,
-            "info": None,
-        }
-        re_date = re.compile(
-            r"\d{1,2}\.\d{1,2}\.?"
-        )  # last .? in case they forget last dot
-        re_time = re.compile(r"\d\d:\d\d")
-
-        for row in html_table:
-            for cell in row:
-                if cell.text:
-                    if cell.text in ["MO", "DI", "MI", "DO", "FR", "SA", "SO"]:
-                        if (
-                            temp_dict["date"]
-                            and temp_dict["title"]
-                            and temp_dict["time"]
-                        ):
-                            show_list.append(
-                                self._save_show(temp_dict)
-                            )  # 1/3 save the last film of the previous day
-                        temp_dict = dict.fromkeys(temp_dict, None)  # remove all values
-                    elif re_date.match(cell.text):
-                        temp_dict["date"] = self._add_dot_to_date(cell.text)
-                    elif re_time.match(cell.text):
-                        if (
-                            temp_dict["date"]
-                            and temp_dict["title"]
-                            and temp_dict["time"]
-                        ):
-                            show_list.append(
-                                self._save_show(temp_dict)
-                            )  # 2/3 save all other films
-                        temp_dict["time"] = cell.text.strip()
-                    elif cell.find("a"):
-                        temp_dict["link"] = "http://www.city46.de/" + cell.find(
-                            "a"
-                        ).get("href")
-                        title = cell.find("a").text
-                        temp_dict["title"] = title
-                        temp_dict["info"] = cell.text[
-                            len(title) :
-                        ]  # separate the title from the other info
-                    else:  # in case there is extra info in the most right column
-                        if temp_dict["info"]:  # this was once necessary
-                            temp_dict["info"] = temp_dict["info"] + " | " + cell.text
-        if temp_dict["date"] and temp_dict["title"] and temp_dict["time"]:
-            show_list.append(
-                self._save_show(temp_dict)
-            )  # 3/3 save the last movie of the month
+        for row in table:
+            columns = row.find_all('td')
+            if columns[1].text:  # date is not repeated every time, sometimes empty cells
+                date = columns[1].text
+            try:
+                time = columns[2].text
+                show = {'date_time': arrow.get(year + date + time, "YYYYD.M.hh:mm", tzinfo="Europe/Berlin"),
+                        'title': columns[3].a.text,
+                        'location': self.name,
+                        'info': self._get_info(columns)
+                        }
+                link = columns[3].a
+            except (AttributeError, arrow.parser.ParserMatchError):
+                continue
+            if link.get('class')[0] == 'internal-link':
+                show['link_info'] = "http://www.city46.de/" + link.get("href")
+            else:
+                show['link_info'] = link.get("href")
+            if columns[3].dfn:
+                show['language_version'] = columns[3].dfn.text
+            show_list.append(show)
         return show_list
 
-    def _add_dot_to_date(self, string):
-        """in case they forgot the last dot in the date, add this dot"""
-        if string[-1] == ".":
-            return string.strip()
-        elif string[-1] != ".":
-            string = string + "."
-            return string.strip()
-
-    def _save_show(self, temp_dict):
-        show = {}
-        date_time = arrow.get(
-            temp_dict["date"] + temp_dict["time"], "D.M.hh:mm", tzinfo="Europe/Berlin"
-        )
-        show["date_time"] = helper.parse_date_without_year(date_time)
-        show["title"] = temp_dict["title"]
-        show["link_info"] = temp_dict["link"]
-        show["info"] = temp_dict["info"]
-        show["location"] = self.name
-        return show
+    def _get_info(self, columns):
+        """info can be in the fourth column (where also the title is) or in the fifth column"""
+        if columns[3].br:
+            info = columns[3].br.next.strip()
+            if info.endswith(','):
+                info = info[:-1]
+        else:
+            info = ''
+        if columns[4].text:
+            info = info + '. ' + columns[4].text
+        return info
 
 
 class TheaterBremen(Theater):
@@ -773,7 +710,7 @@ class Schwankhalle(Theater):
         super().__init__("Schwankhalle", "http://schwankhalle.de/spielplan-1.html")
 
     def _get_shows(self):
-        # TODO fix scraping problem
+        # TODO fix scraping problem And switch to try except instead of ifs
         # at some point requests starting giving SSLError so use selenium for ajax
         html = helper.get_html_ajax(self.url, "date-container")
         return self._extract_show_list(html)
@@ -793,8 +730,7 @@ class Schwankhalle(Theater):
                 continue
             if not row.find(class_="date-container"):  # solves nonetype errors
                 continue
-            show = {}
-            show["date_time"] = self._get_date_time(row, year)
+            show = {"date_time": self._get_date_time(row, year)}
             title_artist_info = row.find("td", class_="title")
             artist = title_artist_info.a.span.text
             title = title_artist_info.a.text[

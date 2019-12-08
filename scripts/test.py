@@ -1,11 +1,12 @@
 import kultur
+import helper
 import program as pro
 
-# webscraping.start_driver()
+# city46 = kultur.City46()
+# city46.update_program()
+
+# helper.start_driver()
 # try:
-#     city46 = webscraping.City46()
-#     city46.update_program()
-# print(city46.program)
 # ostertor = webscraping.CinemaOstertor()
 # ostertor.update_program()
 # ostertor.update_meta_info()
@@ -21,17 +22,16 @@ import program as pro
 # glocke = webscraping.Glocke()
 # glocke = glocke.update_program()
 # finally:
-#     webscraping.close_driver()
-
+    # helper.close_driver()
 
 p = kultur.CombinedProgram()
-print(f"program / theater: {[t.program for t in p.theaters]}")
-print(f"combined program: {p.program}")
-
+# print(f"program / theater: {[t.program for t in p.theaters]}")
+# print(f"combined program: {p.program}")
+#
 # SELECT ONE OF THE TWO
-p.update_program()
-# p.program_from_file()
-
+# p.update_program()
+p.program_from_file()
+#
 # PRINTING INFO
 print("".center(100, "-"))
 print("programs in the separate theater objects".center(100, " "))
@@ -59,3 +59,5 @@ p.program.print_next_week()
 print("".center(100, "-"))
 pro.print_header()
 p.program.print_today()
+
+print('done printing today')

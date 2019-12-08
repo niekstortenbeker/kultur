@@ -1,314 +1,6 @@
 {
   "Schauburg": [
     {
-      "date_time": "2019-12-04T21:00:00+01:00",
-      "title": "Winterland",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/12875?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
-      "location": "Schauburg",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2019-12-04T21:15:00+01:00",
-      "title": "Die sch\u00f6nste Zeit unseres Lebens (franz.)",
-      "language_version": "OmU",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/12897?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
-      "location": "Schauburg"
-    },
-    {
-      "date_time": "2019-12-05T12:00:00+01:00",
-      "title": "A Rainy Day in New York",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13000?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
-      "location": "Schauburg",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2019-12-05T14:30:00+01:00",
-      "title": "Systemsprenger",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/12989?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
-      "location": "Schauburg"
-    },
-    {
-      "date_time": "2019-12-05T15:45:00+01:00",
-      "title": "Die sch\u00f6nste Zeit unseres Lebens",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/12955?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
-      "location": "Schauburg",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2019-12-05T16:45:00+01:00",
-      "title": "Auerhaus",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/12973?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
-      "location": "Schauburg"
-    },
-    {
-      "date_time": "2019-12-05T18:00:00+01:00",
-      "title": "Die sch\u00f6nste Zeit unseres Lebens",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/12956?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
-      "location": "Schauburg",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2019-12-05T19:00:00+01:00",
-      "title": "Der Leuchtturm",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/12982?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
-      "location": "Schauburg",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2019-12-05T20:30:00+01:00",
-      "title": "Die sch\u00f6nste Zeit unseres Lebens",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/12957?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
-      "location": "Schauburg",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2019-12-05T21:00:00+01:00",
-      "title": "Auerhaus",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/12974?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
-      "location": "Schauburg"
-    },
-    {
-      "date_time": "2019-12-06T12:00:00+01:00",
-      "title": "Die sch\u00f6nste Zeit unseres Lebens",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/12958?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
-      "location": "Schauburg",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2019-12-06T14:00:00+01:00",
-      "title": "Marianne & Leonard: Words of Love (engl.)",
-      "language_version": "OmU",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13009?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
-      "location": "Schauburg"
-    },
-    {
-      "date_time": "2019-12-06T15:45:00+01:00",
-      "title": "Die sch\u00f6nste Zeit unseres Lebens",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/12959?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
-      "location": "Schauburg",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2019-12-06T16:00:00+01:00",
-      "title": "Aretha Franklin: Amazing Grace",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13005?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
-      "location": "Schauburg",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2019-12-06T17:45:00+01:00",
-      "title": "Der Leuchtturm",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/12983?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
-      "location": "Schauburg",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2019-12-06T18:00:00+01:00",
-      "title": "Die sch\u00f6nste Zeit unseres Lebens",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/12960?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
-      "location": "Schauburg",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2019-12-06T20:15:00+01:00",
-      "title": "Auerhaus",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/12952?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
-      "location": "Schauburg"
-    },
-    {
-      "date_time": "2019-12-06T20:30:00+01:00",
-      "title": "Die sch\u00f6nste Zeit unseres Lebens",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/12961?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
-      "location": "Schauburg",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2019-12-07T12:00:00+01:00",
-      "title": "The Irishman (engl.)",
-      "language_version": "OmU",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13001?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
-      "location": "Schauburg"
-    },
-    {
-      "date_time": "2019-12-07T12:15:00+01:00",
-      "title": "Aretha Franklin: Amazing Grace",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/12997?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
-      "location": "Schauburg",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2019-12-07T14:30:00+01:00",
-      "title": "Systemsprenger",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/12990?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
-      "location": "Schauburg"
-    },
-    {
-      "date_time": "2019-12-07T15:45:00+01:00",
-      "title": "Die sch\u00f6nste Zeit unseres Lebens",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/12962?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
-      "location": "Schauburg",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2019-12-07T16:45:00+01:00",
-      "title": "Auerhaus",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/12975?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
-      "location": "Schauburg"
-    },
-    {
-      "date_time": "2019-12-07T18:00:00+01:00",
-      "title": "Die sch\u00f6nste Zeit unseres Lebens",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/12963?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
-      "location": "Schauburg",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2019-12-07T19:00:00+01:00",
-      "title": "Der Leuchtturm",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/12984?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
-      "location": "Schauburg",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2019-12-07T20:30:00+01:00",
-      "title": "Die sch\u00f6nste Zeit unseres Lebens",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/12964?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
-      "location": "Schauburg",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2019-12-07T21:00:00+01:00",
-      "title": "Auerhaus",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/12976?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
-      "location": "Schauburg"
-    },
-    {
-      "date_time": "2019-12-08T11:45:00+01:00",
-      "title": "Marianne & Leonard: Words of Love (engl.)",
-      "language_version": "OmU",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13006?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
-      "location": "Schauburg"
-    },
-    {
-      "date_time": "2019-12-08T12:00:00+01:00",
-      "title": "Die zwei P\u00e4pste",
-      "language_version": "OmU",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/12805?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
-      "location": "Schauburg"
-    },
-    {
-      "date_time": "2019-12-08T14:00:00+01:00",
-      "title": "Unsere Lehrerin, die Weihnachtshexe",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/12751?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
-      "location": "Schauburg",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2019-12-08T15:45:00+01:00",
-      "title": "Die sch\u00f6nste Zeit unseres Lebens",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/12965?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
-      "location": "Schauburg",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2019-12-08T16:00:00+01:00",
-      "title": "Auerhaus",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/12977?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
-      "location": "Schauburg"
-    },
-    {
-      "date_time": "2019-12-08T18:00:00+01:00",
-      "title": "Die sch\u00f6nste Zeit unseres Lebens",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/12966?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
-      "location": "Schauburg",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2019-12-08T18:15:00+01:00",
-      "title": "Der Leuchtturm (engl.)",
-      "language_version": "OmU",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/12987?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
-      "location": "Schauburg"
-    },
-    {
-      "date_time": "2019-12-08T20:15:00+01:00",
-      "title": "Auerhaus",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/12978?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
-      "location": "Schauburg"
-    },
-    {
-      "date_time": "2019-12-08T20:30:00+01:00",
-      "title": "Die zwei P\u00e4pste",
-      "language_version": "OmU",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/12806?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
-      "location": "Schauburg"
-    },
-    {
       "date_time": "2019-12-09T12:00:00+01:00",
       "title": "Die zwei P\u00e4pste",
       "language_version": "OmU",
@@ -642,193 +334,18 @@
       "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
       "location": "Schauburg",
       "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-05-30T21:00:00+02:00",
+      "title": "Rhonda live in Bremen",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13013?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
     }
   ],
   "Gondel": [
-    {
-      "date_time": "2019-12-04T20:30:00+01:00",
-      "title": "Bernadette",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6335?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
-      "location": "Gondel",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2019-12-05T12:00:00+01:00",
-      "title": "Auerhaus",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6379?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
-      "location": "Gondel"
-    },
-    {
-      "date_time": "2019-12-05T15:00:00+01:00",
-      "title": "A Rainy Day in New York",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6357?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
-      "location": "Gondel",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2019-12-05T17:00:00+01:00",
-      "title": "A Rainy Day in New York",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6358?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
-      "location": "Gondel",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2019-12-05T19:00:00+01:00",
-      "title": "A Rainy Day in New York",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6359?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
-      "location": "Gondel",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2019-12-05T21:00:00+01:00",
-      "title": "Bernadette",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6352?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
-      "location": "Gondel",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2019-12-06T12:00:00+01:00",
-      "title": "Deutschstunde",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6380?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
-      "location": "Gondel"
-    },
-    {
-      "date_time": "2019-12-06T15:00:00+01:00",
-      "title": "A Rainy Day in New York",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6360?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
-      "location": "Gondel",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2019-12-06T17:00:00+01:00",
-      "title": "A Rainy Day in New York",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6361?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
-      "location": "Gondel",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2019-12-06T19:00:00+01:00",
-      "title": "A Rainy Day in New York",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6362?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
-      "location": "Gondel",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2019-12-06T21:00:00+01:00",
-      "title": "Bernadette",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6353?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
-      "location": "Gondel",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2019-12-07T12:00:00+01:00",
-      "title": "Die zwei P\u00e4pste",
-      "language_version": "OmU",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6381?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
-      "location": "Gondel"
-    },
-    {
-      "date_time": "2019-12-07T15:00:00+01:00",
-      "title": "A Rainy Day in New York",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6363?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
-      "location": "Gondel",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2019-12-07T17:00:00+01:00",
-      "title": "A Rainy Day in New York",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6364?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
-      "location": "Gondel",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2019-12-07T19:00:00+01:00",
-      "title": "A Rainy Day in New York",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6365?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
-      "location": "Gondel",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2019-12-07T21:00:00+01:00",
-      "title": "Bernadette",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6354?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
-      "location": "Gondel",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2019-12-08T12:00:00+01:00",
-      "title": "Aretha Franklin: Amazing Grace",
-      "language_version": "OmU",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6383?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
-      "location": "Gondel"
-    },
-    {
-      "date_time": "2019-12-08T14:00:00+01:00",
-      "title": "A Rainy Day in New York",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6366?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
-      "location": "Gondel",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2019-12-08T16:00:00+01:00",
-      "title": "A Rainy Day in New York",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6367?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
-      "location": "Gondel",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2019-12-08T18:00:00+01:00",
-      "title": "A Rainy Day in New York",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6368?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
-      "location": "Gondel",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2019-12-08T20:00:00+01:00",
-      "title": "Das perfekte Geheimnis",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6377?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
-      "location": "Gondel"
-    },
     {
       "date_time": "2019-12-09T12:00:00+01:00",
       "title": "Lara",
@@ -1073,133 +590,6 @@
   ],
   "Atlantis": [
     {
-      "date_time": "2019-12-04T21:00:00+01:00",
-      "title": "La Mano Invisible",
-      "language_version": "OmU",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/4837?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
-      "location": "Atlantis"
-    },
-    {
-      "date_time": "2019-12-05T15:45:00+01:00",
-      "title": "Das perfekte Geheimnis",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/4949?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
-      "location": "Atlantis"
-    },
-    {
-      "date_time": "2019-12-05T18:15:00+01:00",
-      "title": "Official Secrets",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/4959?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
-      "location": "Atlantis",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2019-12-05T20:30:00+01:00",
-      "title": "Das perfekte Geheimnis",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/4950?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
-      "location": "Atlantis"
-    },
-    {
-      "date_time": "2019-12-06T15:30:00+01:00",
-      "title": "Official Secrets",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/4960?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
-      "location": "Atlantis",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2019-12-06T18:00:00+01:00",
-      "title": "Parasite",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/4966?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
-      "location": "Atlantis",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2019-12-06T20:30:00+01:00",
-      "title": "Das perfekte Geheimnis",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/4951?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
-      "location": "Atlantis"
-    },
-    {
-      "date_time": "2019-12-07T14:00:00+01:00",
-      "title": "Marianne & Leonard: Words of Love (engl.)",
-      "language_version": "OmU",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/4967?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
-      "location": "Atlantis"
-    },
-    {
-      "date_time": "2019-12-07T16:15:00+01:00",
-      "title": "Lara",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/4968?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
-      "location": "Atlantis"
-    },
-    {
-      "date_time": "2019-12-07T18:15:00+01:00",
-      "title": "Official Secrets",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/4961?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
-      "location": "Atlantis",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2019-12-07T20:30:00+01:00",
-      "title": "Das perfekte Geheimnis",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/4952?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
-      "location": "Atlantis"
-    },
-    {
-      "date_time": "2019-12-08T13:00:00+01:00",
-      "title": "Die sch\u00f6nste Zeit unseres Lebens",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/4969?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
-      "location": "Atlantis",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2019-12-08T15:30:00+01:00",
-      "title": "Official Secrets",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/4962?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
-      "location": "Atlantis",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2019-12-08T17:45:00+01:00",
-      "title": "Das perfekte Geheimnis",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/4953?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
-      "location": "Atlantis"
-    },
-    {
-      "date_time": "2019-12-08T20:15:00+01:00",
-      "title": "Joker",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/4970?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
-      "location": "Atlantis",
-      "is_probably_dubbed_film": true
-    },
-    {
       "date_time": "2019-12-09T15:45:00+01:00",
       "title": "Das perfekte Geheimnis",
       "language_version": "",
@@ -1281,133 +671,11 @@
       "language_version": "",
       "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/4893?mode=widget",
       "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
-      "location": "Atlantis"
+      "location": "Atlantis",
+      "is_probably_dubbed_film": true
     }
   ],
   "Cinema Ostertor": [
-    {
-      "date_time": "2019-12-05T16:45:00+01:00",
-      "title": "ALLES AUSSER GEW\u00d6HNLICH",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/cinema-im-ostertor-bremen/vorstellung/2194783638?mode=widget",
-      "link_info": "https://cinema-ostertor.de/programm",
-      "location": "Cinema Ostertor",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2019-12-05T19:00:00+01:00",
-      "title": "NOME DI DONNA",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/cinema-im-ostertor-bremen/vorstellung/2194783665?mode=widget",
-      "link_info": "https://cinema-ostertor.de/programm",
-      "location": "Cinema Ostertor",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2019-12-05T20:45:00+01:00",
-      "title": "ALLES AUSSER GEW\u00d6HNLICH",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/cinema-im-ostertor-bremen/vorstellung/2194783680?mode=widget",
-      "link_info": "https://cinema-ostertor.de/programm",
-      "location": "Cinema Ostertor",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2019-12-06T16:45:00+01:00",
-      "title": "ALLES AUSSER GEW\u00d6HNLICH",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/cinema-im-ostertor-bremen/vorstellung/2194783693?mode=widget",
-      "link_info": "https://cinema-ostertor.de/programm",
-      "location": "Cinema Ostertor",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2019-12-06T19:00:00+01:00",
-      "title": "NOME DI DONNA",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/cinema-im-ostertor-bremen/vorstellung/2194783707?mode=widget",
-      "link_info": "https://cinema-ostertor.de/programm",
-      "location": "Cinema Ostertor",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2019-12-06T20:45:00+01:00",
-      "title": "ALLES AUSSER GEW\u00d6HNLICH",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/cinema-im-ostertor-bremen/vorstellung/2194783744?mode=widget",
-      "link_info": "https://cinema-ostertor.de/programm",
-      "location": "Cinema Ostertor",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2019-12-07T15:00:00+01:00",
-      "title": "NOME DI DONNA",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/cinema-im-ostertor-bremen/vorstellung/2194783761?mode=widget",
-      "link_info": "https://cinema-ostertor.de/programm",
-      "location": "Cinema Ostertor",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2019-12-07T16:45:00+01:00",
-      "title": "ALLES AUSSER GEW\u00d6HNLICH",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/cinema-im-ostertor-bremen/vorstellung/2194783785?mode=widget",
-      "link_info": "https://cinema-ostertor.de/programm",
-      "location": "Cinema Ostertor",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2019-12-07T19:00:00+01:00",
-      "title": "MORGEN SIND WIR FREI",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/cinema-im-ostertor-bremen/vorstellung/2194783802?mode=widget",
-      "link_info": "https://cinema-ostertor.de/programm",
-      "location": "Cinema Ostertor"
-    },
-    {
-      "date_time": "2019-12-07T21:00:00+01:00",
-      "title": "ALLES AUSSER GEW\u00d6HNLICH",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/cinema-im-ostertor-bremen/vorstellung/2194783823?mode=widget",
-      "link_info": "https://cinema-ostertor.de/programm",
-      "location": "Cinema Ostertor",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2019-12-08T13:30:00+01:00",
-      "title": "WIE WOLLEN WIR ZUSAMMENLEBEN? - Filmreihe",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/cinema-im-ostertor-bremen/vorstellung/2194783863?mode=widget",
-      "link_info": "https://cinema-ostertor.de/programm",
-      "location": "Cinema Ostertor",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2019-12-08T15:45:00+01:00",
-      "title": "ALLES AUSSER GEW\u00d6HNLICH",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/cinema-im-ostertor-bremen/vorstellung/2194783879?mode=widget",
-      "link_info": "https://cinema-ostertor.de/programm",
-      "location": "Cinema Ostertor",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2019-12-08T18:00:00+01:00",
-      "title": "MORGEN SIND WIR FREI",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/cinema-im-ostertor-bremen/vorstellung/2194783915?mode=widget",
-      "link_info": "https://cinema-ostertor.de/programm",
-      "location": "Cinema Ostertor"
-    },
-    {
-      "date_time": "2019-12-08T20:00:00+01:00",
-      "title": "DAVE MADE A MAZE - Weird Xperience Filmreihe",
-      "language_version": "OV",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/cinema-im-ostertor-bremen/vorstellung/2188776860?mode=widget",
-      "link_info": "https://cinema-ostertor.de/programm",
-      "location": "Cinema Ostertor"
-    },
     {
       "date_time": "2019-12-09T17:30:00+01:00",
       "title": "BIS DANN, MEIN SOHN",
@@ -1481,914 +749,994 @@
   ],
   "City 46": [
     {
+      "date_time": "2019-01-01T17:30:00+01:00",
+      "title": "Downton Abbey",
+      "location": "City 46",
+      "info": "GB 2019",
+      "link_info": "http://www.city46.de/programm/dezember-2019/zweite-chance.html#c36724",
+      "language_version": "OmU"
+    },
+    {
+      "date_time": "2019-01-01T18:00:00+01:00",
+      "title": "Parasite",
+      "location": "City 46",
+      "info": "KOR 2019",
+      "link_info": "http://www.city46.de/programm/dezember-2019/zweite-chance.html#c36726",
+      "language_version": "OmU"
+    },
+    {
+      "date_time": "2019-01-01T20:00:00+01:00",
+      "title": "Aretha Franklin: Amazing Grace",
+      "location": "City 46",
+      "info": "USA 2018",
+      "link_info": "http://www.city46.de/programm/dezember-2019/zweite-chance.html#c36427",
+      "language_version": "OmU"
+    },
+    {
+      "date_time": "2019-01-01T20:30:00+01:00",
+      "title": "Die Insel der hungrigen Geister",
+      "location": "City 46",
+      "info": "D / AUS / GB 2018, engl.",
+      "link_info": "http://www.city46.de/programm/dezember-2019/neu-in-bremen.html#c36671",
+      "language_version": "OmU"
+    },
+    {
       "date_time": "2019-12-01T14:00:00+01:00",
       "title": "Walk in/Walk out beim Kurzfilmprogramm in Kino 2",
-      "link_info": "http://www.city46.de/programm/dezember-2019/tag-der-offenen-tuer.html#c36735",
-      "info": "fortlaufende Kurzfilme | Eintritt frei",
-      "location": "City 46"
+      "location": "City 46",
+      "info": "fortlaufende Kurzfilme. Eintritt frei",
+      "link_info": "http://www.city46.de/programm/dezember-2019/tag-der-offenen-tuer.html#c36735"
     },
     {
       "date_time": "2019-12-01T15:00:00+01:00",
       "title": "Kinderkurzfilmrolle",
-      "link_info": "http://www.city46.de/kinderkino.html#c36031",
-      "info": "eab 4 Jahren | Kinderkino in Kino 1 mit action & fun!",
-      "location": "City 46"
+      "location": "City 46",
+      "info": "ab 4 Jahren. Kinderkino in Kino 1 mit action & fun!",
+      "link_info": "http://www.city46.de/kinderkino.html#c36031"
     },
     {
       "date_time": "2019-12-01T17:30:00+01:00",
       "title": "Die Strategie der Schnecke ",
+      "location": "City 46",
+      "info": "Italien, Kolumbien, Frankreich 1993, span.. Eintritt frei",
       "link_info": "http://www.city46.de/programm/dezember-2019/meisterwerke.html#c36723",
-      "info": "Italien, Kolumbien, Frankreich 1993, span. OmU | Eintritt frei",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-01T20:00:00+01:00",
       "title": "Angelo",
+      "location": "City 46",
+      "info": "AT / LUX 2018, frz., dt.",
       "link_info": "http://www.city46.de/programm/dezember-2019/film-des-monats-angelo.html",
-      "info": "AT / LUX 2018, frz., dt. OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-01T20:30:00+01:00",
       "title": "Searching Eva",
+      "location": "City 46",
+      "info": "D 2019, deutsch, englisch, italienisch",
       "link_info": "http://www.city46.de/programm/dezember-2019/neu-in-bremen.html#c36737",
-      "info": "D 2019, deutsch, englisch, italienisch OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-02T17:30:00+01:00",
       "title": "Angelo",
+      "location": "City 46",
+      "info": "AT / LUX 2018, frz., dt.",
       "link_info": "http://www.city46.de/programm/dezember-2019/film-des-monats-angelo.html",
-      "info": "AT / LUX 2018, frz., dt. OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-02T18:00:00+01:00",
       "title": "Die Strategie der Schnecke ",
+      "location": "City 46",
+      "info": "Italien, Kolumbien, Frankreich 1993, span.. mit Einf\u00fchrung",
       "link_info": "http://www.city46.de/programm/dezember-2019/meisterwerke.html#c36723",
-      "info": "Italien, Kolumbien, Frankreich 1993, span. OmU | mit Einf\u00fchrung",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-02T20:00:00+01:00",
       "title": "Licht",
-      "link_info": "http://www.city46.de/programm/dezember-2019/thema-des-monats-licht-schatten.html#c36707",
-      "info": "AT / D 2017 | mit Einf\u00fchrung",
-      "location": "City 46"
+      "location": "City 46",
+      "info": "AT / D 2017. mit Einf\u00fchrung",
+      "link_info": "http://www.city46.de/programm/dezember-2019/thema-des-monats-licht-schatten.html#c36707"
     },
     {
       "date_time": "2019-12-02T20:30:00+01:00",
       "title": "Searching Eva",
+      "location": "City 46",
+      "info": "D 2019, deutsch, englisch, italienisch",
       "link_info": "http://www.city46.de/programm/dezember-2019/neu-in-bremen.html#c36737",
-      "info": "D 2019, deutsch, englisch, italienisch OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-03T16:00:00+01:00",
       "title": "Menschsein",
+      "location": "City 46",
+      "info": "D 2019, tlw.. mit G\u00e4sten, Eintritt frei",
       "link_info": "http://www.city46.de/programm/dezember-2019/menschsein.html",
-      "info": "D 2019, tlw. OmU | mit G\u00e4sten, Eintritt frei",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-03T18:00:00+01:00",
       "title": "Die Strategie der Schnecke ",
+      "location": "City 46",
+      "info": "Italien, Kolumbien, Frankreich 1993, span.",
       "link_info": "http://www.city46.de/programm/dezember-2019/meisterwerke.html#c36723",
-      "info": "Italien, Kolumbien, Frankreich 1993, span. OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-03T18:30:00+01:00",
       "title": "Apocalypse Now",
+      "location": "City 46",
+      "info": "USA 1979/2019. mit Einf\u00fchrung",
       "link_info": "http://www.city46.de/programm/dezember-2019/wahnsinn-und-postkolonialismus.html#c36701",
-      "info": "USA 1979/2019, OmU | mit Einf\u00fchrung",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-03T20:30:00+01:00",
       "title": "Searching Eva",
+      "location": "City 46",
+      "info": "D 2019, deutsch, englisch, italienisch",
       "link_info": "http://www.city46.de/programm/dezember-2019/neu-in-bremen.html#c36737",
-      "info": "D 2019, deutsch, englisch, italienisch OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-04T15:00:00+01:00",
       "title": "Angelo",
+      "location": "City 46",
+      "info": "AT / LUX 2018, frz., dt.",
       "link_info": "http://www.city46.de/programm/dezember-2019/film-des-monats-angelo.html",
-      "info": "AT / LUX 2018, frz., dt. OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-04T17:30:00+01:00",
       "title": "Apocalypse Now",
+      "location": "City 46",
+      "info": "USA 1979/2019",
       "link_info": "http://www.city46.de/programm/dezember-2019/wahnsinn-und-postkolonialismus.html#c36701",
-      "info": "USA 1979/2019, OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-04T18:00:00+01:00",
       "title": "Menschsein",
+      "location": "City 46",
+      "info": "D 2019, tlw.",
       "link_info": "http://www.city46.de/programm/dezember-2019/menschsein.html",
-      "info": "D 2019, tlw. OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-04T20:30:00+01:00",
       "title": "Searching Eva",
+      "location": "City 46",
+      "info": "D 2019, deutsch, englisch, italienisch",
       "link_info": "http://www.city46.de/programm/dezember-2019/neu-in-bremen.html#c36737",
-      "info": "D 2019, deutsch, englisch, italienisch OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-05T17:30:00+01:00",
       "title": "Die glitzernden Garnelen",
+      "location": "City 46",
+      "info": "F 2019, frz.",
       "link_info": "http://www.city46.de/programm/dezember-2019/neu-in-bremen.html#c36672",
-      "info": "F 2019, frz. OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-05T18:00:00+01:00",
       "title": "Menschsein",
+      "location": "City 46",
+      "info": "D 2019, tlw.",
       "link_info": "http://www.city46.de/programm/dezember-2019/menschsein.html",
-      "info": "D 2019, tlw. OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-05T20:00:00+01:00",
       "title": "Sch\u00f6nheit und Verg\u00e4nglichkeit",
-      "link_info": "http://www.city46.de/programm/dezember-2019/neu-in-bremen.html#c36669",
+      "location": "City 46",
       "info": "D 2019",
-      "location": "City 46"
+      "link_info": "http://www.city46.de/programm/dezember-2019/neu-in-bremen.html#c36669"
     },
     {
       "date_time": "2019-12-05T20:30:00+01:00",
       "title": "Licht",
-      "link_info": "http://www.city46.de/programm/dezember-2019/thema-des-monats-licht-schatten.html#c36707",
+      "location": "City 46",
       "info": "AT / D 2017",
-      "location": "City 46"
+      "link_info": "http://www.city46.de/programm/dezember-2019/thema-des-monats-licht-schatten.html#c36707"
     },
     {
       "date_time": "2019-12-06T17:30:00+01:00",
       "title": "Sch\u00f6nheit und Verg\u00e4nglichkeit",
-      "link_info": "http://www.city46.de/programm/dezember-2019/neu-in-bremen.html#c36669",
+      "location": "City 46",
       "info": "D 2019",
-      "location": "City 46"
+      "link_info": "http://www.city46.de/programm/dezember-2019/neu-in-bremen.html#c36669"
     },
     {
       "date_time": "2019-12-06T20:00:00+01:00",
       "title": "Licht",
-      "link_info": "http://www.city46.de/programm/dezember-2019/thema-des-monats-licht-schatten.html#c36707",
+      "location": "City 46",
       "info": "AT / D 2017",
-      "location": "City 46"
+      "link_info": "http://www.city46.de/programm/dezember-2019/thema-des-monats-licht-schatten.html#c36707"
     },
     {
       "date_time": "2019-12-06T20:00:00+01:00",
       "title": "BIK Impro: Das Klassentreffen",
-      "link_info": "http://www.city46.de/https://bik-city-impro.de/spielplan/das-klassentreffen-3/",
-      "info": "",
-      "location": "City 46"
+      "location": "City 46",
+      "info": ". Improtheater",
+      "link_info": "https://bik-city-impro.de/spielplan/das-klassentreffen-3/"
     },
     {
       "date_time": "2019-12-07T15:30:00+01:00",
       "title": "Shaun das Schaf \u2013 UFO-Alarm",
-      "link_info": "http://www.city46.de/kinderkino.html#c32825",
-      "info": "GB 2019, ab 6 Jahren | Kinderkino in Kino 1",
-      "location": "City 46"
+      "location": "City 46",
+      "info": "GB 2019, ab 6 Jahren. Kinderkino in Kino 1",
+      "link_info": "http://www.city46.de/kinderkino.html#c32825"
     },
     {
       "date_time": "2019-12-07T16:00:00+01:00",
       "title": "Wir Kinder aus Bullerb\u00fc",
-      "link_info": "http://www.city46.de/kinderkino.html#c30741",
-      "info": "S 1986, ab 5 Jahren | Kinderkino in Kino 2",
-      "location": "City 46"
+      "location": "City 46",
+      "info": "S 1986, ab 5 Jahren. Kinderkino in Kino 2",
+      "link_info": "http://www.city46.de/kinderkino.html#c30741"
     },
     {
       "date_time": "2019-12-07T17:30:00+01:00",
       "title": "Sch\u00f6nheit und Verg\u00e4nglichkeit",
-      "link_info": "http://www.city46.de/programm/dezember-2019/neu-in-bremen.html#c36669",
+      "location": "City 46",
       "info": "D 2019",
-      "location": "City 46"
+      "link_info": "http://www.city46.de/programm/dezember-2019/neu-in-bremen.html#c36669"
     },
     {
       "date_time": "2019-12-07T18:00:00+01:00",
       "title": "Licht",
-      "link_info": "http://www.city46.de/programm/dezember-2019/thema-des-monats-licht-schatten.html#c36707",
+      "location": "City 46",
       "info": "AT / D 2017",
-      "location": "City 46"
+      "link_info": "http://www.city46.de/programm/dezember-2019/thema-des-monats-licht-schatten.html#c36707"
     },
     {
       "date_time": "2019-12-07T20:00:00+01:00",
       "title": "Angelo",
+      "location": "City 46",
+      "info": "AT / LUX 2018, frz., dt.",
       "link_info": "http://www.city46.de/programm/dezember-2019/film-des-monats-angelo.html",
-      "info": "AT / LUX 2018, frz., dt. OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-07T20:30:00+01:00",
       "title": "Die glitzernden Garnelen",
+      "location": "City 46",
+      "info": "F 2019, frz.",
       "link_info": "http://www.city46.de/programm/dezember-2019/neu-in-bremen.html#c36672",
-      "info": "F 2019, frz. OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-08T15:30:00+01:00",
       "title": "Shaun das Schaf \u2013 UFO-Alarm",
-      "link_info": "http://www.city46.de/kinderkino.html#c32825",
-      "info": "GB 2019, ab 6 Jahren | Kinderkino in Kino 1",
-      "location": "City 46"
+      "location": "City 46",
+      "info": "GB 2019, ab 6 Jahren. Kinderkino in Kino 1",
+      "link_info": "http://www.city46.de/kinderkino.html#c32825"
     },
     {
       "date_time": "2019-12-08T16:00:00+01:00",
       "title": "Wir Kinder aus Bullerb\u00fc",
-      "link_info": "http://www.city46.de/kinderkino.html#c30741",
-      "info": "S 1986, ab 5 Jahren | Kinderkino in Kino 2",
-      "location": "City 46"
+      "location": "City 46",
+      "info": "S 1986, ab 5 Jahren. Kinderkino in Kino 2",
+      "link_info": "http://www.city46.de/kinderkino.html#c30741"
     },
     {
       "date_time": "2019-12-08T17:30:00+01:00",
       "title": "Die glitzernden Garnelen",
+      "location": "City 46",
+      "info": "F 2019, frz.",
       "link_info": "http://www.city46.de/programm/dezember-2019/neu-in-bremen.html#c36672",
-      "info": "F 2019, frz. OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-08T18:00:00+01:00",
       "title": "RBG - Ein Leben f\u00fcr die Gerechtigkeit",
-      "link_info": "http://www.city46.de/programm/dezember-2019/ruth-bader-ginsburg.html",
-      "info": "",
-      "location": "City 46"
+      "location": "City 46",
+      "info": ". Eintritt frei",
+      "link_info": "http://www.city46.de/programm/dezember-2019/ruth-bader-ginsburg.html"
     },
     {
       "date_time": "2019-12-08T20:00:00+01:00",
       "title": "Angelo",
+      "location": "City 46",
+      "info": "AT / LUX 2018, frz., dt.",
       "link_info": "http://www.city46.de/programm/dezember-2019/film-des-monats-angelo.html",
-      "info": "AT / LUX 2018, frz., dt. OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-08T20:30:00+01:00",
       "title": "Der Glanz der Unsichtbaren",
+      "location": "City 46",
+      "info": "F 2018",
       "link_info": "http://www.city46.de/programm/dezember-2019/zweite-chance.html#c36719",
-      "info": "F 2018, OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-09T17:30:00+01:00",
       "title": "Der Glanz der Unsichtbaren",
+      "location": "City 46",
+      "info": "F 2018",
       "link_info": "http://www.city46.de/programm/dezember-2019/zweite-chance.html#c36719",
-      "info": "F 2018, OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-09T18:00:00+01:00",
       "title": "Die Strategie der Schnecke ",
+      "location": "City 46",
+      "info": "Italien, Kolumbien, Frankreich 1993, span.",
       "link_info": "http://www.city46.de/programm/dezember-2019/meisterwerke.html#c36723",
-      "info": "Italien, Kolumbien, Frankreich 1993, span. OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-09T20:00:00+01:00",
       "title": "Angelo",
+      "location": "City 46",
+      "info": "AT / LUX 2018, frz., dt.",
       "link_info": "http://www.city46.de/programm/dezember-2019/film-des-monats-angelo.html",
-      "info": "AT / LUX 2018, frz., dt. OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-09T20:30:00+01:00",
       "title": "Die glitzernden Garnelen",
+      "location": "City 46",
+      "info": "F 2019, frz.",
       "link_info": "http://www.city46.de/programm/dezember-2019/neu-in-bremen.html#c36672",
-      "info": "F 2019, frz. OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-10T17:30:00+01:00",
       "title": "Sch\u00f6nheit und Verg\u00e4nglichkeit",
-      "link_info": "http://www.city46.de/programm/dezember-2019/neu-in-bremen.html#c36669",
+      "location": "City 46",
       "info": "D 2019",
-      "location": "City 46"
+      "link_info": "http://www.city46.de/programm/dezember-2019/neu-in-bremen.html#c36669"
     },
     {
       "date_time": "2019-12-10T18:00:00+01:00",
       "title": "Die glitzernden Garnelen",
+      "location": "City 46",
+      "info": "F 2019, frz.",
       "link_info": "http://www.city46.de/programm/dezember-2019/neu-in-bremen.html#c36672",
-      "info": "F 2019, frz. OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-10T19:30:00+01:00",
       "title": "Hell",
-      "link_info": "http://www.city46.de/programm/dezember-2019/thema-des-monats-licht-schatten.html#c36717",
-      "info": "D / CH 2011 | mit Einf\u00fchrung",
-      "location": "City 46"
+      "location": "City 46",
+      "info": "D / CH 2011. mit Einf\u00fchrung",
+      "link_info": "http://www.city46.de/programm/dezember-2019/thema-des-monats-licht-schatten.html#c36717"
     },
     {
       "date_time": "2019-12-10T20:00:00+01:00",
       "title": "Der Glanz der Unsichtbaren",
+      "location": "City 46",
+      "info": "F 2018",
       "link_info": "http://www.city46.de/programm/dezember-2019/zweite-chance.html#c36719",
-      "info": "F 2018, OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-11T17:30:00+01:00",
       "title": "Sch\u00f6nheit und Verg\u00e4nglichkeit",
-      "link_info": "http://www.city46.de/programm/dezember-2019/neu-in-bremen.html#c36669",
+      "location": "City 46",
       "info": "D 2019",
-      "location": "City 46"
+      "link_info": "http://www.city46.de/programm/dezember-2019/neu-in-bremen.html#c36669"
     },
     {
       "date_time": "2019-12-11T18:00:00+01:00",
       "title": "Die glitzernden Garnelen",
+      "location": "City 46",
+      "info": "F 2019, frz.",
       "link_info": "http://www.city46.de/programm/dezember-2019/neu-in-bremen.html#c36672",
-      "info": "F 2019, frz. OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-11T20:00:00+01:00",
       "title": "Andrea Bowers. The Personal is Political",
-      "link_info": "http://www.city46.de/programm/dezember-2019/filmart-86.html#c36718",
-      "info": "versch. Filme | mit Einf\u00fchrung ",
-      "location": "City 46"
+      "location": "City 46",
+      "info": "versch. Filme. mit Einf\u00fchrung ",
+      "link_info": "http://www.city46.de/programm/dezember-2019/filmart-86.html#c36718"
     },
     {
       "date_time": "2019-12-11T20:30:00+01:00",
       "title": "Hell",
-      "link_info": "http://www.city46.de/programm/dezember-2019/thema-des-monats-licht-schatten.html#c36717",
+      "location": "City 46",
       "info": "D / CH 2011",
-      "location": "City 46"
+      "link_info": "http://www.city46.de/programm/dezember-2019/thema-des-monats-licht-schatten.html#c36717"
     },
     {
       "date_time": "2019-12-12T17:30:00+01:00",
       "title": "Aquarela",
+      "location": "City 46",
+      "info": "D / DK / GB 2018",
       "link_info": "http://www.city46.de/programm/dezember-2019/neu-in-bremen.html#c36721",
-      "info": "aD / DK / GB 2018, OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-12T17:30:00+01:00",
       "title": "Heimat ist ein Raum aus Zeit",
-      "link_info": "http://www.city46.de/programm/dezember-2019/werkschau-thomas-heise.html#c36686",
-      "info": "D 2019 | mit Regisseur ",
-      "location": "City 46"
+      "location": "City 46",
+      "info": "D 2019. mit Regisseur ",
+      "link_info": "http://www.city46.de/programm/dezember-2019/werkschau-thomas-heise.html#c36686"
     },
     {
       "date_time": "2019-12-12T20:00:00+01:00",
       "title": "Hollands Licht ",
+      "location": "City 46",
+      "info": "NL 2003",
       "link_info": "http://www.city46.de/programm/dezember-2019/thema-des-monats-licht-schatten.html#c36706",
-      "info": "NL 2003, OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-13T17:30:00+01:00",
       "title": "Imbiss-Spezial",
-      "link_info": "http://www.city46.de/programm/dezember-2019/werkschau-thomas-heise.html#c36685",
-      "info": " & BarluschkeD 1990 & D 1997 | mit Regisseur ",
-      "location": "City 46"
+      "location": "City 46",
+      "info": "D 1990 & D 1997. mit Regisseur ",
+      "link_info": "http://www.city46.de/programm/dezember-2019/werkschau-thomas-heise.html#c36685"
     },
     {
       "date_time": "2019-12-13T20:00:00+01:00",
       "title": "Hollands Licht ",
+      "location": "City 46",
+      "info": "NL 2003. mit Einf\u00fchrung",
       "link_info": "http://www.city46.de/programm/dezember-2019/thema-des-monats-licht-schatten.html#c36706",
-      "info": "NL 2003, OmU | mit Einf\u00fchrung",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-13T20:00:00+01:00",
       "title": "BIK Impro: Unsere Familie",
-      "link_info": "http://www.city46.de/https://bik-city-impro.de/spielplan/unsere-familie-11/",
-      "info": "",
-      "location": "City 46"
+      "location": "City 46",
+      "info": ". Improtheater",
+      "link_info": "https://bik-city-impro.de/spielplan/unsere-familie-11/"
     },
     {
       "date_time": "2019-12-14T15:30:00+01:00",
       "title": "Mein Lotta-Leben ",
-      "link_info": "http://www.city46.de/kinderkino.html#c34567",
-      "info": "D 2019, ab 7 Jahren | Kinderkino in Kino 1",
-      "location": "City 46"
+      "location": "City 46",
+      "info": "D 2019, ab 7 Jahren. Kinderkino in Kino 1",
+      "link_info": "http://www.city46.de/kinderkino.html#c34567"
     },
     {
       "date_time": "2019-12-14T16:00:00+01:00",
       "title": "Shaun das Schaf \u2013 UFO-Alarm",
-      "link_info": "http://www.city46.de/kinderkino.html#c32825",
-      "info": "GB 2019, ab 6 Jahren | Kinderkino in Kino 2",
-      "location": "City 46"
+      "location": "City 46",
+      "info": "GB 2019, ab 6 Jahren. Kinderkino in Kino 2",
+      "link_info": "http://www.city46.de/kinderkino.html#c32825"
     },
     {
       "date_time": "2019-12-14T17:30:00+01:00",
       "title": "Hell",
-      "link_info": "http://www.city46.de/programm/dezember-2019/thema-des-monats-licht-schatten.html#c36717",
+      "location": "City 46",
       "info": "D / CH 2011",
-      "location": "City 46"
+      "link_info": "http://www.city46.de/programm/dezember-2019/thema-des-monats-licht-schatten.html#c36717"
     },
     {
       "date_time": "2019-12-14T18:00:00+01:00",
       "title": "Angelo",
+      "location": "City 46",
+      "info": "AT / LUX 2018, frz., dt.",
       "link_info": "http://www.city46.de/programm/dezember-2019/film-des-monats-angelo.html",
-      "info": "AT / LUX 2018, frz., dt. OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-14T20:00:00+01:00",
       "title": "Aquarela",
+      "location": "City 46",
+      "info": "D / DK / GB 2018",
       "link_info": "http://www.city46.de/programm/dezember-2019/neu-in-bremen.html#c36721",
-      "info": "D / DK / GB 2018, OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-14T20:30:00+01:00",
       "title": "Hollands Licht ",
+      "location": "City 46",
+      "info": "NL 2003",
       "link_info": "http://www.city46.de/programm/dezember-2019/thema-des-monats-licht-schatten.html#c36706",
-      "info": "NL 2003, OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-15T15:00:00+01:00",
       "title": "Shaun das Schaf \u2013 UFO-Alarm",
-      "link_info": "http://www.city46.de/kinderkino.html#c32825",
-      "info": "GB 2019, ab 6 Jahren | Kinderkino in Kino 1 mit action & fun!",
-      "location": "City 46"
+      "location": "City 46",
+      "info": "GB 2019, ab 6 Jahren. Kinderkino in Kino 1 mit action & fun!",
+      "link_info": "http://www.city46.de/kinderkino.html#c32825"
     },
     {
       "date_time": "2019-12-15T15:30:00+01:00",
       "title": "Mein Lotta-Leben ",
-      "link_info": "http://www.city46.de/kinderkino.html#c34567",
-      "info": "D 2019, ab 7 Jahren | Kinderkino in Kino 2",
-      "location": "City 46"
+      "location": "City 46",
+      "info": "D 2019, ab 7 Jahren. Kinderkino in Kino 2",
+      "link_info": "http://www.city46.de/kinderkino.html#c34567"
     },
     {
       "date_time": "2019-12-15T17:30:00+01:00",
       "title": "Hell",
-      "link_info": "http://www.city46.de/programm/dezember-2019/thema-des-monats-licht-schatten.html#c36717",
+      "location": "City 46",
       "info": "D / CH 2011",
-      "location": "City 46"
+      "link_info": "http://www.city46.de/programm/dezember-2019/thema-des-monats-licht-schatten.html#c36717"
     },
     {
       "date_time": "2019-12-15T18:00:00+01:00",
       "title": "Angelo",
+      "location": "City 46",
+      "info": "AT / LUX 2018, frz., dt.",
       "link_info": "http://www.city46.de/programm/dezember-2019/film-des-monats-angelo.html",
-      "info": "AT / LUX 2018, frz., dt. OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-15T20:00:00+01:00",
       "title": "Aquarela",
+      "location": "City 46",
+      "info": "D / DK / GB 2018",
       "link_info": "http://www.city46.de/programm/dezember-2019/neu-in-bremen.html#c36721",
-      "info": "D / DK / GB 2018, OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-15T20:30:00+01:00",
       "title": "Hollands Licht ",
+      "location": "City 46",
+      "info": "NL 2003",
       "link_info": "http://www.city46.de/programm/dezember-2019/thema-des-monats-licht-schatten.html#c36706",
-      "info": "NL 2003, OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-16T17:30:00+01:00",
       "title": "Aquarela",
+      "location": "City 46",
+      "info": "D / DK / GB 2018",
       "link_info": "http://www.city46.de/programm/dezember-2019/neu-in-bremen.html#c36721",
-      "info": "D / DK / GB 2018, OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-16T18:00:00+01:00",
       "title": "Material ",
-      "link_info": "http://www.city46.de/programm/dezember-2019/werkschau-thomas-heise.html#c36729",
+      "location": "City 46",
       "info": "D 2009",
-      "location": "City 46"
+      "link_info": "http://www.city46.de/programm/dezember-2019/werkschau-thomas-heise.html#c36729"
     },
     {
       "date_time": "2019-12-16T20:00:00+01:00",
       "title": "Angelo",
+      "location": "City 46",
+      "info": "AT / LUX 2018, frz., dt.",
       "link_info": "http://www.city46.de/programm/dezember-2019/film-des-monats-angelo.html",
-      "info": "AT / LUX 2018, frz., dt. OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-17T17:30:00+01:00",
       "title": "Aquarela",
+      "location": "City 46",
+      "info": "D / DK / GB 2018",
       "link_info": "http://www.city46.de/programm/dezember-2019/neu-in-bremen.html#c36721",
-      "info": "D / DK / GB 2018, OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-17T20:00:00+01:00",
       "title": "Angelo",
+      "location": "City 46",
+      "info": "AT / LUX 2018, frz., dt.",
       "link_info": "http://www.city46.de/programm/dezember-2019/film-des-monats-angelo.html",
-      "info": "AT / LUX 2018, frz., dt. OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-18T18:00:00+01:00",
       "title": "Aquarela",
+      "location": "City 46",
+      "info": "D / DK / GB 2018",
       "link_info": "http://www.city46.de/programm/dezember-2019/neu-in-bremen.html#c36721",
-      "info": "D / DK / GB 2018, OmU ",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-18T20:00:00+01:00",
       "title": "Schatten - Eine n\u00e4chtliche Halluzination",
-      "link_info": "http://www.city46.de/programm/dezember-2019/stummfilm.html",
-      "info": "D 1923 | Stummfilm mit Livemusik",
-      "location": "City 46"
+      "location": "City 46",
+      "info": "D 1923. Stummfilm mit Livemusik",
+      "link_info": "http://www.city46.de/programm/dezember-2019/stummfilm.html"
     },
     {
       "date_time": "2019-12-18T20:30:00+01:00",
       "title": "Die Insel der hungrigen Geister",
+      "location": "City 46",
+      "info": "D / AUS / GB 2018, engl.",
       "link_info": "http://www.city46.de/programm/dezember-2019/neu-in-bremen.html#c36671",
-      "info": "D / AUS / GB 2018, engl. OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-19T17:30:00+01:00",
       "title": "Die Insel der hungrigen Geister",
+      "location": "City 46",
+      "info": "D / AUS / GB 2018, engl.",
       "link_info": "http://www.city46.de/programm/dezember-2019/neu-in-bremen.html#c36671",
-      "info": "D / AUS / GB 2018, engl. OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-19T20:00:00+01:00",
       "title": "Der Glanz der Unsichtbaren",
+      "location": "City 46",
+      "info": "F 2018",
       "link_info": "http://www.city46.de/programm/dezember-2019/zweite-chance.html#c36719",
-      "info": "F 2018, OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-19T20:30:00+01:00",
       "title": "Ich bin Anastasia",
-      "link_info": "http://www.city46.de/programm/dezember-2019/neu-in-bremen.html#c36670",
+      "location": "City 46",
       "info": "D 2018",
-      "location": "City 46"
+      "link_info": "http://www.city46.de/programm/dezember-2019/neu-in-bremen.html#c36670"
     },
     {
       "date_time": "2019-12-20T17:30:00+01:00",
       "title": "Parasite",
+      "location": "City 46",
+      "info": "KOR 2019",
       "link_info": "http://www.city46.de/programm/dezember-2019/zweite-chance.html#c36726",
-      "info": "KOR 2019, OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-20T20:00:00+01:00",
       "title": "Wild Nights with Emily",
+      "location": "City 46",
+      "info": "USA 2018, engl.",
       "link_info": "http://www.city46.de/programm/dezember-2019/queerfilmnacht.html#c36664",
-      "info": "USA 2018, engl. OmU ",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-20T20:00:00+01:00",
       "title": "BIK Impro: Das Musical!",
-      "link_info": "http://www.city46.de/https://bik-city-impro.de/spielplan/impro-das-musical-13/",
-      "info": "\u00a0  | Improtheater",
-      "location": "City 46"
+      "location": "City 46",
+      "info": ". Improtheater",
+      "link_info": "https://bik-city-impro.de/spielplan/impro-das-musical-13/"
     },
     {
       "date_time": "2019-12-21T15:30:00+01:00",
       "title": "Geister der Weihnacht \u2013 Augsburger Puppenkiste ",
-      "link_info": "http://www.city46.de/kinderkino.html#c33592",
-      "info": "D 2018, ab 5 Jahren | Kinderkino in Kino 1",
-      "location": "City 46"
+      "location": "City 46",
+      "info": "D 2018, ab 5 Jahren. Kinderkino in Kino 1",
+      "link_info": "http://www.city46.de/kinderkino.html#c33592"
     },
     {
       "date_time": "2019-12-21T16:00:00+01:00",
       "title": "Mein Lotta-Leben ",
-      "link_info": "http://www.city46.de/kinderkino.html#c34567",
-      "info": "D 2019, ab 7 Jahren | Kinderkino in Kino 2",
-      "location": "City 46"
+      "location": "City 46",
+      "info": "D 2019, ab 7 Jahren. Kinderkino in Kino 2",
+      "link_info": "http://www.city46.de/kinderkino.html#c34567"
     },
     {
       "date_time": "2019-12-21T17:30:00+01:00",
       "title": "Die Insel der hungrigen Geister",
+      "location": "City 46",
+      "info": "D / AUS / GB 2018, engl.",
       "link_info": "http://www.city46.de/programm/dezember-2019/neu-in-bremen.html#c36671",
-      "info": "D / AUS / GB 2018, engl. OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-21T18:00:00+01:00",
       "title": "Parasite",
+      "location": "City 46",
+      "info": "KOR 2019",
       "link_info": "http://www.city46.de/programm/dezember-2019/zweite-chance.html#c36726",
-      "info": "KOR 2019, OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-21T20:00:00+01:00",
       "title": "Angelo",
+      "location": "City 46",
+      "info": "AT / LUX 2018, frz., dt.",
       "link_info": "http://www.city46.de/programm/dezember-2019/film-des-monats-angelo.html",
-      "info": "AT / LUX 2018, frz., dt. OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-21T20:30:00+01:00",
       "title": "Ich bin Anastasia",
-      "link_info": "http://www.city46.de/programm/dezember-2019/neu-in-bremen.html#c36670",
+      "location": "City 46",
       "info": "D 2018",
-      "location": "City 46"
+      "link_info": "http://www.city46.de/programm/dezember-2019/neu-in-bremen.html#c36670"
     },
     {
       "date_time": "2019-12-22T15:30:00+01:00",
       "title": "Geister der Weihnacht \u2013 Augsburger Puppenkiste ",
-      "link_info": "http://www.city46.de/kinderkino.html#c33592",
-      "info": "D 2018, ab 5 Jahren | Kinderkino in Kino 1",
-      "location": "City 46"
+      "location": "City 46",
+      "info": "D 2018, ab 5 Jahren. Kinderkino in Kino 1",
+      "link_info": "http://www.city46.de/kinderkino.html#c33592"
     },
     {
       "date_time": "2019-12-22T16:00:00+01:00",
       "title": "Mein Lotta-Leben ",
-      "link_info": "http://www.city46.de/kinderkino.html#c34567",
-      "info": "D 2019, ab 7 Jahren | Kinderkino in Kino 2",
-      "location": "City 46"
+      "location": "City 46",
+      "info": "D 2019, ab 7 Jahren. Kinderkino in Kino 2",
+      "link_info": "http://www.city46.de/kinderkino.html#c34567"
     },
     {
       "date_time": "2019-12-22T17:30:00+01:00",
       "title": "Ich bin Anastasia",
-      "link_info": "http://www.city46.de/programm/dezember-2019/neu-in-bremen.html#c36670",
+      "location": "City 46",
       "info": "D 2018",
-      "location": "City 46"
+      "link_info": "http://www.city46.de/programm/dezember-2019/neu-in-bremen.html#c36670"
     },
     {
       "date_time": "2019-12-22T18:00:00+01:00",
       "title": "Angelo",
+      "location": "City 46",
+      "info": "AT / LUX 2018, frz., dt.",
       "link_info": "http://www.city46.de/programm/dezember-2019/film-des-monats-angelo.html",
-      "info": "AT / LUX 2018, frz., dt. OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-22T20:00:00+01:00",
       "title": "Der Glanz der Unsichtbaren",
+      "location": "City 46",
+      "info": "F 2018",
       "link_info": "http://www.city46.de/programm/dezember-2019/zweite-chance.html#c36719",
-      "info": "F 2018, OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-22T20:30:00+01:00",
       "title": "Parasite",
+      "location": "City 46",
+      "info": "KOR 2019",
       "link_info": "http://www.city46.de/programm/dezember-2019/zweite-chance.html#c36726",
-      "info": "KOR 2019, OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-23T17:30:00+01:00",
       "title": "Ich bin Anastasia",
-      "link_info": "http://www.city46.de/programm/dezember-2019/neu-in-bremen.html#c36670",
+      "location": "City 46",
       "info": "D 2018",
-      "location": "City 46"
+      "link_info": "http://www.city46.de/programm/dezember-2019/neu-in-bremen.html#c36670"
     },
     {
       "date_time": "2019-12-23T18:00:00+01:00",
       "title": "Angelo",
+      "location": "City 46",
+      "info": "AT / LUX 2018, frz., dt.",
       "link_info": "http://www.city46.de/programm/dezember-2019/film-des-monats-angelo.html",
-      "info": "AT / LUX 2018, frz., dt. OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-23T20:00:00+01:00",
       "title": "Parasite",
+      "location": "City 46",
+      "info": "KOR 2019",
       "link_info": "http://www.city46.de/programm/dezember-2019/zweite-chance.html#c36726",
-      "info": "KOR 2019, OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-23T20:30:00+01:00",
       "title": "Die Insel der hungrigen Geister",
+      "location": "City 46",
+      "info": "D / AUS / GB 2018, engl.",
       "link_info": "http://www.city46.de/programm/dezember-2019/neu-in-bremen.html#c36671",
-      "info": "D / AUS / GB 2018, engl. OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-25T17:30:00+01:00",
       "title": "Ich bin Anastasia",
-      "link_info": "http://www.city46.de/programm/dezember-2019/neu-in-bremen.html#c36670",
+      "location": "City 46",
       "info": "D 2018",
-      "location": "City 46"
+      "link_info": "http://www.city46.de/programm/dezember-2019/neu-in-bremen.html#c36670"
     },
     {
       "date_time": "2019-12-25T18:00:00+01:00",
       "title": "Parasite",
+      "location": "City 46",
+      "info": "KOR 2019",
       "link_info": "http://www.city46.de/programm/dezember-2019/zweite-chance.html#c36726",
-      "info": "KOR 2019, OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-25T20:00:00+01:00",
       "title": "Angelo",
+      "location": "City 46",
+      "info": "AT / LUX 2018, frz., dt.",
       "link_info": "http://www.city46.de/programm/dezember-2019/film-des-monats-angelo.html",
-      "info": "AT / LUX 2018, frz., dt. OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-25T20:30:00+01:00",
       "title": "Die Insel der hungrigen Geister",
+      "location": "City 46",
+      "info": "D / AUS / GB 2018, engl.",
       "link_info": "http://www.city46.de/programm/dezember-2019/neu-in-bremen.html#c36671",
-      "info": "D / AUS / GB 2018, engl. OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-26T15:30:00+01:00",
       "title": "Kommissar Gordon & Buffy",
-      "link_info": "http://www.city46.de/kinderkino.html#c34370",
-      "info": "Schweden 2017, ab 6 Jahren | Kinderkino in Kino 1",
-      "location": "City 46"
+      "location": "City 46",
+      "info": "Schweden 2017, ab 6 Jahren. Kinderkino in Kino 1",
+      "link_info": "http://www.city46.de/kinderkino.html#c34370"
     },
     {
       "date_time": "2019-12-26T16:00:00+01:00",
       "title": "Geister der Weihnacht \u2013 Augsburger Puppenkiste ",
-      "link_info": "http://www.city46.de/kinderkino.html#c33592",
-      "info": "D 2018, ab 5 Jahren | Kinderkino in Kino 2",
-      "location": "City 46"
+      "location": "City 46",
+      "info": "D 2018, ab 5 Jahren. Kinderkino in Kino 2",
+      "link_info": "http://www.city46.de/kinderkino.html#c33592"
     },
     {
       "date_time": "2019-12-26T17:30:00+01:00",
       "title": "Aretha Franklin: Amazing Grace",
+      "location": "City 46",
+      "info": "USA 2018",
       "link_info": "http://www.city46.de/programm/dezember-2019/zweite-chance.html#c36427",
-      "info": "USA 2018, OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-26T18:00:00+01:00",
       "title": "La Flor\u00a0 - Episode \"B-Movie Horror\" ",
+      "location": "City 46",
+      "info": "ARG 2018",
       "link_info": "http://www.city46.de/programm/dezember-2019/filmepos-la-flor.html",
-      "info": "ARG 2018, OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-26T19:45:00+01:00",
       "title": "La Flor - Episode \"Musical\"",
+      "location": "City 46",
+      "info": "ARG 2018",
       "link_info": "http://www.city46.de/programm/dezember-2019/filmepos-la-flor.html",
-      "info": "ARG 2018, OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-26T20:00:00+01:00",
       "title": "Das M\u00e4dchen mit dem Perlenohrring ",
+      "location": "City 46",
+      "info": "GB, Luxemburg 2003",
       "link_info": "http://www.city46.de/programm/dezember-2019/thema-des-monats-licht-schatten.html#c36704",
-      "info": "GB, Luxemburg 2003, OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-27T15:30:00+01:00",
       "title": "Kommissar Gordon & Buffy",
-      "link_info": "http://www.city46.de/kinderkino.html#c34370",
-      "info": "Schweden 2017, ab 6 Jahren | Kinderkino in Kino 1",
-      "location": "City 46"
+      "location": "City 46",
+      "info": "Schweden 2017, ab 6 Jahren. Kinderkino in Kino 1",
+      "link_info": "http://www.city46.de/kinderkino.html#c34370"
     },
     {
       "date_time": "2019-12-27T16:00:00+01:00",
       "title": "Geister der Weihnacht \u2013 Augsburger Puppenkiste ",
-      "link_info": "http://www.city46.de/kinderkino.html#c33592",
-      "info": "D 2018, ab 5 Jahren | Kinderkino in Kino 2",
-      "location": "City 46"
+      "location": "City 46",
+      "info": "D 2018, ab 5 Jahren. Kinderkino in Kino 2",
+      "link_info": "http://www.city46.de/kinderkino.html#c33592"
     },
     {
       "date_time": "2019-12-27T17:30:00+01:00",
       "title": "Aretha Franklin: Amazing Grace",
+      "location": "City 46",
+      "info": "USA 2018",
       "link_info": "http://www.city46.de/programm/dezember-2019/zweite-chance.html#c36427",
-      "info": "USA 2018, OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-27T20:00:00+01:00",
       "title": "Das M\u00e4dchen mit dem Perlenohrring ",
+      "location": "City 46",
+      "info": "GB, Luxemburg 2003",
       "link_info": "http://www.city46.de/programm/dezember-2019/thema-des-monats-licht-schatten.html#c36704",
-      "info": "GB, Luxemburg 2003, OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-27T20:00:00+01:00",
       "title": "BIK Impro: Diva (Wichtel Version)",
-      "link_info": "http://www.city46.de/https://bik-city-impro.de/spielplan/diva-9/",
-      "info": "",
-      "location": "City 46"
+      "location": "City 46",
+      "info": ". Improtheater",
+      "link_info": "https://bik-city-impro.de/spielplan/diva-9/"
     },
     {
       "date_time": "2019-12-28T15:30:00+01:00",
       "title": "Kommissar Gordon & Buffy",
-      "link_info": "http://www.city46.de/kinderkino.html#c34370",
-      "info": "Schweden 2017, ab 6 Jahren | Kinderkino in Kino 1",
-      "location": "City 46"
+      "location": "City 46",
+      "info": "Schweden 2017, ab 6 Jahren. Kinderkino in Kino 1",
+      "link_info": "http://www.city46.de/kinderkino.html#c34370"
     },
     {
       "date_time": "2019-12-28T16:00:00+01:00",
       "title": "Geister der Weihnacht \u2013 Augsburger Puppenkiste ",
-      "link_info": "http://www.city46.de/kinderkino.html#c33592",
-      "info": "D 2018, ab 5 Jahren | Kinderkino in Kino 2",
-      "location": "City 46"
+      "location": "City 46",
+      "info": "D 2018, ab 5 Jahren. Kinderkino in Kino 2",
+      "link_info": "http://www.city46.de/kinderkino.html#c33592"
     },
     {
       "date_time": "2019-12-28T17:30:00+01:00",
       "title": "Das M\u00e4dchen mit dem Perlenohrring ",
+      "location": "City 46",
+      "info": "GB, Luxemburg 2003",
       "link_info": "http://www.city46.de/programm/dezember-2019/thema-des-monats-licht-schatten.html#c36704",
-      "info": "GB, Luxemburg 2003, OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-28T18:00:00+01:00",
       "title": "La Flor - Episode \"Agententhriller\" ",
+      "location": "City 46",
+      "info": "ARG 2018",
       "link_info": "http://www.city46.de/programm/dezember-2019/filmepos-la-flor.html",
-      "info": "ARG 2018, OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-28T20:00:00+01:00",
       "title": "Aretha Franklin: Amazing Grace",
+      "location": "City 46",
+      "info": "USA 2018",
       "link_info": "http://www.city46.de/programm/dezember-2019/zweite-chance.html#c36427",
-      "info": "USA 2018, OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-29T11:00:00+01:00",
       "title": "Aretha Franklin: Amazing Grace",
+      "location": "City 46",
+      "info": "USA 2018",
       "link_info": "http://www.city46.de/programm/dezember-2019/zweite-chance.html#c36427",
-      "info": "USA 2018, OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-29T15:30:00+01:00",
       "title": "Kommissar Gordon & Buffy",
-      "link_info": "http://www.city46.de/kinderkino.html#c34370",
-      "info": "Schweden 2017, ab 6 Jahren | Kinderkino in Kino 1",
-      "location": "City 46"
+      "location": "City 46",
+      "info": "Schweden 2017, ab 6 Jahren. Kinderkino in Kino 1",
+      "link_info": "http://www.city46.de/kinderkino.html#c34370"
     },
     {
       "date_time": "2019-12-29T16:00:00+01:00",
       "title": "Geister der Weihnacht \u2013 Augsburger Puppenkiste ",
-      "link_info": "http://www.city46.de/kinderkino.html#c33592",
-      "info": "D 2018, ab 5 Jahren | Kinderkino in Kino 2",
-      "location": "City 46"
+      "location": "City 46",
+      "info": "D 2018, ab 5 Jahren. Kinderkino in Kino 2",
+      "link_info": "http://www.city46.de/kinderkino.html#c33592"
     },
     {
       "date_time": "2019-12-29T17:30:00+01:00",
       "title": "Aretha Franklin: Amazing Grace",
+      "location": "City 46",
+      "info": "USA 2018",
       "link_info": "http://www.city46.de/programm/dezember-2019/zweite-chance.html#c36427",
-      "info": "USA 2018, OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-29T18:00:00+01:00",
       "title": "La Flor - Episode \"Nouvelle Vague\"",
+      "location": "City 46",
+      "info": "ARG 2018",
       "link_info": "http://www.city46.de/programm/dezember-2019/filmepos-la-flor.html",
-      "info": " ARG 2018, OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-29T20:00:00+01:00",
       "title": "Downton Abbey",
+      "location": "City 46",
+      "info": "GB 2019",
       "link_info": "http://www.city46.de/programm/dezember-2019/zweite-chance.html#c36724",
-      "info": "GB 2019, OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-30T17:30:00+01:00",
       "title": "Aretha Franklin: Amazing Grace",
+      "location": "City 46",
+      "info": "USA 2018",
       "link_info": "http://www.city46.de/programm/dezember-2019/zweite-chance.html#c36427",
-      "info": "USA 2018, OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-30T18:00:00+01:00",
       "title": "La Flor - Episode \"Experimentalfilm\"",
+      "location": "City 46",
+      "info": "ARG 2018",
       "link_info": "http://www.city46.de/programm/dezember-2019/filmepos-la-flor.html",
-      "info": "ARG 2018, OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-30T20:00:00+01:00",
       "title": "Downton Abbey",
+      "location": "City 46",
+      "info": "GB 2019",
       "link_info": "http://www.city46.de/programm/dezember-2019/zweite-chance.html#c36724",
-      "info": "GB 2019, OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     },
     {
       "date_time": "2019-12-30T20:30:00+01:00",
       "title": "Die Insel der hungrigen Geister",
+      "location": "City 46",
+      "info": "D / AUS / GB 2018, engl.",
       "link_info": "http://www.city46.de/programm/dezember-2019/neu-in-bremen.html#c36671",
-      "info": "D / AUS / GB 2018, engl. OmU",
-      "location": "City 46"
-    },
-    {
-      "date_time": "2020-01-01T17:30:00+01:00",
-      "title": "Downton Abbey",
-      "link_info": "http://www.city46.de/programm/dezember-2019/zweite-chance.html#c36724",
-      "info": "GB 2019, OmU",
-      "location": "City 46"
-    },
-    {
-      "date_time": "2020-01-01T18:00:00+01:00",
-      "title": "Parasite",
-      "link_info": "http://www.city46.de/programm/dezember-2019/zweite-chance.html#c36726",
-      "info": "KOR 2019, OmU",
-      "location": "City 46"
-    },
-    {
-      "date_time": "2020-01-01T20:00:00+01:00",
-      "title": "Aretha Franklin: Amazing Grace",
-      "link_info": "http://www.city46.de/programm/dezember-2019/zweite-chance.html#c36427",
-      "info": "USA 2018, OmU",
-      "location": "City 46"
-    },
-    {
-      "date_time": "2020-01-01T20:30:00+01:00",
-      "title": "Die Insel der hungrigen Geister",
-      "link_info": "http://www.city46.de/programm/dezember-2019/neu-in-bremen.html#c36671",
-      "info": "D / AUS / GB 2018, engl. OmU",
-      "location": "City 46"
+      "language_version": "OmU"
     }
   ],
   "Theater Bremen": [
@@ -2453,7 +1801,7 @@
       "date_time": "2019-12-03T10:00:00+01:00",
       "link_info": "http://www.theaterbremen.de/de_DE/kalender/die-rote-zora-und-ihre-bande.16263894",
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=1699#termine",
-      "price": "20 / 17 / 15 / 13 / 10 / 8 \u20ac / 9 / 7 \u20ac erm.",
+      "price": "20 / 17 / 15 / 13 / 10 / 8 \u20ac",
       "title": "Die rote Zora und ihre Bande",
       "info": "Urauff\u00fchrung. 6+. von John von D\u00fcffel. nach dem Roman von Kurt Held. Karten f\u00fcr Vormittagsvorstellungen f\u00fcr Schulklassen erhalten Sie beim Service f\u00fcr Schulen und Gruppen unter Tel 0421\u20093653-340, Fax 0421\u20093653-934 oder schulen@theaterbremen.de ",
       "location": "Theater Bremen"
@@ -2471,7 +1819,7 @@
       "date_time": "2019-12-04T10:00:00+01:00",
       "link_info": "http://www.theaterbremen.de/de_DE/kalender/die-rote-zora-und-ihre-bande.16263895",
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=1700#termine",
-      "price": "20 / 17 / 15 / 13 / 10 / 8 \u20ac / 9 / 7 \u20ac erm.",
+      "price": "20 / 17 / 15 / 13 / 10 / 8 \u20ac",
       "title": "Die rote Zora und ihre Bande",
       "info": "Urauff\u00fchrung. 6+. von John von D\u00fcffel. nach dem Roman von Kurt Held. Karten f\u00fcr Vormittagsvorstellungen f\u00fcr Schulklassen erhalten Sie beim Service f\u00fcr Schulen und Gruppen unter Tel 0421\u20093653-340, Fax 0421\u20093653-934 oder schulen@theaterbremen.de ",
       "location": "Theater Bremen"
@@ -2496,7 +1844,7 @@
       "date_time": "2019-12-05T10:00:00+01:00",
       "link_info": "http://www.theaterbremen.de/de_DE/kalender/die-rote-zora-und-ihre-bande.16263896",
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=1701#termine",
-      "price": "20 / 17 / 15 / 13 / 10 / 8 \u20ac / 9 / 7 \u20ac erm.",
+      "price": "20 / 17 / 15 / 13 / 10 / 8 \u20ac",
       "title": "Die rote Zora und ihre Bande",
       "info": "Urauff\u00fchrung. 6+. von John von D\u00fcffel. nach dem Roman von Kurt Held. Karten f\u00fcr Vormittagsvorstellungen f\u00fcr Schulklassen erhalten Sie beim Service f\u00fcr Schulen und Gruppen unter Tel 0421\u20093653-340, Fax 0421\u20093653-934 oder schulen@theaterbremen.de ",
       "location": "Theater Bremen"
@@ -2523,7 +1871,7 @@
       "date_time": "2019-12-06T10:00:00+01:00",
       "link_info": "http://www.theaterbremen.de/de_DE/kalender/die-rote-zora-und-ihre-bande.16263897",
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=1702#termine",
-      "price": "20 / 17 / 15 / 13 / 10 / 8 \u20ac / 9 / 7 \u20ac erm.",
+      "price": "20 / 17 / 15 / 13 / 10 / 8 \u20ac",
       "title": "Die rote Zora und ihre Bande",
       "info": "Urauff\u00fchrung. 6+. von John von D\u00fcffel. nach dem Roman von Kurt Held. Karten f\u00fcr Vormittagsvorstellungen f\u00fcr Schulklassen erhalten Sie beim Service f\u00fcr Schulen und Gruppen unter Tel 0421\u20093653-340, Fax 0421\u20093653-934 oder schulen@theaterbremen.de ",
       "location": "Theater Bremen"
@@ -3880,27 +3228,6 @@
     }
   ],
   "Kukoon": [
-    {
-      "date_time": "2019-12-05T20:15:00+01:00",
-      "link_info": "https://kukoon.de/event/konzert-vallesantacorde/",
-      "title": "Konzert: VallesantaCorde",
-      "info": "Veranstaltungskategorie: Konzert",
-      "location": "Kukoon"
-    },
-    {
-      "date_time": "2019-12-06T20:00:00+01:00",
-      "link_info": "https://kukoon.de/event/abschlusslesung-bremer-prosa-werkstatt-2019/",
-      "title": "Abschlusslesung Bremer Prosa-Werkstatt 2019",
-      "info": "Veranstaltungskategorie: Lesung",
-      "location": "Kukoon"
-    },
-    {
-      "date_time": "2019-12-07T14:00:00+01:00",
-      "link_info": "https://kukoon.de/event/kunst-mit-kids-4/2019-12-07/",
-      "title": "Kunst mit Kids",
-      "info": "Veranstaltungskategorie: Workshop",
-      "location": "Kukoon"
-    },
     {
       "date_time": "2019-12-12T19:30:00+01:00",
       "link_info": "https://kukoon.de/event/sama-maani-40-jahre-islamische-revolution-iran-israel-der-westen/",
