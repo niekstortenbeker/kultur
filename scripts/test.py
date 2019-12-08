@@ -59,5 +59,3 @@ p.program.print_next_week()
 print("".center(100, "-"))
 pro.print_header()
 p.program.print_today()
-
-print('done printing today')

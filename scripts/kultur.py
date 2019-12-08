@@ -170,6 +170,7 @@ class Program:
         stop_day = now.shift(weeks=+1).replace(
             hour=0, minute=0, second=0, microsecond=0, tzinfo="Europe/Berlin"
         )
+        program = self._filter_program(stop_day)
         self.print(program=self._filter_program(stop_day))
 
     def print_today(self):
@@ -181,7 +182,7 @@ class Program:
 
     def _filter_program(self, stop_day):
         program = []
-        now = arrow.utcnow()
+        now = arrow.now("Europe/Berlin")
         for show in self.shows:
             if show["date_time"] < now:
                 continue
@@ -194,10 +195,13 @@ class Program:
         return program
 
     def print(self, program=None):
-        if not program:
-            program = self.shows
         print(f"\nthis program uses a database made {self.date.humanize()}")
         print("".center(50, "-"))
+        if program is None:
+            program = self.shows
+        if not program:
+            print('There are no shows to display')
+            return
         old_day = program[0]["date_time"].date()
         for s in program:
             # print day separator
