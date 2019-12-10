@@ -6,12 +6,37 @@ import re
 import copy
 from itertools import chain
 
+
 class CombinedProgram:
-    """this is the main functional unit, it is thought to be the only thing to be directly interacted with
-    contains blabla"""
+    """
+    A combined program of a selection of theaters in Bremen
+
+    ...
+    Attributes
+    ----------
+    theaters : list
+        A list of Theater() objects with individual program attributes
+    program : Program()
+        A combined program from all the theaters
+
+    Methods
+    -------
+    program_from_file()
+        Use the program from the data stored on file
+    update_program()
+        Update the program from the web and replace the program on file
+    """
 
     def __init__(self):
-        """theaters should be Theater objects, program should be a Program object"""
+        """
+        Parameters
+        ----------
+        theaters : list
+            A list of Theater() objects with individual program attributes
+        program : Program()
+            A combined program from all the theaters
+        """
+
         schauburg = Kinoheld(
             name="Schauburg",
             url_program_info="http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
@@ -53,13 +78,16 @@ class CombinedProgram:
         return "CombinedProgram()"
 
     def program_from_file(self):
-        """use json with
-        one file that combines the program.shows
-        as a dictionary with theater names as keys and the program.shows
-        as values, and one file similarly for meta_info.shows.
-        populate these back to the self.theaters, and then refresh self.program
         """
+        Use the program from the data stored on file
+
+        First the program and meta of each theater in self.theaters are
+        updated, and then self.program is built from these.
+        """
+
         program, meta, date = file.open_from_file()
+        # program and meta are dictionaries with the theater names as
+        # keys and the show lists as values
         for t in self.theaters:
             if t.name in program:
                 t.program = Program(shows=program[t.name])
@@ -71,11 +99,15 @@ class CombinedProgram:
         self._refresh_program(date=date)
 
     def _program_to_file(self):
-        """for all self.theaters, make one file that combines the program.shows
+        """
+        store the current program to file, replacing the old files
+
+        For all self.theaters, make one file that combines the program.shows
         as a dictionary with theater names as keys and the program.shows
-        as values, and one file similarly for meta_info.shows """
+        as values, and one file similarly for meta_info.shows."""
+
         program_db = {t.name: t.program.shows for t in self.theaters}
-        program_db = copy.deepcopy(program_db)
+        program_db = copy.deepcopy(program_db)  # no changing of the original data
         meta_db = {t.name: t.meta_info.shows for t in self.theaters}
         meta_db = copy.deepcopy(meta_db)
         file.save_to_file(program_db, meta_db)
@@ -83,11 +115,12 @@ class CombinedProgram:
     # TODO make method that can update one theater only
     def update_program(self):
         """
-        update the complete program
+        Update the program from the web and replace the program on file
 
         The program is updated both in the theater.program of self.theaters,
         and in self.program.
         """
+
         # update program
         helper.start_driver()
         for t in self.theaters:
@@ -103,7 +136,10 @@ class CombinedProgram:
         self._program_to_file()
 
     def _refresh_program(self, date):
-        """make a new self.program based on the programs in self.theaters"""
+        """
+        make a new self.program based on the programs in self.theaters
+        """
+
         self.program.empty()
         for t in self.theaters:
             try:
@@ -115,26 +151,45 @@ class CombinedProgram:
 
 
 class Program:
-    """should be initialized with either shows: a list of Show objects, or
-    a list of ShowMetaInfo objects, or with None
+    """
+    A program class containing shows and display methods
 
-    show dict should have
-    date_time = date_time
-    show dict could have
-        {title: '',
-        artist: '',
-        link_info: '',
-        link_tickets: ''
-        location_details: ''
-        location: ''
-        info: ''
-        price: ''
-        language_version: ''}
+    ...
+    Attributes
+    ----------
+    shows : list, optional
+        A list of show dictionaries. A show dictionary should have
+        a key date_time containing an arrow object. Furthermore it
+        could have the following keys: title, artist, link_info,
+        link_tickets, location_details, location, info, price and
+        language_version.
 
+    Methods
+    -------
+    empty()
+        Replace shows with an empty list
+    sort()
+        Sort shows ascending in time
+    print_next_week()
+        Print the program of the next week from now
+    print_today()
+        Print the program of today
+    print(program=None)
+        Print the complete program, or a custom show list when provided as argument
     """
 
     def __init__(self, shows=None):
-        """shows should be a list of Show or ShowMetaInfo objects or absent"""
+        """
+        Parameters
+        ----------
+        shows: list, optional
+            A list of show dictionaries. A show dictionary should have
+            a key date_time containing an arrow object. Furthermore it
+            could have the following keys: title, artist, link_info,
+            link_tickets, location_details, location, info, price and
+            language_version.
+        """
+
         self.shows = shows if shows else []
         self.date = arrow.get(0)
 
@@ -158,22 +213,35 @@ class Program:
         return item in [s["title"] for s in self.shows]
 
     def empty(self):
+        """
+        Replace shows with an empty list
+        """
+
         self.shows = []
 
     def sort(self):
+        """
+        Sort shows ascending in time
+        """
+
         self.shows.sort(key=lambda show: show["date_time"])
 
     def print_next_week(self):
-        """get the program of the next week. If today=True instead get only today
         """
+        Print the program of the next week from now
+        """
+
         now = arrow.utcnow()
         stop_day = now.shift(weeks=+1).replace(
             hour=0, minute=0, second=0, microsecond=0, tzinfo="Europe/Berlin"
         )
-        program = self._filter_program(stop_day)
         self.print(program=self._filter_program(stop_day))
 
     def print_today(self):
+        """
+        Print the program of today
+        """
+
         now = arrow.utcnow()
         stop_day = now.shift(days=+1).replace(
             hour=0, minute=0, second=0, microsecond=0, tzinfo="Europe/Berlin"
@@ -181,6 +249,20 @@ class Program:
         self.print(program=self._filter_program(stop_day))
 
     def _filter_program(self, stop_day):
+        """
+        filter a subset of the program between now and stop_day
+
+        Parameters
+        ----------
+        stop_day: arrow.arrow.Arrow
+            the day and time until which the program should be filtered
+
+        Returns
+        -------
+        list
+            a list with the filtered show dictionaries
+        """
+
         program = []
         now = arrow.now("Europe/Berlin")
         for show in self.shows:
@@ -195,6 +277,14 @@ class Program:
         return program
 
     def print(self, program=None):
+        """
+        Print the complete program, or a custom show list when provided as argument
+
+        Parameters
+        ----------
+        program: list, optional
+            a list with show dictionaries similar to self.shows
+        """
         print(f"\nthis program uses a database made {self.date.humanize()}")
         print("".center(50, "-"))
         if program is None:
