@@ -28,15 +28,6 @@ class CombinedProgram:
     """
 
     def __init__(self):
-        """
-        Parameters
-        ----------
-        theaters : list
-            A list of Theater() objects with individual program attributes
-        program : Program()
-            A combined program from all the theaters
-        """
-
         schauburg = Kinoheld(
             name="Schauburg",
             url_program_info="http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
@@ -104,7 +95,8 @@ class CombinedProgram:
 
         For all self.theaters, make one file that combines the program.shows
         as a dictionary with theater names as keys and the program.shows
-        as values, and one file similarly for meta_info.shows."""
+        as values, and one file similarly for meta_info.shows.
+        """
 
         program_db = {t.name: t.program.shows for t in self.theaters}
         program_db = copy.deepcopy(program_db)  # no changing of the original data
@@ -154,15 +146,30 @@ class Program:
     """
     A program class containing shows and display methods
 
+    Some shows can also be found in MetaInfo and are identified based on title.
+    When setting the shows attribute also set the date attribute.  # TODO force this behaviour
+
     ...
     Attributes
     ----------
-    shows : list, optional
-        A list of show dictionaries. A show dictionary should have
-        a key date_time containing an arrow object. Furthermore it
-        could have the following keys: title, artist, link_info,
-        link_tickets, location_details, location, info, price and
-        language_version.
+    shows : list of dictionaries, optional
+        A list of show dictionaries, which should have the key:
+        date_time : arrow datetime object
+        It could have the following keys:
+        title : str
+            is used to crosslink with shows in MetaInfo
+        artist : str
+        link_info : str
+        link_tickets : str
+        location_details : str
+            in case a theater has multiple venues
+        location : str
+            name of the theater
+        info : str
+        price : str
+        language_version : str
+    date : arrow datetime object
+        date on which program was scraped
 
     Methods
     -------
@@ -182,12 +189,22 @@ class Program:
         """
         Parameters
         ----------
-        shows: list, optional
-            A list of show dictionaries. A show dictionary should have
-            a key date_time containing an arrow object. Furthermore it
-            could have the following keys: title, artist, link_info,
-            link_tickets, location_details, location, info, price and
-            language_version.
+        shows : list of dictionaries, optional
+            A list of show dictionaries, which should have the key:
+            date_time : arrow datetime object
+            It could have the following keys:
+            title : str
+                is used to crosslink with shows in MetaInfo
+            artist : str
+            link_info : str
+            link_tickets : str
+            location_details : str
+                in case a theater has multiple venues
+            location : str
+                name of the theater
+            info : str
+            price : str
+            language_version : str
         """
 
         self.shows = shows if shows else []
@@ -213,23 +230,17 @@ class Program:
         return item in [s["title"] for s in self.shows]
 
     def empty(self):
-        """
-        Replace shows with an empty list
-        """
+        """Replace shows with an empty list"""
 
         self.shows = []
 
     def sort(self):
-        """
-        Sort shows ascending in time
-        """
+        """ Sort shows ascending in time"""
 
         self.shows.sort(key=lambda show: show["date_time"])
 
     def print_next_week(self):
-        """
-        Print the program of the next week from now
-        """
+        """Print the program of the next week from now"""
 
         now = arrow.utcnow()
         stop_day = now.shift(weeks=+1).replace(
@@ -238,9 +249,7 @@ class Program:
         self.print(program=self._filter_program(stop_day))
 
     def print_today(self):
-        """
-        Print the program of today
-        """
+        """Print the program of today"""
 
         now = arrow.utcnow()
         stop_day = now.shift(days=+1).replace(
@@ -254,7 +263,7 @@ class Program:
 
         Parameters
         ----------
-        stop_day: arrow.arrow.Arrow
+        stop_day : arrow.arrow.Arrow
             the day and time until which the program should be filtered
 
         Returns
@@ -282,7 +291,7 @@ class Program:
 
         Parameters
         ----------
-        program: list, optional
+        program : list, optional
             a list with show dictionaries similar to self.shows
         """
         print(f"\nthis program uses a database made {self.date.humanize()}")
@@ -314,30 +323,74 @@ class Program:
 
 
 class MetaInfo:
-    """should be initialized with
-    a list of ShowMetaInfo objects, or with None
+    """
+    a class that stores meta information about shows
 
+    Shows in meta info can be found (but are not required to) in the shows in
+    a program class and are identified by the title.
+    Not all shows in a program class are required to be present in a MetaInfo.
+    When setting the shows attribute also set the date attribute.  # TODO force this behaviour
 
-    show metainfo dict should have
-    self.title = title
-    show metainfo dict could have
-        self.title_original = ''
-        self.country = ''
-        self.year = ''
-        self.genre = ''
-        self.duration = ''
-        self.director = ''
-        self.language = ''
-        self.description = ''
-        self.img_poster = ''
-        self.img_screenshot = ''
-        self.link_info = ''
+    ...
+    Attributes
+    ----------
+    shows : list of dictionaries, optional
+        A list of show meta info dictionaries. Such dictionary should have
+        the key:
+        title : str
+            this will be used to crosslink to a show in a Program
+        Furthermore it could have the following keys:
+        title_original : str
+        country : str
+        year : int
+        genre : str
+        duration : str  # TODO is that right?
+        director : str
+        language : str
+        description : str
+        img_poster : str
+            hyperlink to the image
+        ing_screenshot : str
+            hyperlink to the image
+        link_info : str
+    date : arrow datetime object
+        Date on which the meta info was scraped
+
+    Methods
+    -------
+    sort()
+        sort the shows by title
+    get()
+        get a show by title
 
 
     """
 
     def __init__(self, shows=None):
-        """shows should be a list of Show or ShowMetaInfo objects or absent"""
+        """
+        Parameters
+        ----------
+        shows : list of dictionaries, optional
+            A list of show meta info dictionaries. Such dictionary should have
+            the key:
+            title : str
+                this will be used to crosslink to a show in a Program
+            Furthermore it could have the following keys:
+            title_original : str
+            country : str
+            year : int
+            genre : str
+            duration : str  # TODO is that right?
+            director : str
+            language : str
+            description : str
+            img_poster : str
+                hyperlink to the image
+            ing_screenshot : str
+                hyperlink to the image
+            link_info : str
+        """
+
         self.shows = shows if shows else []
         self.date = arrow.get(0)
 
@@ -361,9 +414,23 @@ class MetaInfo:
         return item in self.shows
 
     def sort(self):
+        """sort the shows by title"""
         self.shows.sort(key=lambda show: show["title"])
 
     def get(self, title):
+        """
+        get a show by title
+
+        Parameters
+        ----------
+        title : str
+
+        Returns
+        -------
+        dict
+
+        """
+
         return self.shows[title]
 
 
