@@ -334,17 +334,16 @@ class MetaInfo:
     ...
     Attributes
     ----------
-    shows : list of dictionaries, optional
-        A list of show meta info dictionaries. Such dictionary should have
-        the key:
+    shows : dict of dicts, optional
+        A dict with titles as keys and show meta info dicts as values.
+        These titles can be used to crosslink to a show in a Program().
+        Show meta info dicts could have the following keys:
         title : str
-            this will be used to crosslink to a show in a Program
-        Furthermore it could have the following keys:
         title_original : str
         country : str
         year : int
         genre : str
-        duration : str  # TODO is that right?
+        duration : str
         director : str
         language : str
         description : str
@@ -358,8 +357,6 @@ class MetaInfo:
 
     Methods
     -------
-    sort()
-        sort the shows by title
     get()
         get a show by title
 
@@ -370,17 +367,16 @@ class MetaInfo:
         """
         Parameters
         ----------
-        shows : list of dictionaries, optional
-            A list of show meta info dictionaries. Such dictionary should have
-            the key:
+        shows : dict of dicts, optional
+            A dict with titles as keys and show meta info dicts as values.
+            These titles can be used to crosslink to a show in a Program().
+            Show meta info dicts could have the following keys:
             title : str
-                this will be used to crosslink to a show in a Program
-            Furthermore it could have the following keys:
             title_original : str
             country : str
             year : int
             genre : str
-            duration : str  # TODO is that right?
+            duration : str
             director : str
             language : str
             description : str
@@ -391,7 +387,7 @@ class MetaInfo:
             link_info : str
         """
 
-        self.shows = shows if shows else []
+        self.shows = shows if shows else {}
         self.date = arrow.get(0)
 
     def __repr__(self):
@@ -413,10 +409,6 @@ class MetaInfo:
     def __contains__(self, item):
         return item in self.shows
 
-    def sort(self):
-        """sort the shows by title"""
-        self.shows.sort(key=lambda show: show["title"])
-
     def get(self, title):
         """
         get a show by title
@@ -428,10 +420,24 @@ class MetaInfo:
         Returns
         -------
         dict
-
+            a meta info dictionary which could have the following keys:
+            title : str
+            title_original : str
+            country : str
+            year : int
+            genre : str
+            duration : str
+            director : str
+            language : str
+            description : str
+            img_poster : str
+                hyperlink to the image
+            ing_screenshot : str
+                hyperlink to the image
+            link_info : str
         """
 
-        return self.shows[title]
+        return self.shows.get(title)
 
 
 class Theater:
