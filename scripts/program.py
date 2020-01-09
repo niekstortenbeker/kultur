@@ -1,3 +1,7 @@
+"""
+command line interface for Kultur
+"""
+
 import kultur
 import click
 
