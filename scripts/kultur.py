@@ -1,3 +1,37 @@
+"""
+Collect (web scraping) and combine programs from theaters in Bremen
+
+It is probably best to interact with this module using CombinedProgram.
+A CombinedProgram has a Program containing shows from all theaters, and
+has a list of Theaters which each have an individual Program and
+MetaInfo. Programs can be updated from file or by web scraping.
+
+Classes
+-------
+CombinedProgram
+    A combined program of a selection of theaters in Bremen
+Program
+    A Program with a list of shows and display methods
+MetaInfo
+    Meta information about shows (not required)
+Theater
+    Base class for classes representing different theaters
+Kinoheld(Theater)
+    Theaters that use the Kinoheld website
+CinemaOstertor(Kinoheld)
+    Theater Cinema Ostertor
+City46(Theater)
+    Theater City 46
+TheaterBremen(Theater)
+    Theater "Theater Bremen"
+Schwankhalle(Theater)
+    Theater Schwankhalle
+Glocke(Theater)
+    Theater Glocke
+Kukoon(Theater)
+    Theater Kukoon
+"""
+
 import file
 import helper
 import bs4
@@ -142,7 +176,7 @@ class CombinedProgram:
 
 class Program:
     """
-    A program class containing shows and display methods
+    A Program with a list of shows and display methods
 
     Some shows can also be found in MetaInfo and are identified based on title.
     When setting the shows attribute also set the date attribute.  # TODO force this behaviour
@@ -322,7 +356,7 @@ class Program:
 
 class MetaInfo:
     """
-    a class that stores meta information about shows
+    Meta information about shows (not required)
 
     Shows in meta info can be found (but are not required to) in the shows in
     a program class and are identified by the title.
@@ -437,7 +471,8 @@ class MetaInfo:
 
 
 class Theater:
-    """Base class for classes representing different theaters
+    """
+    Base class for classes representing different theaters
 
     Attributes
     ----------
@@ -589,7 +624,7 @@ class Theater:
 
 
 class Kinoheld(Theater):
-    """class representing theaters that use the Kinoheld website
+    """Theaters that use the Kinoheld website
 
         Attributes
         ----------
@@ -794,7 +829,7 @@ class Kinoheld(Theater):
 
 
 class CinemaOstertor(Kinoheld):
-    """class representing Cinema Ostertor
+    """Theater Cinema Ostertor
 
     Attributes
     ----------
@@ -981,7 +1016,7 @@ class CinemaOstertor(Kinoheld):
 
 class City46(Theater):
     # TODO see if methods in City 46 can be refactored
-    """class representing City 46
+    """Theater City 46
 
     Attributes
     ----------
@@ -1128,7 +1163,7 @@ class City46(Theater):
 
 
 class TheaterBremen(Theater):
-    """class representing Theater Bremen
+    """Theater "Theater Bremen"
 
     Attributes
     ----------
@@ -1236,7 +1271,7 @@ class TheaterBremen(Theater):
 
 
 class Schwankhalle(Theater):
-    """class representing Schwankhalle
+    """Theater Schwankhalle
 
     Attributes
     ----------
@@ -1336,7 +1371,7 @@ class Schwankhalle(Theater):
 
 
 class Glocke(Theater):
-    """class representing Glocke
+    """Theater Glocke
 
     Attributes
     ----------
@@ -1461,7 +1496,7 @@ class Glocke(Theater):
 
 
 class Kukoon(Theater):
-    """class representing Kukoon
+    """Theater Kukoon
 
     Attributes
     ----------

@@ -1,3 +1,22 @@
+"""
+helper functions for obtaining htmls and one date guess function
+
+Functions
+---------
+start_driver()
+    start driver for selenium
+close_driver()
+    close driver for selenium
+get_html(url)
+    Obtain source html using requests
+get_html_ajax(url, class_name)
+    Obtain source html from a web page that uses ajax
+get_html_buttons(url, button_classes, overlay_class=None)
+    Obtain source html from a web page where buttons need to be clicked
+parse_date_without_year(*args)
+    Guess the year and return arrow object
+"""
+
 import requests
 import arrow
 import time
@@ -12,6 +31,7 @@ from selenium.webdriver.firefox.options import Options
 
 
 def start_driver():
+    """start driver for selenium"""
     global driver
     firefox_profile = webdriver.FirefoxProfile()
     firefox_profile.set_preference("intl.accept_languages", "de")
@@ -21,10 +41,26 @@ def start_driver():
 
 
 def close_driver():
+    """close driver for selenium"""
     driver.quit()
 
 
+# TODO maybe raising exceptions instead of returning None makes more sense
 def get_html(url):
+    """
+    Obtain source html using requests
+
+    Parameters
+    ----------
+    url: str
+        url to obtain html from
+
+    Returns
+    -------
+    str or None
+        source html
+    """
+
     print("    ...loading web page (requests)")
     try:
         response = requests.get(url)
@@ -41,8 +77,26 @@ def get_html(url):
 
 
 def get_html_ajax(url, class_name):
-    """Get page source code from a web page that uses ajax to load elements of the page one at a time.
-     Selenium will wait for the element with the class name 'class_name' to load before getting the page source"""
+    """
+    Obtain source html from a web page that uses ajax
+
+    ajax causes elements to load after opening the page so requests
+    won't work. Therefore use selenium and wait to be ready.
+
+    Parameters
+    ----------
+    url: str
+        url to obtain html from
+    class_name: str
+        name of the class of the element that should be loaded before
+        the source html is downloaded
+
+    Returns
+    -------
+    str or None
+        source html
+    """
+
     print("    ...loading web page (selenium)")
     try:
         driver.get(url)
@@ -63,14 +117,33 @@ def get_html_ajax(url, class_name):
 
 
 def get_html_buttons(url, button_classes, overlay_class=None):
-    """I need to click some buttons to get all the info in the html. It should wait for the overlay to be gone.
-    button_classes should be a list with the class names of buttons"""
+    """
+    Obtain source html from a web page where buttons need to be clicked
+
+    Requires driver to be started
+
+    Parameters
+    ----------
+    url
+        url to obtain html from
+    button_classes: list
+        names of the classes of the button elements to click
+    overlay_class: str, optional
+        name of the class of an element that should be gone before
+        clicking buttons (default is None)
+
+    Returns
+    -------
+    str or None
+        source html
+    """
+
     print("    ...loading web page and clicking buttons (selenium)")
     try:
         driver.get(url)
         if overlay_class:
-            wait_for_overlay(overlay_class)
-        click_buttons(button_classes)
+            _wait_for_overlay(overlay_class)
+        _click_buttons(button_classes)
         source = driver.page_source
         print("    Retrieved html from: ", url)
         return source
@@ -84,7 +157,24 @@ def get_html_buttons(url, button_classes, overlay_class=None):
         return None
 
 
-def wait_for_overlay(overlay_class):
+def _wait_for_overlay(overlay_class):
+    """
+    let selenium driver wait until an overlay element is gone
+
+    Requires driver to have gotten a page
+
+    Parameters
+    ----------
+    overlay_class: str
+        name of the class of an element that should be gone
+
+    Returns
+    -------
+    bool
+        True when overlay is gone, False when it's still there after
+        10 seconds
+    """
+
     try:
         wait = WebDriverWait(driver, 10)
         wait.until_not(EC.visibility_of_element_located((By.CLASS_NAME, overlay_class)))
@@ -93,24 +183,46 @@ def wait_for_overlay(overlay_class):
         return False
 
 
-def click_buttons(button_classes):
-    """click two button types: one if there is also a trailer, one if there is only info without a trailer
-    button_classes should be a list with the class names of buttons"""
-    buttons = get_buttons(button_classes)
+def _click_buttons(button_classes):
+    """
+    let selenium driver click buttons
+
+    Requires driver to have gotten a page
+
+    Parameters
+    ----------
+    button_classes: list
+        names of the classes of the button elements to click
+    """
+
+    buttons = _get_buttons(button_classes)
     while not buttons:  # sometimes this still needs more time
         time.sleep(1)
-        buttons = get_buttons(button_classes)
-    clicking = try_clicking(buttons[0])
+        buttons = _get_buttons(button_classes)
+    clicking = _try_clicking(buttons[0])
     while not clicking:  # sometimes there are still overlay classes preventing clicking
         time.sleep(1)
-        clicking = try_clicking(buttons[0])
+        clicking = _try_clicking(buttons[0])
     del buttons[0]
     for button in buttons:
         button.click()
 
 
-def get_buttons(button_classes):
-    """button_classes should be a list with the class names of buttons"""
+def _get_buttons(button_classes):
+    """
+    find button elements by class name
+
+    Parameters
+    ----------
+    button_classes: list
+        class of the button elements to click
+
+    Returns
+    -------
+    list or None
+        list with the buttons
+    """
+
     buttons = driver.find_elements_by_class_name(button_classes[0])
     buttons.extend(driver.find_elements_by_class_name(button_classes[1]))
     if buttons:
@@ -119,7 +231,20 @@ def get_buttons(button_classes):
         return None
 
 
-def try_clicking(button):
+def _try_clicking(button):
+    """
+    try clicking buttons
+
+    Parameters
+    ----------
+    button: selenium object
+
+    Returns
+    -------
+    bool
+        Return True when button was clicked, False when it didn't work
+    """
+
     try:
         button.click()
         return True
@@ -128,10 +253,20 @@ def try_clicking(button):
 
 
 def parse_date_without_year(*args):
-    """Guess the year and return arrow object.
-    Assumes that dates don't go back more than 2 months. Useful when year
-    is not available. accepts either an arrow object, or arguments for
-    month, day, hour and minute."""
+    """
+    Guess the year and return arrow object
+
+    Assumes that dates don't go back more than 2 months (and must in
+    that case be in the nearest future). Useful when year is not
+    available.
+
+    Parameters
+    ----------
+    args
+        arrow object, or
+        month, day, hour, minute: ints
+    """
+
     # if arrow object was supplied
     if len(args) == 1 and isinstance(args[0], arrow.arrow.Arrow):
         date_time = args[0]
