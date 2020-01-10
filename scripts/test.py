@@ -29,8 +29,8 @@ p = kultur.CombinedProgram()
 # print(f"combined program: {p.program}")
 #
 # SELECT ONE OF THE TWO
-# p.update_program()
-p.program_from_file()
+p.update_program()
+# p.program_from_file()
 #
 # PRINTING INFO
 print("".center(100, "-"))

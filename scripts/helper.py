@@ -1,5 +1,5 @@
 """
-helper functions for obtaining htmls and one date guess function
+helper functions for obtaining htmls and parsing html
 
 Functions
 ---------
@@ -28,6 +28,7 @@ from selenium.common.exceptions import TimeoutException
 from selenium.common.exceptions import WebDriverException
 from selenium.common.exceptions import ElementClickInterceptedException
 from selenium.webdriver.firefox.options import Options
+from itertools import chain
 
 
 def start_driver():
@@ -287,3 +288,30 @@ def parse_date_without_year(*args):
         return date_time.replace(year=date_time.year + 1)
     else:
         return date_time
+
+
+def list_nested_tag(soup_resultset, element_name):
+    """
+    list soup tags that are hidden in a nested soup ResultSet structure
+
+    this approach prevents list within lists as results
+    For instance:
+    soup = soup.find_all('table')
+    elements = list_nested_tag(soup, 'tr')
+
+    Parameters
+    ----------
+    soup_resultset: bs4.element.ResultSet
+        result of a soup.find_all()
+    element_name: str
+        name of tag to search in the soup result set
+
+    Returns
+    -------
+    list
+        list of bs4.element.Tag that was searched for
+    """
+
+    nested_element = [x.find_all(element_name) for x in soup_resultset]
+    return list(chain.from_iterable(nested_element))
+

@@ -18,6 +18,8 @@ Theater
     Base class for classes representing different theaters
 Kinoheld(Theater)
     Theaters that use the Kinoheld website
+Filmkunst(Kinoheld):
+    Theaters from Filmkunst (Schauburg, Gondel, Atlantis)
 CinemaOstertor(Kinoheld)
     Theater Cinema Ostertor
 City46(Theater)
@@ -62,40 +64,40 @@ class CombinedProgram:
     """
 
     def __init__(self):
-        schauburg = Kinoheld(
-            name="Schauburg",
-            url="http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
-            url_program_scrape="https://www.kinoheld.de/kino-bremen/schauburg-kino-bremen/shows/shows?mode=widget",
-            url_meta="https://www.kinoheld.de/kino-bremen/schauburg-kino-bremen/shows/movies?mode=widget",
-        )
-        gondel = Kinoheld(
-            name="Gondel",
-            url="http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
-            url_program_scrape="https://www.kinoheld.de/kino-bremen/gondel-filmtheater-bremen/shows/shows?mode=widget",
-            url_meta="https://www.kinoheld.de/kino-bremen/gondel-filmtheater-bremen/shows/movies?mode=widget",
-        )
-        atlantis = Kinoheld(
-            name="Atlantis",
-            url="http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
-            url_program_scrape="https://www.kinoheld.de/kino-bremen/atlantis-filmtheater-bremen/shows/shows?mode=widget",
-            url_meta="https://www.kinoheld.de/kino-bremen/atlantis-filmtheater-bremen/shows/movies?mode=widget",
-        )
-        cinema_ostertor = CinemaOstertor()
+        # schauburg = Filmkunst(
+        #     name="Schauburg",
+        #     url="http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+        #     url_program_scrape="https://www.kinoheld.de/kino-bremen/schauburg-kino-bremen/shows/shows?mode=widget",
+        #     url_meta="https://www.kinoheld.de/kino-bremen/schauburg-kino-bremen/shows/movies?mode=widget",
+        # )
+        # gondel = Filmkunst(
+        #     name="Gondel",
+        #     url="http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
+        #     url_program_scrape="https://www.kinoheld.de/kino-bremen/gondel-filmtheater-bremen/shows/shows?mode=widget",
+        #     url_meta="https://www.kinoheld.de/kino-bremen/gondel-filmtheater-bremen/shows/movies?mode=widget",
+        # )
+        # atlantis = Filmkunst(
+        #     name="Atlantis",
+        #     url="http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
+        #     url_program_scrape="https://www.kinoheld.de/kino-bremen/atlantis-filmtheater-bremen/shows/shows?mode=widget",
+        #     url_meta="https://www.kinoheld.de/kino-bremen/atlantis-filmtheater-bremen/shows/movies?mode=widget",
+        # )
+        # cinema_ostertor = CinemaOstertor()
         city_46 = City46()
-        theater_bremen = TheaterBremen()
-        schwankhalle = Schwankhalle()
-        glocke = Glocke()
-        kukoon = Kukoon()
+        # theater_bremen = TheaterBremen()
+        # schwankhalle = Schwankhalle()
+        # glocke = Glocke()
+        # kukoon = Kukoon()
         self.theaters = [
-            schauburg,
-            gondel,
-            atlantis,
-            cinema_ostertor,
+            # schauburg,
+            # gondel,
+            # atlantis,
+            # cinema_ostertor,
             city_46,
-            theater_bremen,
-            schwankhalle,
-            glocke,
-            kukoon,
+            # theater_bremen,
+            # schwankhalle,
+            # glocke,
+            # kukoon,
         ]
         self.program = Program()
 
@@ -570,7 +572,7 @@ class Theater:
         For each show in self.program, add the key "is_probably_dubbed_film",
         with the value True or False.
         """
-        if self.name in ["Schauburg", "Gondel", "Atlantis", "Cinema Ostertor"]:
+        if self.name not in ["Schauburg", "Gondel", "Atlantis", "Cinema Ostertor"]:
             return
         for s in self.program:
             if self._film_is_probably_dubbed(s):
@@ -596,7 +598,7 @@ class Theater:
             True when film is probably dubbed
         """
 
-        if show["language_version"]:  # OMUs and OV
+        if show.get("language_version", False):  # OMUs and OV
             return False
         elif self._is_german(show["title"]):  # should be in child
             return False
@@ -607,7 +609,8 @@ class Theater:
         """
         evaluates if the movie is likely to be german
 
-        Note: this is a dummy method that should be overridden by child classes
+        movie is considered german when it's made in a german speaking country
+        and the title and original title are equal
 
         Parameters
         ----------
@@ -619,8 +622,19 @@ class Theater:
         bool
             returns True when the movie is likely to be german
         """
-        print("Note! _is_german() should be present in the child class")
-        return False
+
+        show_metainfo = self.meta_info.get(title)
+        if not show_metainfo:
+            # todo raise exception
+            return False
+        country = show_metainfo["country"].lower()
+        if re.search("deutschland|sterreich|schweiz", country):
+            title = show_metainfo.get("title")
+            title_original = show_metainfo.get("title_original")
+            if title == title_original:
+                return True
+        else:
+            return False
 
 
 class Kinoheld(Theater):
@@ -651,7 +665,7 @@ class Kinoheld(Theater):
             update self.program of movie theaters to annotate probably dubbed films
         """
 
-    def __init__(self, name, url, url_program_scrape, url_meta):
+    def __init__(self, name, url, url_program_scrape):
         """
         Parameters
         ----------
@@ -661,13 +675,10 @@ class Kinoheld(Theater):
             url to the homepage of the theater
         url_program_scrape: str
             url to the program used for scraping the program
-        url_meta: str
-            url used for scraping the meta info
         """
 
         super().__init__(name, url)
         self.url_program_scrape = url_program_scrape
-        self.url_meta = url_meta
 
     def _get_shows(self):
         """
@@ -722,6 +733,52 @@ class Kinoheld(Theater):
             show_list.append(show)
         return show_list
 
+
+class Filmkunst(Kinoheld):
+    """Theaters from Filmkunst (Schauburg, Gondel, Atlantis)
+
+            Attributes
+            ----------
+            name : str
+                the name of the theater
+            url : str
+                url to the homepage of the theater
+            program : Program()
+                A program object containing the program of the theater, or an empty Program()
+            meta_info : MetaInfo()
+                Containing the meta info of the shows in the theater, or an empty MetaInfo()
+            url_program_scrape: str
+                url to the program used for scraping the program
+            url_meta: str
+                url used for scraping the meta info
+
+            Methods
+            -------
+            update_program()
+                update the program of this theater by web scraping
+            update_meta_info()
+                update the meta info of this theater by web scraping
+            annotate_dubbed_films()
+                update self.program of movie theaters to annotate probably dubbed films
+            """
+
+    def __init__(self, name, url, url_program_scrape, url_meta):
+        """
+        Parameters
+        ----------
+        name : str
+            the name of the theater
+        url : str
+            url to the homepage of the theater
+        url_program_scrape: str
+            url to the program used for scraping the program
+        url_meta: str
+            url used for scraping the meta info
+        """
+
+        super().__init__(name, url, url_program_scrape)
+        self.url_meta = url_meta
+
     def update_meta_info(self):
         """
         update self.meta_info by web scraping
@@ -738,13 +795,14 @@ class Kinoheld(Theater):
             meta = self._extract_meta(html)
             self.meta_info = MetaInfo(meta)
         except (TypeError, AttributeError, ValueError):
-            print(
-                f"Note! Meta info from {self.name} was not updated because of an error"
-            )
+            statement = f"Note! Meta info from {self.name} was not updated because of an error"
+            print(statement)
 
     def _extract_meta(self, html):
         """
         update self.meta_info by web scraping
+
+        note: metainfo["country"] is lazily the first 100 characters of description.
 
         Parameters
         ----------
@@ -762,70 +820,36 @@ class Kinoheld(Theater):
         films = soup.find_all("article")
         for film in films:
             try:
-                dl = film.find(class_="movie__additional-data").find("dl")
-                dt = [tag.text.strip().lower() for tag in dl.find_all("dt")]
-                dd = [tag.text.strip() for tag in dl.find_all("dd")]
-                meta_film = {"title": dd[dt.index("titel")]}
-                if "originaltitel" in dt:
-                    meta_film["title_original"] = dd[dt.index("originaltitel")]
-                if "produktion" in dt:
-                    meta_film["country"] = (
-                        dd[dt.index("produktion")][:-4].strip().rstrip(",")
-                    )
-                if "erscheinungsdatum" in dt:
-                    meta_film["year"] = dd[dt.index("erscheinungsdatum")][-4:]
-                if "regie" in dt:
-                    meta_film["director"] = dd[dt.index("regie")]
-                if "darsteller" in dt:
-                    meta_film["actors"] = dd[dt.index("darsteller")]
-                meta_film["description"] = film.find(
-                    "div", class_="movie__info-description"
-                ).text
-                img_screenshot = film.find("div", class_="movie__scenes")
-                if img_screenshot:
-                    img_screenshot = img_screenshot.find_all("img")
-                    meta_film["img_screenshot"] = [
-                        img.get("data-src").strip() for img in img_screenshot
-                    ]
-                img_poster = film.find("div", class_="movie__image")
-                if img_poster:
-                    img_poster = img_poster.find("img").get("src").strip()
-                    meta_film["img_poster"] = f"https://www.kinoheld.de{img_poster}"
-                meta_info[meta_film["title"]] = meta_film
+                dls = film.find_all("dl")
+                dt = [t.text.strip().lower() for t in helper.list_nested_tag(dls, "dt")]
+                dd = [t.text.strip() for t in helper.list_nested_tag(dls, "dd")]
+                description = film.find("div", class_="movie__info-description").text
+                meta_film = {"title": dd[dt.index("titel")],
+                             "description": description,
+                             }
             except AttributeError:  # in case there is not enough information for the meta database, such as no <dd>
-                pass
+                continue
+            meta_film["country"] = meta_film["description"][0:100]
+            if "dauer" in dt:
+                meta_film["duration"] = dd[dt.index("dauer")]
+            if "genre" in dt:
+                meta_film["genre"] = dd[dt.index("genre")]
+            if "originaltitel" in dt:
+                meta_film["title_original"] = dd[dt.index("originaltitel")]
+            if "erscheinungsdatum" in dt:
+                meta_film["year"] = dd[dt.index("erscheinungsdatum")][-4:]
+            img_screenshot = film.find("div", class_="movie__scenes")
+            if img_screenshot:
+                img_screenshot = img_screenshot.find_all("img")
+                meta_film["img_screenshot"] = [
+                    img.get("data-src").strip() for img in img_screenshot
+                ]
+            img_poster = film.find("div", class_="movie__image")
+            if img_poster:
+                img_poster = img_poster.find("img").get("src").strip()
+                meta_film["img_poster"] = f"https://www.kinoheld.de{img_poster}"
+            meta_info[meta_film["title"]] = meta_film
         return meta_info
-
-    def _is_german(self, title):
-        """
-        evaluates if the movie is likely to be german
-
-        Parameters
-        ----------
-        title: str
-            title of a show (as used in Program() or MetaInfo())
-
-        Returns
-        -------
-        bool
-            returns True when the movie is likely to be german
-        """
-
-        try:
-            # TODO only the country statement should be different in different functions
-            # this info is hidden in the first part of the description
-            country = self.meta_info.get(title)["description"][0:100].lower()
-            # Otherwise if it is made in a german speaking country chances are it's not dubbed
-            if "deutschland" in country:
-                return True
-            elif "österreich" in country:
-                return True
-            elif "schweiz" in country:
-                return True
-            else:
-                return False
-        except KeyError:
-            return False
 
 
 class CinemaOstertor(Kinoheld):
@@ -863,8 +887,8 @@ class CinemaOstertor(Kinoheld):
             name="Cinema Ostertor",
             url=url,
             url_program_scrape="https://www.kinoheld.de/kino-bremen/cinema-im-ostertor-bremen/shows/shows?mode=widget",
-            url_meta=url,
         )
+        self.url_meta = url
 
     def update_meta_info(self):
         """
@@ -982,36 +1006,6 @@ class CinemaOstertor(Kinoheld):
         meta_film["img_poster"] = poster.find("img").get("src").strip()
         meta_film["description"] = soup.find("p").text
         return meta_film
-
-    def _is_german(self, title):
-        """
-        evaluates if the movie is likely to be german
-
-        Parameters
-        ----------
-        title: str
-            title of a show (as used in Program() or MetaInfo())
-
-        Returns
-        -------
-        bool
-            returns True when the movie is likely to be german
-        """
-
-        try:
-            # TODO also check for title and original title if this is passed
-            country = self.meta_info.get(title)["country"].lower()
-            # Otherwise if it is made in a german speaking country chances are it's not dubbed
-            if "deutschland" in country:
-                return True
-            elif "österreich" in country:
-                return True
-            elif "schweiz" in country:
-                return True
-            else:
-                return False
-        except KeyError:
-            return False
 
 
 class City46(Theater):
