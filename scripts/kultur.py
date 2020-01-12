@@ -64,40 +64,40 @@ class CombinedProgram:
     """
 
     def __init__(self):
-        # schauburg = Filmkunst(
-        #     name="Schauburg",
-        #     url="http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
-        #     url_program_scrape="https://www.kinoheld.de/kino-bremen/schauburg-kino-bremen/shows/shows?mode=widget",
-        #     url_meta="https://www.kinoheld.de/kino-bremen/schauburg-kino-bremen/shows/movies?mode=widget",
-        # )
-        # gondel = Filmkunst(
-        #     name="Gondel",
-        #     url="http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
-        #     url_program_scrape="https://www.kinoheld.de/kino-bremen/gondel-filmtheater-bremen/shows/shows?mode=widget",
-        #     url_meta="https://www.kinoheld.de/kino-bremen/gondel-filmtheater-bremen/shows/movies?mode=widget",
-        # )
-        # atlantis = Filmkunst(
-        #     name="Atlantis",
-        #     url="http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
-        #     url_program_scrape="https://www.kinoheld.de/kino-bremen/atlantis-filmtheater-bremen/shows/shows?mode=widget",
-        #     url_meta="https://www.kinoheld.de/kino-bremen/atlantis-filmtheater-bremen/shows/movies?mode=widget",
-        # )
-        # cinema_ostertor = CinemaOstertor()
+        schauburg = Filmkunst(
+            name="Schauburg",
+            url="http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+            url_program_scrape="https://www.kinoheld.de/kino-bremen/schauburg-kino-bremen/shows/shows?mode=widget",
+            url_meta="https://www.kinoheld.de/kino-bremen/schauburg-kino-bremen/shows/movies?mode=widget",
+        )
+        gondel = Filmkunst(
+            name="Gondel",
+            url="http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
+            url_program_scrape="https://www.kinoheld.de/kino-bremen/gondel-filmtheater-bremen/shows/shows?mode=widget",
+            url_meta="https://www.kinoheld.de/kino-bremen/gondel-filmtheater-bremen/shows/movies?mode=widget",
+        )
+        atlantis = Filmkunst(
+            name="Atlantis",
+            url="http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
+            url_program_scrape="https://www.kinoheld.de/kino-bremen/atlantis-filmtheater-bremen/shows/shows?mode=widget",
+            url_meta="https://www.kinoheld.de/kino-bremen/atlantis-filmtheater-bremen/shows/movies?mode=widget",
+        )
+        cinema_ostertor = CinemaOstertor()
         city_46 = City46()
-        # theater_bremen = TheaterBremen()
-        # schwankhalle = Schwankhalle()
-        # glocke = Glocke()
-        # kukoon = Kukoon()
+        theater_bremen = TheaterBremen()
+        schwankhalle = Schwankhalle()
+        glocke = Glocke()
+        kukoon = Kukoon()
         self.theaters = [
-            # schauburg,
-            # gondel,
-            # atlantis,
-            # cinema_ostertor,
+            schauburg,
+            gondel,
+            atlantis,
+            cinema_ostertor,
             city_46,
-            # theater_bremen,
-            # schwankhalle,
-            # glocke,
-            # kukoon,
+            theater_bremen,
+            schwankhalle,
+            glocke,
+            kukoon,
         ]
         self.program = Program()
 
@@ -1096,7 +1096,8 @@ class City46(Theater):
         """the program table is made of several tables that should be combined"""
 
         soup = bs4.BeautifulSoup(html, "html.parser")
-        table = soup.find_all('div', id=re.compile(r'c367\d\d'))  # relevant tables have an id number starting with 367
+        table = soup.find_all('table')
+        table.pop(0)
         table = [t.find_all('tr') for t in table]
         table = list(chain.from_iterable(table))  # unnest the lists to make one big table
         return table
