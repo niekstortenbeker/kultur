@@ -27,8 +27,7 @@ import helper
 import bs4
 import arrow
 import re
-
-from program import Program, MetaInfo
+import program as p
 
 
 class Theater:
@@ -72,8 +71,8 @@ class Theater:
 
         self.name = name
         self.url = url
-        self.program = Program()
-        self.meta_info = MetaInfo()
+        self.program = p.Program()
+        self.meta_info = p.MetaInfo()
 
     def __repr__(self):
         return f"Theater({self.name, self.url})"
@@ -91,11 +90,11 @@ class Theater:
         print(f"\n updating program {self.name}")
         try:
             shows = self._get_shows()
-            self.program = Program(shows)
+            self.program = p.Program(shows)
             self.program.sort()
-        except (TypeError, AttributeError, ValueError) as e:
+        except Exception as e:
             print(
-                f"Note! Program from {self.name} was not updated because of an error: {e}"
+                f"Note! Program from {self.name} was not updated because of an error {e}"
             )
 
     def _get_shows(self):
@@ -134,10 +133,14 @@ class Theater:
         if self.name not in ["Schauburg", "Gondel", "Atlantis", "Cinema Ostertor"]:
             return
         for s in self.program:
-            if self._film_is_probably_dubbed(s):
+            try:
+                if self._film_is_probably_dubbed(s):
+                    s["is_probably_dubbed_film"] = True
+                else:
+                    s["is_probably_dubbed_film"] = False
+            except AttributeError as e:
                 s["is_probably_dubbed_film"] = True
-            else:
-                s["is_probably_dubbed_film"] = False
+                print(f"    \"{s.get('title')}\" | {s.get('date_time').date} was set to be a dubbed movie due to missing data ({e})")
 
     def _film_is_probably_dubbed(self, show):
         """
@@ -176,6 +179,11 @@ class Theater:
         title: str
             title of a show (as used in Program() or MetaInfo())
 
+        Raises
+        ------
+        AttributeError
+            when no meta information is found
+
         Returns
         -------
         bool
@@ -184,14 +192,15 @@ class Theater:
 
         show_metainfo = self.meta_info.get(title)
         if not show_metainfo:
-            # todo raise exception
-            return False
+            raise AttributeError('No meta info found')
         country = show_metainfo["country"].lower()
         if re.search("deutschland|sterreich|schweiz", country):
             title = show_metainfo.get("title")
             title_original = show_metainfo.get("title_original")
             if title == title_original:
                 return True
+            else:
+                return False
         else:
             return False
 
@@ -349,12 +358,12 @@ class Filmkunst(Kinoheld):
             "ui-button.ui-corners-bottom.ui-ripple.ui-button--secondary.u-flex-grow-1",
         ]
         overlay_class = "overlay-container"
-        html = helper.get_html_buttons(self.url_meta, button_classes, overlay_class)
         try:
+            html = helper.get_html_buttons(self.url_meta, button_classes, overlay_class)
             meta = self._extract_meta(html)
-            self.meta_info = MetaInfo(meta)
-        except (TypeError, AttributeError, ValueError):
-            statement = f"Note! Meta info from {self.name} was not updated because of an error"
+            self.meta_info = p.MetaInfo(meta)
+        except Exception as e:
+            statement = f"Note! Meta info from {self.name} was not updated because of an error. {e}"
             print(statement)
 
     def _extract_meta(self, html):
@@ -374,6 +383,7 @@ class Filmkunst(Kinoheld):
             A dictionary that can be used as shows attribute of a MetaInfo()
         """
 
+        # Fixme: I'm missing a lot with atlantis
         meta_info = {}
         soup = bs4.BeautifulSoup(html, "html.parser")
         films = soup.find_all("article")
@@ -406,7 +416,7 @@ class Filmkunst(Kinoheld):
             img_poster = film.find("div", class_="movie__image")
             if img_poster:
                 img_poster = img_poster.find("img").get("src").strip()
-                meta_film["img_poster"] = f"https://www.kinoheld.de{img_poster}"
+                meta_film["img_poster"] = f"{img_poster}"
             meta_info[meta_film["title"]] = meta_film
         return meta_info
 
@@ -461,11 +471,10 @@ class CinemaOstertor(Kinoheld):
         try:
             urls = self._get_meta_urls()
             meta = self._extract_meta(urls)
-            self.meta_info = MetaInfo(meta)
-        except (TypeError, AttributeError, ValueError):
-            print(
-                f"Note! meta info from {self.name} was not updated because of an error"
-            )
+            self.meta_info = p.MetaInfo(meta)
+        except Exception as e:
+            statement = f"Note! Meta info from {self.name} was not updated because of an error. {e}"
+            print(statement)
 
     def _get_meta_urls(self):
         """
@@ -477,6 +486,7 @@ class CinemaOstertor(Kinoheld):
             a set of urls as str
         """
 
+        # fixme I don't think I'm gettin all the links
         html = helper.get_html(self.url_meta)
         soup = bs4.BeautifulSoup(html, "html.parser")
         urls = [
@@ -1003,7 +1013,6 @@ class Glocke(Theater):
             date_time, location_details = self._get_date_time_and_location_details(s)
             show["date_time"] = date_time
             show["location_details"] = location_details
-            # TODO can this be in less lines
             title = str(s.find("h2")).strip()
             title = title.replace("<h2>", "")
             title = title.replace("</h2>", "")

@@ -24,7 +24,6 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import TimeoutException
 from selenium.common.exceptions import WebDriverException
 from selenium.common.exceptions import ElementClickInterceptedException
 from selenium.webdriver.firefox.options import Options
@@ -46,7 +45,6 @@ def close_driver():
     driver.quit()
 
 
-# TODO maybe raising exceptions instead of returning None makes more sense
 def get_html(url):
     """
     Obtain source html using requests
@@ -56,6 +54,11 @@ def get_html(url):
     url: str
         url to obtain html from
 
+    Raises
+    ------
+    ConnectionError
+        when a 404 or requests ConnectionError
+
     Returns
     -------
     str or None
@@ -63,18 +66,12 @@ def get_html(url):
     """
 
     print("    ...loading web page (requests)")
-    try:
-        response = requests.get(url)
-        if response.status_code == 404:
-            print("    tried but failed to retrieve html from: ", url)
-            return None
-        else:
-            print("    Retrieved html from: ", url)
-            return response.text
-    except requests.exceptions.ConnectionError as e:
-        print("    Error! Connection error: {}".format(e))
-        print("    the script is aborted")
-        return None
+    response = requests.get(url)
+    if response.status_code == 404:
+        raise ConnectionError('received a 404')
+    else:
+        print("    Retrieved html from: ", url)
+        return response.text
 
 
 def get_html_ajax(url, class_name):
@@ -92,6 +89,11 @@ def get_html_ajax(url, class_name):
         name of the class of the element that should be loaded before
         the source html is downloaded
 
+    Raises
+    ------
+    ConnectionError
+        when timeout or webdriver exception
+
     Returns
     -------
     str or None
@@ -99,22 +101,13 @@ def get_html_ajax(url, class_name):
     """
 
     print("    ...loading web page (selenium)")
-    try:
-        driver.get(url)
-        WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located((By.CLASS_NAME, class_name))
-        )
-        source = driver.page_source
-        print("    Retrieved html from: ", url)
-        return source
-    except TimeoutException:
-        print("    Error! Selenium Timeout: {}".format(url))
-        print("    tried but failed to retrieve html from: ", url)
-        return None
-    except WebDriverException as e:
-        print("    Error! Selenium Exception. {}".format(str(e)))
-        print("    tried but failed to retrieve html from: ", url)
-        return None
+    driver.get(url)
+    WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.CLASS_NAME, class_name))
+    )
+    source = driver.page_source
+    print("    Retrieved html from: ", url)
+    return source
 
 
 def get_html_buttons(url, button_classes, overlay_class=None):
@@ -133,6 +126,11 @@ def get_html_buttons(url, button_classes, overlay_class=None):
         name of the class of an element that should be gone before
         clicking buttons (default is None)
 
+    Raises
+    ------
+    ConnectionError
+        when Timout exception or webdriver exception
+
     Returns
     -------
     str or None
@@ -140,22 +138,14 @@ def get_html_buttons(url, button_classes, overlay_class=None):
     """
 
     print("    ...loading web page and clicking buttons (selenium)")
-    try:
-        driver.get(url)
-        if overlay_class:
-            _wait_for_overlay(overlay_class)
-        _click_buttons(button_classes)
-        source = driver.page_source
-        print("    Retrieved html from: ", url)
-        return source
-    except TimeoutException:
-        print("    Error! Selenium Timeout: {}".format(url))
-        print("    tried but failed to retrieve html from: ", url)
-        return None
-    except WebDriverException as e:
-        print("    Error! Selenium Exception. {}".format(str(e)))
-        print("    tried but failed to retrieve html from: ", url)
-        return None
+    driver.get(url)
+    if overlay_class:
+        _wait_for_overlay(overlay_class)
+    _click_buttons(button_classes)
+    source = driver.page_source
+    print("    Retrieved html from: ", url)
+    return source
+
 
 
 def _wait_for_overlay(overlay_class):
@@ -196,6 +186,7 @@ def _click_buttons(button_classes):
         names of the classes of the button elements to click
     """
 
+    # todo: these while loops are maybe not great when connection fails
     buttons = _get_buttons(button_classes)
     while not buttons:  # sometimes this still needs more time
         time.sleep(1)

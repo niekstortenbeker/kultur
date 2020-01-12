@@ -20,7 +20,7 @@ import copy
 import arrow
 import file
 import helper
-from theater import Filmkunst, CinemaOstertor, City46, TheaterBremen, Schwankhalle, Glocke, Kukoon
+import theater as t
 
 
 class CombinedProgram:
@@ -44,30 +44,30 @@ class CombinedProgram:
     """
 
     def __init__(self):
-        schauburg = Filmkunst(
+        schauburg = t.Filmkunst(
             name="Schauburg",
             url="http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
             url_program_scrape="https://www.kinoheld.de/kino-bremen/schauburg-kino-bremen/shows/shows?mode=widget",
             url_meta="https://www.kinoheld.de/kino-bremen/schauburg-kino-bremen/shows/movies?mode=widget",
         )
-        gondel = Filmkunst(
+        gondel = t.Filmkunst(
             name="Gondel",
             url="http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
             url_program_scrape="https://www.kinoheld.de/kino-bremen/gondel-filmtheater-bremen/shows/shows?mode=widget",
             url_meta="https://www.kinoheld.de/kino-bremen/gondel-filmtheater-bremen/shows/movies?mode=widget",
         )
-        atlantis = Filmkunst(
+        atlantis = t.Filmkunst(
             name="Atlantis",
             url="http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
             url_program_scrape="https://www.kinoheld.de/kino-bremen/atlantis-filmtheater-bremen/shows/shows?mode=widget",
             url_meta="https://www.kinoheld.de/kino-bremen/atlantis-filmtheater-bremen/shows/movies?mode=widget",
         )
-        cinema_ostertor = CinemaOstertor()
-        city_46 = City46()
-        theater_bremen = TheaterBremen()
-        schwankhalle = Schwankhalle()
-        glocke = Glocke()
-        kukoon = Kukoon()
+        cinema_ostertor = t.CinemaOstertor()
+        city_46 = t.City46()
+        theater_bremen = t.TheaterBremen()
+        schwankhalle = t.Schwankhalle()
+        glocke = t.Glocke()
+        kukoon = t.Kukoon()
         self.theaters = [
             schauburg,
             gondel,
