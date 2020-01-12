@@ -1,7 +1,6 @@
-import kultur
 import helper
 import program
-import program as pro
+import run as pro
 
 # city46 = kultur.City46()
 # city46.update_program()

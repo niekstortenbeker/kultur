@@ -1,5 +1,5 @@
 """
-Collect (web scraping) and combine programs from theaters in Bremen
+Classes related to the program
 
 It is probably best to interact with this module using CombinedProgram.
 A CombinedProgram has a Program containing shows from all theaters, and
