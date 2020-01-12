@@ -1,5 +1,6 @@
 import kultur
 import helper
+import program
 import program as pro
 
 # city46 = kultur.City46()
@@ -24,7 +25,7 @@ import program as pro
 # finally:
     # helper.close_driver()
 
-p = kultur.CombinedProgram()
+p = program.CombinedProgram()
 # print(f"program / theater: {[t.program for t in p.theaters]}")
 # print(f"combined program: {p.program}")
 #
