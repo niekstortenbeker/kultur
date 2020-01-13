@@ -36,7 +36,7 @@ def start_driver():
     firefox_profile = webdriver.FirefoxProfile()
     firefox_profile.set_preference("intl.accept_languages", "de")
     options = Options()
-    options.headless = True
+    # options.headless = True
     driver = webdriver.Firefox(options=options, firefox_profile=firefox_profile)
 
 
@@ -147,7 +147,6 @@ def get_html_buttons(url, button_classes, overlay_class=None):
     return source
 
 
-
 def _wait_for_overlay(overlay_class):
     """
     let selenium driver wait until an overlay element is gone
@@ -187,6 +186,8 @@ def _click_buttons(button_classes):
     """
 
     # todo: these while loops are maybe not great when connection fails
+    # first make sure all overlay classes are gone
+    # which I don't know by name, hence the messy code
     buttons = _get_buttons(button_classes)
     while not buttons:  # sometimes this still needs more time
         time.sleep(1)
@@ -195,7 +196,9 @@ def _click_buttons(button_classes):
     while not clicking:  # sometimes there are still overlay classes preventing clicking
         time.sleep(1)
         clicking = _try_clicking(buttons[0])
-    del buttons[0]
+    _try_clicking(buttons[0])  # reset clicked button
+    # second get the buttons again now that all overlays are gone
+    buttons = _get_buttons(button_classes)
     for button in buttons:
         button.click()
 
@@ -214,9 +217,9 @@ def _get_buttons(button_classes):
     list or None
         list with the buttons
     """
-
-    buttons = driver.find_elements_by_class_name(button_classes[0])
-    buttons.extend(driver.find_elements_by_class_name(button_classes[1]))
+    buttons = []
+    for button_class in button_classes:
+        buttons.extend(driver.find_elements_by_class_name(button_class))
     if buttons:
         return buttons
     else:

@@ -384,7 +384,6 @@ class Filmkunst(Kinoheld):
             A dictionary that can be used as shows attribute of a MetaInfo()
         """
 
-        # Fixme: I'm missing a lot with atlantis
         meta_info = {}
         soup = bs4.BeautifulSoup(html, "html.parser")
         films = soup.find_all("article")
