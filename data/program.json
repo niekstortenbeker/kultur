@@ -1,24 +1,6 @@
 {
   "Schauburg": [
     {
-      "date_time": "2020-01-13T12:00:00+01:00",
-      "title": "Als Hitler das rosa Kaninchen stahl",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13259?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
-      "location": "Schauburg",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2020-01-13T14:15:00+01:00",
-      "title": "Judy",
-      "language_version": "OmU",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13305?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
-      "location": "Schauburg",
-      "is_probably_dubbed_film": false
-    },
-    {
       "date_time": "2020-01-13T15:30:00+01:00",
       "title": "Als Hitler das rosa Kaninchen stahl",
       "language_version": "",
@@ -1192,15 +1174,6 @@
     }
   ],
   "Atlantis": [
-    {
-      "date_time": "2020-01-13T14:00:00+01:00",
-      "title": "Der geheime Roman des Monsieur Pick",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/5090?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
-      "location": "Atlantis",
-      "is_probably_dubbed_film": true
-    },
     {
       "date_time": "2020-01-13T16:00:00+01:00",
       "title": "The Farewell",
@@ -2491,7 +2464,7 @@
       "title": "Motherload",
       "location": "City 46",
       "info": "USA 2019, engl.. Vermietung",
-      "link_info": "http://www.city46.de/programm/januar-2020/vermietung.html#c37255",
+      "link_info": "http://www.city46.de/programm/januar-2020/motherload.html#c37255",
       "language_version": "OF"
     },
     {
@@ -2705,7 +2678,7 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2158#termine",
       "price": "5 \u20ac",
       "title": "Kultur on Tour",
-      "info": "\u00dcber die Sch\u00e4dlichkeit des Tabaks. von Jugendtheater KRUG-2 (Krasnosnamensk, Russland)",
+      "info": "\u00dcber die Sch\u00e4dlichkeit des Tabaks / von Jugendtheater KRUG-2 (Krasnosnamensk, Russland)",
       "location": "Theater Bremen"
     },
     {
@@ -2714,7 +2687,7 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2157#termine",
       "price": "5 \u20ac",
       "title": "Kultur on Tour",
-      "info": "Blondi. von ProEnglish Theatre (Kiew, Ukraine)",
+      "info": "Blondi / von ProEnglish Theatre (Kiew, Ukraine)",
       "location": "Theater Bremen"
     },
     {
@@ -2723,7 +2696,7 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2159#termine",
       "price": "5 \u20ac",
       "title": "Kultur on Tour",
-      "info": "Alle Wege f\u00fchren ins Nirgendwo. von Theaterstudio Goroshini (Sankt Petersburg, Russland)",
+      "info": "Alle Wege f\u00fchren ins Nirgendwo / von Theaterstudio Goroshini (Sankt Petersburg, Russland)",
       "location": "Theater Bremen"
     },
     {
@@ -2732,7 +2705,7 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2160#termine",
       "price": "5 \u20ac",
       "title": "Kultur on Tour",
-      "info": "AUTSCH!. von Theater 11 (Bremen)",
+      "info": "AUTSCH! / von Theater 11 (Bremen)",
       "location": "Theater Bremen"
     },
     {
@@ -2741,7 +2714,7 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2161#termine",
       "price": "5 \u20ac",
       "title": "Kultur on Tour",
-      "info": "Eine Erz\u00e4hlung, die nicht geschrieben wurde. von Theater Trikster (Moskau, Russland)",
+      "info": "Eine Erz\u00e4hlung, die nicht geschrieben wurde / von Theater Trikster (Moskau, Russland)",
       "location": "Theater Bremen"
     },
     {
@@ -2750,7 +2723,7 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2040#termine",
       "price": "56 / 49 / 44 / 38 / 29 / 18 \u20ac / 9 \u20ac erm.",
       "title": "Lazarus",
-      "info": "Ein Musical von David Bowie und Enda Walsh. Nach dem Roman \u201eThe Man Who Fell to Earth\u201c von Walter Tevis. Deutsch von Peter Torberg",
+      "info": "Ein Musical von David Bowie und Enda Walsh / Nach dem Roman \u201eThe Man Who Fell to Earth\u201c von Walter Tevis / Deutsch von Peter Torberg",
       "location": "Theater Bremen"
     },
     {
@@ -2759,7 +2732,7 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=1692#termine",
       "price": "20 / 17 / 15 / 13 / 10 / 8 \u20ac",
       "title": "Die rote Zora und ihre Bande",
-      "info": "Urauff\u00fchrung. 6+. von John von D\u00fcffel. nach dem Roman von Kurt Held. Karten f\u00fcr Vormittagsvorstellungen f\u00fcr Schulklassen erhalten Sie beim Service f\u00fcr Schulen und Gruppen unter Tel 0421\u20093653-340, Fax 0421\u20093653-934 oder schulen@theaterbremen.de ",
+      "info": "Urauff\u00fchrung / 6+ / von John von D\u00fcffel / nach dem Roman von Kurt Held / Karten f\u00fcr Vormittagsvorstellungen f\u00fcr Schulklassen erhalten Sie beim Service f\u00fcr Schulen und Gruppen unter Tel 0421\u20093653-340, Fax 0421\u20093653-934 oder schulen@theaterbremen.de ",
       "location": "Theater Bremen"
     },
     {
@@ -2768,7 +2741,7 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2163#termine",
       "price": "5 \u20ac",
       "title": "Kultur on Tour",
-      "info": "Die beste Methode mit dem Rauchen aufzuh\u00f6ren. von Prager Theaterstudio PDD (Prag, Tschechien)",
+      "info": "Die beste Methode mit dem Rauchen aufzuh\u00f6ren / von Prager Theaterstudio PDD (Prag, Tschechien)",
       "location": "Theater Bremen"
     },
     {
@@ -2777,7 +2750,7 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2164#termine",
       "price": "5 \u20ac",
       "title": "Kultur on Tour",
-      "info": "Karpuscha Forever. von Theaterstudio Parallel (Baranowitschi, Wei\u00dfrussland) ",
+      "info": "Karpuscha Forever / von Theaterstudio Parallel (Baranowitschi, Wei\u00dfrussland) ",
       "location": "Theater Bremen"
     },
     {
@@ -2795,7 +2768,7 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2162#termine",
       "price": "5 \u20ac",
       "title": "Kultur on Tour",
-      "info": "CHRMSA. von Theaterstudio Kumkuat (Sankt Petersburg, Russland)",
+      "info": "CHRMSA / von Theaterstudio Kumkuat (Sankt Petersburg, Russland)",
       "location": "Theater Bremen"
     },
     {
@@ -2804,7 +2777,7 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2166#termine",
       "price": "5 \u20ac",
       "title": "Kultur on Tour",
-      "info": "Jugend ohne Gott. von Theater 11 (Bremen) in deutscher Sprache",
+      "info": "Jugend ohne Gott / von Theater 11 (Bremen) in deutscher Sprache",
       "location": "Theater Bremen"
     },
     {
@@ -2820,7 +2793,7 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2167#termine",
       "price": "5 \u20ac",
       "title": "Kultur on Tour",
-      "info": "Soldat und V\u00f6gel. von Theaterstudio Splash (Kiew, Ukraine)",
+      "info": "Soldat und V\u00f6gel / von Theaterstudio Splash (Kiew, Ukraine)",
       "location": "Theater Bremen"
     },
     {
@@ -2829,28 +2802,28 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2165#termine",
       "price": "5 \u20ac",
       "title": "Kultur on Tour",
-      "info": "Die verheirateten Vogelscheuchen. von Teatro Dei Dioscuri (Campagna, Italien) ",
+      "info": "Die verheirateten Vogelscheuchen / von Teatro Dei Dioscuri (Campagna, Italien) ",
       "location": "Theater Bremen"
     },
     {
       "date_time": "2020-01-08T10:30:00+01:00",
       "link_info": "http://www.theaterbremen.de/de_DE/kalender/nachtgeknister.16366521",
       "title": "Nachtgeknister",
-      "info": "von Mike Kenny. Eine Moks-Produktion / 6+. Bremer Schulen Eintritt frei!",
+      "info": "von Mike Kenny / Eine Moks-Produktion / 6+ / Bremer Schulen Eintritt frei!",
       "location": "Theater Bremen"
     },
     {
       "date_time": "2020-01-09T10:30:00+01:00",
       "link_info": "http://www.theaterbremen.de/de_DE/kalender/nachtgeknister.16366522",
       "title": "Nachtgeknister",
-      "info": "von Mike Kenny. Eine Moks-Produktion / 6+. Bremer Schulen Eintritt frei!",
+      "info": "von Mike Kenny / Eine Moks-Produktion / 6+ / Bremer Schulen Eintritt frei!",
       "location": "Theater Bremen"
     },
     {
       "date_time": "2020-01-09T17:00:00+01:00",
       "link_info": "http://www.theaterbremen.de/de_DE/kalender/jour-fixe-theater-und-schule.16366487",
       "title": "Jour Fixe - Theater und Schule",
-      "info": "Musik im Theater. Fortbildung f\u00fcr LehrerInnen und Interessierte. Eintritt frei!. Treffpunkt ist das Kleine Haus. Anmeldung unter http://www.lis.bremen.de",
+      "info": "Musik im Theater / Fortbildung f\u00fcr LehrerInnen und Interessierte / Eintritt frei! / Treffpunkt ist das Kleine Haus / Anmeldung unter http://www.lis.bremen.de",
       "location": "Theater Bremen"
     },
     {
@@ -2859,7 +2832,7 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=1484#termine",
       "price": "49 / 44 / 39 / 34 / 27 / 15 \u20ac / 9 \u20ac erm.",
       "title": "Alcina",
-      "info": "Dramma per musica in drei Akten. von Georg Friedrich H\u00e4ndel. nach Motiven aus Ludovico Ariosts Epos \u201eOrlando furioso\u201c. 18:30 Uhr Einf\u00fchrung",
+      "info": "Dramma per musica in drei Akten / von Georg Friedrich H\u00e4ndel / nach Motiven aus Ludovico Ariosts Epos \u201eOrlando furioso\u201c / 18:30 Uhr Einf\u00fchrung",
       "location": "Theater Bremen"
     },
     {
@@ -2884,7 +2857,7 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=1738#termine",
       "price": "21 \u20ac / 9 \u20ac erm.",
       "title": "Spektrum",
-      "info": "von M\u00e1t\u00e9 M\u00e9sz\u00e1ros / Unusual Symptoms. 19 Uhr Physical Prologue. 19:30 Uhr Einf\u00fchrung. ",
+      "info": "von M\u00e1t\u00e9 M\u00e9sz\u00e1ros / Unusual Symptoms / 19 Uhr Physical Prologue / 19:30 Uhr Einf\u00fchrung / ",
       "location": "Theater Bremen"
     },
     {
@@ -2893,7 +2866,7 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2058#termine",
       "price": "10 \u20ac / 7 \u20ac erm.",
       "title": "Nachtgeknister",
-      "info": "von Mike Kenny. Eine Moks-Produktion / 6+. Bremer Schulen Eintritt frei!",
+      "info": "von Mike Kenny / Eine Moks-Produktion / 6+ / Bremer Schulen Eintritt frei!",
       "location": "Theater Bremen"
     },
     {
@@ -2902,7 +2875,7 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=1510#termine",
       "price": "35 / 30 / 25 / 20 / 15 / 10 \u20ac / 9 \u20ac erm.",
       "title": "V\u00f6gel",
-      "info": "von Wajdi Mouawad. 19 Uhr Einf\u00fchrung",
+      "info": "von Wajdi Mouawad / 19 Uhr Einf\u00fchrung",
       "location": "Theater Bremen"
     },
     {
@@ -2911,7 +2884,7 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2128#termine",
       "price": "25 \u20ac / 9 \u20ac erm.",
       "title": "Lulu \u2013 Ein Rock-Vaudeville",
-      "info": "Mit Musik von The Tiger Lillies. nach Frank Wedekind. 19:30 Uhr Einf\u00fchrung. ",
+      "info": "Mit Musik von The Tiger Lillies / nach Frank Wedekind / 19:30 Uhr Einf\u00fchrung / ",
       "location": "Theater Bremen"
     },
     {
@@ -2920,21 +2893,21 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=1693#termine",
       "price": "20 / 17 / 15 / 13 / 10 / 8 \u20ac / 9 / 7 \u20ac erm.",
       "title": "Die rote Zora und ihre Bande",
-      "info": "Urauff\u00fchrung. 6+. von John von D\u00fcffel. nach dem Roman von Kurt Held. Karten f\u00fcr Vormittagsvorstellungen f\u00fcr Schulklassen erhalten Sie beim Service f\u00fcr Schulen und Gruppen unter Tel 0421\u20093653-340, Fax 0421\u20093653-934 oder schulen@theaterbremen.de ",
+      "info": "Urauff\u00fchrung / 6+ / von John von D\u00fcffel / nach dem Roman von Kurt Held / Karten f\u00fcr Vormittagsvorstellungen f\u00fcr Schulklassen erhalten Sie beim Service f\u00fcr Schulen und Gruppen unter Tel 0421\u20093653-340, Fax 0421\u20093653-934 oder schulen@theaterbremen.de ",
       "location": "Theater Bremen"
     },
     {
       "date_time": "2020-01-12T11:00:00+01:00",
       "link_info": "http://www.theaterbremen.de/de_DE/kalender/5-philharmonisches-konzert.16127645",
       "title": "5. Philharmonisches Konzert",
-      "info": "Prosit!. Marc-Andr\u00e9 Hamelin, Klavier. Carlos Kalmar, Dirigent. Tickets f\u00fcr diese Veranstaltung erhalten. Sie \u00fcber Die Glocke (0421) 336699",
+      "info": "Prosit! / Marc-Andr\u00e9 Hamelin, Klavier / Carlos Kalmar, Dirigent / Tickets f\u00fcr diese Veranstaltung erhalten / Sie \u00fcber Die Glocke (0421) 336699",
       "location": "Theater Bremen"
     },
     {
       "date_time": "2020-01-12T11:00:00+01:00",
       "link_info": "http://www.theaterbremen.de/de_DE/kalender/europa-quartett-8-exit-vom-brexit-geht-das.16366463",
       "title": "Europa-Quartett #8: Exit vom Brexit, geht das ?",
-      "info": "Kate Connolly \u00fcber ihr Buch \u201eExit Brexit. Wie ich Deutsche wurde.\u201c. Eine Veranstaltung der Heinrich-B\u00f6ll-Stiftung Bremen in Kooperation mit dem Bremer Europa Zentrum und dem Theater Bremen.. Eintritt frei!",
+      "info": "Kate Connolly \u00fcber ihr Buch \u201eExit Brexit. Wie ich Deutsche wurde.\u201c / Eine Veranstaltung der Heinrich-B\u00f6ll-Stiftung Bremen in Kooperation mit dem Bremer Europa Zentrum und dem Theater Bremen. / Eintritt frei!",
       "location": "Theater Bremen"
     },
     {
@@ -2943,7 +2916,7 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=1464#termine",
       "price": "62 / 56 / 48 / 41 / 33 / 20 \u20ac / 9 \u20ac erm.",
       "title": "Der Rosenkavalier",
-      "info": "Kom\u00f6die f\u00fcr Musik in drei Aufz\u00fcgen. von Richard Strauss. Text von Hugo von Hofmannsthal",
+      "info": "Kom\u00f6die f\u00fcr Musik in drei Aufz\u00fcgen / von Richard Strauss / Text von Hugo von Hofmannsthal",
       "location": "Theater Bremen"
     },
     {
@@ -2952,7 +2925,7 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2005#termine",
       "price": "25 \u20ac / 9 \u20ac erm.",
       "title": "In bed with Madonna",
-      "info": "Ein Liederabend zum 61. Geburtstag von. Madonna Louise Veronica Ciccone. ",
+      "info": "Ein Liederabend zum 61. Geburtstag von / Madonna Louise Veronica Ciccone / ",
       "location": "Theater Bremen"
     },
     {
@@ -2961,42 +2934,42 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=1713#termine",
       "price": "20 / 17 / 15 / 13 / 10 / 8 \u20ac / 9 / 7 \u20ac erm.",
       "title": "Die rote Zora und ihre Bande",
-      "info": "Urauff\u00fchrung. 6+. von John von D\u00fcffel. nach dem Roman von Kurt Held. Karten f\u00fcr Vormittagsvorstellungen f\u00fcr Schulklassen erhalten Sie beim Service f\u00fcr Schulen und Gruppen unter Tel 0421\u20093653-340, Fax 0421\u20093653-934 oder schulen@theaterbremen.de ",
+      "info": "Urauff\u00fchrung / 6+ / von John von D\u00fcffel / nach dem Roman von Kurt Held / Karten f\u00fcr Vormittagsvorstellungen f\u00fcr Schulklassen erhalten Sie beim Service f\u00fcr Schulen und Gruppen unter Tel 0421\u20093653-340, Fax 0421\u20093653-934 oder schulen@theaterbremen.de ",
       "location": "Theater Bremen"
     },
     {
       "date_time": "2020-01-13T10:30:00+01:00",
       "link_info": "http://www.theaterbremen.de/de_DE/kalender/nachtgeknister.16366525",
       "title": "Nachtgeknister",
-      "info": "von Mike Kenny. Eine Moks-Produktion / 6+. Bremer Schulen Eintritt frei!",
+      "info": "von Mike Kenny / Eine Moks-Produktion / 6+ / Bremer Schulen Eintritt frei!",
       "location": "Theater Bremen"
     },
     {
       "date_time": "2020-01-13T19:30:00+01:00",
       "link_info": "http://www.theaterbremen.de/de_DE/kalender/5-philharmonisches-konzert.16127646",
       "title": "5. Philharmonisches Konzert",
-      "info": "Prosit!. Marc-Andr\u00e9 Hamelin, Klavier. Carlos Kalmar, Dirigent. Tickets f\u00fcr diese Veranstaltung erhalten. Sie \u00fcber Die Glocke (0421) 336699",
+      "info": "Prosit! / Marc-Andr\u00e9 Hamelin, Klavier / Carlos Kalmar, Dirigent / Tickets f\u00fcr diese Veranstaltung erhalten / Sie \u00fcber Die Glocke (0421) 336699",
       "location": "Theater Bremen"
     },
     {
       "date_time": "2020-01-14T10:30:00+01:00",
       "link_info": "http://www.theaterbremen.de/de_DE/kalender/nachtgeknister.16366526",
       "title": "Nachtgeknister",
-      "info": "von Mike Kenny. Eine Moks-Produktion / 6+. Bremer Schulen Eintritt frei!",
-      "location": "Theater Bremen"
-    },
-    {
-      "date_time": "2020-01-14T19:30:00+01:00",
-      "link_info": "http://www.theaterbremen.de/de_DE/kalender/nach-den-rechten-sehen.16366520",
-      "title": "Nach den Rechten sehen",
-      "info": "Prof. Dr. Lothar Probst. Identit\u00e4tspolitik. Demokratische Antworten auf einen rechten Diskurs. In Kooperation mit der Heinrich-B\u00f6ll-Stiftung Bremen. Eintritt frei! ",
+      "info": "von Mike Kenny / Eine Moks-Produktion / 6+ / Bremer Schulen Eintritt frei!",
       "location": "Theater Bremen"
     },
     {
       "date_time": "2020-01-14T19:30:00+01:00",
       "link_info": "http://www.theaterbremen.de/de_DE/kalender/5-philharmonisches-konzert.16127647",
       "title": "5. Philharmonisches Konzert",
-      "info": "Prosit!. Marc-Andr\u00e9 Hamelin, Klavier. Carlos Kalmar, Dirigent. Tickets f\u00fcr diese Veranstaltung erhalten. Sie \u00fcber Die Glocke (0421) 336699",
+      "info": "Prosit! / Marc-Andr\u00e9 Hamelin, Klavier / Carlos Kalmar, Dirigent / Tickets f\u00fcr diese Veranstaltung erhalten / Sie \u00fcber Die Glocke (0421) 336699",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-14T19:30:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/nach-den-rechten-sehen.16366520",
+      "title": "Nach den Rechten sehen",
+      "info": "Prof. Dr. Lothar Probst / Identit\u00e4tspolitik. Demokratische Antworten auf einen rechten Diskurs / In Kooperation mit der Heinrich-B\u00f6ll-Stiftung Bremen / Eintritt frei! ",
       "location": "Theater Bremen"
     },
     {
@@ -3005,7 +2978,7 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=1714#termine",
       "price": "20 / 17 / 15 / 13 / 10 / 8 \u20ac / 9 / 7 \u20ac erm.",
       "title": "Die rote Zora und ihre Bande",
-      "info": "Urauff\u00fchrung. 6+. von John von D\u00fcffel. nach dem Roman von Kurt Held. Karten f\u00fcr Vormittagsvorstellungen f\u00fcr Schulklassen erhalten Sie beim Service f\u00fcr Schulen und Gruppen unter Tel 0421\u20093653-340, Fax 0421\u20093653-934 oder schulen@theaterbremen.de ",
+      "info": "Urauff\u00fchrung / 6+ / von John von D\u00fcffel / nach dem Roman von Kurt Held / Karten f\u00fcr Vormittagsvorstellungen f\u00fcr Schulklassen erhalten Sie beim Service f\u00fcr Schulen und Gruppen unter Tel 0421\u20093653-340, Fax 0421\u20093653-934 oder schulen@theaterbremen.de ",
       "location": "Theater Bremen"
     },
     {
@@ -3014,7 +2987,7 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=1469#termine",
       "price": "62 / 56 / 48 / 41 / 33 / 20 \u20ac / 9 \u20ac erm.",
       "title": "Don Giovanni",
-      "info": "Dramma giocoso in zwei Akten. von Wolfgang Amadeus Mozart. Text von Lorenzo Da Ponte. 19 Uhr Einf\u00fchrung. ",
+      "info": "Dramma giocoso in zwei Akten / von Wolfgang Amadeus Mozart / Text von Lorenzo Da Ponte / 19 Uhr Einf\u00fchrung / ",
       "location": "Theater Bremen"
     },
     {
@@ -3023,7 +2996,7 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=1715#termine",
       "price": "20 / 17 / 15 / 13 / 10 / 8 \u20ac / 9 / 7 \u20ac erm.",
       "title": "Die rote Zora und ihre Bande",
-      "info": "Urauff\u00fchrung. 6+. von John von D\u00fcffel. nach dem Roman von Kurt Held. Karten f\u00fcr Vormittagsvorstellungen f\u00fcr Schulklassen erhalten Sie beim Service f\u00fcr Schulen und Gruppen unter Tel 0421\u20093653-340, Fax 0421\u20093653-934 oder schulen@theaterbremen.de ",
+      "info": "Urauff\u00fchrung / 6+ / von John von D\u00fcffel / nach dem Roman von Kurt Held / Karten f\u00fcr Vormittagsvorstellungen f\u00fcr Schulklassen erhalten Sie beim Service f\u00fcr Schulen und Gruppen unter Tel 0421\u20093653-340, Fax 0421\u20093653-934 oder schulen@theaterbremen.de ",
       "location": "Theater Bremen"
     },
     {
@@ -3032,7 +3005,7 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2073#termine",
       "price": "35 / 30 / 25 / 20 / 15 / 10 \u20ac / 9 \u20ac erm.",
       "title": "V\u00f6gel",
-      "info": "von Wajdi Mouawad. 19 Uhr Einf\u00fchrung",
+      "info": "von Wajdi Mouawad / 19 Uhr Einf\u00fchrung",
       "location": "Theater Bremen"
     },
     {
@@ -3041,7 +3014,7 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=1749#termine",
       "price": "23 \u20ac / 9 \u20ac erm.",
       "title": "Fr\u00fchlingserwachen",
-      "info": "14+. Ein Projekt von Alize Zandwijk und Tomas B\u00fcnger. im Anschluss Premierenfeier",
+      "info": "14+ / Ein Projekt von Alize Zandwijk und Tomas B\u00fcnger / im Anschluss Premierenfeier",
       "location": "Theater Bremen"
     },
     {
@@ -3050,14 +3023,14 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=1716#termine",
       "price": "20 / 17 / 15 / 13 / 10 / 8 \u20ac / 9 / 7 \u20ac erm.",
       "title": "Die rote Zora und ihre Bande",
-      "info": "Urauff\u00fchrung. 6+. von John von D\u00fcffel. nach dem Roman von Kurt Held. Karten f\u00fcr Vormittagsvorstellungen f\u00fcr Schulklassen erhalten Sie beim Service f\u00fcr Schulen und Gruppen unter Tel 0421\u20093653-340, Fax 0421\u20093653-934 oder schulen@theaterbremen.de ",
+      "info": "Urauff\u00fchrung / 6+ / von John von D\u00fcffel / nach dem Roman von Kurt Held / Karten f\u00fcr Vormittagsvorstellungen f\u00fcr Schulklassen erhalten Sie beim Service f\u00fcr Schulen und Gruppen unter Tel 0421\u20093653-340, Fax 0421\u20093653-934 oder schulen@theaterbremen.de ",
       "location": "Theater Bremen"
     },
     {
       "date_time": "2020-01-17T18:00:00+01:00",
       "link_info": "http://www.theaterbremen.de/de_DE/kalender/blickwechsel.16368554",
       "title": "Blickwechsel",
-      "info": "Jugend ohne Gott. mit Dramaturg Sebastian Rest und Pastorin Christine Kind. Eintritt frei!",
+      "info": "Jugend ohne Gott / mit Dramaturg Sebastian Rest und Pastorin Christine Kind / Eintritt frei!",
       "location": "Theater Bremen"
     },
     {
@@ -3066,7 +3039,7 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2059#termine",
       "price": "10 \u20ac / 7 \u20ac erm.",
       "title": "Jugend ohne Gott",
-      "info": "15+. nach dem Roman von \u00d6d\u00f6n von Horv\u00e1th",
+      "info": "15+ / nach dem Roman von \u00d6d\u00f6n von Horv\u00e1th",
       "location": "Theater Bremen"
     },
     {
@@ -3075,7 +3048,7 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2075#termine",
       "price": "49 / 44 / 39 / 34 / 27 / 15 \u20ac / 9 \u20ac erm.",
       "title": "Das Horoskop des K\u00f6nigs \u2013 L\u00b4\u00c9toile",
-      "info": "Komische Oper in drei Akten. von Emmanuel Chabrier. Text von Eug\u00e8ne Leterrier und Albert Vanloo. 19 Uhr Einf\u00fchrung",
+      "info": "Komische Oper in drei Akten / von Emmanuel Chabrier / Text von Eug\u00e8ne Leterrier und Albert Vanloo / 19 Uhr Einf\u00fchrung",
       "location": "Theater Bremen"
     },
     {
@@ -3084,21 +3057,21 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2126#termine",
       "price": "21 \u20ac / 9 \u20ac erm.",
       "title": "Spektrum",
-      "info": "von M\u00e1t\u00e9 M\u00e9sz\u00e1ros / Unusual Symptoms. 19:30 Uhr Einf\u00fchrung. ",
+      "info": "von M\u00e1t\u00e9 M\u00e9sz\u00e1ros / Unusual Symptoms / 19:30 Uhr Einf\u00fchrung / ",
       "location": "Theater Bremen"
     },
     {
       "date_time": "2020-01-18T10:00:00+01:00",
       "link_info": "http://www.theaterbremen.de/de_DE/kalender/kostuemverkauf.16366494",
       "title": "Kost\u00fcmverkauf",
-      "info": "",
+      "info": "Wer noch ein Kost\u00fcm f\u00fcr den Samba-Karneval braucht oder seine Garderobe mit etwas Besonderem erweitern will, ist hier genau richtig. Alles muss raus! Eintritt frei!",
       "location": "Theater Bremen"
     },
     {
       "date_time": "2020-01-18T11:00:00+01:00",
       "link_info": "http://www.theaterbremen.de/de_DE/kalender/bremen-zwei-wintergaeste.16368560",
       "title": "Bremen Zwei: Winterg\u00e4ste",
-      "info": "Gespr\u00e4che mit Prominenten \u2013 live und im Radio. Mit Nina Hoss. Moderation: Katrin Kr\u00e4mer. Eintritt frei!",
+      "info": "Gespr\u00e4che mit Prominenten \u2013 live und im Radio / Mit Nina Hoss / Moderation: Katrin Kr\u00e4mer / Eintritt frei!",
       "location": "Theater Bremen"
     },
     {
@@ -3107,7 +3080,7 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2060#termine",
       "price": "10 \u20ac / 7 \u20ac erm.",
       "title": "Jugend ohne Gott",
-      "info": "15+. nach dem Roman von \u00d6d\u00f6n von Horv\u00e1th",
+      "info": "15+ / nach dem Roman von \u00d6d\u00f6n von Horv\u00e1th",
       "location": "Theater Bremen"
     },
     {
@@ -3116,7 +3089,7 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2076#termine",
       "price": "56 / 49 / 44 / 38 / 29 / 18 \u20ac / 9 \u20ac erm.",
       "title": "Die Zauberfl\u00f6te",
-      "info": "Gro\u00dfe Oper in zwei Aufz\u00fcgen von Wolfgang Amadeus Mozart. Text von Emanuel Schikaneder",
+      "info": "Gro\u00dfe Oper in zwei Aufz\u00fcgen von Wolfgang Amadeus Mozart / Text von Emanuel Schikaneder",
       "location": "Theater Bremen"
     },
     {
@@ -3125,14 +3098,14 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2134#termine",
       "price": "14 \u20ac",
       "title": "CLUB feat. Am Apparat",
-      "info": "mit. Children of Zeus / Douniah & High John / Spaze Windu & Hast. Aftershow: Luk The Dude & Repete 23. Pr\u00e4sentiert von Cosmo. Einlass 20 Uhr",
+      "info": "mit / Children of Zeus / Douniah & High John / Spaze Windu & Hast / Aftershow: Luk The Dude & Repete 23 / Pr\u00e4sentiert von Cosmo / Einlass 20 Uhr",
       "location": "Theater Bremen"
     },
     {
       "date_time": "2020-01-19T14:00:00+01:00",
       "link_info": "http://www.theaterbremen.de/de_DE/kalender/after-tomorrow-1-the-end.16366435",
       "title": "After Tomorrow #1: The End",
-      "info": "Ein Thementag mit Filmvorf\u00fchrung und Gespr\u00e4chen zu k\u00fcnstlerischen Strategien im Anthropoz\u00e4n. Eintritt frei!",
+      "info": "Ein Thementag mit Filmvorf\u00fchrung und Gespr\u00e4chen zu k\u00fcnstlerischen Strategien im Anthropoz\u00e4n / Eintritt frei!",
       "location": "Theater Bremen"
     },
     {
@@ -3141,7 +3114,7 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=1485#termine",
       "price": "49 / 44 / 39 / 34 / 27 / 15 \u20ac / 9 \u20ac erm.",
       "title": "Alcina",
-      "info": "Dramma per musica in drei Akten. von Georg Friedrich H\u00e4ndel. nach Motiven aus Ludovico Ariosts Epos \u201eOrlando furioso\u201c. 15 Uhr Einf\u00fchrung",
+      "info": "Dramma per musica in drei Akten / von Georg Friedrich H\u00e4ndel / nach Motiven aus Ludovico Ariosts Epos \u201eOrlando furioso\u201c / 15 Uhr Einf\u00fchrung",
       "location": "Theater Bremen"
     },
     {
@@ -3150,14 +3123,14 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2132#termine",
       "price": "23 \u20ac / 9 \u20ac erm.",
       "title": "The End. Eine Replikantenoper",
-      "info": "von Jan Eichberg. Urauff\u00fchrung. 18 Uhr Einf\u00fchrung",
+      "info": "von Jan Eichberg / Urauff\u00fchrung / 18 Uhr Einf\u00fchrung",
       "location": "Theater Bremen"
     },
     {
       "date_time": "2020-01-20T10:30:00+01:00",
       "link_info": "http://www.theaterbremen.de/de_DE/kalender/jugend-ohne-gott.16366490",
       "title": "Jugend ohne Gott",
-      "info": "15+. nach dem Roman von \u00d6d\u00f6n von Horv\u00e1th. Bremer Schulen Eintritt frei!",
+      "info": "15+ / nach dem Roman von \u00d6d\u00f6n von Horv\u00e1th / Bremer Schulen Eintritt frei!",
       "location": "Theater Bremen"
     },
     {
@@ -3166,21 +3139,21 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2182#termine",
       "price": "5 \u20ac",
       "title": "TheaterTreffen",
-      "info": "Urbanscreen. Till Botterweck und Ana Rom\u00e3o im Gespr\u00e4ch mit Rainer Glaap. Eintritt frei f\u00fcr Bremer Theaterfreunde",
+      "info": "Urbanscreen / Till Botterweck und Ana Rom\u00e3o im Gespr\u00e4ch mit Rainer Glaap / Eintritt frei f\u00fcr Bremer Theaterfreunde",
       "location": "Theater Bremen"
     },
     {
       "date_time": "2020-01-21T10:30:00+01:00",
       "link_info": "http://www.theaterbremen.de/de_DE/kalender/jugend-ohne-gott.16366491",
       "title": "Jugend ohne Gott",
-      "info": "15+. nach dem Roman von \u00d6d\u00f6n von Horv\u00e1th. Bremer Schulen Eintritt frei!",
+      "info": "15+ / nach dem Roman von \u00d6d\u00f6n von Horv\u00e1th / Bremer Schulen Eintritt frei!",
       "location": "Theater Bremen"
     },
     {
       "date_time": "2020-01-22T10:30:00+01:00",
       "link_info": "http://www.theaterbremen.de/de_DE/kalender/jugend-ohne-gott.16366492",
       "title": "Jugend ohne Gott",
-      "info": "15+. nach dem Roman von \u00d6d\u00f6n von Horv\u00e1th. Bremer Schulen Eintritt frei!",
+      "info": "15+ / nach dem Roman von \u00d6d\u00f6n von Horv\u00e1th / Bremer Schulen Eintritt frei!",
       "location": "Theater Bremen"
     },
     {
@@ -3189,7 +3162,7 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=1726#termine",
       "price": "62 / 56 / 48 / 41 / 33 / 20 \u20ac / 9 \u20ac erm.",
       "title": "Don Giovanni",
-      "info": "Dramma giocoso in zwei Akten. von Wolfgang Amadeus Mozart. Text von Lorenzo Da Ponte. 19 Uhr Einf\u00fchrung. ",
+      "info": "Dramma giocoso in zwei Akten / von Wolfgang Amadeus Mozart / Text von Lorenzo Da Ponte / 19 Uhr Einf\u00fchrung / ",
       "location": "Theater Bremen"
     },
     {
@@ -3198,14 +3171,14 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2006#termine",
       "price": "23 \u20ac / 9 \u20ac erm.",
       "title": "In bed with Madonna",
-      "info": "Ein Liederabend zum 61. Geburtstag von. Madonna Louise Veronica Ciccone. ",
+      "info": "Ein Liederabend zum 61. Geburtstag von / Madonna Louise Veronica Ciccone / ",
       "location": "Theater Bremen"
     },
     {
       "date_time": "2020-01-23T10:30:00+01:00",
       "link_info": "http://www.theaterbremen.de/de_DE/kalender/jugend-ohne-gott.16366493",
       "title": "Jugend ohne Gott",
-      "info": "15+. nach dem Roman von \u00d6d\u00f6n von Horv\u00e1th. Bremer Schulen Eintritt frei!",
+      "info": "15+ / nach dem Roman von \u00d6d\u00f6n von Horv\u00e1th / Bremer Schulen Eintritt frei!",
       "location": "Theater Bremen"
     },
     {
@@ -3214,7 +3187,7 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2077#termine",
       "price": "49 / 44 / 39 / 34 / 27 / 15 \u20ac / 9 \u20ac erm.",
       "title": "Alcina",
-      "info": "Dramma per musica in drei Akten. von Georg Friedrich H\u00e4ndel. nach Motiven aus Ludovico Ariosts Epos \u201eOrlando furioso\u201c. 18:30 Uhr Einf\u00fchrung / Bremen Zwei-Lounge",
+      "info": "Dramma per musica in drei Akten / von Georg Friedrich H\u00e4ndel / nach Motiven aus Ludovico Ariosts Epos \u201eOrlando furioso\u201c / 18:30 Uhr Einf\u00fchrung / Bremen Zwei-Lounge",
       "location": "Theater Bremen"
     },
     {
@@ -3223,7 +3196,7 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=1743#termine",
       "price": "25 \u20ac / 9 \u20ac erm.",
       "title": "Schloss Rosmersholm",
-      "info": "nach Henrik Ibsen. 19:30 Uhr Einf\u00fchrung",
+      "info": "nach Henrik Ibsen / 19:30 Uhr Einf\u00fchrung",
       "location": "Theater Bremen"
     },
     {
@@ -3232,7 +3205,7 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2079#termine",
       "price": "35 \u20ac",
       "title": "Die Oper kocht",
-      "info": "mit Ulrike Mayer, Stephen Clark u.a.. Eingang B\u00fchnenpforte",
+      "info": "mit Ulrike Mayer, Stephen Clark u.a. / Eingang B\u00fchnenpforte",
       "location": "Theater Bremen"
     },
     {
@@ -3241,7 +3214,7 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=1507#termine",
       "price": "35 / 30 / 25 / 20 / 15 / 10 \u20ac / 9 \u20ac erm.",
       "title": "V\u00f6gel",
-      "info": "von Wajdi Mouawad. 19 Uhr Einf\u00fchrung",
+      "info": "von Wajdi Mouawad / 19 Uhr Einf\u00fchrung",
       "location": "Theater Bremen"
     },
     {
@@ -3250,7 +3223,7 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2129#termine",
       "price": "25 \u20ac / 9 \u20ac erm.",
       "title": "Lulu \u2013 Ein Rock-Vaudeville",
-      "info": "Mit Musik von The Tiger Lillies. nach Frank Wedekind. 19:30 Uhr Einf\u00fchrung. ",
+      "info": "Mit Musik von The Tiger Lillies / nach Frank Wedekind / 19:30 Uhr Einf\u00fchrung / ",
       "location": "Theater Bremen"
     },
     {
@@ -3259,14 +3232,14 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2173#termine",
       "price": "5 \u20ac",
       "title": "acting is re-acting #1: \"the last christmas\"",
-      "info": "acting is re-acting #1: \u201ethe last christmas\u201c. Lecture Performance zur \u00c4sthetik der Besch\u00e4ftigung (am Theater): Die rote Zora und ihre Bande. Treffpunkt ist die Kassenhalle",
+      "info": "acting is re-acting #1: \u201ethe last christmas\u201c / Lecture Performance zur \u00c4sthetik der Besch\u00e4ftigung (am Theater): Die rote Zora und ihre Bande / Treffpunkt ist die Kassenhalle",
       "location": "Theater Bremen"
     },
     {
       "date_time": "2020-01-25T11:00:00+01:00",
       "link_info": "http://www.theaterbremen.de/de_DE/kalender/bremen-zwei-wintergaeste.16366557",
       "title": "Bremen Zwei: Winterg\u00e4ste",
-      "info": "Gespr\u00e4che mit Prominenten \u2013 live und im Radio. Mit Sandra Maischberger. Moderation: Katrin Kr\u00e4mer. Eintritt frei!",
+      "info": "Gespr\u00e4che mit Prominenten \u2013 live und im Radio / Mit Sandra Maischberger / Moderation: Katrin Kr\u00e4mer / Eintritt frei!",
       "location": "Theater Bremen"
     },
     {
@@ -3284,7 +3257,7 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2084#termine",
       "price": "23 \u20ac / 9 \u20ac erm.",
       "title": "Aus dem Nichts",
-      "info": "Urauff\u00fchrung. 15+. von Armin Petras. nach dem gleichnamigen Film von Fatih Akin. Eine Schauspiel- und Moks-Produktion. 19:30 Uhr Einf\u00fchrung. ",
+      "info": "Urauff\u00fchrung / 15+ / von Armin Petras / nach dem gleichnamigen Film von Fatih Akin / Eine Schauspiel- und Moks-Produktion / 19:30 Uhr Einf\u00fchrung / ",
       "location": "Theater Bremen"
     },
     {
@@ -3293,7 +3266,7 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=1694#termine",
       "price": "20 / 17 / 15 / 13 / 10 / 8 \u20ac / 9 / 7 \u20ac erm.",
       "title": "Die rote Zora und ihre Bande",
-      "info": "Urauff\u00fchrung. 6+. von John von D\u00fcffel. nach dem Roman von Kurt Held",
+      "info": "Urauff\u00fchrung / 6+ / von John von D\u00fcffel / nach dem Roman von Kurt Held",
       "location": "Theater Bremen"
     },
     {
@@ -3302,7 +3275,7 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2136#termine",
       "price": "15 \u20ac / 9 \u20ac erm.",
       "title": "Spotlight",
-      "info": "Mima Millo. \u201eFor all your melodies I am a violin\u201c. Am Klavier: Polina Bogdanova. Treffpunkt ist die Kassenhalle",
+      "info": "Mima Millo / \u201eFor all your melodies I am a violin\u201c / Am Klavier: Polina Bogdanova / Treffpunkt ist die Kassenhalle",
       "location": "Theater Bremen"
     },
     {
@@ -3311,7 +3284,7 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=1718#termine",
       "price": "20 / 17 / 15 / 13 / 10 / 8 \u20ac / 9 / 7 \u20ac erm.",
       "title": "Die rote Zora und ihre Bande",
-      "info": "Urauff\u00fchrung. 6+. von John von D\u00fcffel. nach dem Roman von Kurt Held",
+      "info": "Urauff\u00fchrung / 6+ / von John von D\u00fcffel / nach dem Roman von Kurt Held",
       "location": "Theater Bremen"
     },
     {
@@ -3320,7 +3293,7 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2065#termine",
       "price": "10 \u20ac / 7 \u20ac erm.",
       "title": "Hinter dem Mond",
-      "info": "Ein intergalaktisches Tanztheater. Urauff\u00fchrung. 6+. von Salome Schneebeli und Ensemble. ",
+      "info": "Ein intergalaktisches Tanztheater / Urauff\u00fchrung / 6+ / von Salome Schneebeli und Ensemble / ",
       "location": "Theater Bremen"
     },
     {
@@ -3329,7 +3302,7 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2127#termine",
       "price": "21 \u20ac / 9 \u20ac erm.",
       "title": "Spektrum",
-      "info": "von M\u00e1t\u00e9 M\u00e9sz\u00e1ros / Unusual Symptoms. ",
+      "info": "von M\u00e1t\u00e9 M\u00e9sz\u00e1ros / Unusual Symptoms / ",
       "location": "Theater Bremen"
     },
     {
@@ -3338,7 +3311,7 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2067#termine",
       "price": "10 \u20ac / 7 \u20ac erm.",
       "title": "F\u00fcr Vier",
-      "info": "Ein Tanzquartett von Birgit Freitag. Choreografie: Birgit Freitag. Eine Moks- und Junge Akteur*innen-Produktion",
+      "info": "Ein Tanzquartett von Birgit Freitag / Choreografie: Birgit Freitag / Eine Moks- und Junge Akteur*innen-Produktion",
       "location": "Theater Bremen"
     },
     {
@@ -3347,14 +3320,14 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2171#termine",
       "price": "20 / 17 / 15 / 13 / 10 / 8 \u20ac / 9 / 7 \u20ac erm.",
       "title": "Die rote Zora und ihre Bande",
-      "info": "Urauff\u00fchrung. 6+. von John von D\u00fcffel. nach dem Roman von Kurt Held. Karten f\u00fcr Vormittagsvorstellungen f\u00fcr Schulklassen erhalten Sie beim Service f\u00fcr Schulen und Gruppen unter Tel 0421\u20093653-340, Fax 0421\u20093653-934 oder schulen@theaterbremen.de ",
+      "info": "Urauff\u00fchrung / 6+ / von John von D\u00fcffel / nach dem Roman von Kurt Held / Karten f\u00fcr Vormittagsvorstellungen f\u00fcr Schulklassen erhalten Sie beim Service f\u00fcr Schulen und Gruppen unter Tel 0421\u20093653-340, Fax 0421\u20093653-934 oder schulen@theaterbremen.de ",
       "location": "Theater Bremen"
     },
     {
       "date_time": "2020-01-27T18:00:00+01:00",
       "link_info": "http://www.theaterbremen.de/de_DE/kalender/probeneinblick.16366534",
       "title": "Probeneinblick",
-      "info": "Im Gespr\u00e4ch mit dem Musikalischen Leiter Killian Farrell und dem Regisseur Marco \u0160torman.. Im Anschluss gemeinsamer Probenbesuch. Eintritt frei!",
+      "info": "Im Gespr\u00e4ch mit dem Musikalischen Leiter Killian Farrell und dem Regisseur Marco \u0160torman. / Im Anschluss gemeinsamer Probenbesuch / Eintritt frei!",
       "location": "Theater Bremen"
     },
     {
@@ -3363,14 +3336,14 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2068#termine",
       "price": "",
       "title": "F\u00fcr Vier",
-      "info": "Ein Tanzquartett von Birgit Freitag. Choreografie: Birgit Freitag. Eine Moks- und Junge Akteur*innen-Produktion. Bremer Schulen Eintritt frei!",
+      "info": "Ein Tanzquartett von Birgit Freitag / Choreografie: Birgit Freitag / Eine Moks- und Junge Akteur*innen-Produktion / Bremer Schulen Eintritt frei!",
       "location": "Theater Bremen"
     },
     {
       "date_time": "2020-01-28T10:30:00+01:00",
       "link_info": "http://www.theaterbremen.de/de_DE/kalender/hinter-dem-mond.16366517",
       "title": "Hinter dem Mond",
-      "info": "Ein intergalaktisches Tanztheater. Urauff\u00fchrung. 6+. von Salome Schneebeli und Ensemble. Bremer Schulen Eintritt frei!. ",
+      "info": "Ein intergalaktisches Tanztheater / Urauff\u00fchrung / 6+ / von Salome Schneebeli und Ensemble / Bremer Schulen Eintritt frei! / ",
       "location": "Theater Bremen"
     },
     {
@@ -3379,14 +3352,14 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2085#termine",
       "price": "",
       "title": "F\u00fcr Vier",
-      "info": "Ein Tanzquartett von Birgit Freitag. Choreografie: Birgit Freitag. Eine Moks- und Junge Akteur*innen-Produktion. Bremer Schulen Eintritt frei!",
+      "info": "Ein Tanzquartett von Birgit Freitag / Choreografie: Birgit Freitag / Eine Moks- und Junge Akteur*innen-Produktion / Bremer Schulen Eintritt frei!",
       "location": "Theater Bremen"
     },
     {
       "date_time": "2020-01-29T10:30:00+01:00",
       "link_info": "http://www.theaterbremen.de/de_DE/kalender/hinter-dem-mond.16366518",
       "title": "Hinter dem Mond",
-      "info": "Ein intergalaktisches Tanztheater. Urauff\u00fchrung. 6+. von Salome Schneebeli und Ensemble. Bremer Schulen Eintritt frei!. ",
+      "info": "Ein intergalaktisches Tanztheater / Urauff\u00fchrung / 6+ / von Salome Schneebeli und Ensemble / Bremer Schulen Eintritt frei! / ",
       "location": "Theater Bremen"
     },
     {
@@ -3395,7 +3368,7 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=1737#termine",
       "price": "21 \u20ac / 9 \u20ac erm.",
       "title": "The End. Eine Replikantenoper",
-      "info": "von Jan Eichberg. Urauff\u00fchrung. 19:30 Uhr Einf\u00fchrung",
+      "info": "von Jan Eichberg / Urauff\u00fchrung / 19:30 Uhr Einf\u00fchrung",
       "location": "Theater Bremen"
     },
     {
@@ -3404,14 +3377,14 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2135#termine",
       "price": "",
       "title": "PBTanz #8: Off the Record",
-      "info": "Unusual Symptoms spielen Lieblingsplatten. Treffpunkt ist das noon / Foyer Kleines Haus",
+      "info": "Unusual Symptoms spielen Lieblingsplatten / Treffpunkt ist das noon / Foyer Kleines Haus",
       "location": "Theater Bremen"
     },
     {
       "date_time": "2020-01-30T10:30:00+01:00",
       "link_info": "http://www.theaterbremen.de/de_DE/kalender/hinter-dem-mond.16366519",
       "title": "Hinter dem Mond",
-      "info": "Ein intergalaktisches Tanztheater. Urauff\u00fchrung. 6+. von Salome Schneebeli und Ensemble. Bremer Schulen Eintritt frei!. ",
+      "info": "Ein intergalaktisches Tanztheater / Urauff\u00fchrung / 6+ / von Salome Schneebeli und Ensemble / Bremer Schulen Eintritt frei! / ",
       "location": "Theater Bremen"
     },
     {
@@ -3420,7 +3393,7 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2196#termine",
       "price": "",
       "title": "Jakob Lenz",
-      "info": "A-Premiere. Kammeroper von Wolfgang Rihm. Text von Michael Fr\u00f6hling. frei nach Georg B\u00fcchners Erz\u00e4hlung \u201eLenz\u201c. ",
+      "info": "A-Premiere / Kammeroper von Wolfgang Rihm / Text von Michael Fr\u00f6hling / frei nach Georg B\u00fcchners Erz\u00e4hlung \u201eLenz\u201c / ",
       "location": "Theater Bremen"
     },
     {
@@ -3429,7 +3402,7 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=1750#termine",
       "price": "21 \u20ac / 9 \u20ac erm.",
       "title": "Fr\u00fchlingserwachen",
-      "info": "14+. Ein Projekt von Alize Zandwijk und Tomas B\u00fcnger. 19:30 Uhr Einf\u00fchrung",
+      "info": "14+ / Ein Projekt von Alize Zandwijk und Tomas B\u00fcnger / 19:30 Uhr Einf\u00fchrung",
       "location": "Theater Bremen"
     },
     {
@@ -3438,7 +3411,7 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2081#termine",
       "price": "38 / 33 / 28 / 23 / 17 / 12 \u20ac / 9 \u20ac erm.",
       "title": "Der Schimmelreiter",
-      "info": "von Theodor Storm. Bearbeitung: John von D\u00fcffel. 19 Uhr Einf\u00fchrung",
+      "info": "von Theodor Storm / Bearbeitung: John von D\u00fcffel / 19 Uhr Einf\u00fchrung",
       "location": "Theater Bremen"
     },
     {
@@ -3447,14 +3420,14 @@
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2131#termine",
       "price": "21 \u20ac / 9 \u20ac erm.",
       "title": "Coexist",
-      "info": "von Adrienn H\u00f3d - Hodworks / Unusual Symptoms. Eingeladen zur TANZPLATTFORM DEUTSCHLAND 2020. 19:30 Uhr Einf\u00fchrung. ",
+      "info": "von Adrienn H\u00f3d - Hodworks / Unusual Symptoms / Eingeladen zur TANZPLATTFORM DEUTSCHLAND 2020 / 19:30 Uhr Einf\u00fchrung / ",
       "location": "Theater Bremen"
     }
   ],
   "Schwankhalle": [
     {
       "date_time": "2020-01-14T19:00:00+01:00",
-      "info": "TOTAL BANANE?!\t\t\t\t\t\t\t\u00a0\n\t\t\t\t\t\t\tGespr\u00e4ch im Lagerhaus",
+      "info": "TOTAL BANANE?!\u00a0 / Gespr\u00e4ch im Lagerhaus",
       "artist": "Prolog Banana Island",
       "title": "TAZ SALON pr\u00e4sentiert: TOTAL BANANE?!",
       "link_info": "https://schwankhalle.de/spielplan/14-1-prolog-banana-island-taz-salon-762.html",
@@ -3463,7 +3436,7 @@
     },
     {
       "date_time": "2020-01-16T20:00:00+01:00",
-      "info": "en\n\t\t\t\t\t\t\t\t\u203aBanana Island\u2039\t\t\t\t\t\t\t\u00a0\n\t\t\t\t\t\t\tPerformance",
+      "info": "en / \u203aBanana Island\u2039\u00a0 / Performance",
       "artist": "die apokalyptischen t\u00e4nzer*innen",
       "title": "\u203aBanana Island\u2039",
       "link_info": "https://schwankhalle.de/spielplan/apokalypsen-banana-island-745.html",
@@ -3472,7 +3445,7 @@
     },
     {
       "date_time": "2020-01-18T20:00:00+01:00",
-      "info": "en\n\t\t\t\t\t\t\t\t\u203aBanana Island\u2039\t\t\t\t\t\t\t\u00a0\n\t\t\t\t\t\t\tPerformance",
+      "info": "en / \u203aBanana Island\u2039\u00a0 / Performance",
       "artist": "die apokalyptischen t\u00e4nzer*innen",
       "title": "\u203aBanana Island\u2039",
       "link_info": "https://schwankhalle.de/spielplan/apokalypsen-banana-island-745.html",
@@ -3481,7 +3454,7 @@
     },
     {
       "date_time": "2020-01-19T12:00:00+01:00",
-      "info": "Hafenrundgang\t\t\t\t\t\t\t\u00a0\n\t\t\t\t\t\t\tin Kooperation mit dem Arbeitskreis Hafen",
+      "info": "Hafenrundgang\u00a0 / in Kooperation mit dem Arbeitskreis Hafen",
       "artist": "Prolog Banana Island",
       "title": "Kolonialsensibler Hafenrundgang",
       "link_info": "https://schwankhalle.de/spielplan/19-1-prolog-banana-island-spaziergang-hafen-763.html",
@@ -3490,7 +3463,7 @@
     },
     {
       "date_time": "2020-01-24T11:00:00+01:00",
-      "info": "rteil\u2039\t\t\t\t\t\t\t\u00a0\n\t\t\t\t\t\t\tTheater f\u00fcr Erwachsene und Jugendliche",
+      "info": "rteil\u2039\u00a0 / Theater f\u00fcr Erwachsene und Jugendliche",
       "artist": "Thermoboy FK",
       "title": "\u203aStolz und Vorurteil\u2039",
       "link_info": "https://schwankhalle.de/spielplan/thermoboyfk-stolz-vorurteil-746.html",
@@ -3499,7 +3472,7 @@
     },
     {
       "date_time": "2020-01-25T20:00:00+01:00",
-      "info": "rteil\u2039\t\t\t\t\t\t\t\u00a0\n\t\t\t\t\t\t\tTheater f\u00fcr Erwachsene und Jugendliche",
+      "info": "rteil\u2039\u00a0 / Theater f\u00fcr Erwachsene und Jugendliche",
       "artist": "Thermoboy FK",
       "title": "\u203aStolz und Vorurteil\u2039",
       "link_info": "https://schwankhalle.de/spielplan/thermoboyfk-stolz-vorurteil-746.html",
@@ -3508,8 +3481,8 @@
     },
     {
       "date_time": "2020-01-31T20:00:00+01:00",
-      "info": "d - BauHaus\u2039\t\t\t\t\t\t\t\u00a0\n\t\t\t\t\t\t\tTanz - pr\u00e4sentiert von steptext dance project",
-      "artist": "G\u00fcnther Grollitsch",
+      "info": "chland - BauHaus\u2039\u00a0 / Tanz - pr\u00e4sentiert von steptext dance project",
+      "artist": "G.Grollitsch / F. Aimar",
       "title": "\u203amade in Deutschland - BauHaus\u2039",
       "link_info": "https://schwankhalle.de/spielplan/st-grollitsch-bauhaus-755.html",
       "link_tickets": "https://schwankhalle.de/spielplan/st-grollitsch-bauhaus-755.html",
@@ -3517,8 +3490,8 @@
     },
     {
       "date_time": "2020-02-01T20:00:00+01:00",
-      "info": "d - BauHaus\u2039\t\t\t\t\t\t\t\u00a0\n\t\t\t\t\t\t\tTanz - pr\u00e4sentiert von steptext dance project",
-      "artist": "G\u00fcnther Grollitsch",
+      "info": "chland - BauHaus\u2039\u00a0 / Tanz - pr\u00e4sentiert von steptext dance project",
+      "artist": "G.Grollitsch / F. Aimar",
       "title": "\u203amade in Deutschland - BauHaus\u2039",
       "link_info": "https://schwankhalle.de/spielplan/st-grollitsch-bauhaus-755.html",
       "link_tickets": "https://schwankhalle.de/spielplan/st-grollitsch-bauhaus-755.html",
@@ -3544,8 +3517,8 @@
     },
     {
       "date_time": "2020-02-06T20:00:00+01:00",
-      "info": "d - BauHaus\u2039\t\t\t\t\t\t\t\u00a0\n\t\t\t\t\t\t\tTanz - pr\u00e4sentiert von steptext dance project",
-      "artist": "G\u00fcnther Grollitsch",
+      "info": "chland - BauHaus\u2039\u00a0 / Tanz - pr\u00e4sentiert von steptext dance project",
+      "artist": "G.Grollitsch / F. Aimar",
       "title": "\u203amade in Deutschland - BauHaus\u2039",
       "link_info": "https://schwankhalle.de/spielplan/st-grollitsch-bauhaus-755.html",
       "link_tickets": "https://schwankhalle.de/spielplan/st-grollitsch-bauhaus-755.html",
@@ -3580,7 +3553,7 @@
     },
     {
       "date_time": "2020-02-14T20:00:00+01:00",
-      "info": "itte Bertele\n\t\t\t\t\t\t\t\t\u203aR-AGE\u2039\t\t\t\t\t\t\t\u00a0\n\t\t\t\t\t\t\tTheater",
+      "info": "itte Bertele / \u203aR-AGE\u2039\u00a0 / Theater",
       "artist": "Franziska Mencz / Brigitte Bertele",
       "title": "\u203aR-AGE\u2039",
       "link_info": "https://schwankhalle.de/spielplan/franziska-mencz-r-age-749.html",
@@ -3589,7 +3562,7 @@
     },
     {
       "date_time": "2020-02-15T20:00:00+01:00",
-      "info": "itte Bertele\n\t\t\t\t\t\t\t\t\u203aR-AGE\u2039\t\t\t\t\t\t\t\u00a0\n\t\t\t\t\t\t\tTheater",
+      "info": "itte Bertele / \u203aR-AGE\u2039\u00a0 / Theater",
       "artist": "Franziska Mencz / Brigitte Bertele",
       "title": "\u203aR-AGE\u2039",
       "link_info": "https://schwankhalle.de/spielplan/franziska-mencz-r-age-749.html",
@@ -3598,7 +3571,7 @@
     },
     {
       "date_time": "2020-02-16T15:00:00+01:00",
-      "info": "gel\u2039\t\t\t\t\t\t\t\u00a0\n\t\t\t\t\t\t\tTheater f\u00fcr Kinder zwischen 9 bis 12 Jahren",
+      "info": "gel\u2039\u00a0 / Theater f\u00fcr Kinder zwischen 9 bis 12 Jahren",
       "artist": "Die Azubis",
       "title": "\u203aHase und Igel\u2039",
       "link_info": "https://schwankhalle.de/spielplan/azubis-hase-igel-750.html",
@@ -3616,7 +3589,7 @@
     },
     {
       "date_time": "2020-02-19T19:30:00+01:00",
-      "info": "er\u2039\t\t\t\t\t\t\t\u00a0\n\t\t\t\t\t\t\tLesung",
+      "info": "er\u2039\u00a0 / Lesung",
       "artist": "Ted Gaier",
       "title": "\u203aArgumentepanzer\u2039",
       "link_info": "https://schwankhalle.de/spielplan/gaier-argumentepanzer-752.html",
@@ -3625,7 +3598,7 @@
     },
     {
       "date_time": "2020-02-20T20:00:00+01:00",
-      "info": "g, Arbeiterin!\u2039\t\t\t\t\t\t\t\u00a0\n\t\t\t\t\t\t\tDiskursive Revue",
+      "info": "g, Arbeiterin!\u2039\u00a0 / Diskursive Revue",
       "artist": "Les Reines Prochaines",
       "title": "\u203aLet\u2019s sing, Arbeiterin!\u2039",
       "link_info": "https://schwankhalle.de/spielplan/les-reines-prochaines-753.html",
@@ -3634,7 +3607,7 @@
     },
     {
       "date_time": "2020-02-21T20:00:00+01:00",
-      "info": "g, Arbeiterin!\u2039\t\t\t\t\t\t\t\u00a0\n\t\t\t\t\t\t\tDiskursive Revue",
+      "info": "g, Arbeiterin!\u2039\u00a0 / Diskursive Revue",
       "artist": "Les Reines Prochaines",
       "title": "\u203aLet\u2019s sing, Arbeiterin!\u2039",
       "link_info": "https://schwankhalle.de/spielplan/les-reines-prochaines-753.html",
@@ -3643,7 +3616,7 @@
     },
     {
       "date_time": "2020-02-22T20:00:00+01:00",
-      "info": "g, Arbeiterin!\u2039\t\t\t\t\t\t\t\u00a0\n\t\t\t\t\t\t\tDiskursive Revue",
+      "info": "g, Arbeiterin!\u2039\u00a0 / Diskursive Revue",
       "artist": "Les Reines Prochaines",
       "title": "\u203aLet\u2019s sing, Arbeiterin!\u2039",
       "link_info": "https://schwankhalle.de/spielplan/les-reines-prochaines-753.html",
@@ -4192,5 +4165,48 @@
       "location": "Glocke"
     }
   ],
-  "Kukoon": []
+  "Kukoon": [
+    {
+      "date_time": "2020-01-14T19:00:00+01:00",
+      "link_info": "https://kukoon.de/event/die-tuerkei-am-scheideweg/",
+      "title": "Die T\u00fcrkei am Scheideweg",
+      "info": "Veranstaltungskategorie: Vortrag",
+      "location": "Kukoon"
+    },
+    {
+      "date_time": "2020-01-23T20:00:00+01:00",
+      "link_info": "https://kukoon.de/event/liebesflash-liebestrash-offene-buehne-texte-rund-ums-thema-liebe/",
+      "title": "Liebesflash, Liebestrash \u2013 Offene B\u00fchne \u201eTexte rund ums Thema Liebe\u201c",
+      "info": "Veranstaltungskategorie: Lesung",
+      "location": "Kukoon"
+    },
+    {
+      "date_time": "2020-01-25T21:00:00+01:00",
+      "link_info": "https://kukoon.de/event/die-geburtstagssause-5-jahre-kukoon/",
+      "title": "Die Geburtstagssause \u2013 5 Jahre Kukoon",
+      "info": "Veranstaltungskategorie: Festakt",
+      "location": "Kukoon"
+    },
+    {
+      "date_time": "2020-01-26T04:00:00+01:00",
+      "link_info": "https://kukoon.de/event/geschlossen-den-ganzen-tag/",
+      "title": "Geschlossen \u2013 den ganzen Tag",
+      "info": "Veranstaltungskategorie: Geschlossene Gesellschaft",
+      "location": "Kukoon"
+    },
+    {
+      "date_time": "2020-01-31T20:00:00+01:00",
+      "link_info": "https://kukoon.de/event/volker-weiss-adorno-aspekte-des-neuen-rechtsradikalismus/",
+      "title": "Volker Wei\u00df: Adorno \u2013 Aspekte des neuen Rechtsradikalismus",
+      "info": "Veranstaltungskategorie: Vortrag",
+      "location": "Kukoon"
+    },
+    {
+      "date_time": "2020-02-01T14:00:00+01:00",
+      "link_info": "https://kukoon.de/event/kunst-mit-kids-6/",
+      "title": "Kunst mit Kids",
+      "info": "Veranstaltungskategorie: Workshop",
+      "location": "Kukoon"
+    }
+  ]
 }

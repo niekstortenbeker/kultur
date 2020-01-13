@@ -5,7 +5,7 @@ command line interface for Kultur
 import click
 import program
 
-
+# todo add documentation
 @click.command()
 @click.option(
     "--new/--old",
