@@ -198,9 +198,11 @@ class Theater:
         if re.search("deutschland|sterreich|schweiz", country):
             title = show_metainfo.get("title")
             title_original = show_metainfo.get("title_original")
-            if title == title_original:
+            if not title_original:  # if no original title info is available
                 return True
-            else:
+            elif title.strip().lower() == title_original.strip().lower():
+                return True
+            else:  # a different original title suggests it is dubbed after all
                 return False
         else:
             return False
@@ -291,9 +293,10 @@ class Kinoheld(Theater):
                 title = title[:-3].strip()
             show["title"] = title
             if s.find(class_="movie__title").span:
-                show["language_version"] = s.find(
-                    class_="movie__title"
-                ).span.text.strip()
+                lang_ver = s.find(class_="movie__title").span.text.strip()
+                show["language_version"] = lang_ver
+            elif "opera" in title.lower():
+                show["language_version"] = "Opera"
             else:
                 show["language_version"] = ""
             show["link_tickets"] = "https://www.kinoheld.de/" + s.a.get("href")
