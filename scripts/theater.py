@@ -841,7 +841,7 @@ class TheaterBremen(Theater):
             pass
         show["title"] = links[1].text.strip()
         info = "".join([info.text for info in s.find_all("p")])
-        show["info"] = info.replace("\n", ". ")
+        show["info"] = info.replace("\n", " / ")
         show["location"] = self.name
         return show
 
@@ -910,29 +910,45 @@ class Schwankhalle(Theater):
         for row in table.find_all("tr"):  # normal for row in table did not work
             if isinstance(row, str):  # skip empty table rows
                 continue
-            if not row.find(
-                class_="time-container"
-            ):  # going to assume that a program row always has a time cell
+            # going to assume that a program row always has a time cell
+            if not row.find(class_="time-container"):
                 continue
             if not row.find(class_="date-container"):  # solves nonetype errors
                 continue
-            show = {"date_time": self._get_date_time(row, year)}
-            title_artist_info = row.find("td", class_="title")
-            artist = title_artist_info.a.span.text
-            title = title_artist_info.a.text[
-                len(artist) + 1 :
-            ]  # title is not separated by tags
-            show["info"] = title_artist_info.text[
-                len(title) + 1 :
-            ].strip()  # info is not separated by tags
-            show["artist"] = artist.strip()
-            show["title"] = title.strip()
-            link = "https://schwankhalle.de/{}".format(row.a.get("href").strip())
-            show["link_info"] = link
-            show["link_tickets"] = link
-            show["location"] = self.name
+            show = self._extract_show(row, year)
             show_list.append(show)
         return show_list
+
+    def _extract_show(self, row, year):
+        """
+        parse show information
+
+        Parameters
+        ----------
+        row: bs4.Beautifulsoup()
+            shows are separted on html table rows
+        year: str
+
+        Returns
+        -------
+        a show dictionary that can be used in p.Program().shows
+        """
+
+        show = {"date_time": self._get_date_time(row, year)}
+        title_artist_info = row.find("td", class_="title")
+        artist = title_artist_info.a.span.text
+        # title is not separated by tags:
+        title = title_artist_info.a.text[len(artist) + 1:]
+        # info is not separated by tags:
+        info = title_artist_info.text[len(title) + 1:].strip()
+        show["info"] = info.replace("\n", " / ").replace("\t", "")
+        show["artist"] = artist.strip()
+        show["title"] = title.strip()
+        link = "https://schwankhalle.de/{}".format(row.a.get("href").strip())
+        show["link_info"] = link
+        show["link_tickets"] = link
+        show["location"] = self.name
+        return show
 
     def _get_date_time(self, row, year):
         date = row.find(class_="date-container").text.strip()
@@ -1029,10 +1045,8 @@ class Glocke(Theater):
             date_time, location_details = self._get_date_time_and_location_details(s)
             show["date_time"] = date_time
             show["location_details"] = location_details
-            title = str(s.find("h2")).strip()
-            title = title.replace("<h2>", "")
-            title = title.replace("</h2>", "")
-            title = title.replace("<br/>", " - ")
+            title = str(s.find("h2")).strip().replace("<h2>", "")
+            title = title.replace("</h2>", "").replace("<br/>", " - ")
             show["title"] = title
             link = self.url + "{}".format(s.a.get("href"))
             show["link_info"] = link
