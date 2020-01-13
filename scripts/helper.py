@@ -36,7 +36,7 @@ def start_driver():
     firefox_profile = webdriver.FirefoxProfile()
     firefox_profile.set_preference("intl.accept_languages", "de")
     options = Options()
-    # options.headless = True
+    options.headless = True
     driver = webdriver.Firefox(options=options, firefox_profile=firefox_profile)
 
 
