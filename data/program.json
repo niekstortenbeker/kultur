@@ -1,4 +1,1623 @@
 {
+  "Schauburg": [
+    {
+      "date_time": "2020-01-13T12:00:00+01:00",
+      "title": "Als Hitler das rosa Kaninchen stahl",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13259?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-13T14:15:00+01:00",
+      "title": "Judy",
+      "language_version": "OmU",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13305?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": false
+    },
+    {
+      "date_time": "2020-01-13T15:30:00+01:00",
+      "title": "Als Hitler das rosa Kaninchen stahl",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13260?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-13T16:30:00+01:00",
+      "title": "Miles Davis: Birth of the Cool (engl.)",
+      "language_version": "OmU",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13289?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": false
+    },
+    {
+      "date_time": "2020-01-13T17:45:00+01:00",
+      "title": "Als Hitler das rosa Kaninchen stahl",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13261?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-13T18:45:00+01:00",
+      "title": "Little Joe (engl.)",
+      "language_version": "OmU",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13304?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": false
+    },
+    {
+      "date_time": "2020-01-13T20:45:00+01:00",
+      "title": "Motherless Brooklyn (engl.)",
+      "language_version": "OmU",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13303?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": false
+    },
+    {
+      "date_time": "2020-01-13T21:00:00+01:00",
+      "title": "Sneak Preview (OV mit Untertiteln) OmUSneak-Preview",
+      "language_version": "OmU",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13269?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": false
+    },
+    {
+      "date_time": "2020-01-14T12:00:00+01:00",
+      "title": "Der geheime Roman des Monsieur Pick",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13296?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-14T14:30:00+01:00",
+      "title": "Judy",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13300?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-14T15:30:00+01:00",
+      "title": "Als Hitler das rosa Kaninchen stahl",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13262?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-14T16:45:00+01:00",
+      "title": "Miles Davis: Birth of the Cool (engl.)",
+      "language_version": "OmU",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13290?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": false
+    },
+    {
+      "date_time": "2020-01-14T17:45:00+01:00",
+      "title": "Als Hitler das rosa Kaninchen stahl",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13263?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-14T19:00:00+01:00",
+      "title": "Little Joe - Gl\u00fcck ist ein Gesch\u00e4ft",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13282?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-14T20:00:00+01:00",
+      "title": "Als Hitler das rosa Kaninchen stahl",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13264?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-14T21:00:00+01:00",
+      "title": "Motherless Brooklyn",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13275?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-15T12:00:00+01:00",
+      "title": "Als Hitler das rosa Kaninchen stahl",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13265?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-15T14:30:00+01:00",
+      "title": "Judy",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13301?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-15T15:30:00+01:00",
+      "title": "Als Hitler das rosa Kaninchen stahl",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13266?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-15T16:45:00+01:00",
+      "title": "Miles Davis: Birth of the Cool (engl.)",
+      "language_version": "OmU",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13291?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": false
+    },
+    {
+      "date_time": "2020-01-15T17:45:00+01:00",
+      "title": "Als Hitler das rosa Kaninchen stahl",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13267?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-15T19:00:00+01:00",
+      "title": "Little Joe - Gl\u00fcck ist ein Gesch\u00e4ft",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13283?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-15T20:00:00+01:00",
+      "title": "Als Hitler das rosa Kaninchen stahl",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13268?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-15T21:00:00+01:00",
+      "title": "Motherless Brooklyn",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13276?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-16T12:15:00+01:00",
+      "title": "Lindenberg! Mach dein Ding!",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13307?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-16T14:00:00+01:00",
+      "title": "Als Hitler das rosa Kaninchen stahl",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13330?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-16T15:00:00+01:00",
+      "title": "Lindenberg! Mach dein Ding!",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13308?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-16T16:15:00+01:00",
+      "title": "Judy",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13335?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-16T17:30:00+01:00",
+      "title": "Lindenberg! Mach dein Ding!",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13309?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-16T18:30:00+01:00",
+      "title": "Judy",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13336?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-16T20:00:00+01:00",
+      "title": "Lindenberg! Mach dein Ding!",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13310?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-16T20:45:00+01:00",
+      "title": "Little Joe - Gl\u00fcck ist ein Gesch\u00e4ft",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13344?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-17T12:00:00+01:00",
+      "title": "Little Joe - Gl\u00fcck ist ein Gesch\u00e4ft",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13349?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-17T14:00:00+01:00",
+      "title": "Als Hitler das rosa Kaninchen stahl",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13331?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-17T15:00:00+01:00",
+      "title": "Lindenberg! Mach dein Ding!",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13311?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-17T16:15:00+01:00",
+      "title": "Judy",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13337?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-17T17:30:00+01:00",
+      "title": "Lindenberg! Mach dein Ding!",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13312?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-17T18:30:00+01:00",
+      "title": "Judy",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13338?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-17T20:00:00+01:00",
+      "title": "Lindenberg! Mach dein Ding!",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13313?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-17T20:45:00+01:00",
+      "title": "Motherless Brooklyn",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13347?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-18T11:45:00+01:00",
+      "title": "Judy",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13365?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-18T12:15:00+01:00",
+      "title": "Knives Out - Mord ist Familiensache",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13351?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-18T14:00:00+01:00",
+      "title": "Als Hitler das rosa Kaninchen stahl",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13332?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-18T15:00:00+01:00",
+      "title": "Lindenberg! Mach dein Ding!",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13314?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-18T16:15:00+01:00",
+      "title": "Miles Davis: Birth of the Cool (engl.)",
+      "language_version": "OmU",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13348?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": false
+    },
+    {
+      "date_time": "2020-01-18T17:30:00+01:00",
+      "title": "Lindenberg! Mach dein Ding!",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13315?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-18T18:30:00+01:00",
+      "title": "Judy",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13340?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-18T20:00:00+01:00",
+      "title": "Lindenberg! Mach dein Ding!",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13316?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-18T20:45:00+01:00",
+      "title": "Little Joe - Gl\u00fcck ist ein Gesch\u00e4ft",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13345?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-19T11:45:00+01:00",
+      "title": "Miles Davis: Birth of the Cool (engl.)",
+      "language_version": "OmU",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13353?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": false
+    },
+    {
+      "date_time": "2020-01-19T12:15:00+01:00",
+      "title": "Lindenberg! Mach dein Ding!",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13317?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-19T14:00:00+01:00",
+      "title": "Als Hitler das rosa Kaninchen stahl",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13245?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-19T15:00:00+01:00",
+      "title": "Lindenberg! Mach dein Ding!",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13318?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-19T16:15:00+01:00",
+      "title": "Judy",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13364?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-19T17:30:00+01:00",
+      "title": "Lindenberg! Mach dein Ding!",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13319?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-19T18:30:00+01:00",
+      "title": "Der geheime Roman des Monsieur Pick",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13352?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-19T20:00:00+01:00",
+      "title": "Lindenberg! Mach dein Ding!",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13320?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-19T20:15:00+01:00",
+      "title": "Lost River",
+      "language_version": "OmU",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13157?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": false
+    },
+    {
+      "date_time": "2020-01-20T12:15:00+01:00",
+      "title": "Knives Out - Mord ist Familiensache (engl.)",
+      "language_version": "OmU",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13356?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": false
+    },
+    {
+      "date_time": "2020-01-20T14:00:00+01:00",
+      "title": "Als Hitler das rosa Kaninchen stahl",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13333?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-20T15:45:00+01:00",
+      "title": "Lindenberg! Mach dein Ding!",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13321?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-20T16:15:00+01:00",
+      "title": "Judy",
+      "language_version": "OmU",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13359?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": false
+    },
+    {
+      "date_time": "2020-01-20T18:15:00+01:00",
+      "title": "Lindenberg! Mach dein Ding!",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13322?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-20T18:30:00+01:00",
+      "title": "Judy",
+      "language_version": "OmU",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13360?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": false
+    },
+    {
+      "date_time": "2020-01-20T20:45:00+01:00",
+      "title": "Lindenberg! Mach dein Ding!",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13323?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-20T21:00:00+01:00",
+      "title": "Sneak Preview (OV mit Untertiteln)",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13357?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-21T12:30:00+01:00",
+      "title": "Pavarotti",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13362?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-21T14:00:00+01:00",
+      "title": "Als Hitler das rosa Kaninchen stahl",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13334?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-21T15:00:00+01:00",
+      "title": "Lindenberg! Mach dein Ding!",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13324?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-21T16:15:00+01:00",
+      "title": "Judy",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13341?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-21T17:30:00+01:00",
+      "title": "Lindenberg! Mach dein Ding!",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13325?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-21T18:30:00+01:00",
+      "title": "Judy",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13342?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-21T20:00:00+01:00",
+      "title": "Lindenberg! Mach dein Ding!",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13326?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-21T20:45:00+01:00",
+      "title": "Little Joe - Gl\u00fcck ist ein Gesch\u00e4ft",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13346?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-22T12:00:00+01:00",
+      "title": "Motherless Brooklyn",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13354?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-22T12:30:00+01:00",
+      "title": "Pavarotti",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13363?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-22T15:00:00+01:00",
+      "title": "Als Hitler das rosa Kaninchen stahl",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13358?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-22T15:45:00+01:00",
+      "title": "Lindenberg! Mach dein Ding!",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13327?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-22T17:30:00+01:00",
+      "title": "Lindenberg! Mach dein Ding!",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13328?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-22T18:30:00+01:00",
+      "title": "Van Gogh - An der Schwelle zur Ewigkeit",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13158?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-22T20:15:00+01:00",
+      "title": "Knives Out - Mord ist Familiensache (engl.)",
+      "language_version": "OmU",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13355?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": false
+    },
+    {
+      "date_time": "2020-01-22T20:45:00+01:00",
+      "title": "Lindenberg! Mach dein Ding!",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13329?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-26T14:00:00+01:00",
+      "title": "Shaun das Schaf - Der Film: UFO-Alarm KinderFamilie",
+      "language_version": "Kinder",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13246?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": false
+    },
+    {
+      "date_time": "2020-01-29T20:45:00+01:00",
+      "title": "Royal Opera House 2019/20: La Boh\u00e8me Live",
+      "language_version": "Live",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/11190?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": false
+    },
+    {
+      "date_time": "2020-03-25T20:00:00+01:00",
+      "title": "Best of Outdoor 2020",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/12874?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-05-30T20:00:00+02:00",
+      "title": "Rhonda live in Bremen Konzert",
+      "language_version": "Konzert",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13013?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
+      "location": "Schauburg",
+      "is_probably_dubbed_film": false
+    }
+  ],
+  "Gondel": [
+    {
+      "date_time": "2020-01-13T15:00:00+01:00",
+      "title": "Als Hitler das rosa Kaninchen stahl",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6518?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
+      "location": "Gondel",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-13T17:30:00+01:00",
+      "title": "Knives Out - Mord ist Familiensache",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6508?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
+      "location": "Gondel",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-13T20:00:00+01:00",
+      "title": "Knives Out - Mord ist Familiensache",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6509?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
+      "location": "Gondel",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-14T12:00:00+01:00",
+      "title": "Einsam Zweisam",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6526?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
+      "location": "Gondel",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-14T15:00:00+01:00",
+      "title": "Als Hitler das rosa Kaninchen stahl",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6519?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
+      "location": "Gondel",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-14T17:30:00+01:00",
+      "title": "Knives Out - Mord ist Familiensache",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6510?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
+      "location": "Gondel",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-14T20:00:00+01:00",
+      "title": "Knives Out - Mord ist Familiensache",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6511?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
+      "location": "Gondel",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-15T12:00:00+01:00",
+      "title": "Pavarotti",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6525?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
+      "location": "Gondel",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-15T15:00:00+01:00",
+      "title": "Als Hitler das rosa Kaninchen stahl",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6520?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
+      "location": "Gondel",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-15T17:30:00+01:00",
+      "title": "Knives Out - Mord ist Familiensache",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6512?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
+      "location": "Gondel",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-15T20:00:00+01:00",
+      "title": "Knives Out - Mord ist Familiensache",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6513?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
+      "location": "Gondel",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-16T12:00:00+01:00",
+      "title": "Pavarotti",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6555?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
+      "location": "Gondel",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-16T14:30:00+01:00",
+      "title": "Knives Out - Mord ist Familiensache",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6528?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
+      "location": "Gondel",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-16T17:00:00+01:00",
+      "title": "Als Hitler das rosa Kaninchen stahl",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6535?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
+      "location": "Gondel",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-16T20:15:00+01:00",
+      "title": "Royal Opera House 2019/20: Dornr\u00f6schen",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/5502?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
+      "location": "Gondel",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-17T12:00:00+01:00",
+      "title": "Knives Out - Mord ist Familiensache",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6554?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
+      "location": "Gondel",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-17T15:00:00+01:00",
+      "title": "Als Hitler das rosa Kaninchen stahl",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6536?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
+      "location": "Gondel",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-17T17:30:00+01:00",
+      "title": "Als Hitler das rosa Kaninchen stahl",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6537?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
+      "location": "Gondel",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-17T20:00:00+01:00",
+      "title": "Knives Out - Mord ist Familiensache",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6529?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
+      "location": "Gondel",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-18T12:00:00+01:00",
+      "title": "Lindenberg! Mach dein Ding!",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6552?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
+      "location": "Gondel",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-18T15:00:00+01:00",
+      "title": "Als Hitler das rosa Kaninchen stahl",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6538?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
+      "location": "Gondel",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-18T17:30:00+01:00",
+      "title": "Als Hitler das rosa Kaninchen stahl",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6539?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
+      "location": "Gondel",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-18T20:00:00+01:00",
+      "title": "Knives Out - Mord ist Familiensache",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6530?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
+      "location": "Gondel",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-19T11:00:00+01:00",
+      "title": "Das geheime Leben der B\u00e4ume",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6548?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
+      "location": "Gondel",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-19T13:00:00+01:00",
+      "title": "The Farewell",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6549?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
+      "location": "Gondel",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-19T15:00:00+01:00",
+      "title": "Als Hitler das rosa Kaninchen stahl",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6540?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
+      "location": "Gondel",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-19T17:30:00+01:00",
+      "title": "Als Hitler das rosa Kaninchen stahl",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6541?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
+      "location": "Gondel",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-19T20:00:00+01:00",
+      "title": "Knives Out - Mord ist Familiensache",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6531?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
+      "location": "Gondel",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-20T12:00:00+01:00",
+      "title": "The Farewell",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6550?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
+      "location": "Gondel",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-20T15:00:00+01:00",
+      "title": "Als Hitler das rosa Kaninchen stahl",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6542?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
+      "location": "Gondel",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-20T17:30:00+01:00",
+      "title": "Als Hitler das rosa Kaninchen stahl",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6543?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
+      "location": "Gondel",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-20T20:00:00+01:00",
+      "title": "Knives Out - Mord ist Familiensache",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6532?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
+      "location": "Gondel",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-21T12:00:00+01:00",
+      "title": "Lindenberg! Mach dein Ding!",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6553?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
+      "location": "Gondel",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-21T15:00:00+01:00",
+      "title": "Als Hitler das rosa Kaninchen stahl",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6544?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
+      "location": "Gondel",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-21T17:30:00+01:00",
+      "title": "Als Hitler das rosa Kaninchen stahl",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6545?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
+      "location": "Gondel",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-21T20:00:00+01:00",
+      "title": "Knives Out - Mord ist Familiensache",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6533?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
+      "location": "Gondel",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-22T12:00:00+01:00",
+      "title": "Knives Out - Mord ist Familiensache",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6551?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
+      "location": "Gondel",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-22T15:00:00+01:00",
+      "title": "Als Hitler das rosa Kaninchen stahl",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6546?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
+      "location": "Gondel",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-22T17:30:00+01:00",
+      "title": "Als Hitler das rosa Kaninchen stahl",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6547?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
+      "location": "Gondel",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-22T20:00:00+01:00",
+      "title": "Knives Out - Mord ist Familiensache",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6534?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
+      "location": "Gondel",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-02-25T20:15:00+01:00",
+      "title": "Royal Opera House 2019/20: Die Cellistin (Doppelpr",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/5503?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
+      "location": "Gondel",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-03-17T20:15:00+01:00",
+      "title": "Royal Opera House 2019/20: Fidelio",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/5504?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
+      "location": "Gondel",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-04-01T20:15:00+02:00",
+      "title": "Royal Opera House 2019/20: Schwanensee",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/5505?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
+      "location": "Gondel",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-04-21T20:00:00+02:00",
+      "title": "Royal Opera House 2019/20: Cavalleria Rusticana /",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/5506?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
+      "location": "Gondel",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-05-28T20:15:00+02:00",
+      "title": "Royal Opera House 2019/20: Das Dante-Projekt",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/5507?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
+      "location": "Gondel",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-06-18T20:45:00+02:00",
+      "title": "Royal Opera House 2019/20: Elektra",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/5508?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
+      "location": "Gondel",
+      "is_probably_dubbed_film": true
+    }
+  ],
+  "Atlantis": [
+    {
+      "date_time": "2020-01-13T14:00:00+01:00",
+      "title": "Der geheime Roman des Monsieur Pick",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/5090?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
+      "location": "Atlantis",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-13T16:00:00+01:00",
+      "title": "The Farewell",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/5097?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
+      "location": "Atlantis",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-13T20:00:00+01:00",
+      "title": "Judy",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/5083?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
+      "location": "Atlantis",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-14T14:30:00+01:00",
+      "title": "Pavarotti",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/5104?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
+      "location": "Atlantis",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-14T16:45:00+01:00",
+      "title": "The Farewell",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/5098?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
+      "location": "Atlantis",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-14T18:45:00+01:00",
+      "title": "Der geheime Roman des Monsieur Pick",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/5091?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
+      "location": "Atlantis",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-14T20:45:00+01:00",
+      "title": "Judy",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/5084?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
+      "location": "Atlantis",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-15T14:30:00+01:00",
+      "title": "Pavarotti",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/5105?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
+      "location": "Atlantis",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-15T16:45:00+01:00",
+      "title": "The Farewell",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/5099?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
+      "location": "Atlantis",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-15T18:45:00+01:00",
+      "title": "Der geheime Roman des Monsieur Pick",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/5092?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
+      "location": "Atlantis",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-15T20:45:00+01:00",
+      "title": "Judy",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/5085?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
+      "location": "Atlantis",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-16T17:30:00+01:00",
+      "title": "Knives Out - Mord ist Familiensache",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/5108?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
+      "location": "Atlantis",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-16T20:00:00+01:00",
+      "title": "Als Hitler das rosa Kaninchen stahl",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/5121?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
+      "location": "Atlantis",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-17T15:00:00+01:00",
+      "title": "Knives Out - Mord ist Familiensache",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/5109?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
+      "location": "Atlantis",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-17T17:30:00+01:00",
+      "title": "Knives Out - Mord ist Familiensache",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/5110?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
+      "location": "Atlantis",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-17T20:00:00+01:00",
+      "title": "Als Hitler das rosa Kaninchen stahl",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/5122?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
+      "location": "Atlantis",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-18T13:00:00+01:00",
+      "title": "Der geheime Roman des Monsieur Pick",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/5128?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
+      "location": "Atlantis",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-18T15:00:00+01:00",
+      "title": "Knives Out - Mord ist Familiensache",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/5111?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
+      "location": "Atlantis",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-18T17:30:00+01:00",
+      "title": "Knives Out - Mord ist Familiensache",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/5112?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
+      "location": "Atlantis",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-18T20:00:00+01:00",
+      "title": "Als Hitler das rosa Kaninchen stahl",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/5123?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
+      "location": "Atlantis",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-19T12:45:00+01:00",
+      "title": "Pavarotti",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/5129?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
+      "location": "Atlantis",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-19T15:00:00+01:00",
+      "title": "Knives Out - Mord ist Familiensache",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/5113?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
+      "location": "Atlantis",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-19T17:30:00+01:00",
+      "title": "Knives Out - Mord ist Familiensache",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/5114?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
+      "location": "Atlantis",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-19T20:00:00+01:00",
+      "title": "Als Hitler das rosa Kaninchen stahl",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/5124?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
+      "location": "Atlantis",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-20T15:00:00+01:00",
+      "title": "Knives Out - Mord ist Familiensache",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/5115?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
+      "location": "Atlantis",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-20T17:30:00+01:00",
+      "title": "Knives Out - Mord ist Familiensache",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/5116?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
+      "location": "Atlantis",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-20T20:00:00+01:00",
+      "title": "Als Hitler das rosa Kaninchen stahl",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/5125?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
+      "location": "Atlantis",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-21T15:00:00+01:00",
+      "title": "Knives Out - Mord ist Familiensache",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/5117?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
+      "location": "Atlantis",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-21T17:30:00+01:00",
+      "title": "Knives Out - Mord ist Familiensache",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/5118?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
+      "location": "Atlantis",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-21T20:00:00+01:00",
+      "title": "Als Hitler das rosa Kaninchen stahl",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/5126?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
+      "location": "Atlantis",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-22T15:00:00+01:00",
+      "title": "Knives Out - Mord ist Familiensache",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/5119?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
+      "location": "Atlantis",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-22T17:30:00+01:00",
+      "title": "Knives Out - Mord ist Familiensache",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/5120?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
+      "location": "Atlantis",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-22T20:00:00+01:00",
+      "title": "Als Hitler das rosa Kaninchen stahl",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/5127?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
+      "location": "Atlantis",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-25T15:00:00+01:00",
+      "title": "Shaun das Schaf - Der Film: UFO-Alarm KinderFamilie",
+      "language_version": "Kinder",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/5078?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
+      "location": "Atlantis",
+      "is_probably_dubbed_film": false
+    },
+    {
+      "date_time": "2020-02-05T21:00:00+01:00",
+      "title": "This Is Not Berlin (span.)",
+      "language_version": "OmU",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/5048?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
+      "location": "Atlantis",
+      "is_probably_dubbed_film": false
+    },
+    {
+      "date_time": "2020-02-11T20:00:00+01:00",
+      "title": "Lion",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/4995?mode=widget",
+      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
+      "location": "Atlantis",
+      "is_probably_dubbed_film": true
+    }
+  ],
+  "Cinema Ostertor": [
+    {
+      "date_time": "2020-01-13T16:45:00+01:00",
+      "title": "MILCHKRIEG IN DALSMYNNI",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/cinema-im-ostertor-bremen/vorstellung/2216613913?mode=widget",
+      "link_info": "https://cinema-ostertor.de/programm",
+      "location": "Cinema Ostertor",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-13T18:30:00+01:00",
+      "title": "THE PEANUT BUTTER FALCON",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/cinema-im-ostertor-bremen/vorstellung/2216613925?mode=widget",
+      "link_info": "https://cinema-ostertor.de/programm",
+      "location": "Cinema Ostertor",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-13T20:30:00+01:00",
+      "title": "DIE SEHNSUCHT DER SCHWESTERN GUSM\u00c3O",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/cinema-im-ostertor-bremen/vorstellung/2216613937?mode=widget",
+      "link_info": "https://cinema-ostertor.de/programm",
+      "location": "Cinema Ostertor",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-14T16:30:00+01:00",
+      "title": "DIE SEHNSUCHT DER SCHWESTERN GUSM\u00c3O",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/cinema-im-ostertor-bremen/vorstellung/2216613949?mode=widget",
+      "link_info": "https://cinema-ostertor.de/programm",
+      "location": "Cinema Ostertor",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-14T19:00:00+01:00",
+      "title": "THE PEANUT BUTTER FALCON",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/cinema-im-ostertor-bremen/vorstellung/2216613961?mode=widget",
+      "link_info": "https://cinema-ostertor.de/programm",
+      "location": "Cinema Ostertor",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-14T21:00:00+01:00",
+      "title": "MILCHKRIEG IN DALSMYNNI",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/cinema-im-ostertor-bremen/vorstellung/2216613973?mode=widget",
+      "link_info": "https://cinema-ostertor.de/programm",
+      "location": "Cinema Ostertor",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-15T19:10:00+01:00",
+      "title": "THE PEANUT BUTTER FALCON",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/cinema-im-ostertor-bremen/vorstellung/2216613993?mode=widget",
+      "link_info": "https://cinema-ostertor.de/programm",
+      "location": "Cinema Ostertor",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-15T21:00:00+01:00",
+      "title": "MEIN VATER, MEIN SOHN UND DER KILIMANDSCHARO",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/cinema-im-ostertor-bremen/vorstellung/2216608190?mode=widget",
+      "link_info": "https://cinema-ostertor.de/programm",
+      "location": "Cinema Ostertor",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-25T18:30:00+01:00",
+      "title": "NUR DIE F\u00dc\u00dfE TUN MIR LEID",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/cinema-im-ostertor-bremen/vorstellung/2211019060?mode=widget",
+      "link_info": "https://cinema-ostertor.de/programm",
+      "location": "Cinema Ostertor",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-30T17:00:00+01:00",
+      "title": "BUTENLAND",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/cinema-im-ostertor-bremen/vorstellung/2214139091?mode=widget",
+      "link_info": "https://cinema-ostertor.de/programm",
+      "location": "Cinema Ostertor",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-30T19:00:00+01:00",
+      "title": "BUTENLAND",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/cinema-im-ostertor-bremen/vorstellung/2191109325?mode=widget",
+      "link_info": "https://cinema-ostertor.de/programm",
+      "location": "Cinema Ostertor",
+      "is_probably_dubbed_film": true
+    }
+  ],
   "City 46": [
     {
       "date_time": "2020-01-01T17:30:00+01:00",
@@ -562,7 +2181,7 @@
       "date_time": "2020-01-17T17:30:00+01:00",
       "title": "Der marktgerechte Mensch",
       "location": "City 46",
-      "info": "D 2020, teilw.",
+      "info": "D 2020, teilw.. mit G\u00e4sten",
       "link_info": "http://www.city46.de/programm/januar-2020/globales-handeln.html#c37247",
       "language_version": "OmU"
     },
@@ -1078,5 +2697,1500 @@
       "info": ". Improtheater",
       "link_info": "https://bik-city-impro.de/spielplan/impro-das-musical-15/"
     }
-  ]
+  ],
+  "Theater Bremen": [
+    {
+      "date_time": "2020-01-03T16:00:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/kultur-on-tour.16366495",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2158#termine",
+      "price": "5 \u20ac",
+      "title": "Kultur on Tour",
+      "info": "\u00dcber die Sch\u00e4dlichkeit des Tabaks. von Jugendtheater KRUG-2 (Krasnosnamensk, Russland)",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-03T19:00:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/kultur-on-tour.16366496",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2157#termine",
+      "price": "5 \u20ac",
+      "title": "Kultur on Tour",
+      "info": "Blondi. von ProEnglish Theatre (Kiew, Ukraine)",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-04T12:00:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/kultur-on-tour.16366497",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2159#termine",
+      "price": "5 \u20ac",
+      "title": "Kultur on Tour",
+      "info": "Alle Wege f\u00fchren ins Nirgendwo. von Theaterstudio Goroshini (Sankt Petersburg, Russland)",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-04T15:00:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/kultur-on-tour.16366498",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2160#termine",
+      "price": "5 \u20ac",
+      "title": "Kultur on Tour",
+      "info": "AUTSCH!. von Theater 11 (Bremen)",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-04T19:00:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/kultur-on-tour.16366499",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2161#termine",
+      "price": "5 \u20ac",
+      "title": "Kultur on Tour",
+      "info": "Eine Erz\u00e4hlung, die nicht geschrieben wurde. von Theater Trikster (Moskau, Russland)",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-04T19:30:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/lazarus.16319126",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2040#termine",
+      "price": "56 / 49 / 44 / 38 / 29 / 18 \u20ac / 9 \u20ac erm.",
+      "title": "Lazarus",
+      "info": "Ein Musical von David Bowie und Enda Walsh. Nach dem Roman \u201eThe Man Who Fell to Earth\u201c von Walter Tevis. Deutsch von Peter Torberg",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-05T10:00:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/die-rote-zora-und-ihre-bande.16366559",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=1692#termine",
+      "price": "20 / 17 / 15 / 13 / 10 / 8 \u20ac",
+      "title": "Die rote Zora und ihre Bande",
+      "info": "Urauff\u00fchrung. 6+. von John von D\u00fcffel. nach dem Roman von Kurt Held. Karten f\u00fcr Vormittagsvorstellungen f\u00fcr Schulklassen erhalten Sie beim Service f\u00fcr Schulen und Gruppen unter Tel 0421\u20093653-340, Fax 0421\u20093653-934 oder schulen@theaterbremen.de ",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-05T12:00:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/kultur-on-tour.16366500",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2163#termine",
+      "price": "5 \u20ac",
+      "title": "Kultur on Tour",
+      "info": "Die beste Methode mit dem Rauchen aufzuh\u00f6ren. von Prager Theaterstudio PDD (Prag, Tschechien)",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-05T15:30:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/kultur-on-tour.16366501",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2164#termine",
+      "price": "5 \u20ac",
+      "title": "Kultur on Tour",
+      "info": "Karpuscha Forever. von Theaterstudio Parallel (Baranowitschi, Wei\u00dfrussland) ",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-05T18:00:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/voegel.16291522",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2071#termine",
+      "price": "35 / 30 / 25 / 20 / 15 / 10 \u20ac / 9 \u20ac erm.",
+      "title": "V\u00f6gel",
+      "info": "von Wajdi Mouawad",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-05T19:00:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/kultur-on-tour.16366502",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2162#termine",
+      "price": "5 \u20ac",
+      "title": "Kultur on Tour",
+      "info": "CHRMSA. von Theaterstudio Kumkuat (Sankt Petersburg, Russland)",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-06T11:00:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/kultur-on-tour.16366503",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2166#termine",
+      "price": "5 \u20ac",
+      "title": "Kultur on Tour",
+      "info": "Jugend ohne Gott. von Theater 11 (Bremen) in deutscher Sprache",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-06T13:00:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/kultur-on-tour.16368557",
+      "title": "Kultur on Tour",
+      "info": "",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-06T16:00:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/kultur-on-tour.16366505",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2167#termine",
+      "price": "5 \u20ac",
+      "title": "Kultur on Tour",
+      "info": "Soldat und V\u00f6gel. von Theaterstudio Splash (Kiew, Ukraine)",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-06T20:00:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/kultur-on-tour.16366506",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2165#termine",
+      "price": "5 \u20ac",
+      "title": "Kultur on Tour",
+      "info": "Die verheirateten Vogelscheuchen. von Teatro Dei Dioscuri (Campagna, Italien) ",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-08T10:30:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/nachtgeknister.16366521",
+      "title": "Nachtgeknister",
+      "info": "von Mike Kenny. Eine Moks-Produktion / 6+. Bremer Schulen Eintritt frei!",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-09T10:30:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/nachtgeknister.16366522",
+      "title": "Nachtgeknister",
+      "info": "von Mike Kenny. Eine Moks-Produktion / 6+. Bremer Schulen Eintritt frei!",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-09T17:00:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/jour-fixe-theater-und-schule.16366487",
+      "title": "Jour Fixe - Theater und Schule",
+      "info": "Musik im Theater. Fortbildung f\u00fcr LehrerInnen und Interessierte. Eintritt frei!. Treffpunkt ist das Kleine Haus. Anmeldung unter http://www.lis.bremen.de",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-09T19:00:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/alcina.15999401",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=1484#termine",
+      "price": "49 / 44 / 39 / 34 / 27 / 15 \u20ac / 9 \u20ac erm.",
+      "title": "Alcina",
+      "info": "Dramma per musica in drei Akten. von Georg Friedrich H\u00e4ndel. nach Motiven aus Ludovico Ariosts Epos \u201eOrlando furioso\u201c. 18:30 Uhr Einf\u00fchrung",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-10T10:30:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/nachtgeknister.16366523",
+      "title": "Nachtgeknister",
+      "info": "Achtung! Diese Vorstellung muss leider entfallen!",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-10T19:30:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/pariser-leben.16366527",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2072#termine",
+      "price": "45 / 39 / 35 / 29 / 22 / 15 \u20ac / 9 \u20ac erm.",
+      "title": "Pariser Leben",
+      "info": "Eine Gala mit dem Musiktheaterensemble, dem Chor des Theater Bremen und den Bremer Philharmonikern",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-10T20:00:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/spektrum.15999490",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=1738#termine",
+      "price": "21 \u20ac / 9 \u20ac erm.",
+      "title": "Spektrum",
+      "info": "von M\u00e1t\u00e9 M\u00e9sz\u00e1ros / Unusual Symptoms. 19 Uhr Physical Prologue. 19:30 Uhr Einf\u00fchrung. ",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-11T16:00:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/nachtgeknister.16366524",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2058#termine",
+      "price": "10 \u20ac / 7 \u20ac erm.",
+      "title": "Nachtgeknister",
+      "info": "von Mike Kenny. Eine Moks-Produktion / 6+. Bremer Schulen Eintritt frei!",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-11T19:30:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/voegel.16366549",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=1510#termine",
+      "price": "35 / 30 / 25 / 20 / 15 / 10 \u20ac / 9 \u20ac erm.",
+      "title": "V\u00f6gel",
+      "info": "von Wajdi Mouawad. 19 Uhr Einf\u00fchrung",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-11T20:00:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/lulu-ein-rock-vaudeville.16366514",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2128#termine",
+      "price": "25 \u20ac / 9 \u20ac erm.",
+      "title": "Lulu \u2013 Ein Rock-Vaudeville",
+      "info": "Mit Musik von The Tiger Lillies. nach Frank Wedekind. 19:30 Uhr Einf\u00fchrung. ",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-12T10:00:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/die-rote-zora-und-ihre-bande.16366560",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=1693#termine",
+      "price": "20 / 17 / 15 / 13 / 10 / 8 \u20ac / 9 / 7 \u20ac erm.",
+      "title": "Die rote Zora und ihre Bande",
+      "info": "Urauff\u00fchrung. 6+. von John von D\u00fcffel. nach dem Roman von Kurt Held. Karten f\u00fcr Vormittagsvorstellungen f\u00fcr Schulklassen erhalten Sie beim Service f\u00fcr Schulen und Gruppen unter Tel 0421\u20093653-340, Fax 0421\u20093653-934 oder schulen@theaterbremen.de ",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-12T11:00:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/5-philharmonisches-konzert.16127645",
+      "title": "5. Philharmonisches Konzert",
+      "info": "Prosit!. Marc-Andr\u00e9 Hamelin, Klavier. Carlos Kalmar, Dirigent. Tickets f\u00fcr diese Veranstaltung erhalten. Sie \u00fcber Die Glocke (0421) 336699",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-12T11:00:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/europa-quartett-8-exit-vom-brexit-geht-das.16366463",
+      "title": "Europa-Quartett #8: Exit vom Brexit, geht das ?",
+      "info": "Kate Connolly \u00fcber ihr Buch \u201eExit Brexit. Wie ich Deutsche wurde.\u201c. Eine Veranstaltung der Heinrich-B\u00f6ll-Stiftung Bremen in Kooperation mit dem Bremer Europa Zentrum und dem Theater Bremen.. Eintritt frei!",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-12T18:00:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/der-rosenkavalier.16366538",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=1464#termine",
+      "price": "62 / 56 / 48 / 41 / 33 / 20 \u20ac / 9 \u20ac erm.",
+      "title": "Der Rosenkavalier",
+      "info": "Kom\u00f6die f\u00fcr Musik in drei Aufz\u00fcgen. von Richard Strauss. Text von Hugo von Hofmannsthal",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-12T18:30:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/in-bed-with-madonna.16299213",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2005#termine",
+      "price": "25 \u20ac / 9 \u20ac erm.",
+      "title": "In bed with Madonna",
+      "info": "Ein Liederabend zum 61. Geburtstag von. Madonna Louise Veronica Ciccone. ",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-13T10:00:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/die-rote-zora-und-ihre-bande.16366561",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=1713#termine",
+      "price": "20 / 17 / 15 / 13 / 10 / 8 \u20ac / 9 / 7 \u20ac erm.",
+      "title": "Die rote Zora und ihre Bande",
+      "info": "Urauff\u00fchrung. 6+. von John von D\u00fcffel. nach dem Roman von Kurt Held. Karten f\u00fcr Vormittagsvorstellungen f\u00fcr Schulklassen erhalten Sie beim Service f\u00fcr Schulen und Gruppen unter Tel 0421\u20093653-340, Fax 0421\u20093653-934 oder schulen@theaterbremen.de ",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-13T10:30:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/nachtgeknister.16366525",
+      "title": "Nachtgeknister",
+      "info": "von Mike Kenny. Eine Moks-Produktion / 6+. Bremer Schulen Eintritt frei!",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-13T19:30:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/5-philharmonisches-konzert.16127646",
+      "title": "5. Philharmonisches Konzert",
+      "info": "Prosit!. Marc-Andr\u00e9 Hamelin, Klavier. Carlos Kalmar, Dirigent. Tickets f\u00fcr diese Veranstaltung erhalten. Sie \u00fcber Die Glocke (0421) 336699",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-14T10:30:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/nachtgeknister.16366526",
+      "title": "Nachtgeknister",
+      "info": "von Mike Kenny. Eine Moks-Produktion / 6+. Bremer Schulen Eintritt frei!",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-14T19:30:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/nach-den-rechten-sehen.16366520",
+      "title": "Nach den Rechten sehen",
+      "info": "Prof. Dr. Lothar Probst. Identit\u00e4tspolitik. Demokratische Antworten auf einen rechten Diskurs. In Kooperation mit der Heinrich-B\u00f6ll-Stiftung Bremen. Eintritt frei! ",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-14T19:30:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/5-philharmonisches-konzert.16127647",
+      "title": "5. Philharmonisches Konzert",
+      "info": "Prosit!. Marc-Andr\u00e9 Hamelin, Klavier. Carlos Kalmar, Dirigent. Tickets f\u00fcr diese Veranstaltung erhalten. Sie \u00fcber Die Glocke (0421) 336699",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-15T10:00:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/die-rote-zora-und-ihre-bande.16366562",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=1714#termine",
+      "price": "20 / 17 / 15 / 13 / 10 / 8 \u20ac / 9 / 7 \u20ac erm.",
+      "title": "Die rote Zora und ihre Bande",
+      "info": "Urauff\u00fchrung. 6+. von John von D\u00fcffel. nach dem Roman von Kurt Held. Karten f\u00fcr Vormittagsvorstellungen f\u00fcr Schulklassen erhalten Sie beim Service f\u00fcr Schulen und Gruppen unter Tel 0421\u20093653-340, Fax 0421\u20093653-934 oder schulen@theaterbremen.de ",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-15T19:30:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/don-giovanni.15999412",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=1469#termine",
+      "price": "62 / 56 / 48 / 41 / 33 / 20 \u20ac / 9 \u20ac erm.",
+      "title": "Don Giovanni",
+      "info": "Dramma giocoso in zwei Akten. von Wolfgang Amadeus Mozart. Text von Lorenzo Da Ponte. 19 Uhr Einf\u00fchrung. ",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-16T10:00:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/die-rote-zora-und-ihre-bande.16366563",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=1715#termine",
+      "price": "20 / 17 / 15 / 13 / 10 / 8 \u20ac / 9 / 7 \u20ac erm.",
+      "title": "Die rote Zora und ihre Bande",
+      "info": "Urauff\u00fchrung. 6+. von John von D\u00fcffel. nach dem Roman von Kurt Held. Karten f\u00fcr Vormittagsvorstellungen f\u00fcr Schulklassen erhalten Sie beim Service f\u00fcr Schulen und Gruppen unter Tel 0421\u20093653-340, Fax 0421\u20093653-934 oder schulen@theaterbremen.de ",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-16T19:30:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/voegel.16366550",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2073#termine",
+      "price": "35 / 30 / 25 / 20 / 15 / 10 \u20ac / 9 \u20ac erm.",
+      "title": "V\u00f6gel",
+      "info": "von Wajdi Mouawad. 19 Uhr Einf\u00fchrung",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-16T20:00:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/fruehlingserwachen.15999459",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=1749#termine",
+      "price": "23 \u20ac / 9 \u20ac erm.",
+      "title": "Fr\u00fchlingserwachen",
+      "info": "14+. Ein Projekt von Alize Zandwijk und Tomas B\u00fcnger. im Anschluss Premierenfeier",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-17T10:00:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/die-rote-zora-und-ihre-bande.16366564",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=1716#termine",
+      "price": "20 / 17 / 15 / 13 / 10 / 8 \u20ac / 9 / 7 \u20ac erm.",
+      "title": "Die rote Zora und ihre Bande",
+      "info": "Urauff\u00fchrung. 6+. von John von D\u00fcffel. nach dem Roman von Kurt Held. Karten f\u00fcr Vormittagsvorstellungen f\u00fcr Schulklassen erhalten Sie beim Service f\u00fcr Schulen und Gruppen unter Tel 0421\u20093653-340, Fax 0421\u20093653-934 oder schulen@theaterbremen.de ",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-17T18:00:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/blickwechsel.16368554",
+      "title": "Blickwechsel",
+      "info": "Jugend ohne Gott. mit Dramaturg Sebastian Rest und Pastorin Christine Kind. Eintritt frei!",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-17T19:00:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/jugend-ohne-gott.16366488",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2059#termine",
+      "price": "10 \u20ac / 7 \u20ac erm.",
+      "title": "Jugend ohne Gott",
+      "info": "15+. nach dem Roman von \u00d6d\u00f6n von Horv\u00e1th",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-17T19:30:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/das-horoskop-des-koenigs-l-etoile.16366462",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2075#termine",
+      "price": "49 / 44 / 39 / 34 / 27 / 15 \u20ac / 9 \u20ac erm.",
+      "title": "Das Horoskop des K\u00f6nigs \u2013 L\u00b4\u00c9toile",
+      "info": "Komische Oper in drei Akten. von Emmanuel Chabrier. Text von Eug\u00e8ne Leterrier und Albert Vanloo. 19 Uhr Einf\u00fchrung",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-17T20:00:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/spektrum.16366543",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2126#termine",
+      "price": "21 \u20ac / 9 \u20ac erm.",
+      "title": "Spektrum",
+      "info": "von M\u00e1t\u00e9 M\u00e9sz\u00e1ros / Unusual Symptoms. 19:30 Uhr Einf\u00fchrung. ",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-18T10:00:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/kostuemverkauf.16366494",
+      "title": "Kost\u00fcmverkauf",
+      "info": "",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-18T11:00:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/bremen-zwei-wintergaeste.16368560",
+      "title": "Bremen Zwei: Winterg\u00e4ste",
+      "info": "Gespr\u00e4che mit Prominenten \u2013 live und im Radio. Mit Nina Hoss. Moderation: Katrin Kr\u00e4mer. Eintritt frei!",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-18T19:00:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/jugend-ohne-gott.16366489",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2060#termine",
+      "price": "10 \u20ac / 7 \u20ac erm.",
+      "title": "Jugend ohne Gott",
+      "info": "15+. nach dem Roman von \u00d6d\u00f6n von Horv\u00e1th",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-18T19:00:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/die-zauberfloete.16366558",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2076#termine",
+      "price": "56 / 49 / 44 / 38 / 29 / 18 \u20ac / 9 \u20ac erm.",
+      "title": "Die Zauberfl\u00f6te",
+      "info": "Gro\u00dfe Oper in zwei Aufz\u00fcgen von Wolfgang Amadeus Mozart. Text von Emanuel Schikaneder",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-18T21:00:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/club-feat-am-apparat.16366441",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2134#termine",
+      "price": "14 \u20ac",
+      "title": "CLUB feat. Am Apparat",
+      "info": "mit. Children of Zeus / Douniah & High John / Spaze Windu & Hast. Aftershow: Luk The Dude & Repete 23. Pr\u00e4sentiert von Cosmo. Einlass 20 Uhr",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-19T14:00:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/after-tomorrow-1-the-end.16366435",
+      "title": "After Tomorrow #1: The End",
+      "info": "Ein Thementag mit Filmvorf\u00fchrung und Gespr\u00e4chen zu k\u00fcnstlerischen Strategien im Anthropoz\u00e4n. Eintritt frei!",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-19T15:30:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/alcina.15999402",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=1485#termine",
+      "price": "49 / 44 / 39 / 34 / 27 / 15 \u20ac / 9 \u20ac erm.",
+      "title": "Alcina",
+      "info": "Dramma per musica in drei Akten. von Georg Friedrich H\u00e4ndel. nach Motiven aus Ludovico Ariosts Epos \u201eOrlando furioso\u201c. 15 Uhr Einf\u00fchrung",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-19T18:30:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/the-end-eine-replikantenoper.16366546",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2132#termine",
+      "price": "23 \u20ac / 9 \u20ac erm.",
+      "title": "The End. Eine Replikantenoper",
+      "info": "von Jan Eichberg. Urauff\u00fchrung. 18 Uhr Einf\u00fchrung",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-20T10:30:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/jugend-ohne-gott.16366490",
+      "title": "Jugend ohne Gott",
+      "info": "15+. nach dem Roman von \u00d6d\u00f6n von Horv\u00e1th. Bremer Schulen Eintritt frei!",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-20T20:00:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/theatertreffen.16366548",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2182#termine",
+      "price": "5 \u20ac",
+      "title": "TheaterTreffen",
+      "info": "Urbanscreen. Till Botterweck und Ana Rom\u00e3o im Gespr\u00e4ch mit Rainer Glaap. Eintritt frei f\u00fcr Bremer Theaterfreunde",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-21T10:30:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/jugend-ohne-gott.16366491",
+      "title": "Jugend ohne Gott",
+      "info": "15+. nach dem Roman von \u00d6d\u00f6n von Horv\u00e1th. Bremer Schulen Eintritt frei!",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-22T10:30:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/jugend-ohne-gott.16366492",
+      "title": "Jugend ohne Gott",
+      "info": "15+. nach dem Roman von \u00d6d\u00f6n von Horv\u00e1th. Bremer Schulen Eintritt frei!",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-22T19:30:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/don-giovanni.16366446",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=1726#termine",
+      "price": "62 / 56 / 48 / 41 / 33 / 20 \u20ac / 9 \u20ac erm.",
+      "title": "Don Giovanni",
+      "info": "Dramma giocoso in zwei Akten. von Wolfgang Amadeus Mozart. Text von Lorenzo Da Ponte. 19 Uhr Einf\u00fchrung. ",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-22T20:00:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/in-bed-with-madonna.16299214",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2006#termine",
+      "price": "23 \u20ac / 9 \u20ac erm.",
+      "title": "In bed with Madonna",
+      "info": "Ein Liederabend zum 61. Geburtstag von. Madonna Louise Veronica Ciccone. ",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-23T10:30:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/jugend-ohne-gott.16366493",
+      "title": "Jugend ohne Gott",
+      "info": "15+. nach dem Roman von \u00d6d\u00f6n von Horv\u00e1th. Bremer Schulen Eintritt frei!",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-23T19:00:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/alcina.16366436",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2077#termine",
+      "price": "49 / 44 / 39 / 34 / 27 / 15 \u20ac / 9 \u20ac erm.",
+      "title": "Alcina",
+      "info": "Dramma per musica in drei Akten. von Georg Friedrich H\u00e4ndel. nach Motiven aus Ludovico Ariosts Epos \u201eOrlando furioso\u201c. 18:30 Uhr Einf\u00fchrung / Bremen Zwei-Lounge",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-23T20:00:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/schloss-rosmersholm.16366540",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=1743#termine",
+      "price": "25 \u20ac / 9 \u20ac erm.",
+      "title": "Schloss Rosmersholm",
+      "info": "nach Henrik Ibsen. 19:30 Uhr Einf\u00fchrung",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-24T19:30:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/die-oper-kocht.16366445",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2079#termine",
+      "price": "35 \u20ac",
+      "title": "Die Oper kocht",
+      "info": "mit Ulrike Mayer, Stephen Clark u.a.. Eingang B\u00fchnenpforte",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-24T19:30:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/voegel.16366551",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=1507#termine",
+      "price": "35 / 30 / 25 / 20 / 15 / 10 \u20ac / 9 \u20ac erm.",
+      "title": "V\u00f6gel",
+      "info": "von Wajdi Mouawad. 19 Uhr Einf\u00fchrung",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-24T20:00:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/lulu-ein-rock-vaudeville.16366515",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2129#termine",
+      "price": "25 \u20ac / 9 \u20ac erm.",
+      "title": "Lulu \u2013 Ein Rock-Vaudeville",
+      "info": "Mit Musik von The Tiger Lillies. nach Frank Wedekind. 19:30 Uhr Einf\u00fchrung. ",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-24T22:00:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/acting-is-re-acting-1-the-last-christmas.16366434",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2173#termine",
+      "price": "5 \u20ac",
+      "title": "acting is re-acting #1: \"the last christmas\"",
+      "info": "acting is re-acting #1: \u201ethe last christmas\u201c. Lecture Performance zur \u00c4sthetik der Besch\u00e4ftigung (am Theater): Die rote Zora und ihre Bande. Treffpunkt ist die Kassenhalle",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-25T11:00:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/bremen-zwei-wintergaeste.16366557",
+      "title": "Bremen Zwei: Winterg\u00e4ste",
+      "info": "Gespr\u00e4che mit Prominenten \u2013 live und im Radio. Mit Sandra Maischberger. Moderation: Katrin Kr\u00e4mer. Eintritt frei!",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-25T19:30:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/pariser-leben.16366528",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2080#termine",
+      "price": "45 / 39 / 35 / 29 / 22 / 15 \u20ac / 9 \u20ac erm.",
+      "title": "Pariser Leben",
+      "info": "Eine Gala mit dem Musiktheaterensemble, dem Chor des Theater Bremen und den Bremer Philharmonikern",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-25T20:00:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/aus-dem-nichts.16366439",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2084#termine",
+      "price": "23 \u20ac / 9 \u20ac erm.",
+      "title": "Aus dem Nichts",
+      "info": "Urauff\u00fchrung. 15+. von Armin Petras. nach dem gleichnamigen Film von Fatih Akin. Eine Schauspiel- und Moks-Produktion. 19:30 Uhr Einf\u00fchrung. ",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-26T11:00:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/die-rote-zora-und-ihre-bande.16366565",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=1694#termine",
+      "price": "20 / 17 / 15 / 13 / 10 / 8 \u20ac / 9 / 7 \u20ac erm.",
+      "title": "Die rote Zora und ihre Bande",
+      "info": "Urauff\u00fchrung. 6+. von John von D\u00fcffel. nach dem Roman von Kurt Held",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-26T15:30:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/spotlight.16366545",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2136#termine",
+      "price": "15 \u20ac / 9 \u20ac erm.",
+      "title": "Spotlight",
+      "info": "Mima Millo. \u201eFor all your melodies I am a violin\u201c. Am Klavier: Polina Bogdanova. Treffpunkt ist die Kassenhalle",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-26T16:00:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/die-rote-zora-und-ihre-bande.16366566",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=1718#termine",
+      "price": "20 / 17 / 15 / 13 / 10 / 8 \u20ac / 9 / 7 \u20ac erm.",
+      "title": "Die rote Zora und ihre Bande",
+      "info": "Urauff\u00fchrung. 6+. von John von D\u00fcffel. nach dem Roman von Kurt Held",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-26T16:00:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/hinter-dem-mond.16366516",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2065#termine",
+      "price": "10 \u20ac / 7 \u20ac erm.",
+      "title": "Hinter dem Mond",
+      "info": "Ein intergalaktisches Tanztheater. Urauff\u00fchrung. 6+. von Salome Schneebeli und Ensemble. ",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-26T18:30:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/spektrum.16366544",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2127#termine",
+      "price": "21 \u20ac / 9 \u20ac erm.",
+      "title": "Spektrum",
+      "info": "von M\u00e1t\u00e9 M\u00e9sz\u00e1ros / Unusual Symptoms. ",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-26T19:00:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/fuer-vier.16366479",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2067#termine",
+      "price": "10 \u20ac / 7 \u20ac erm.",
+      "title": "F\u00fcr Vier",
+      "info": "Ein Tanzquartett von Birgit Freitag. Choreografie: Birgit Freitag. Eine Moks- und Junge Akteur*innen-Produktion",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-27T10:00:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/die-rote-zora-und-ihre-bande.16368561",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2171#termine",
+      "price": "20 / 17 / 15 / 13 / 10 / 8 \u20ac / 9 / 7 \u20ac erm.",
+      "title": "Die rote Zora und ihre Bande",
+      "info": "Urauff\u00fchrung. 6+. von John von D\u00fcffel. nach dem Roman von Kurt Held. Karten f\u00fcr Vormittagsvorstellungen f\u00fcr Schulklassen erhalten Sie beim Service f\u00fcr Schulen und Gruppen unter Tel 0421\u20093653-340, Fax 0421\u20093653-934 oder schulen@theaterbremen.de ",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-27T18:00:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/probeneinblick.16366534",
+      "title": "Probeneinblick",
+      "info": "Im Gespr\u00e4ch mit dem Musikalischen Leiter Killian Farrell und dem Regisseur Marco \u0160torman.. Im Anschluss gemeinsamer Probenbesuch. Eintritt frei!",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-28T10:30:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/fuer-vier.16366480",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2068#termine",
+      "price": "",
+      "title": "F\u00fcr Vier",
+      "info": "Ein Tanzquartett von Birgit Freitag. Choreografie: Birgit Freitag. Eine Moks- und Junge Akteur*innen-Produktion. Bremer Schulen Eintritt frei!",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-28T10:30:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/hinter-dem-mond.16366517",
+      "title": "Hinter dem Mond",
+      "info": "Ein intergalaktisches Tanztheater. Urauff\u00fchrung. 6+. von Salome Schneebeli und Ensemble. Bremer Schulen Eintritt frei!. ",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-29T10:30:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/fuer-vier.16366481",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2085#termine",
+      "price": "",
+      "title": "F\u00fcr Vier",
+      "info": "Ein Tanzquartett von Birgit Freitag. Choreografie: Birgit Freitag. Eine Moks- und Junge Akteur*innen-Produktion. Bremer Schulen Eintritt frei!",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-29T10:30:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/hinter-dem-mond.16366518",
+      "title": "Hinter dem Mond",
+      "info": "Ein intergalaktisches Tanztheater. Urauff\u00fchrung. 6+. von Salome Schneebeli und Ensemble. Bremer Schulen Eintritt frei!. ",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-29T20:00:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/the-end-eine-replikantenoper.16366547",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=1737#termine",
+      "price": "21 \u20ac / 9 \u20ac erm.",
+      "title": "The End. Eine Replikantenoper",
+      "info": "von Jan Eichberg. Urauff\u00fchrung. 19:30 Uhr Einf\u00fchrung",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-29T20:00:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/pbtanz-8-off-the-record.16368558",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2135#termine",
+      "price": "",
+      "title": "PBTanz #8: Off the Record",
+      "info": "Unusual Symptoms spielen Lieblingsplatten. Treffpunkt ist das noon / Foyer Kleines Haus",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-30T10:30:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/hinter-dem-mond.16366519",
+      "title": "Hinter dem Mond",
+      "info": "Ein intergalaktisches Tanztheater. Urauff\u00fchrung. 6+. von Salome Schneebeli und Ensemble. Bremer Schulen Eintritt frei!. ",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-30T19:30:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/jakob-lenz.16392372",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2196#termine",
+      "price": "",
+      "title": "Jakob Lenz",
+      "info": "A-Premiere. Kammeroper von Wolfgang Rihm. Text von Michael Fr\u00f6hling. frei nach Georg B\u00fcchners Erz\u00e4hlung \u201eLenz\u201c. ",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-30T20:00:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/fruehlingserwachen.15999460",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=1750#termine",
+      "price": "21 \u20ac / 9 \u20ac erm.",
+      "title": "Fr\u00fchlingserwachen",
+      "info": "14+. Ein Projekt von Alize Zandwijk und Tomas B\u00fcnger. 19:30 Uhr Einf\u00fchrung",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-31T19:30:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/der-schimmelreiter.16366541",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2081#termine",
+      "price": "38 / 33 / 28 / 23 / 17 / 12 \u20ac / 9 \u20ac erm.",
+      "title": "Der Schimmelreiter",
+      "info": "von Theodor Storm. Bearbeitung: John von D\u00fcffel. 19 Uhr Einf\u00fchrung",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-31T20:00:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/coexist.16366442",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2131#termine",
+      "price": "21 \u20ac / 9 \u20ac erm.",
+      "title": "Coexist",
+      "info": "von Adrienn H\u00f3d - Hodworks / Unusual Symptoms. Eingeladen zur TANZPLATTFORM DEUTSCHLAND 2020. 19:30 Uhr Einf\u00fchrung. ",
+      "location": "Theater Bremen"
+    }
+  ],
+  "Schwankhalle": [
+    {
+      "date_time": "2020-01-14T19:00:00+01:00",
+      "info": "TOTAL BANANE?!\t\t\t\t\t\t\t\u00a0\n\t\t\t\t\t\t\tGespr\u00e4ch im Lagerhaus",
+      "artist": "Prolog Banana Island",
+      "title": "TAZ SALON pr\u00e4sentiert: TOTAL BANANE?!",
+      "link_info": "https://schwankhalle.de/spielplan/14-1-prolog-banana-island-taz-salon-762.html",
+      "link_tickets": "https://schwankhalle.de/spielplan/14-1-prolog-banana-island-taz-salon-762.html",
+      "location": "Schwankhalle"
+    },
+    {
+      "date_time": "2020-01-16T20:00:00+01:00",
+      "info": "en\n\t\t\t\t\t\t\t\t\u203aBanana Island\u2039\t\t\t\t\t\t\t\u00a0\n\t\t\t\t\t\t\tPerformance",
+      "artist": "die apokalyptischen t\u00e4nzer*innen",
+      "title": "\u203aBanana Island\u2039",
+      "link_info": "https://schwankhalle.de/spielplan/apokalypsen-banana-island-745.html",
+      "link_tickets": "https://schwankhalle.de/spielplan/apokalypsen-banana-island-745.html",
+      "location": "Schwankhalle"
+    },
+    {
+      "date_time": "2020-01-18T20:00:00+01:00",
+      "info": "en\n\t\t\t\t\t\t\t\t\u203aBanana Island\u2039\t\t\t\t\t\t\t\u00a0\n\t\t\t\t\t\t\tPerformance",
+      "artist": "die apokalyptischen t\u00e4nzer*innen",
+      "title": "\u203aBanana Island\u2039",
+      "link_info": "https://schwankhalle.de/spielplan/apokalypsen-banana-island-745.html",
+      "link_tickets": "https://schwankhalle.de/spielplan/apokalypsen-banana-island-745.html",
+      "location": "Schwankhalle"
+    },
+    {
+      "date_time": "2020-01-19T12:00:00+01:00",
+      "info": "Hafenrundgang\t\t\t\t\t\t\t\u00a0\n\t\t\t\t\t\t\tin Kooperation mit dem Arbeitskreis Hafen",
+      "artist": "Prolog Banana Island",
+      "title": "Kolonialsensibler Hafenrundgang",
+      "link_info": "https://schwankhalle.de/spielplan/19-1-prolog-banana-island-spaziergang-hafen-763.html",
+      "link_tickets": "https://schwankhalle.de/spielplan/19-1-prolog-banana-island-spaziergang-hafen-763.html",
+      "location": "Schwankhalle"
+    },
+    {
+      "date_time": "2020-01-24T11:00:00+01:00",
+      "info": "rteil\u2039\t\t\t\t\t\t\t\u00a0\n\t\t\t\t\t\t\tTheater f\u00fcr Erwachsene und Jugendliche",
+      "artist": "Thermoboy FK",
+      "title": "\u203aStolz und Vorurteil\u2039",
+      "link_info": "https://schwankhalle.de/spielplan/thermoboyfk-stolz-vorurteil-746.html",
+      "link_tickets": "https://schwankhalle.de/spielplan/thermoboyfk-stolz-vorurteil-746.html",
+      "location": "Schwankhalle"
+    },
+    {
+      "date_time": "2020-01-25T20:00:00+01:00",
+      "info": "rteil\u2039\t\t\t\t\t\t\t\u00a0\n\t\t\t\t\t\t\tTheater f\u00fcr Erwachsene und Jugendliche",
+      "artist": "Thermoboy FK",
+      "title": "\u203aStolz und Vorurteil\u2039",
+      "link_info": "https://schwankhalle.de/spielplan/thermoboyfk-stolz-vorurteil-746.html",
+      "link_tickets": "https://schwankhalle.de/spielplan/thermoboyfk-stolz-vorurteil-746.html",
+      "location": "Schwankhalle"
+    },
+    {
+      "date_time": "2020-01-31T20:00:00+01:00",
+      "info": "d - BauHaus\u2039\t\t\t\t\t\t\t\u00a0\n\t\t\t\t\t\t\tTanz - pr\u00e4sentiert von steptext dance project",
+      "artist": "G\u00fcnther Grollitsch",
+      "title": "\u203amade in Deutschland - BauHaus\u2039",
+      "link_info": "https://schwankhalle.de/spielplan/st-grollitsch-bauhaus-755.html",
+      "link_tickets": "https://schwankhalle.de/spielplan/st-grollitsch-bauhaus-755.html",
+      "location": "Schwankhalle"
+    },
+    {
+      "date_time": "2020-02-01T20:00:00+01:00",
+      "info": "d - BauHaus\u2039\t\t\t\t\t\t\t\u00a0\n\t\t\t\t\t\t\tTanz - pr\u00e4sentiert von steptext dance project",
+      "artist": "G\u00fcnther Grollitsch",
+      "title": "\u203amade in Deutschland - BauHaus\u2039",
+      "link_info": "https://schwankhalle.de/spielplan/st-grollitsch-bauhaus-755.html",
+      "link_tickets": "https://schwankhalle.de/spielplan/st-grollitsch-bauhaus-755.html",
+      "location": "Schwankhalle"
+    },
+    {
+      "date_time": "2020-02-03T09:00:00+01:00",
+      "info": "Schnupperworkshop f\u00fcr Kinder zwischen 9 und 12 Jahren",
+      "artist": "",
+      "title": "Ein Filmprojekt im Theater",
+      "link_info": "https://schwankhalle.de/spielplan/schnupperworkshop-die-erde-ist-rund-756.html",
+      "link_tickets": "https://schwankhalle.de/spielplan/schnupperworkshop-die-erde-ist-rund-756.html",
+      "location": "Schwankhalle"
+    },
+    {
+      "date_time": "2020-02-04T09:00:00+01:00",
+      "info": "Schnupperworkshop f\u00fcr Kinder zwischen 9 und 12 Jahren",
+      "artist": "",
+      "title": "Ein Filmprojekt im Theater",
+      "link_info": "https://schwankhalle.de/spielplan/schnupperworkshop-die-erde-ist-rund-756.html",
+      "link_tickets": "https://schwankhalle.de/spielplan/schnupperworkshop-die-erde-ist-rund-756.html",
+      "location": "Schwankhalle"
+    },
+    {
+      "date_time": "2020-02-06T20:00:00+01:00",
+      "info": "d - BauHaus\u2039\t\t\t\t\t\t\t\u00a0\n\t\t\t\t\t\t\tTanz - pr\u00e4sentiert von steptext dance project",
+      "artist": "G\u00fcnther Grollitsch",
+      "title": "\u203amade in Deutschland - BauHaus\u2039",
+      "link_info": "https://schwankhalle.de/spielplan/st-grollitsch-bauhaus-755.html",
+      "link_tickets": "https://schwankhalle.de/spielplan/st-grollitsch-bauhaus-755.html",
+      "location": "Schwankhalle"
+    },
+    {
+      "date_time": "2020-02-07T19:30:00+01:00",
+      "info": "Black OurStory Month",
+      "artist": "",
+      "title": "Poetry Night",
+      "link_info": "https://schwankhalle.de/spielplan/bom-poetry-night-768.html",
+      "link_tickets": "https://schwankhalle.de/spielplan/bom-poetry-night-768.html",
+      "location": "Schwankhalle"
+    },
+    {
+      "date_time": "2020-02-08T22:00:00+01:00",
+      "info": "Black OurStory Month",
+      "artist": "",
+      "title": "Afrofuturismus: Eine Party im Weltall!",
+      "link_info": "https://schwankhalle.de/spielplan/bom-afrofuturism-party-767.html",
+      "link_tickets": "https://schwankhalle.de/spielplan/bom-afrofuturism-party-767.html",
+      "location": "Schwankhalle"
+    },
+    {
+      "date_time": "2020-02-12T21:00:00+01:00",
+      "info": "Konzertreihe f\u00fcr Musik und Nicht-Musik",
+      "artist": "",
+      "title": "Anachronism 9\u202f227\u202f465",
+      "link_info": "https://schwankhalle.de/spielplan/anachronism-9-227-465-748.html",
+      "link_tickets": "https://schwankhalle.de/spielplan/anachronism-9-227-465-748.html",
+      "location": "Schwankhalle"
+    },
+    {
+      "date_time": "2020-02-14T20:00:00+01:00",
+      "info": "itte Bertele\n\t\t\t\t\t\t\t\t\u203aR-AGE\u2039\t\t\t\t\t\t\t\u00a0\n\t\t\t\t\t\t\tTheater",
+      "artist": "Franziska Mencz / Brigitte Bertele",
+      "title": "\u203aR-AGE\u2039",
+      "link_info": "https://schwankhalle.de/spielplan/franziska-mencz-r-age-749.html",
+      "link_tickets": "https://schwankhalle.de/spielplan/franziska-mencz-r-age-749.html",
+      "location": "Schwankhalle"
+    },
+    {
+      "date_time": "2020-02-15T20:00:00+01:00",
+      "info": "itte Bertele\n\t\t\t\t\t\t\t\t\u203aR-AGE\u2039\t\t\t\t\t\t\t\u00a0\n\t\t\t\t\t\t\tTheater",
+      "artist": "Franziska Mencz / Brigitte Bertele",
+      "title": "\u203aR-AGE\u2039",
+      "link_info": "https://schwankhalle.de/spielplan/franziska-mencz-r-age-749.html",
+      "link_tickets": "https://schwankhalle.de/spielplan/franziska-mencz-r-age-749.html",
+      "location": "Schwankhalle"
+    },
+    {
+      "date_time": "2020-02-16T15:00:00+01:00",
+      "info": "gel\u2039\t\t\t\t\t\t\t\u00a0\n\t\t\t\t\t\t\tTheater f\u00fcr Kinder zwischen 9 bis 12 Jahren",
+      "artist": "Die Azubis",
+      "title": "\u203aHase und Igel\u2039",
+      "link_info": "https://schwankhalle.de/spielplan/azubis-hase-igel-750.html",
+      "link_tickets": "https://schwankhalle.de/spielplan/azubis-hase-igel-750.html",
+      "location": "Schwankhalle"
+    },
+    {
+      "date_time": "2020-02-18T19:30:00+01:00",
+      "info": "Gespr\u00e4chsreihe",
+      "artist": "",
+      "title": "\u203aLet\u2019s talk about Sex & Arbeit\u2039",
+      "link_info": "https://schwankhalle.de/spielplan/lets-talk-about-sex-arbeit-751.html",
+      "link_tickets": "https://schwankhalle.de/spielplan/lets-talk-about-sex-arbeit-751.html",
+      "location": "Schwankhalle"
+    },
+    {
+      "date_time": "2020-02-19T19:30:00+01:00",
+      "info": "er\u2039\t\t\t\t\t\t\t\u00a0\n\t\t\t\t\t\t\tLesung",
+      "artist": "Ted Gaier",
+      "title": "\u203aArgumentepanzer\u2039",
+      "link_info": "https://schwankhalle.de/spielplan/gaier-argumentepanzer-752.html",
+      "link_tickets": "https://schwankhalle.de/spielplan/gaier-argumentepanzer-752.html",
+      "location": "Schwankhalle"
+    },
+    {
+      "date_time": "2020-02-20T20:00:00+01:00",
+      "info": "g, Arbeiterin!\u2039\t\t\t\t\t\t\t\u00a0\n\t\t\t\t\t\t\tDiskursive Revue",
+      "artist": "Les Reines Prochaines",
+      "title": "\u203aLet\u2019s sing, Arbeiterin!\u2039",
+      "link_info": "https://schwankhalle.de/spielplan/les-reines-prochaines-753.html",
+      "link_tickets": "https://schwankhalle.de/spielplan/les-reines-prochaines-753.html",
+      "location": "Schwankhalle"
+    },
+    {
+      "date_time": "2020-02-21T20:00:00+01:00",
+      "info": "g, Arbeiterin!\u2039\t\t\t\t\t\t\t\u00a0\n\t\t\t\t\t\t\tDiskursive Revue",
+      "artist": "Les Reines Prochaines",
+      "title": "\u203aLet\u2019s sing, Arbeiterin!\u2039",
+      "link_info": "https://schwankhalle.de/spielplan/les-reines-prochaines-753.html",
+      "link_tickets": "https://schwankhalle.de/spielplan/les-reines-prochaines-753.html",
+      "location": "Schwankhalle"
+    },
+    {
+      "date_time": "2020-02-22T20:00:00+01:00",
+      "info": "g, Arbeiterin!\u2039\t\t\t\t\t\t\t\u00a0\n\t\t\t\t\t\t\tDiskursive Revue",
+      "artist": "Les Reines Prochaines",
+      "title": "\u203aLet\u2019s sing, Arbeiterin!\u2039",
+      "link_info": "https://schwankhalle.de/spielplan/les-reines-prochaines-753.html",
+      "link_tickets": "https://schwankhalle.de/spielplan/les-reines-prochaines-753.html",
+      "location": "Schwankhalle"
+    },
+    {
+      "date_time": "2020-02-27T09:00:00+01:00",
+      "info": "",
+      "artist": "",
+      "title": "MIBNIGHT Jazzfestival",
+      "link_info": "https://schwankhalle.de/spielplan/mibnight-jazzfestival-2020-754.html",
+      "link_tickets": "https://schwankhalle.de/spielplan/mibnight-jazzfestival-2020-754.html",
+      "location": "Schwankhalle"
+    },
+    {
+      "date_time": "2020-02-28T09:00:00+01:00",
+      "info": "",
+      "artist": "",
+      "title": "MIBNIGHT Jazzfestival",
+      "link_info": "https://schwankhalle.de/spielplan/mibnight-jazzfestival-2020-754.html",
+      "link_tickets": "https://schwankhalle.de/spielplan/mibnight-jazzfestival-2020-754.html",
+      "location": "Schwankhalle"
+    },
+    {
+      "date_time": "2020-02-29T09:00:00+01:00",
+      "info": "",
+      "artist": "",
+      "title": "MIBNIGHT Jazzfestival",
+      "link_info": "https://schwankhalle.de/spielplan/mibnight-jazzfestival-2020-754.html",
+      "link_tickets": "https://schwankhalle.de/spielplan/mibnight-jazzfestival-2020-754.html",
+      "location": "Schwankhalle"
+    }
+  ],
+  "Glocke": [
+    {
+      "date_time": "2020-01-01T15:00:00+01:00",
+      "location_details": "Gro\u00dfer Saal",
+      "title": "musica viva - Neujahrskonzert",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/01/01/2020/7578/musica-vivaNeujahrskonzert",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/01/01/2020/7578/musica-vivaNeujahrskonzert",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-01-01T18:30:00+01:00",
+      "location_details": "Gro\u00dfer Saal",
+      "title": "musica viva - Neujahrskonzert",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/01/01/2020/7579/musica-vivaNeujahrskonzert",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/01/01/2020/7579/musica-vivaNeujahrskonzert",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-01-02T16:00:00+01:00",
+      "location_details": "Gro\u00dfer Saal",
+      "title": "\u00bbPinocchio\u00ab - das Musical",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/02/01/2020/7517/Pinocchio---das-Musical",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/02/01/2020/7517/Pinocchio---das-Musical",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-01-02T20:00:00+01:00",
+      "location_details": "Kleiner Saal",
+      "title": "Christian Benning Percussion Group",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/02/01/2020/7649/Christian-Benning-Percussion-Group",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/02/01/2020/7649/Christian-Benning-Percussion-Group",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-01-03T20:00:00+01:00",
+      "location_details": "Kleiner Saal",
+      "title": "\u00bbNice guys of Hypnosis\u00ab - Comedy Showhypnose f\u00fcr die ganze Familie",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/03/01/2020/7679/Nice-guys-of-HypnosisComedy-Showhypnose-fuer-die-ganze-Familie",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/03/01/2020/7679/Nice-guys-of-HypnosisComedy-Showhypnose-fuer-die-ganze-Familie",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-01-04T19:00:00+01:00",
+      "location_details": "Kleiner Saal",
+      "title": "Norwegische Impressionen - Ein Konzert mit Bildern",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/04/01/2020/7497/Norwegische-ImpressionenEin-Konzert-mit-Bildern",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/04/01/2020/7497/Norwegische-ImpressionenEin-Konzert-mit-Bildern",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-01-05T11:30:00+01:00",
+      "location_details": "Kleiner Saal",
+      "title": "Bremer Kaffeehaus-Orchester - Neujahrskonzert",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/05/01/2020/6447/Bremer-Kaffeehaus-OrchesterNeujahrskonzert",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/05/01/2020/6447/Bremer-Kaffeehaus-OrchesterNeujahrskonzert",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-01-05T15:30:00+01:00",
+      "location_details": "Kleiner Saal",
+      "title": "Bremer Kaffeehaus-Orchester - Neujahrskonzert",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/05/01/2020/6446/Bremer-Kaffeehaus-OrchesterNeujahrskonzert",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/05/01/2020/6446/Bremer-Kaffeehaus-OrchesterNeujahrskonzert",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-01-05T18:00:00+01:00",
+      "location_details": "Gro\u00dfer Saal",
+      "title": "Blechschaden",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/05/01/2020/7471/Blechschaden",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/05/01/2020/7471/Blechschaden",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-01-07T20:00:00+01:00",
+      "location_details": "Gro\u00dfer Saal",
+      "title": "3. Meisterkonzert - Gautier Capu\u00e7on &amp; Yuja Wang - \u00bbMagisches Zusammenspiel\u00ab",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/07/01/2020/7561/3--MeisterkonzertGautier-Capu-und-ccedilon--und--Yuja-WangMagisches-Zusammenspiel",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/07/01/2020/7561/3--MeisterkonzertGautier-Capu-und-ccedilon--und--Yuja-WangMagisches-Zusammenspiel",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-01-08T20:00:00+01:00",
+      "location_details": "Gro\u00dfer Saal",
+      "title": "Wiener Johann Strau\u00df Konzert-Gala",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/08/01/2020/7397/Wiener-Johann-Strauss-Konzert-Gala",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/08/01/2020/7397/Wiener-Johann-Strauss-Konzert-Gala",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-01-09T09:30:00+01:00",
+      "location_details": "Kleiner Saal",
+      "title": "GLOCKE Sitzkissenkonzert - Les Points Cardinaux",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/09/01/2020/7635/GLOCKE-SitzkissenkonzertLes-Points-Cardinaux",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/09/01/2020/7635/GLOCKE-SitzkissenkonzertLes-Points-Cardinaux",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-01-09T11:00:00+01:00",
+      "location_details": "Kleiner Saal",
+      "title": "GLOCKE Sitzkissenkonzert - Les Points Cardinaux",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/09/01/2020/7636/GLOCKE-SitzkissenkonzertLes-Points-Cardinaux",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/09/01/2020/7636/GLOCKE-SitzkissenkonzertLes-Points-Cardinaux",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-01-10T20:00:00+01:00",
+      "location_details": "Gro\u00dfer Saal",
+      "title": "African Angels - Cape Town Opera Chorus",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/10/01/2020/7501/African-AngelsCape-Town-Opera-Chorus",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/10/01/2020/7501/African-AngelsCape-Town-Opera-Chorus",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-01-11T20:00:00+01:00",
+      "location_details": "Gro\u00dfer Saal",
+      "title": "\u00bbMy Fair Lady\u00ab - Der Musical-Welterfolg",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/11/01/2020/7592/My-Fair-LadyDer-Musical-Welterfolg",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/11/01/2020/7592/My-Fair-LadyDer-Musical-Welterfolg",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-01-12T11:00:00+01:00",
+      "location_details": "Gro\u00dfer Saal",
+      "title": "5. Philharmonisches Konzert - \u00bbProsit!\u00ab",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/12/01/2020/7528/5--Philharmonisches-KonzertProsit",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/12/01/2020/7528/5--Philharmonisches-KonzertProsit",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-01-12T20:00:00+01:00",
+      "location_details": "Gro\u00dfer Saal",
+      "title": "Voxx - The West End Tenors",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/12/01/2020/7367/VoxxThe-West-End-Tenors",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/12/01/2020/7367/VoxxThe-West-End-Tenors",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-01-13T19:30:00+01:00",
+      "location_details": "Gro\u00dfer Saal",
+      "title": "5. Philharmonisches Konzert - \u00bbProsit!\u00ab",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/13/01/2020/7529/5--Philharmonisches-KonzertProsit",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/13/01/2020/7529/5--Philharmonisches-KonzertProsit",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-01-14T19:30:00+01:00",
+      "location_details": "Gro\u00dfer Saal",
+      "title": "5. Philharmonisches Konzert - \u00bbProsit!\u00ab",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/14/01/2020/7530/5--Philharmonisches-KonzertProsit",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/14/01/2020/7530/5--Philharmonisches-KonzertProsit",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-01-17T20:00:00+01:00",
+      "location_details": "Gro\u00dfer Saal",
+      "title": "Best of Ennio Morricone - Mit Original-Filmszenen und Leinwand-Animationen",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/17/01/2020/7654/Best-of-Ennio-MorriconeMit-Original-Filmszenen-und-Leinwand-Animationen",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/17/01/2020/7654/Best-of-Ennio-MorriconeMit-Original-Filmszenen-und-Leinwand-Animationen",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-01-18T14:00:00+01:00",
+      "location_details": "Foyer",
+      "title": "GLOCKE Backstage - Besucherf\u00fchrung",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/18/01/2020/7720/GLOCKE-BackstageBesucherfuehrung",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/18/01/2020/7720/GLOCKE-BackstageBesucherfuehrung",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-01-18T20:00:00+01:00",
+      "location_details": "Gro\u00dfer Saal",
+      "title": "GLOCKE Spezial - MIKIs Takeover! Ensemble - feat. Max Mutzke",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/18/01/2020/7617/GLOCKE-SpezialMIKIs-Takeover-Ensemblefeat--Max-Mutzke",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/18/01/2020/7617/GLOCKE-SpezialMIKIs-Takeover-Ensemblefeat--Max-Mutzke",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-01-19T18:00:00+01:00",
+      "location_details": "Kleiner Saal",
+      "title": "Bremer Literaturpreis 2020 \u2013 Vorabend- - lesung der Preistr\u00e4ger des 66. Bremer Literaturpreises",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/19/01/2020/7709/Bremer-Literaturpreis-2020--und--Vorabend-lesung-der-Preistraeger-des-66--Bremer-Literaturpreises",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/19/01/2020/7709/Bremer-Literaturpreis-2020--und--Vorabend-lesung-der-Preistraeger-des-66--Bremer-Literaturpreises",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-01-20T19:30:00+01:00",
+      "location_details": "Kleiner Saal",
+      "title": "4. Philharmonisches Kammerkonzert",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/20/01/2020/7604/4--Philharmonisches-Kammerkonzert",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/20/01/2020/7604/4--Philharmonisches-Kammerkonzert",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-01-22T20:00:00+01:00",
+      "location_details": "Gro\u00dfer Saal",
+      "title": "Die Deutsche Kammerphilharmonie Bremen - 1. Premieren-Abonnementkonzert - \u00bbFeinsinn und Visionen\u00ab",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/22/01/2020/7711/Die-Deutsche-Kammerphilharmonie-Bremen1--Premieren-AbonnementkonzertFeinsinn-und-Visionen",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/22/01/2020/7711/Die-Deutsche-Kammerphilharmonie-Bremen1--Premieren-AbonnementkonzertFeinsinn-und-Visionen",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-01-24T20:00:00+01:00",
+      "location_details": "Gro\u00dfer Saal",
+      "title": "Die Deutsche Kammerphilharmonie Bremen - 1. Hanse I-Abonnementkonzert - \u00bbFeinsinn und Visionen\u00ab",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/24/01/2020/7712/Die-Deutsche-Kammerphilharmonie-Bremen1--Hanse-I-AbonnementkonzertFeinsinn-und-Visionen",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/24/01/2020/7712/Die-Deutsche-Kammerphilharmonie-Bremen1--Hanse-I-AbonnementkonzertFeinsinn-und-Visionen",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-01-25T20:00:00+01:00",
+      "location_details": "Gro\u00dfer Saal",
+      "title": "\u00bbConversations with Nick Cave\u00ab - An Evening of Talk and Music",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/25/01/2020/7681/Conversations-with-Nick-CaveAn-Evening-of-Talk-and-Music",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/25/01/2020/7681/Conversations-with-Nick-CaveAn-Evening-of-Talk-and-Music",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-01-26T20:00:00+01:00",
+      "location_details": "Gro\u00dfer Saal",
+      "title": "\u00bbSternstunden der Filmmusik\u00ab",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/26/01/2020/7588/Sternstunden-der-Filmmusik",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/26/01/2020/7588/Sternstunden-der-Filmmusik",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-01-27T20:00:00+01:00",
+      "location_details": "Gro\u00dfer Saal",
+      "title": "Ekel Alfred ",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/27/01/2020/7655/Ekel-Alfred-",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/27/01/2020/7655/Ekel-Alfred-",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-01-28T20:00:00+01:00",
+      "location_details": "Gro\u00dfer Saal",
+      "title": "J\u00fcrgen von der Lippe - \u00bbVoll Fett\u00ab",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/28/01/2020/7224/Juergen-von-der-LippeVoll-Fett",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/28/01/2020/7224/Juergen-von-der-LippeVoll-Fett",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-01-29T20:00:00+01:00",
+      "location_details": "Gro\u00dfer Saal",
+      "title": "The Soul Symphony - feat. Mic Donet, Makeda, Ingrid Arthur, Tony Momrelle",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/29/01/2020/7503/The-Soul-Symphonyfeat--Mic-Donet--Makeda--Ingrid-Arthur--Tony-Momrelle",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/29/01/2020/7503/The-Soul-Symphonyfeat--Mic-Donet--Makeda--Ingrid-Arthur--Tony-Momrelle",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-01-30T20:00:00+01:00",
+      "location_details": "Gro\u00dfer Saal",
+      "title": "GLOCKE Spezial - Ant\u00f3nio Zambujo - \u00bbDo Avesso\u00ab",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/30/01/2020/7618/GLOCKE-SpezialAnt-und-oacutenio-ZambujoDo-Avesso",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/30/01/2020/7618/GLOCKE-SpezialAnt-und-oacutenio-ZambujoDo-Avesso",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-01-31T20:00:00+01:00",
+      "location_details": "Gro\u00dfer Saal",
+      "title": "Der gro\u00dfe Loriot Abend - Die besten musikalischen und szenischen Sketche - Thorsten Hamer mit Ensemble und Band",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/31/01/2020/7656/Der-grosse-Loriot-AbendDie-besten-musikalischen-und-szenischen-SketcheThorsten-Hamer-mit-Ensemble-und-Band",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/31/01/2020/7656/Der-grosse-Loriot-AbendDie-besten-musikalischen-und-szenischen-SketcheThorsten-Hamer-mit-Ensemble-und-Band",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-02-01T20:00:00+01:00",
+      "location_details": "Gro\u00dfer Saal",
+      "title": "Orchester &amp; Chor der Universit\u00e4t Bremen - \u00bbAlways Look on the Bright Side of Life!\u00ab",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/01/02/2020/7682/Orchester--und--Chor-der-Universitaet-BremenAlways-Look-on-the-Bright-Side-of-Life",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/01/02/2020/7682/Orchester--und--Chor-der-Universitaet-BremenAlways-Look-on-the-Bright-Side-of-Life",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-02-02T19:00:00+01:00",
+      "location_details": "Gro\u00dfer Saal",
+      "title": "Das Phantom der Oper",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/02/02/2020/7477/Das-Phantom-der-Oper",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/02/02/2020/7477/Das-Phantom-der-Oper",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-02-03T09:00:00+01:00",
+      "location_details": "Foyer",
+      "title": "GLOCKE Spielraum - Winterferien: - \u00bbB\u00fchnenreif!\u00ab",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/03/02/2020/7629/GLOCKE-SpielraumWinterferien-Buehnenreif",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/03/02/2020/7629/GLOCKE-SpielraumWinterferien-Buehnenreif",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-02-04T09:00:00+01:00",
+      "location_details": "Foyer",
+      "title": "GLOCKE Spielraum - Winterferien: - \u00bbB\u00fchnenreif!\u00ab",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/04/02/2020/7630/GLOCKE-SpielraumWinterferien-Buehnenreif",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/04/02/2020/7630/GLOCKE-SpielraumWinterferien-Buehnenreif",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-02-05T20:00:00+01:00",
+      "location_details": "Kleiner Saal",
+      "title": "Arved Fuchs - \u00bbKap Hoorn \u2013 Antarktis\u00ab",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/05/02/2020/7504/Arved-FuchsKap-Hoorn--und--Antarktis",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/05/02/2020/7504/Arved-FuchsKap-Hoorn--und--Antarktis",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-02-07T20:00:00+01:00",
+      "location_details": "Gro\u00dfer Saal",
+      "title": "R\u00fcdiger Hoffmann - \u00bbBest Of\u00ab",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/07/02/2020/7180/Ruediger-HoffmannBest-Of",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/07/02/2020/7180/Ruediger-HoffmannBest-Of",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-02-08T20:00:00+01:00",
+      "location_details": "Gro\u00dfer Saal",
+      "title": "Die gro\u00dfe Giuseppe Verdi-Nacht",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/08/02/2020/7657/Die-grosse-Giuseppe-Verdi-Nacht",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/08/02/2020/7657/Die-grosse-Giuseppe-Verdi-Nacht",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-02-08T20:00:00+01:00",
+      "location_details": "Kleiner Saal",
+      "title": "Lesung mit Gregor Gysi - \u00bbEin Leben ist zu wenig. Die Autobiographie.\u00ab",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/08/02/2020/7696/Lesung-mit-Gregor-GysiEin-Leben-ist-zu-wenig--Die-Autobiographie-",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/08/02/2020/7696/Lesung-mit-Gregor-GysiEin-Leben-ist-zu-wenig--Die-Autobiographie-",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-02-09T10:45:00+01:00",
+      "location_details": "Kleiner Saal",
+      "title": "GLOCKE Ohrwurm f\u00fcr Familien - Musikalische Konzerteinf\u00fchrung zum Mitmachen",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/09/02/2020/7632/GLOCKE-Ohrwurm-fuer-FamilienMusikalische-Konzerteinfuehrung-zum-Mitmachen",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/09/02/2020/7632/GLOCKE-Ohrwurm-fuer-FamilienMusikalische-Konzerteinfuehrung-zum-Mitmachen",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-02-09T11:00:00+01:00",
+      "location_details": "Gro\u00dfer Saal",
+      "title": "6. Philharmonisches Konzert - \u00bbR\u00fcckbesinnung\u00ab",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/09/02/2020/7531/6--Philharmonisches-KonzertRueckbesinnung",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/09/02/2020/7531/6--Philharmonisches-KonzertRueckbesinnung",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-02-09T19:00:00+01:00",
+      "location_details": "Gro\u00dfer Saal",
+      "title": "Harald Lesch &amp; Quadro Nuevo - \u00bbSonne, Mond und Sterne\u00ab",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/09/02/2020/7508/Harald-Lesch--und--Quadro-NuevoSonne--Mond-und-Sterne",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/09/02/2020/7508/Harald-Lesch--und--Quadro-NuevoSonne--Mond-und-Sterne",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-02-10T19:30:00+01:00",
+      "location_details": "Gro\u00dfer Saal",
+      "title": "6. Philharmonisches Konzert - \u00bbR\u00fcckbesinnung\u00ab",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/10/02/2020/7532/6--Philharmonisches-KonzertRueckbesinnung",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/10/02/2020/7532/6--Philharmonisches-KonzertRueckbesinnung",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-02-11T20:00:00+01:00",
+      "location_details": "Gro\u00dfer Saal",
+      "title": "Thomas Hengelbrock und Balthasar-Neumann-Chor &amp; -Ensemble - \u00bbBeethoven\u00ab",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/11/02/2020/7415/Thomas-Hengelbrock-und-Balthasar-Neumann-Chor--und---EnsembleBeethoven",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/11/02/2020/7415/Thomas-Hengelbrock-und-Balthasar-Neumann-Chor--und---EnsembleBeethoven",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-02-12T18:05:00+01:00",
+      "location_details": "Gro\u00dfer Saal",
+      "title": "5nachsechs Afterwork Konzert - \u00bbRadio Years\u00ab",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/12/02/2020/7549/5nachsechs-Afterwork-KonzertRadio-Years",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/12/02/2020/7549/5nachsechs-Afterwork-KonzertRadio-Years",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-02-13T20:00:00+01:00",
+      "location_details": "Gro\u00dfer Saal",
+      "title": "GLOCKE JAZZnights - Rymden - \u00bbReflections &amp; Odysseys\u00ab",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/13/02/2020/7620/GLOCKE-JAZZnightsRymdenReflections--und--Odysseys",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/13/02/2020/7620/GLOCKE-JAZZnightsRymdenReflections--und--Odysseys",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-02-15T14:00:00+01:00",
+      "location_details": "Foyer",
+      "title": "GLOCKE Backstage - Besucherf\u00fchrung",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/15/02/2020/7713/GLOCKE-BackstageBesucherfuehrung",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/15/02/2020/7713/GLOCKE-BackstageBesucherfuehrung",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-02-15T20:00:00+01:00",
+      "location_details": "Gro\u00dfer Saal",
+      "title": "Wiener Klassik Konzert",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/15/02/2020/7441/Wiener-Klassik-Konzert",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/15/02/2020/7441/Wiener-Klassik-Konzert",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-02-16T15:30:00+01:00",
+      "location_details": "Gro\u00dfer Saal",
+      "title": "musica viva - Fest der Opernch\u00f6re",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/16/02/2020/7580/musica-vivaFest-der-Opernchoere",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/16/02/2020/7580/musica-vivaFest-der-Opernchoere",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-02-16T19:30:00+01:00",
+      "location_details": "Gro\u00dfer Saal",
+      "title": "musica viva - Fest der Opernch\u00f6re",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/16/02/2020/7581/musica-vivaFest-der-Opernchoere",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/16/02/2020/7581/musica-vivaFest-der-Opernchoere",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-02-18T20:00:00+01:00",
+      "location_details": "Gro\u00dfer Saal",
+      "title": "Dr. Eckart von Hirschhausen - \u00bbEndlich!\u00ab",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/18/02/2020/7505/Dr--Eckart-von-HirschhausenEndlich",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/18/02/2020/7505/Dr--Eckart-von-HirschhausenEndlich",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-02-19T20:00:00+01:00",
+      "location_details": "Gro\u00dfer Saal",
+      "title": "Dr. Eckart von Hirschhausen - \u00bbEndlich!\u00ab",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/19/02/2020/7506/Dr--Eckart-von-HirschhausenEndlich",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/19/02/2020/7506/Dr--Eckart-von-HirschhausenEndlich",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-02-20T20:00:00+01:00",
+      "location_details": "Gro\u00dfer Saal",
+      "title": "Die Deutsche Kammerphilharmonie Bremen - 2. Premieren-Abonnementkonzert - \u00bbDetailverliebt\u00ab",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/20/02/2020/7714/Die-Deutsche-Kammerphilharmonie-Bremen2--Premieren-AbonnementkonzertDetailverliebt",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/20/02/2020/7714/Die-Deutsche-Kammerphilharmonie-Bremen2--Premieren-AbonnementkonzertDetailverliebt",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-02-21T20:00:00+01:00",
+      "location_details": "Gro\u00dfer Saal",
+      "title": "Die Deutsche Kammerphilharmonie Bremen - 1. Highlight-Abonnementkonzert - \u00bbDetailverliebt\u00ab",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/21/02/2020/7715/Die-Deutsche-Kammerphilharmonie-Bremen1--Highlight-AbonnementkonzertDetailverliebt",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/21/02/2020/7715/Die-Deutsche-Kammerphilharmonie-Bremen1--Highlight-AbonnementkonzertDetailverliebt",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-02-23T18:00:00+01:00",
+      "location_details": "Gro\u00dfer Saal",
+      "title": "ABBA Gold - The Concert Show - \u00bbKnowing You \u2013 Knowing Me\u00ab-Tour",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/23/02/2020/7474/ABBA-Gold---The-Concert-ShowKnowing-You--und--Knowing-Me-Tour",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/23/02/2020/7474/ABBA-Gold---The-Concert-ShowKnowing-You--und--Knowing-Me-Tour",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-02-25T20:00:00+01:00",
+      "location_details": "Gro\u00dfer Saal",
+      "title": "\u00bbSide by Side\u00ab",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/25/02/2020/7690/Side-by-Side",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/25/02/2020/7690/Side-by-Side",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-02-26T20:00:00+01:00",
+      "location_details": "Gro\u00dfer Saal",
+      "title": "\u00bbKOKUBU \u2013 The Drums of Japan\u00ab",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/26/02/2020/7645/KOKUBU--und--The-Drums-of-Japan",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/26/02/2020/7645/KOKUBU--und--The-Drums-of-Japan",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-02-27T19:30:00+01:00",
+      "location_details": "Kleiner Saal",
+      "title": "5. Philharmonisches Kammerkonzert",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/27/02/2020/7605/5--Philharmonisches-Kammerkonzert",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/27/02/2020/7605/5--Philharmonisches-Kammerkonzert",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-02-28T11:45:00+01:00",
+      "location_details": "Gro\u00dfer Saal",
+      "title": "3. Pausenphiller - \u00d6ffentliche Probe zum 7. Philharmonischen Konzert - \u00bbDurchbruch\u00ab",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/28/02/2020/7717/3--PausenphillerOeffentliche-Probe-zum-7--Philharmonischen-KonzertDurchbruch",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/28/02/2020/7717/3--PausenphillerOeffentliche-Probe-zum-7--Philharmonischen-KonzertDurchbruch",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-02-28T20:00:00+01:00",
+      "location_details": "Gro\u00dfer Saal",
+      "title": "The world famous Glenn Miller Orchestra directed by Wil Salden - \u00bbBest of Glenn Miller Orchestra\u00ab - Jubil\u00e4umstour \u2013 35 Jahre",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/28/02/2020/7495/The-world-famous-Glenn-Miller-Orchestra-directed-by-Wil-SaldenBest-of-Glenn-Miller-OrchestraJubilaeumstour--und--35-Jahre",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/28/02/2020/7495/The-world-famous-Glenn-Miller-Orchestra-directed-by-Wil-SaldenBest-of-Glenn-Miller-OrchestraJubilaeumstour--und--35-Jahre",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-02-29T19:00:00+01:00",
+      "location_details": "Kleiner Saal",
+      "title": "GLOCKE ImPuls - \u00bbInside Mahler\u00ab",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/29/02/2020/7634/GLOCKE-ImPulsInside-Mahler",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/29/02/2020/7634/GLOCKE-ImPulsInside-Mahler",
+      "location": "Glocke"
+    },
+    {
+      "date_time": "2020-02-29T20:00:00+01:00",
+      "location_details": "Gro\u00dfer Saal",
+      "title": "4. Meisterkonzert - NDR Elbphilharmonie Orchester - \u00bbGemeinsame Gestaltungskraft\u00ab",
+      "link_info": "https://www.glocke.de//de/Veranstaltungssuche/29/02/2020/7562/4--MeisterkonzertNDR-Elbphilharmonie-OrchesterGemeinsame-Gestaltungskraft",
+      "link_tickets": "https://www.glocke.de//de/Veranstaltungssuche/29/02/2020/7562/4--MeisterkonzertNDR-Elbphilharmonie-OrchesterGemeinsame-Gestaltungskraft",
+      "location": "Glocke"
+    }
+  ],
+  "Kukoon": []
 }

@@ -140,7 +140,8 @@ class Theater:
                     s["is_probably_dubbed_film"] = False
             except AttributeError as e:
                 s["is_probably_dubbed_film"] = True
-                print(f"    \"{s.get('title')}\" | {s.get('date_time').date} was set to be a dubbed movie due to missing data ({e})")
+                date = f"{s.get('date_time').month}-{s.get('date_time').day}"
+                print(f"    \"{s.get('title')}\" | {date} was set to be a dubbed movie due to missing data ({e})")
 
     def _film_is_probably_dubbed(self, show):
         """
@@ -807,27 +808,42 @@ class TheaterBremen(Theater):
         for day in days:
             date = day.find(class_="date").text.strip()[-10:]
             shows = day.find_all("article")
-            for s in shows:
-                show = {}
-                time = s.find(class_="overview-date-n-flags").text.strip()[0:5]
-                show["date_time"] = arrow.get(
-                    date + time, "DD.MM.YYYYHH:mm", tzinfo="Europe/Berlin"
-                )
-                links = s.find_all("a")
-                show["link_info"] = "{}{}".format(
-                    self.url, links[1].get("href").strip()
-                )
-                try:
-                    show["link_tickets"] = links[2].get("href").strip()
-                    show["price"] = links[2].text.strip()
-                except IndexError:
-                    pass
-                show["title"] = links[1].text.strip()
-                info = "".join([info.text for info in s.find_all("p")])
-                show["info"] = info.replace("\n", ". ")
-                show["location"] = self.name
+            for show in shows:
+                show = self._extract_show(date, show)
                 show_list.append(show)
         return show_list
+
+    def _extract_show(self, date, s):
+        """
+        parse show information
+
+        Parameters
+        ----------
+        date: str
+        s: bs4.BeautifulSoup()
+
+        Returns
+        -------
+        dict
+            a show dictionary that can be used in a p.Program().shows
+        """
+
+        show = {}
+        time = s.find(class_="overview-date-n-flags").text.strip()[0:5]
+        date_time = arrow.get(date + time, "DD.MM.YYYYHH:mm", tzinfo="Europe/Berlin")
+        show["date_time"] = date_time
+        links = s.find_all("a")
+        show["link_info"] = f"{self.url}{links[1].get('href').strip()}"
+        try:
+            show["link_tickets"] = links[2].get("href").strip()
+            show["price"] = links[2].text.strip()
+        except IndexError:
+            pass
+        show["title"] = links[1].text.strip()
+        info = "".join([info.text for info in s.find_all("p")])
+        show["info"] = info.replace("\n", ". ")
+        show["location"] = self.name
+        return show
 
 
 class Schwankhalle(Theater):
