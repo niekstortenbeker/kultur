@@ -13,7 +13,7 @@ Display only today:
 `scripts/run.py -t`
 
 
-#### requirements
+#### requirements:
 * python 3.7
 
 with the following packages:
