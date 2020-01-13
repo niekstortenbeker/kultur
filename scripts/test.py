@@ -6,9 +6,8 @@ import theater as t
 
 def main():
     print("DOIN' SOME TESTIN'")
-    test_one_theater(t.Schwankhalle())
-    # test_filmkunst(atlantis=True)
-    # test_combined_program(new=True)
+    # test_one_theater(t.Schauburg())
+    test_combined_program(new=True)
 
 
 def test_one_theater(theater):
@@ -22,40 +21,12 @@ def test_one_theater(theater):
     print(f'test {theater}')
     try:
         helper.start_driver()
-        temp = theater
-        temp.update_program()
-        temp.update_meta_info()
-        temp.annotate_dubbed_films()
-        temp.program.print_next_week()
+        theater.update_program()
+        theater.update_meta_info()
+        theater.annotate_dubbed_films()
+        theater.program.print_next_week()
     finally:
         helper.close_driver()
-
-
-def test_filmkunst(schauburg=False, gondel=False, atlantis=False):
-    if schauburg:
-        schauburg = t.Filmkunst(
-            name="Schauburg",
-            url="http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
-            url_program_scrape="https://www.kinoheld.de/kino-bremen/schauburg-kino-bremen/shows/shows?mode=widget",
-            url_meta="https://www.kinoheld.de/kino-bremen/schauburg-kino-bremen/shows/movies?mode=widget",
-        )
-        test_one_theater(schauburg)
-    if gondel:
-        gondel = t.Filmkunst(
-            name="Gondel",
-            url="http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
-            url_program_scrape="https://www.kinoheld.de/kino-bremen/gondel-filmtheater-bremen/shows/shows?mode=widget",
-            url_meta="https://www.kinoheld.de/kino-bremen/gondel-filmtheater-bremen/shows/movies?mode=widget",
-        )
-        test_one_theater(gondel)
-    if atlantis:
-        atlantis = t.Filmkunst(
-            name="Atlantis",
-            url="http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
-            url_program_scrape="https://www.kinoheld.de/kino-bremen/atlantis-filmtheater-bremen/shows/shows?mode=widget",
-            url_meta="https://www.kinoheld.de/kino-bremen/atlantis-filmtheater-bremen/shows/movies?mode=widget",
-        )
-        test_one_theater(atlantis)
 
 
 def test_combined_program(new=False):

@@ -44,24 +44,9 @@ class CombinedProgram:
     """
 
     def __init__(self):
-        schauburg = t.Filmkunst(
-            name="Schauburg",
-            url="http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
-            url_program_scrape="https://www.kinoheld.de/kino-bremen/schauburg-kino-bremen/shows/shows?mode=widget",
-            url_meta="https://www.kinoheld.de/kino-bremen/schauburg-kino-bremen/shows/movies?mode=widget",
-        )
-        gondel = t.Filmkunst(
-            name="Gondel",
-            url="http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
-            url_program_scrape="https://www.kinoheld.de/kino-bremen/gondel-filmtheater-bremen/shows/shows?mode=widget",
-            url_meta="https://www.kinoheld.de/kino-bremen/gondel-filmtheater-bremen/shows/movies?mode=widget",
-        )
-        atlantis = t.Filmkunst(
-            name="Atlantis",
-            url="http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
-            url_program_scrape="https://www.kinoheld.de/kino-bremen/atlantis-filmtheater-bremen/shows/shows?mode=widget",
-            url_meta="https://www.kinoheld.de/kino-bremen/atlantis-filmtheater-bremen/shows/movies?mode=widget",
-        )
+        schauburg = t.Schauburg()
+        gondel = t.Gondel()
+        atlantis = t.Atlantis()
         cinema_ostertor = t.CinemaOstertor()
         city_46 = t.City46()
         theater_bremen = t.TheaterBremen()
