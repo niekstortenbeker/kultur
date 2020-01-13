@@ -18,6 +18,7 @@ def main(new, today):
     p = program.CombinedProgram()
     print_header()
     if new:
+        p.program_from_file()  # so there is backup when a website cannot be reached
         p.update_program()
     else:
         p.program_from_file()
