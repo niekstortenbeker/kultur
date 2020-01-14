@@ -33,12 +33,11 @@ class CombinedProgram:
     theaters : list
         A list of Theater() objects with individual program attributes
     program : Program()
-        A combined program from all the theaters
+        A combined program from all the theaters, when available
+        program will be initiated from data on disk
 
     Methods
     -------
-    program_from_file()
-        Use the program from the data stored on file
     update_program()
         Update the program from the web and replace the program on file
     """
@@ -65,30 +64,39 @@ class CombinedProgram:
             kukoon,
         ]
         self.program = Program()
+        self._program_from_file()
 
     def __repr__(self):
         return "CombinedProgram()"
 
-    def program_from_file(self):
+    def update_program(self):
         """
-        Use the program from the data stored on file
+        Update the program from the web and replace the program on file
 
-        First the program and meta of each theater in self.theaters are
-        updated, and then self.program is built from these.
+        The program is updated both in the theater.program of self.theaters,
+        and in self.program.
         """
 
-        program, meta, date = file.open_from_file()
-        # program and meta are dictionaries with the theater names as
-        # keys and the show lists as values
-        for t in self.theaters:
-            if t.name in program:
-                t.program = Program(shows=program[t.name])
-                t.program.date = date
-        for t in self.theaters:
-            if t.name in meta:
-                t.meta_info = MetaInfo(shows=meta[t.name])
-                t.meta_info.date = date
-        self._refresh_program(date=date)
+        helper.start_driver()
+        for theater in self.theaters:
+            theater.update_program_and_meta_info()
+        helper.close_driver()
+        self._refresh_program(date=arrow.now())
+        self._program_to_file()
+
+    def _refresh_program(self, date):
+        """
+        make a new self.program based on the programs in self.theaters
+        """
+
+        self.program.empty()
+        for theater in self.theaters:
+            try:
+                self.program = self.program + theater.program
+            except AttributeError:  # if theater has None as program
+                continue
+        self.program.sort()
+        self.program.date = date
 
     def _program_to_file(self):
         """
@@ -105,36 +113,29 @@ class CombinedProgram:
         meta_db = copy.deepcopy(meta_db)
         file.save_to_file(program_db, meta_db)
 
-    # TODO make method that can update one theater only
-    def update_program(self):
+    def _program_from_file(self):
         """
-        Update the program from the web and replace the program on file
+        Use the program from the data stored on file
 
-        The program is updated both in the theater.program of self.theaters,
-        and in self.program.
+        First the program and meta of each theater in self.theaters are
+        updated, and then self.program is built from these.
         """
 
-        # update program
-        helper.start_driver()
+        try:
+            program, meta, date = file.open_from_file()
+        except FileNotFoundError:  # in case files are not there
+            return
+        # program and meta are dictionaries with the theater names as
+        # keys and the show lists as values
         for theater in self.theaters:
-            theater.update_program_and_meta_info()
-        helper.close_driver()
-        self._refresh_program(date=arrow.now())
-        self._program_to_file()
-
-    def _refresh_program(self, date):
-        """
-        make a new self.program based on the programs in self.theaters
-        """
-
-        self.program.empty()
-        for t in self.theaters:
-            try:
-                self.program = self.program + t.program
-            except AttributeError:  # if theater has None as program
-                continue
-        self.program.sort()
-        self.program.date = date
+            if theater.name in program:
+                theater.program = Program(shows=program[theater.name])
+                theater.program.date = date
+        for theater in self.theaters:
+            if theater.name in meta:
+                theater.meta_info = MetaInfo(shows=meta[theater.name])
+                theater.meta_info.date = date
+        self._refresh_program(date=date)
 
 
 class Program:
@@ -202,8 +203,12 @@ class Program:
             language_version : str
         """
 
-        self.shows = shows if shows else []
-        self.date = arrow.get(0)
+        if shows:
+            self.shows = shows
+            self.date = arrow.now("Europe/Berlin")
+        else:
+            self.shows = []
+            self.date = arrow.get(0)
 
     def __repr__(self):
         return f"Program({self.shows})"
@@ -380,8 +385,12 @@ class MetaInfo:
             link_info : str
         """
 
-        self.shows = shows if shows else {}
-        self.date = arrow.get(0)
+        if shows:
+            self.shows = shows
+            self.date = arrow.now("Europe/Berlin")
+        else:
+            self.shows = {}
+            self.date = arrow.get(0)
 
     def __repr__(self):
         return f"MetaInfo({self.shows})"

@@ -53,6 +53,8 @@ class Theater:
 
     Methods
     -------
+    update_program_and_meta_info(self, start_driver=False):
+        update the program and meta_info of this theater by web scraping
     update_program()
         update the program of this theater by web scraping
     update_meta_info()
@@ -119,6 +121,7 @@ class Theater:
             shows = self._get_shows()
             self.program = p.Program(shows)
             self.program.sort()
+            self.program.date = ''
         except Exception as e:
             print(
                 f"Note! Program from {self.name} was not updated because of an error {e}"

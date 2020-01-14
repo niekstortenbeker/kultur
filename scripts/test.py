@@ -41,10 +41,10 @@ def test_combined_program(new=False):
     comb_pro = p.CombinedProgram()
 
     if new:
-        comb_pro.program_from_file()
+        comb_pro._program_from_file()
         comb_pro.update_program()
     else:
-        comb_pro.program_from_file()
+        comb_pro._program_from_file()
 
     # PRINTING INFO
     print("".center(100, "-"))
