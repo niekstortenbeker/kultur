@@ -8,7 +8,13 @@ Theater
 Kinoheld(Theater)
     Theaters that use the Kinoheld website
 Filmkunst(Kinoheld):
-    Theaters from Filmkunst (Schauburg, Gondel, Atlantis)
+    Theaters from Filmkunst
+Schauburg(Filmkunst):
+    Theater Schauburg
+Gondel(Filmkunst):
+    Theater Gondel
+Atlantis(Filmkunst):
+    Theater Atlantis
 CinemaOstertor(Kinoheld)
     Theater Cinema Ostertor
 City46(Theater)
@@ -79,6 +85,27 @@ class Theater:
 
     def __str__(self):
         return f"Theater({self.name})"
+
+    def update_program_and_meta_info(self, start_driver=False):
+        """
+        update the program and meta_info of this theater by web scraping
+
+        This will also annotate dubbed films in program
+
+        Parameters
+        ----------
+        start_driver: bool, optional
+            if False (=default) might require driver to be started as 'driver',
+            when True a selenium driver will be started.
+        """
+
+        if start_driver:
+            helper.start_driver()
+        self.update_program()
+        self.update_meta_info()
+        self.annotate_dubbed_films()
+        if start_driver:
+            helper.close_driver()
 
     def update_program(self):
         """

@@ -80,6 +80,7 @@ def get_html_ajax(url, class_name):
 
     ajax causes elements to load after opening the page so requests
     won't work. Therefore use selenium and wait to be ready.
+    Requires driver to be started
 
     Parameters
     ----------

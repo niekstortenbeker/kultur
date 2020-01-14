@@ -117,11 +117,7 @@ class CombinedProgram:
         # update program
         helper.start_driver()
         for theater in self.theaters:
-            theater.update_program()
-        # update meta info
-        for theater in self.theaters:
-            theater.update_meta_info()
-            theater.annotate_dubbed_films()
+            theater.update_program_and_meta_info()
         helper.close_driver()
         self._refresh_program(date=arrow.now())
         self._program_to_file()

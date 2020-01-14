@@ -1,4 +1,3 @@
-import helper
 import program as p
 import run
 import theater as t
@@ -6,8 +5,8 @@ import theater as t
 
 def main():
     print("DOIN' SOME TESTIN'")
-    test_one_theater(t.Atlantis())
-    # test_combined_program(new=True)
+    # test_one_theater(t.Atlantis())
+    test_combined_program(new=True)
 
 
 def test_one_theater(theater):
@@ -19,16 +18,10 @@ def test_one_theater(theater):
     """
 
     print(f'\n\ntest {theater}')
-    try:
-        helper.start_driver()
-        theater.update_program()
-        theater.update_meta_info()
-        theater.annotate_dubbed_films()
-        print(f'program: {theater.program}')
-        print(f'meta: {theater.meta_info}')
-        theater.program.print_next_week()
-    finally:
-        helper.close_driver()
+    theater.update_program_and_meta_info(start_driver=True)
+    print(f'program: {theater.program}')
+    print(f'meta: {theater.meta_info}')
+    theater.program.print_next_week()
 
 
 def test_combined_program(new=False):
