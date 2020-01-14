@@ -5,16 +5,20 @@ command line interface for Kultur
 import click
 import program
 
-# todo add documentation
+
 @click.command()
 @click.option(
-    "--new/--old",
     "-n",
-    default=False,
+    "--new",
+    is_flag=True,
     help="Scrape websites to make a new database. (Otherwise start from old database)",
 )
-@click.option("--today/--week", "-t", default=False, help="Only show today")
+@click.option("-t", "--today", is_flag=True, help="Show only today")
 def main(new, today):
+    """Collect the program of theaters I like in bremen.
+    It filters out dubbed movies (because who likes those?), and then
+    combines the programs to one sorted-by-date overview.
+    """
     p = program.CombinedProgram()
     print_header()
     if new:

@@ -548,7 +548,6 @@ class CinemaOstertor(Kinoheld):
             a set of urls as str
         """
 
-        # fixme I don't think I'm gettin all the links
         html = helper.get_html(self.url_meta)
         soup = bs4.BeautifulSoup(html, "html.parser")
         urls = [
