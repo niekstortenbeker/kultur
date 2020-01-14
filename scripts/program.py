@@ -4,7 +4,7 @@ Classes related to the program
 It is probably best to interact with this module using CombinedProgram.
 A CombinedProgram has a Program containing shows from all theaters, and
 has a list of Theaters which each have an individual Program and
-MetaInfo. Programs can be updated from file or by web scraping.
+MetaInfo.
 
 Classes
 -------
@@ -27,14 +27,17 @@ class CombinedProgram:
     """
     A combined program of a selection of theaters in Bremen
 
+    When initiated it will try to load a previously scraped program
+    from disk.
+
     ...
     Attributes
     ----------
     theaters : list
-        A list of Theater() objects with individual program attributes
+        A list of Theater() objects with individual program and
+        meta_info attributes
     program : Program()
-        A combined program from all the theaters, when available
-        program will be initiated from data on disk
+        A combined program from all the theaters
 
     Methods
     -------
@@ -395,10 +398,6 @@ class MetaInfo:
 
     def __str__(self):
         return str(self.shows)
-
-    def __add__(self, other):
-        shows = self.shows + other.shows
-        return Program(shows)
 
     def __len__(self):
         return len(self.shows)

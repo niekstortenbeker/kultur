@@ -5,8 +5,8 @@ import theater as t
 
 def main():
     print("DOIN' SOME TESTIN'")
-    test_one_theater(t.Atlantis())
-    # test_combined_program(new=True)
+    # test_one_theater(t.Atlantis())
+    test_combined_program(new=True)
 
 
 def test_one_theater(theater):
@@ -41,10 +41,7 @@ def test_combined_program(new=False):
     comb_pro = p.CombinedProgram()
 
     if new:
-        comb_pro._program_from_file()
         comb_pro.update_program()
-    else:
-        comb_pro._program_from_file()
 
     # PRINTING INFO
     print("".center(100, "-"))

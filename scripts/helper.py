@@ -15,6 +15,8 @@ get_html_buttons(url, button_classes, overlay_class=None)
     Obtain source html from a web page where buttons need to be clicked
 parse_date_without_year(*args)
     Guess the year and return arrow object
+list_nested_tag(soup_resultset, element_name):
+    list soup tags that are hidden in a nested soup ResultSet structure
 """
 
 import requests
