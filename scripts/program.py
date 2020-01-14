@@ -143,7 +143,6 @@ class Program:
     A Program with a list of shows and display methods
 
     Some shows can also be found in MetaInfo and are identified based on title.
-    When setting the shows attribute also set the date attribute.  # TODO force this behaviour
 
     ...
     Attributes
@@ -329,7 +328,6 @@ class MetaInfo:
     Shows in meta info can be found (but are not required to) in the shows in
     a program class and are identified by the title.
     Not all shows in a program class are required to be present in a MetaInfo.
-    When setting the shows attribute also set the date attribute.  # TODO force this behaviour
 
     ...
     Attributes

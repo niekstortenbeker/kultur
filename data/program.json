@@ -1,85 +1,13 @@
 {
   "Schauburg": [
     {
-      "date_time": "2020-01-13T15:30:00+01:00",
-      "title": "Als Hitler das rosa Kaninchen stahl",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13260?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
-      "location": "Schauburg",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2020-01-13T16:30:00+01:00",
-      "title": "Miles Davis: Birth of the Cool (engl.)",
-      "language_version": "OmU",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13289?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
-      "location": "Schauburg",
-      "is_probably_dubbed_film": false
-    },
-    {
-      "date_time": "2020-01-13T17:45:00+01:00",
-      "title": "Als Hitler das rosa Kaninchen stahl",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13261?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
-      "location": "Schauburg",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2020-01-13T18:45:00+01:00",
-      "title": "Little Joe (engl.)",
-      "language_version": "OmU",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13304?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
-      "location": "Schauburg",
-      "is_probably_dubbed_film": false
-    },
-    {
-      "date_time": "2020-01-13T20:45:00+01:00",
-      "title": "Motherless Brooklyn (engl.)",
-      "language_version": "OmU",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13303?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
-      "location": "Schauburg",
-      "is_probably_dubbed_film": false
-    },
-    {
-      "date_time": "2020-01-13T21:00:00+01:00",
-      "title": "Sneak Preview (OV mit Untertiteln) OmUSneak-Preview",
-      "language_version": "OmU",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13269?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
-      "location": "Schauburg",
-      "is_probably_dubbed_film": false
-    },
-    {
-      "date_time": "2020-01-14T12:00:00+01:00",
-      "title": "Der geheime Roman des Monsieur Pick",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13296?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
-      "location": "Schauburg",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2020-01-14T14:30:00+01:00",
-      "title": "Judy",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13300?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
-      "location": "Schauburg",
-      "is_probably_dubbed_film": true
-    },
-    {
       "date_time": "2020-01-14T15:30:00+01:00",
       "title": "Als Hitler das rosa Kaninchen stahl",
       "language_version": "",
       "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13262?mode=widget",
       "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
       "location": "Schauburg",
-      "is_probably_dubbed_film": true
+      "is_probably_dubbed_film": false
     },
     {
       "date_time": "2020-01-14T16:45:00+01:00",
@@ -97,7 +25,7 @@
       "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13263?mode=widget",
       "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
       "location": "Schauburg",
-      "is_probably_dubbed_film": true
+      "is_probably_dubbed_film": false
     },
     {
       "date_time": "2020-01-14T19:00:00+01:00",
@@ -115,7 +43,7 @@
       "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13264?mode=widget",
       "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
       "location": "Schauburg",
-      "is_probably_dubbed_film": true
+      "is_probably_dubbed_film": false
     },
     {
       "date_time": "2020-01-14T21:00:00+01:00",
@@ -133,7 +61,7 @@
       "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13265?mode=widget",
       "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
       "location": "Schauburg",
-      "is_probably_dubbed_film": true
+      "is_probably_dubbed_film": false
     },
     {
       "date_time": "2020-01-15T14:30:00+01:00",
@@ -151,7 +79,7 @@
       "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13266?mode=widget",
       "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
       "location": "Schauburg",
-      "is_probably_dubbed_film": true
+      "is_probably_dubbed_film": false
     },
     {
       "date_time": "2020-01-15T16:45:00+01:00",
@@ -169,7 +97,7 @@
       "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13267?mode=widget",
       "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
       "location": "Schauburg",
-      "is_probably_dubbed_film": true
+      "is_probably_dubbed_film": false
     },
     {
       "date_time": "2020-01-15T19:00:00+01:00",
@@ -187,7 +115,7 @@
       "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13268?mode=widget",
       "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
       "location": "Schauburg",
-      "is_probably_dubbed_film": true
+      "is_probably_dubbed_film": false
     },
     {
       "date_time": "2020-01-15T21:00:00+01:00",
@@ -214,7 +142,7 @@
       "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13330?mode=widget",
       "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
       "location": "Schauburg",
-      "is_probably_dubbed_film": true
+      "is_probably_dubbed_film": false
     },
     {
       "date_time": "2020-01-16T15:00:00+01:00",
@@ -286,7 +214,7 @@
       "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13331?mode=widget",
       "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
       "location": "Schauburg",
-      "is_probably_dubbed_film": true
+      "is_probably_dubbed_film": false
     },
     {
       "date_time": "2020-01-17T15:00:00+01:00",
@@ -367,7 +295,7 @@
       "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13332?mode=widget",
       "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
       "location": "Schauburg",
-      "is_probably_dubbed_film": true
+      "is_probably_dubbed_film": false
     },
     {
       "date_time": "2020-01-18T15:00:00+01:00",
@@ -443,12 +371,12 @@
     },
     {
       "date_time": "2020-01-19T14:00:00+01:00",
-      "title": "Als Hitler das rosa Kaninchen stahl",
-      "language_version": "",
+      "title": "Als Hitler das rosa Kaninchen stahl KinderFamilie",
+      "language_version": "Kinder",
       "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13245?mode=widget",
       "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
       "location": "Schauburg",
-      "is_probably_dubbed_film": true
+      "is_probably_dubbed_film": false
     },
     {
       "date_time": "2020-01-19T15:00:00+01:00",
@@ -520,7 +448,7 @@
       "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13333?mode=widget",
       "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
       "location": "Schauburg",
-      "is_probably_dubbed_film": true
+      "is_probably_dubbed_film": false
     },
     {
       "date_time": "2020-01-20T15:45:00+01:00",
@@ -569,12 +497,12 @@
     },
     {
       "date_time": "2020-01-20T21:00:00+01:00",
-      "title": "Sneak Preview (OV mit Untertiteln)",
-      "language_version": "",
+      "title": "Sneak Preview (OV mit Untertiteln) OmUSneak-Preview",
+      "language_version": "OmU",
       "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13357?mode=widget",
       "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
       "location": "Schauburg",
-      "is_probably_dubbed_film": true
+      "is_probably_dubbed_film": false
     },
     {
       "date_time": "2020-01-21T12:30:00+01:00",
@@ -592,7 +520,7 @@
       "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13334?mode=widget",
       "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
       "location": "Schauburg",
-      "is_probably_dubbed_film": true
+      "is_probably_dubbed_film": false
     },
     {
       "date_time": "2020-01-21T15:00:00+01:00",
@@ -673,7 +601,7 @@
       "link_tickets": "https://www.kinoheld.de//kino-bremen/schauburg-kino-bremen/vorstellung/13358?mode=widget",
       "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Schauburg.html",
       "location": "Schauburg",
-      "is_probably_dubbed_film": true
+      "is_probably_dubbed_film": false
     },
     {
       "date_time": "2020-01-22T15:45:00+01:00",
@@ -759,51 +687,6 @@
   ],
   "Gondel": [
     {
-      "date_time": "2020-01-13T15:00:00+01:00",
-      "title": "Als Hitler das rosa Kaninchen stahl",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6518?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
-      "location": "Gondel",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2020-01-13T17:30:00+01:00",
-      "title": "Knives Out - Mord ist Familiensache",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6508?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
-      "location": "Gondel",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2020-01-13T20:00:00+01:00",
-      "title": "Knives Out - Mord ist Familiensache",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6509?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
-      "location": "Gondel",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2020-01-14T12:00:00+01:00",
-      "title": "Einsam Zweisam",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6526?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
-      "location": "Gondel",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2020-01-14T15:00:00+01:00",
-      "title": "Als Hitler das rosa Kaninchen stahl",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6519?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
-      "location": "Gondel",
-      "is_probably_dubbed_film": true
-    },
-    {
       "date_time": "2020-01-14T17:30:00+01:00",
       "title": "Knives Out - Mord ist Familiensache",
       "language_version": "",
@@ -837,7 +720,7 @@
       "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6520?mode=widget",
       "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
       "location": "Gondel",
-      "is_probably_dubbed_film": true
+      "is_probably_dubbed_film": false
     },
     {
       "date_time": "2020-01-15T17:30:00+01:00",
@@ -882,16 +765,16 @@
       "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6535?mode=widget",
       "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
       "location": "Gondel",
-      "is_probably_dubbed_film": true
+      "is_probably_dubbed_film": false
     },
     {
       "date_time": "2020-01-16T20:15:00+01:00",
       "title": "Royal Opera House 2019/20: Dornr\u00f6schen",
-      "language_version": "",
+      "language_version": "Opera",
       "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/5502?mode=widget",
       "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
       "location": "Gondel",
-      "is_probably_dubbed_film": true
+      "is_probably_dubbed_film": false
     },
     {
       "date_time": "2020-01-17T12:00:00+01:00",
@@ -909,7 +792,7 @@
       "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6536?mode=widget",
       "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
       "location": "Gondel",
-      "is_probably_dubbed_film": true
+      "is_probably_dubbed_film": false
     },
     {
       "date_time": "2020-01-17T17:30:00+01:00",
@@ -918,7 +801,7 @@
       "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6537?mode=widget",
       "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
       "location": "Gondel",
-      "is_probably_dubbed_film": true
+      "is_probably_dubbed_film": false
     },
     {
       "date_time": "2020-01-17T20:00:00+01:00",
@@ -945,7 +828,7 @@
       "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6538?mode=widget",
       "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
       "location": "Gondel",
-      "is_probably_dubbed_film": true
+      "is_probably_dubbed_film": false
     },
     {
       "date_time": "2020-01-18T17:30:00+01:00",
@@ -954,22 +837,13 @@
       "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6539?mode=widget",
       "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
       "location": "Gondel",
-      "is_probably_dubbed_film": true
+      "is_probably_dubbed_film": false
     },
     {
       "date_time": "2020-01-18T20:00:00+01:00",
       "title": "Knives Out - Mord ist Familiensache",
       "language_version": "",
       "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6530?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
-      "location": "Gondel",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2020-01-19T11:00:00+01:00",
-      "title": "Das geheime Leben der B\u00e4ume",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6548?mode=widget",
       "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
       "location": "Gondel",
       "is_probably_dubbed_film": true
@@ -990,7 +864,7 @@
       "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6540?mode=widget",
       "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
       "location": "Gondel",
-      "is_probably_dubbed_film": true
+      "is_probably_dubbed_film": false
     },
     {
       "date_time": "2020-01-19T17:30:00+01:00",
@@ -999,7 +873,7 @@
       "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6541?mode=widget",
       "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
       "location": "Gondel",
-      "is_probably_dubbed_film": true
+      "is_probably_dubbed_film": false
     },
     {
       "date_time": "2020-01-19T20:00:00+01:00",
@@ -1026,7 +900,7 @@
       "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6542?mode=widget",
       "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
       "location": "Gondel",
-      "is_probably_dubbed_film": true
+      "is_probably_dubbed_film": false
     },
     {
       "date_time": "2020-01-20T17:30:00+01:00",
@@ -1035,7 +909,7 @@
       "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6543?mode=widget",
       "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
       "location": "Gondel",
-      "is_probably_dubbed_film": true
+      "is_probably_dubbed_film": false
     },
     {
       "date_time": "2020-01-20T20:00:00+01:00",
@@ -1062,7 +936,7 @@
       "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6544?mode=widget",
       "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
       "location": "Gondel",
-      "is_probably_dubbed_film": true
+      "is_probably_dubbed_film": false
     },
     {
       "date_time": "2020-01-21T17:30:00+01:00",
@@ -1071,7 +945,7 @@
       "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6545?mode=widget",
       "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
       "location": "Gondel",
-      "is_probably_dubbed_film": true
+      "is_probably_dubbed_film": false
     },
     {
       "date_time": "2020-01-21T20:00:00+01:00",
@@ -1098,7 +972,7 @@
       "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6546?mode=widget",
       "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
       "location": "Gondel",
-      "is_probably_dubbed_film": true
+      "is_probably_dubbed_film": false
     },
     {
       "date_time": "2020-01-22T17:30:00+01:00",
@@ -1107,7 +981,7 @@
       "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/6547?mode=widget",
       "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
       "location": "Gondel",
-      "is_probably_dubbed_film": true
+      "is_probably_dubbed_film": false
     },
     {
       "date_time": "2020-01-22T20:00:00+01:00",
@@ -1121,86 +995,59 @@
     {
       "date_time": "2020-02-25T20:15:00+01:00",
       "title": "Royal Opera House 2019/20: Die Cellistin (Doppelpr",
-      "language_version": "",
+      "language_version": "Opera",
       "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/5503?mode=widget",
       "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
       "location": "Gondel",
-      "is_probably_dubbed_film": true
+      "is_probably_dubbed_film": false
     },
     {
       "date_time": "2020-03-17T20:15:00+01:00",
       "title": "Royal Opera House 2019/20: Fidelio",
-      "language_version": "",
+      "language_version": "Opera",
       "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/5504?mode=widget",
       "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
       "location": "Gondel",
-      "is_probably_dubbed_film": true
+      "is_probably_dubbed_film": false
     },
     {
       "date_time": "2020-04-01T20:15:00+02:00",
       "title": "Royal Opera House 2019/20: Schwanensee",
-      "language_version": "",
+      "language_version": "Opera",
       "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/5505?mode=widget",
       "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
       "location": "Gondel",
-      "is_probably_dubbed_film": true
+      "is_probably_dubbed_film": false
     },
     {
       "date_time": "2020-04-21T20:00:00+02:00",
       "title": "Royal Opera House 2019/20: Cavalleria Rusticana /",
-      "language_version": "",
+      "language_version": "Opera",
       "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/5506?mode=widget",
       "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
       "location": "Gondel",
-      "is_probably_dubbed_film": true
+      "is_probably_dubbed_film": false
     },
     {
       "date_time": "2020-05-28T20:15:00+02:00",
       "title": "Royal Opera House 2019/20: Das Dante-Projekt",
-      "language_version": "",
+      "language_version": "Opera",
       "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/5507?mode=widget",
       "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
       "location": "Gondel",
-      "is_probably_dubbed_film": true
+      "is_probably_dubbed_film": false
     },
     {
       "date_time": "2020-06-18T20:45:00+02:00",
       "title": "Royal Opera House 2019/20: Elektra",
-      "language_version": "",
+      "language_version": "Opera",
       "link_tickets": "https://www.kinoheld.de//kino-bremen/gondel-filmtheater-bremen/vorstellung/5508?mode=widget",
       "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
       "location": "Gondel",
-      "is_probably_dubbed_film": true
+      "is_probably_dubbed_film": false
     }
   ],
   "Atlantis": [
-    {
-      "date_time": "2020-01-13T16:00:00+01:00",
-      "title": "The Farewell",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/5097?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
-      "location": "Atlantis",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2020-01-13T20:00:00+01:00",
-      "title": "Judy",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/5083?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
-      "location": "Atlantis",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2020-01-14T14:30:00+01:00",
-      "title": "Pavarotti",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/5104?mode=widget",
-      "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
-      "location": "Atlantis",
-      "is_probably_dubbed_film": true
-    },
     {
       "date_time": "2020-01-14T16:45:00+01:00",
       "title": "The Farewell",
@@ -1280,7 +1127,7 @@
       "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/5121?mode=widget",
       "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
       "location": "Atlantis",
-      "is_probably_dubbed_film": true
+      "is_probably_dubbed_film": false
     },
     {
       "date_time": "2020-01-17T15:00:00+01:00",
@@ -1307,7 +1154,7 @@
       "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/5122?mode=widget",
       "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
       "location": "Atlantis",
-      "is_probably_dubbed_film": true
+      "is_probably_dubbed_film": false
     },
     {
       "date_time": "2020-01-18T13:00:00+01:00",
@@ -1343,7 +1190,7 @@
       "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/5123?mode=widget",
       "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
       "location": "Atlantis",
-      "is_probably_dubbed_film": true
+      "is_probably_dubbed_film": false
     },
     {
       "date_time": "2020-01-19T12:45:00+01:00",
@@ -1379,7 +1226,7 @@
       "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/5124?mode=widget",
       "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
       "location": "Atlantis",
-      "is_probably_dubbed_film": true
+      "is_probably_dubbed_film": false
     },
     {
       "date_time": "2020-01-20T15:00:00+01:00",
@@ -1406,7 +1253,7 @@
       "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/5125?mode=widget",
       "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
       "location": "Atlantis",
-      "is_probably_dubbed_film": true
+      "is_probably_dubbed_film": false
     },
     {
       "date_time": "2020-01-21T15:00:00+01:00",
@@ -1433,7 +1280,7 @@
       "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/5126?mode=widget",
       "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
       "location": "Atlantis",
-      "is_probably_dubbed_film": true
+      "is_probably_dubbed_film": false
     },
     {
       "date_time": "2020-01-22T15:00:00+01:00",
@@ -1460,7 +1307,7 @@
       "link_tickets": "https://www.kinoheld.de//kino-bremen/atlantis-filmtheater-bremen/vorstellung/5127?mode=widget",
       "link_info": "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Atlantis.html",
       "location": "Atlantis",
-      "is_probably_dubbed_film": true
+      "is_probably_dubbed_film": false
     },
     {
       "date_time": "2020-01-25T15:00:00+01:00",
@@ -1491,33 +1338,6 @@
     }
   ],
   "Cinema Ostertor": [
-    {
-      "date_time": "2020-01-13T16:45:00+01:00",
-      "title": "MILCHKRIEG IN DALSMYNNI",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/cinema-im-ostertor-bremen/vorstellung/2216613913?mode=widget",
-      "link_info": "https://cinema-ostertor.de/programm",
-      "location": "Cinema Ostertor",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2020-01-13T18:30:00+01:00",
-      "title": "THE PEANUT BUTTER FALCON",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/cinema-im-ostertor-bremen/vorstellung/2216613925?mode=widget",
-      "link_info": "https://cinema-ostertor.de/programm",
-      "location": "Cinema Ostertor",
-      "is_probably_dubbed_film": true
-    },
-    {
-      "date_time": "2020-01-13T20:30:00+01:00",
-      "title": "DIE SEHNSUCHT DER SCHWESTERN GUSM\u00c3O",
-      "language_version": "",
-      "link_tickets": "https://www.kinoheld.de//kino-bremen/cinema-im-ostertor-bremen/vorstellung/2216613937?mode=widget",
-      "link_info": "https://cinema-ostertor.de/programm",
-      "location": "Cinema Ostertor",
-      "is_probably_dubbed_film": true
-    },
     {
       "date_time": "2020-01-14T16:30:00+01:00",
       "title": "DIE SEHNSUCHT DER SCHWESTERN GUSM\u00c3O",
@@ -1564,6 +1384,222 @@
       "is_probably_dubbed_film": true
     },
     {
+      "date_time": "2020-01-16T15:30:00+01:00",
+      "title": "MILCHKRIEG IN DALSMYNNI",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/cinema-im-ostertor-bremen/vorstellung/2220994298?mode=widget",
+      "link_info": "https://cinema-ostertor.de/programm",
+      "location": "Cinema Ostertor",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-16T17:15:00+01:00",
+      "title": "THE PEANUT BUTTER FALCON",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/cinema-im-ostertor-bremen/vorstellung/2220994334?mode=widget",
+      "link_info": "https://cinema-ostertor.de/programm",
+      "location": "Cinema Ostertor",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-16T19:00:00+01:00",
+      "title": "CRESCENDO \u2013 #MAKEMUSICNOTWAR",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/cinema-im-ostertor-bremen/vorstellung/2220994368?mode=widget",
+      "link_info": "https://cinema-ostertor.de/programm",
+      "location": "Cinema Ostertor",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-16T21:00:00+01:00",
+      "title": "VOM GIESSEN DES ZITRONENBAUMS",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/cinema-im-ostertor-bremen/vorstellung/2220994412?mode=widget",
+      "link_info": "https://cinema-ostertor.de/programm",
+      "location": "Cinema Ostertor",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-17T15:30:00+01:00",
+      "title": "MILCHKRIEG IN DALSMYNNI",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/cinema-im-ostertor-bremen/vorstellung/2220994452?mode=widget",
+      "link_info": "https://cinema-ostertor.de/programm",
+      "location": "Cinema Ostertor",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-17T17:10:00+01:00",
+      "title": "CRESCENDO \u2013 #MAKEMUSICNOTWAR",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/cinema-im-ostertor-bremen/vorstellung/2220994486?mode=widget",
+      "link_info": "https://cinema-ostertor.de/programm",
+      "location": "Cinema Ostertor",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-17T19:10:00+01:00",
+      "title": "THE PEANUT BUTTER FALCON",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/cinema-im-ostertor-bremen/vorstellung/2220994524?mode=widget",
+      "link_info": "https://cinema-ostertor.de/programm",
+      "location": "Cinema Ostertor",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-17T21:00:00+01:00",
+      "title": "CRESCENDO \u2013 #MAKEMUSICNOTWAR",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/cinema-im-ostertor-bremen/vorstellung/2220994559?mode=widget",
+      "link_info": "https://cinema-ostertor.de/programm",
+      "location": "Cinema Ostertor",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-18T15:30:00+01:00",
+      "title": "MILCHKRIEG IN DALSMYNNI",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/cinema-im-ostertor-bremen/vorstellung/2220994602?mode=widget",
+      "link_info": "https://cinema-ostertor.de/programm",
+      "location": "Cinema Ostertor",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-18T17:15:00+01:00",
+      "title": "CRESCENDO \u2013 #MAKEMUSICNOTWAR",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/cinema-im-ostertor-bremen/vorstellung/2220994636?mode=widget",
+      "link_info": "https://cinema-ostertor.de/programm",
+      "location": "Cinema Ostertor",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-18T19:15:00+01:00",
+      "title": "THE PEANUT BUTTER FALCON",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/cinema-im-ostertor-bremen/vorstellung/2220994672?mode=widget",
+      "link_info": "https://cinema-ostertor.de/programm",
+      "location": "Cinema Ostertor",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-18T21:10:00+01:00",
+      "title": "VOM GIESSEN DES ZITRONENBAUMS",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/cinema-im-ostertor-bremen/vorstellung/2220994709?mode=widget",
+      "link_info": "https://cinema-ostertor.de/programm",
+      "location": "Cinema Ostertor",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-19T15:00:00+01:00",
+      "title": "CRESCENDO \u2013 #MAKEMUSICNOTWAR",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/cinema-im-ostertor-bremen/vorstellung/2220994744?mode=widget",
+      "link_info": "https://cinema-ostertor.de/programm",
+      "location": "Cinema Ostertor",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-19T17:00:00+01:00",
+      "title": "THE PEANUT BUTTER FALCON",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/cinema-im-ostertor-bremen/vorstellung/2220994782?mode=widget",
+      "link_info": "https://cinema-ostertor.de/programm",
+      "location": "Cinema Ostertor",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-19T19:00:00+01:00",
+      "title": "MILCHKRIEG IN DALSMYNNI",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/cinema-im-ostertor-bremen/vorstellung/2220994820?mode=widget",
+      "link_info": "https://cinema-ostertor.de/programm",
+      "location": "Cinema Ostertor",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-19T20:45:00+01:00",
+      "title": "DIE SEHNSUCHT DER SCHWESTERN GUSM\u00c3O",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/cinema-im-ostertor-bremen/vorstellung/2220994853?mode=widget",
+      "link_info": "https://cinema-ostertor.de/programm",
+      "location": "Cinema Ostertor",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-20T17:15:00+01:00",
+      "title": "MILCHKRIEG IN DALSMYNNI",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/cinema-im-ostertor-bremen/vorstellung/2220994905?mode=widget",
+      "link_info": "https://cinema-ostertor.de/programm",
+      "location": "Cinema Ostertor",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-20T19:00:00+01:00",
+      "title": "THE PEANUT BUTTER FALCON",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/cinema-im-ostertor-bremen/vorstellung/2220994944?mode=widget",
+      "link_info": "https://cinema-ostertor.de/programm",
+      "location": "Cinema Ostertor",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-20T21:00:00+01:00",
+      "title": "VOM GIESSEN DES ZITRONENBAUMS",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/cinema-im-ostertor-bremen/vorstellung/2220994984?mode=widget",
+      "link_info": "https://cinema-ostertor.de/programm",
+      "location": "Cinema Ostertor",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-21T17:00:00+01:00",
+      "title": "VOM GIESSEN DES ZITRONENBAUMS",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/cinema-im-ostertor-bremen/vorstellung/2220995028?mode=widget",
+      "link_info": "https://cinema-ostertor.de/programm",
+      "location": "Cinema Ostertor",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-21T19:00:00+01:00",
+      "title": "CRESCENDO \u2013 #MAKEMUSICNOTWAR",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/cinema-im-ostertor-bremen/vorstellung/2220995066?mode=widget",
+      "link_info": "https://cinema-ostertor.de/programm",
+      "location": "Cinema Ostertor",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-21T21:00:00+01:00",
+      "title": "THE PEANUT BUTTER FALCON",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/cinema-im-ostertor-bremen/vorstellung/2220995104?mode=widget",
+      "link_info": "https://cinema-ostertor.de/programm",
+      "location": "Cinema Ostertor",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-22T19:10:00+01:00",
+      "title": "THE PEANUT BUTTER FALCON",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/cinema-im-ostertor-bremen/vorstellung/2220995161?mode=widget",
+      "link_info": "https://cinema-ostertor.de/programm",
+      "location": "Cinema Ostertor",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-01-22T21:00:00+01:00",
+      "title": "VOM GIESSEN DES ZITRONENBAUMS",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/cinema-im-ostertor-bremen/vorstellung/2220995200?mode=widget",
+      "link_info": "https://cinema-ostertor.de/programm",
+      "location": "Cinema Ostertor",
+      "is_probably_dubbed_film": true
+    },
+    {
       "date_time": "2020-01-25T18:30:00+01:00",
       "title": "NUR DIE F\u00dc\u00dfE TUN MIR LEID",
       "language_version": "",
@@ -1586,6 +1622,15 @@
       "title": "BUTENLAND",
       "language_version": "",
       "link_tickets": "https://www.kinoheld.de//kino-bremen/cinema-im-ostertor-bremen/vorstellung/2191109325?mode=widget",
+      "link_info": "https://cinema-ostertor.de/programm",
+      "location": "Cinema Ostertor",
+      "is_probably_dubbed_film": true
+    },
+    {
+      "date_time": "2020-02-04T20:30:00+01:00",
+      "title": "SOMEWHERE ELSE TOGETHER",
+      "language_version": "",
+      "link_tickets": "https://www.kinoheld.de//kino-bremen/cinema-im-ostertor-bremen/vorstellung/2221315787?mode=widget",
       "link_info": "https://cinema-ostertor.de/programm",
       "location": "Cinema Ostertor",
       "is_probably_dubbed_film": true
@@ -2891,16 +2936,9 @@
       "date_time": "2020-01-12T10:00:00+01:00",
       "link_info": "http://www.theaterbremen.de/de_DE/kalender/die-rote-zora-und-ihre-bande.16366560",
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=1693#termine",
-      "price": "20 / 17 / 15 / 13 / 10 / 8 \u20ac / 9 / 7 \u20ac erm.",
+      "price": "20 / 17 / 15 / 13 / 10 / 8 \u20ac",
       "title": "Die rote Zora und ihre Bande",
       "info": "Urauff\u00fchrung / 6+ / von John von D\u00fcffel / nach dem Roman von Kurt Held / Karten f\u00fcr Vormittagsvorstellungen f\u00fcr Schulklassen erhalten Sie beim Service f\u00fcr Schulen und Gruppen unter Tel 0421\u20093653-340, Fax 0421\u20093653-934 oder schulen@theaterbremen.de ",
-      "location": "Theater Bremen"
-    },
-    {
-      "date_time": "2020-01-12T11:00:00+01:00",
-      "link_info": "http://www.theaterbremen.de/de_DE/kalender/5-philharmonisches-konzert.16127645",
-      "title": "5. Philharmonisches Konzert",
-      "info": "Prosit! / Marc-Andr\u00e9 Hamelin, Klavier / Carlos Kalmar, Dirigent / Tickets f\u00fcr diese Veranstaltung erhalten / Sie \u00fcber Die Glocke (0421) 336699",
       "location": "Theater Bremen"
     },
     {
@@ -2908,6 +2946,13 @@
       "link_info": "http://www.theaterbremen.de/de_DE/kalender/europa-quartett-8-exit-vom-brexit-geht-das.16366463",
       "title": "Europa-Quartett #8: Exit vom Brexit, geht das ?",
       "info": "Kate Connolly \u00fcber ihr Buch \u201eExit Brexit. Wie ich Deutsche wurde.\u201c / Eine Veranstaltung der Heinrich-B\u00f6ll-Stiftung Bremen in Kooperation mit dem Bremer Europa Zentrum und dem Theater Bremen. / Eintritt frei!",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-12T11:00:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/5-philharmonisches-konzert.16127645",
+      "title": "5. Philharmonisches Konzert",
+      "info": "Prosit! / Marc-Andr\u00e9 Hamelin, Klavier / Carlos Kalmar, Dirigent / Tickets f\u00fcr diese Veranstaltung erhalten / Sie \u00fcber Die Glocke (0421) 336699",
       "location": "Theater Bremen"
     },
     {
@@ -2960,16 +3005,16 @@
     },
     {
       "date_time": "2020-01-14T19:30:00+01:00",
-      "link_info": "http://www.theaterbremen.de/de_DE/kalender/5-philharmonisches-konzert.16127647",
-      "title": "5. Philharmonisches Konzert",
-      "info": "Prosit! / Marc-Andr\u00e9 Hamelin, Klavier / Carlos Kalmar, Dirigent / Tickets f\u00fcr diese Veranstaltung erhalten / Sie \u00fcber Die Glocke (0421) 336699",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/nach-den-rechten-sehen.16366520",
+      "title": "Nach den Rechten sehen",
+      "info": "Prof. Dr. Lothar Probst / Identit\u00e4tspolitik. Demokratische Antworten auf einen rechten Diskurs / In Kooperation mit der Heinrich-B\u00f6ll-Stiftung Bremen / Eintritt frei! ",
       "location": "Theater Bremen"
     },
     {
       "date_time": "2020-01-14T19:30:00+01:00",
-      "link_info": "http://www.theaterbremen.de/de_DE/kalender/nach-den-rechten-sehen.16366520",
-      "title": "Nach den Rechten sehen",
-      "info": "Prof. Dr. Lothar Probst / Identit\u00e4tspolitik. Demokratische Antworten auf einen rechten Diskurs / In Kooperation mit der Heinrich-B\u00f6ll-Stiftung Bremen / Eintritt frei! ",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/5-philharmonisches-konzert.16127647",
+      "title": "5. Philharmonisches Konzert",
+      "info": "Prosit! / Marc-Andr\u00e9 Hamelin, Klavier / Carlos Kalmar, Dirigent / Tickets f\u00fcr diese Veranstaltung erhalten / Sie \u00fcber Die Glocke (0421) 336699",
       "location": "Theater Bremen"
     },
     {
@@ -3076,20 +3121,20 @@
     },
     {
       "date_time": "2020-01-18T19:00:00+01:00",
-      "link_info": "http://www.theaterbremen.de/de_DE/kalender/jugend-ohne-gott.16366489",
-      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2060#termine",
-      "price": "10 \u20ac / 7 \u20ac erm.",
-      "title": "Jugend ohne Gott",
-      "info": "15+ / nach dem Roman von \u00d6d\u00f6n von Horv\u00e1th",
-      "location": "Theater Bremen"
-    },
-    {
-      "date_time": "2020-01-18T19:00:00+01:00",
       "link_info": "http://www.theaterbremen.de/de_DE/kalender/die-zauberfloete.16366558",
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2076#termine",
       "price": "56 / 49 / 44 / 38 / 29 / 18 \u20ac / 9 \u20ac erm.",
       "title": "Die Zauberfl\u00f6te",
       "info": "Gro\u00dfe Oper in zwei Aufz\u00fcgen von Wolfgang Amadeus Mozart / Text von Emanuel Schikaneder",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-18T19:00:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/jugend-ohne-gott.16366489",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2060#termine",
+      "price": "10 \u20ac / 7 \u20ac erm.",
+      "title": "Jugend ohne Gott",
+      "info": "15+ / nach dem Roman von \u00d6d\u00f6n von Horv\u00e1th",
       "location": "Theater Bremen"
     },
     {
@@ -3280,20 +3325,20 @@
     },
     {
       "date_time": "2020-01-26T16:00:00+01:00",
-      "link_info": "http://www.theaterbremen.de/de_DE/kalender/die-rote-zora-und-ihre-bande.16366566",
-      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=1718#termine",
-      "price": "20 / 17 / 15 / 13 / 10 / 8 \u20ac / 9 / 7 \u20ac erm.",
-      "title": "Die rote Zora und ihre Bande",
-      "info": "Urauff\u00fchrung / 6+ / von John von D\u00fcffel / nach dem Roman von Kurt Held",
-      "location": "Theater Bremen"
-    },
-    {
-      "date_time": "2020-01-26T16:00:00+01:00",
       "link_info": "http://www.theaterbremen.de/de_DE/kalender/hinter-dem-mond.16366516",
       "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=2065#termine",
       "price": "10 \u20ac / 7 \u20ac erm.",
       "title": "Hinter dem Mond",
       "info": "Ein intergalaktisches Tanztheater / Urauff\u00fchrung / 6+ / von Salome Schneebeli und Ensemble / ",
+      "location": "Theater Bremen"
+    },
+    {
+      "date_time": "2020-01-26T16:00:00+01:00",
+      "link_info": "http://www.theaterbremen.de/de_DE/kalender/die-rote-zora-und-ihre-bande.16366566",
+      "link_tickets": "https://theaterbremen.eventim-inhouse.de/webshop/webticket/shop?event=1718#termine",
+      "price": "20 / 17 / 15 / 13 / 10 / 8 \u20ac / 9 / 7 \u20ac erm.",
+      "title": "Die rote Zora und ihre Bande",
+      "info": "Urauff\u00fchrung / 6+ / von John von D\u00fcffel / nach dem Roman von Kurt Held",
       "location": "Theater Bremen"
     },
     {

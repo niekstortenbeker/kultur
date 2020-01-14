@@ -121,7 +121,6 @@ class Theater:
             shows = self._get_shows()
             self.program = p.Program(shows)
             self.program.sort()
-            self.program.date = ''
         except Exception as e:
             print(
                 f"Note! Program from {self.name} was not updated because of an error {e}"
