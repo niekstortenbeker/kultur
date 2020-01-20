@@ -1,12 +1,26 @@
 import program as p
 import run
 import theater as t
+import threading
+from spinner import SpinCursor
+import sys
+import time
 
 
 def main():
     print("DOIN' SOME TESTIN'")
     # test_one_theater(t.Atlantis())
-    test_combined_program(new=True)
+    # test_combined_program(new=True)
+    run.run(new=True, today=False)
+    # run.run(False, False)
+    # run.run(False, today=True)
+
+
+def thread_function():
+    while True:
+        for item in ('   ', '  .', ' ..', '...'):
+            print(f'\r{item} with some waiting text', end='')
+            time.sleep(0.3)
 
 
 def test_one_theater(theater):

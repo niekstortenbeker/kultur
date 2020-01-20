@@ -30,8 +30,10 @@ from selenium.common.exceptions import WebDriverException
 from selenium.common.exceptions import ElementClickInterceptedException
 from selenium.webdriver.firefox.options import Options
 from itertools import chain
+from spinner import spinner
 
 
+@spinner(suffix=" Loading web driver")
 def start_driver():
     """start driver for selenium"""
     global driver
@@ -47,6 +49,7 @@ def close_driver():
     driver.quit()
 
 
+@spinner(prefix='    ', suffix=' Get html from the web (requests)')
 def get_html(url):
     """
     Obtain source html using requests
@@ -67,15 +70,14 @@ def get_html(url):
         source html
     """
 
-    print("    ...loading web page (requests)")
     response = requests.get(url)
     if response.status_code == 404:
         raise ConnectionError('received a 404')
     else:
-        print("    Retrieved html from: ", url)
         return response.text
 
 
+@spinner(prefix='    ', suffix=' Get html from the web (ajax)')
 def get_html_ajax(url, class_name):
     """
     Obtain source html from a web page that uses ajax
@@ -103,16 +105,15 @@ def get_html_ajax(url, class_name):
         source html
     """
 
-    print("    ...loading web page (selenium)")
     driver.get(url)
     WebDriverWait(driver, 10).until(
         EC.presence_of_element_located((By.CLASS_NAME, class_name))
     )
     source = driver.page_source
-    print("    Retrieved html from: ", url)
     return source
 
 
+@spinner(prefix='    ', suffix=' Get html from the web (clicking buttons)')
 def get_html_buttons(url, button_classes, overlay_class=None):
     """
     Obtain source html from a web page where buttons need to be clicked
@@ -140,13 +141,11 @@ def get_html_buttons(url, button_classes, overlay_class=None):
         source html
     """
 
-    print("    ...loading web page and clicking buttons (selenium)")
     driver.get(url)
     if overlay_class:
         _wait_for_overlay(overlay_class)
     _click_buttons(button_classes)
     source = driver.page_source
-    print("    Retrieved html from: ", url)
     return source
 
 
@@ -311,4 +310,5 @@ def list_nested_tag(soup_resultset, element_name):
 
     nested_element = [x.find_all(element_name) for x in soup_resultset]
     return list(chain.from_iterable(nested_element))
+
 

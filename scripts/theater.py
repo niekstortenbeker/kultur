@@ -34,6 +34,7 @@ import bs4
 import arrow
 import re
 import program as p
+import emoji
 
 
 class Theater:
@@ -50,6 +51,9 @@ class Theater:
         A program object containing the program of the theater, or an empty Program()
     meta_info : MetaInfo()
         Containing the meta info of the shows in the theater, or an empty MetaInfo()
+    html_msg: str
+        Base message for printing that a html was obtained, should be appended with
+        the name of the url.
 
     Methods
     -------
@@ -71,16 +75,14 @@ class Theater:
             the name of the theater
         url : str
             url that links the user to the theater (homepage or program page)
-        program : Program()
-            A program object containing the program of the theater, or an empty Program()
-        meta_info : MetaInfo()
-            Containing the meta info of the shows in the theater, or an empty MetaInfo()
         """
 
         self.name = name
         self.url = url
         self.program = p.Program()
         self.meta_info = p.MetaInfo()
+        self.html_msg = emoji.emojize(f"    :tada: Retrieved html from: ",
+                                      use_aliases=True)
 
     def __repr__(self):
         return f"Theater({self.name, self.url})"
@@ -290,7 +292,9 @@ class Kinoheld(Theater):
             a show list that can be used as shows attribute of Program()
         """
 
-        html = helper.get_html_ajax(self.url_program_scrape, "movie.u-px-2.u-py-2")
+        url = self.url_program_scrape
+        html = helper.get_html_ajax(url, "movie.u-px-2.u-py-2")
+        print(f"{self.html_msg}{url}")
         return self._extract_show_list(html)
 
     def _extract_show_list(self, html):
@@ -393,6 +397,7 @@ class Filmkunst(Kinoheld):
         overlay_class = "overlay-container"
         try:
             html = helper.get_html_buttons(self.url_meta, button_classes, overlay_class)
+            print(f"{self.html_msg}{self.url_meta}")
             meta = self._extract_meta(html)
             self.meta_info = p.MetaInfo(meta)
         except Exception as e:
@@ -549,6 +554,7 @@ class CinemaOstertor(Kinoheld):
         """
 
         html = helper.get_html(self.url_meta)
+        print(f"{self.html_msg}{self.url_meta}")
         soup = bs4.BeautifulSoup(html, "html.parser")
         urls = [
             url.get("href").strip()
@@ -574,6 +580,7 @@ class CinemaOstertor(Kinoheld):
         meta_info_program = {}
         for url in movie_urls:
             html = helper.get_html(url)
+            print(f"{self.html_msg}{url}")
             try:
                 meta_info_show = self._parse_show(html)
                 meta_info_program[meta_info_show["title"]] = meta_info_show
@@ -637,152 +644,6 @@ class CinemaOstertor(Kinoheld):
         return meta_film
 
 
-class City46(Theater):
-    """Theater City 46
-
-    Attributes
-    ----------
-    name : str
-        the name of the theater
-    url : str
-        url that links the user to the theater (homepage or program page)
-    program : Program()
-        A program object containing the program of the theater, or an empty Program()
-    meta_info : MetaInfo()
-        Containing the meta info of the shows in the theater, or an empty MetaInfo()
-
-    Methods
-    -------
-    update_program()
-        update the program of this theater by web scraping
-    update_meta_info()
-        update the meta info of this theater by web scraping
-    annotate_dubbed_films()
-        update self.program of movie theaters to annotate probably dubbed films
-    """
-
-    def __init__(self):
-        super().__init__("City 46", "http://www.city46.de/programm/")
-
-    def _get_shows(self):
-        """
-        Make a new show list by web scraping the program
-
-        Returns
-        -------
-        list
-            a show list that can be used as shows attribute of Program()
-        """
-
-        shows = []
-        urls, years = self._get_urls()
-        for url, year in zip(urls, years):
-            html = helper.get_html(url)
-            table = self._get_program_table(html)
-            shows.extend(self._extract_show_list(table, str(year)))
-        return shows
-
-    def _get_urls(self):
-        """
-        Get the program url from this month, if date > 20 also get next month
-
-        Returns
-        -------
-        list
-            a list with the urls as str
-        list
-            a list with the years as int
-        """
-
-        months = {
-            1: "januar",
-            2: "februar",
-            3: "maerz",
-            4: "april",
-            5: "mai",
-            6: "juni",
-            7: "juli",
-            8: "august",
-            9: "september",
-            10: "oktober",
-            11: "november",
-            12: "dezember",
-        }
-        urls, years = [], []
-        date = arrow.now("Europe/Berlin")
-        year, month, day = date.year, date.month, date.day
-        urls.append(f"{self.url}{months[month]}-{year}.html")
-        years.append(year)
-        if day > 20:
-            date = date.shift(months=+1)
-            year, month = date.year, date.month
-            urls.append(f"{self.url}{months[month]}-{year}.html")
-            years.append(year)
-        return urls, years
-
-    def _get_program_table(self, html):
-        """the program table is made of several tables that should be combined"""
-
-        soup = bs4.BeautifulSoup(html, "html.parser")
-        table = soup.find_all('table')
-        table.pop(0)  # first table is not part of program
-        return helper.list_nested_tag(table, 'tr')  # get table rows
-
-    def _extract_show_list(self, table, year):
-        """
-        Make a new show list from the source html
-
-        Parameters
-        ----------
-        table: list
-            list of html <tr> elements
-        year: str
-
-        Returns
-        -------
-        list
-            a show list that can be used as shows attribute of Program()
-        """
-
-        date = ''
-        show_list = []
-        for row in table:
-            columns = row.find_all('td')
-            if columns[1].text:  # date is not repeated every time, sometimes empty cells
-                date = columns[1].text
-            try:
-                time = columns[2].text
-                show = {'date_time': arrow.get(year + date + time, "YYYYD.M.hh:mm", tzinfo="Europe/Berlin"),
-                        'title': columns[3].a.text,
-                        'location': self.name,
-                        'info': self._get_info(columns)
-                        }
-                link = columns[3].a
-            except (AttributeError, arrow.parser.ParserMatchError):
-                continue
-            if link.get('class')[0] == 'internal-link':
-                show['link_info'] = "http://www.city46.de/" + link.get("href")
-            else:
-                show['link_info'] = link.get("href")
-            if columns[3].dfn:
-                show['language_version'] = columns[3].dfn.text
-            show_list.append(show)
-        return show_list
-
-    def _get_info(self, columns):
-        """info can be in the fourth column (where also the title is) or in the fifth column"""
-
-        if columns[3].br:
-            info = columns[3].br.next.strip()
-            if info.endswith(','):
-                info = info[:-1]
-        else:
-            info = ''
-        if columns[4].text:
-            info = info + '. ' + columns[4].text
-        return info
-
-
 class TheaterBremen(Theater):
     """Theater "Theater Bremen"
 
@@ -824,6 +685,7 @@ class TheaterBremen(Theater):
         urls = self._get_urls()
         for url in urls:
             html = helper.get_html_ajax(url, class_name="day")
+            print(f"{self.html_msg}{url}")
             shows.extend(self._extract_show_list(html))
         return shows
 
@@ -945,6 +807,7 @@ class Schwankhalle(Theater):
 
         # at some point requests starting giving SSLError so use selenium for ajax
         html = helper.get_html_ajax(self.url, "date-container")
+        print(f"{self.html_msg}{self.url}")
         return self._extract_show_list(html)
 
     def _extract_show_list(self, html):
@@ -1062,6 +925,7 @@ class Glocke(Theater):
         shows = []
         for url in urls:
             html = helper.get_html(url)
+            print(f"{self.html_msg}{url}")
             shows.extend(self._extract_show_list(html))
         return shows
 
@@ -1181,6 +1045,7 @@ class Kukoon(Theater):
         """
 
         html = helper.get_html(self.url)
+        print(f"{self.html_msg}{self.url}")
         return self._extract_show_list(html)
 
     def _extract_show_list(self, html):
@@ -1218,3 +1083,150 @@ class Kukoon(Theater):
             show["location"] = self.name
             show_list.append(show)
         return show_list
+
+
+class City46(Theater):
+    """Theater City 46
+
+    Attributes
+    ----------
+    name : str
+        the name of the theater
+    url : str
+        url that links the user to the theater (homepage or program page)
+    program : Program()
+        A program object containing the program of the theater, or an empty Program()
+    meta_info : MetaInfo()
+        Containing the meta info of the shows in the theater, or an empty MetaInfo()
+
+    Methods
+    -------
+    update_program()
+        update the program of this theater by web scraping
+    update_meta_info()
+        update the meta info of this theater by web scraping
+    annotate_dubbed_films()
+        update self.program of movie theaters to annotate probably dubbed films
+    """
+
+    def __init__(self):
+        super().__init__("City 46", "http://www.city46.de/programm/")
+
+    def _get_shows(self):
+        """
+        Make a new show list by web scraping the program
+
+        Returns
+        -------
+        list
+            a show list that can be used as shows attribute of Program()
+        """
+
+        shows = []
+        urls, years = self._get_urls()
+        for url, year in zip(urls, years):
+            html = helper.get_html(url)
+            print(f"{self.html_msg}{url}")
+            table = self._get_program_table(html)
+            shows.extend(self._extract_show_list(table, str(year)))
+        return shows
+
+    def _get_urls(self):
+        """
+        Get the program url from this month, if date > 20 also get next month
+
+        Returns
+        -------
+        list
+            a list with the urls as str
+        list
+            a list with the years as int
+        """
+
+        months = {
+            1: "januar",
+            2: "februar",
+            3: "maerz",
+            4: "april",
+            5: "mai",
+            6: "juni",
+            7: "juli",
+            8: "august",
+            9: "september",
+            10: "oktober",
+            11: "november",
+            12: "dezember",
+        }
+        urls, years = [], []
+        date = arrow.now("Europe/Berlin")
+        year, month, day = date.year, date.month, date.day
+        urls.append(f"{self.url}{months[month]}-{year}.html")
+        years.append(year)
+        if day > 20:
+            date = date.shift(months=+1)
+            year, month = date.year, date.month
+            urls.append(f"{self.url}{months[month]}-{year}.html")
+            years.append(year)
+        return urls, years
+
+    def _get_program_table(self, html):
+        """the program table is made of several tables that should be combined"""
+
+        soup = bs4.BeautifulSoup(html, "html.parser")
+        table = soup.find_all('table')
+        table.pop(0)  # first table is not part of program
+        return helper.list_nested_tag(table, 'tr')  # get table rows
+
+    def _extract_show_list(self, table, year):
+        """
+        Make a new show list from the source html
+
+        Parameters
+        ----------
+        table: list
+            list of html <tr> elements
+        year: str
+
+        Returns
+        -------
+        list
+            a show list that can be used as shows attribute of Program()
+        """
+
+        date = ''
+        show_list = []
+        for row in table:
+            columns = row.find_all('td')
+            if columns[1].text:  # date is not repeated every time, sometimes empty cells
+                date = columns[1].text
+            try:
+                time = columns[2].text
+                show = {'date_time': arrow.get(year + date + time, "YYYYD.M.hh:mm", tzinfo="Europe/Berlin"),
+                        'title': columns[3].a.text,
+                        'location': self.name,
+                        'info': self._get_info(columns)
+                        }
+                link = columns[3].a
+            except (AttributeError, arrow.parser.ParserMatchError):
+                continue
+            if link.get('class')[0] == 'internal-link':
+                show['link_info'] = "http://www.city46.de/" + link.get("href")
+            else:
+                show['link_info'] = link.get("href")
+            if columns[3].dfn:
+                show['language_version'] = columns[3].dfn.text
+            show_list.append(show)
+        return show_list
+
+    def _get_info(self, columns):
+        """info can be in the fourth column (where also the title is) or in the fifth column"""
+
+        if columns[3].br:
+            info = columns[3].br.next.strip()
+            if info.endswith(','):
+                info = info[:-1]
+        else:
+            info = ''
+        if columns[4].text:
+            info = info + '. ' + columns[4].text
+        return info

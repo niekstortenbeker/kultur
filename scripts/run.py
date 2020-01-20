@@ -4,6 +4,7 @@ command line interface for Kultur
 
 import click
 import program
+import emoji
 
 
 @click.command()
@@ -19,6 +20,21 @@ def main(new, today):
     It filters out dubbed movies (because who likes those?), and then
     combines the programs to one sorted-by-date overview.
     """
+    run(new, today)
+
+
+def run(new, today):
+    """
+    run the command line interface
+
+    Parameters
+    ----------
+    new: bool
+        if True update program first
+    today:
+        if True only print today, otherwise print next week
+    """
+
     p = program.CombinedProgram()
     print_header()
     if new:
@@ -32,7 +48,8 @@ def main(new, today):
 
 def print_header():
     print("".center(100, "-"))
-    print("Kultur Factory".center(100, " "))
+    statement = f"{38 * ' '}:movie_camera: Kultur Factory :movie_camera: "
+    print(emoji.emojize(statement))
     print("".center(100, "-"))
 
 
