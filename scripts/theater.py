@@ -29,11 +29,13 @@ Kukoon(Theater)
     Theater Kukoon
 """
 
-import helper
 import bs4
 import arrow
 import re
-import program as p
+import metainfo
+import parsing
+import webdriver
+from program import Program
 import emoji
 
 
@@ -79,8 +81,8 @@ class Theater:
 
         self.name = name
         self.url = url
-        self.program = p.Program()
-        self.meta_info = p.MetaInfo()
+        self.program = Program()
+        self.meta_info = metainfo.MetaInfo()
         self.html_msg = emoji.emojize(f"    :tada: Retrieved html from: ",
                                       use_aliases=True)
 
@@ -104,12 +106,12 @@ class Theater:
         """
 
         if start_driver:
-            helper.start_driver()
+            webdriver.start_driver()
         self.update_program()
         self.update_meta_info()
         self.annotate_dubbed_films()
         if start_driver:
-            helper.close_driver()
+            webdriver.close_driver()
 
     def update_program(self):
         """
@@ -121,7 +123,7 @@ class Theater:
         print(f"\n updating program {self.name}")
         try:
             shows = self._get_shows()
-            self.program = p.Program(shows)
+            self.program = Program(shows)
             self.program.sort()
         except Exception as e:
             print(
@@ -293,7 +295,7 @@ class Kinoheld(Theater):
         """
 
         url = self.url_program_scrape
-        html = helper.get_html_ajax(url, "movie.u-px-2.u-py-2")
+        html = webdriver.get_html_ajax(url, "movie.u-px-2.u-py-2")
         print(f"{self.html_msg}{url}")
         return self._extract_show_list(html)
 
@@ -319,7 +321,7 @@ class Kinoheld(Theater):
             date_time = s.find(class_="movie__date").text
             month, day = int(date_time[6:8]), int(date_time[3:5])
             hour, minute = int(date_time[10:12]), int(date_time[13:15])
-            date_time = helper.parse_date_without_year(month, day, hour, minute)
+            date_time = parsing.parse_date_without_year(month, day, hour, minute)
             show = {"date_time": date_time}
             title = s.find(class_="movie__title").text.strip()
             if title[-3:] in ["OmU", " OV", "mdU", "meU"]:
@@ -396,10 +398,10 @@ class Filmkunst(Kinoheld):
         ]
         overlay_class = "overlay-container"
         try:
-            html = helper.get_html_buttons(self.url_meta, button_classes, overlay_class)
+            html = webdriver.get_html_buttons(self.url_meta, button_classes, overlay_class)
             print(f"{self.html_msg}{self.url_meta}")
             meta = self._extract_meta(html)
-            self.meta_info = p.MetaInfo(meta)
+            self.meta_info = metainfo.MetaInfo(meta)
         except Exception as e:
             statement = f"Note! Meta info from {self.name} was not updated because of an error. {e}"
             print(statement)
@@ -427,8 +429,8 @@ class Filmkunst(Kinoheld):
         for film in films:
             try:
                 dls = film.find_all("dl")
-                dt = [t.text.strip().lower() for t in helper.list_nested_tag(dls, "dt")]
-                dd = [t.text.strip() for t in helper.list_nested_tag(dls, "dd")]
+                dt = [t.text.strip().lower() for t in parsing.list_nested_tag(dls, "dt")]
+                dd = [t.text.strip() for t in parsing.list_nested_tag(dls, "dd")]
                 description = film.find("div", class_="movie__info-description").text
                 meta_film = {"title": dd[dt.index("titel")],
                              "description": description,
@@ -538,7 +540,7 @@ class CinemaOstertor(Kinoheld):
         try:
             urls = self._get_meta_urls()
             meta = self._extract_meta(urls)
-            self.meta_info = p.MetaInfo(meta)
+            self.meta_info = metainfo.MetaInfo(meta)
         except Exception as e:
             statement = f"Note! Meta info from {self.name} was not updated because of an error. {e}"
             print(statement)
@@ -553,7 +555,7 @@ class CinemaOstertor(Kinoheld):
             a set of urls as str
         """
 
-        html = helper.get_html(self.url_meta)
+        html = webdriver.get_html(self.url_meta)
         print(f"{self.html_msg}{self.url_meta}")
         soup = bs4.BeautifulSoup(html, "html.parser")
         urls = [
@@ -579,7 +581,7 @@ class CinemaOstertor(Kinoheld):
 
         meta_info_program = {}
         for url in movie_urls:
-            html = helper.get_html(url)
+            html = webdriver.get_html(url)
             print(f"{self.html_msg}{url}")
             try:
                 meta_info_show = self._parse_show(html)
@@ -684,7 +686,7 @@ class TheaterBremen(Theater):
         shows = []
         urls = self._get_urls()
         for url in urls:
-            html = helper.get_html_ajax(url, class_name="day")
+            html = webdriver.get_html_ajax(url, class_name="day")
             print(f"{self.html_msg}{url}")
             shows.extend(self._extract_show_list(html))
         return shows
@@ -747,7 +749,7 @@ class TheaterBremen(Theater):
         Returns
         -------
         dict
-            a show dictionary that can be used in a p.Program().shows
+            a show dictionary that can be used in a Program().shows
         """
 
         show = {}
@@ -806,7 +808,7 @@ class Schwankhalle(Theater):
         """
 
         # at some point requests starting giving SSLError so use selenium for ajax
-        html = helper.get_html_ajax(self.url, "date-container")
+        html = webdriver.get_html_ajax(self.url, "date-container")
         print(f"{self.html_msg}{self.url}")
         return self._extract_show_list(html)
 
@@ -854,7 +856,7 @@ class Schwankhalle(Theater):
 
         Returns
         -------
-        a show dictionary that can be used in p.Program().shows
+        a show dictionary that can be used in Program().shows
         """
 
         show = {"date_time": self._get_date_time(row, year)}
@@ -924,7 +926,7 @@ class Glocke(Theater):
         urls = self._get_urls()
         shows = []
         for url in urls:
-            html = helper.get_html(url)
+            html = webdriver.get_html(url)
             print(f"{self.html_msg}{url}")
             shows.extend(self._extract_show_list(html))
         return shows
@@ -1002,7 +1004,7 @@ class Glocke(Theater):
         month = months[month]
         time_location = show.find("span", style=re.compile(r"color")).text.strip()
         hour, minute = int(time_location[:2]), int(time_location[3:6])
-        date_time = helper.parse_date_without_year(month, day, hour, minute)
+        date_time = parsing.parse_date_without_year(month, day, hour, minute)
         location_details = time_location[10:]
         return date_time, location_details
 
@@ -1044,7 +1046,7 @@ class Kukoon(Theater):
             a show list that can be used as shows attribute of Program()
         """
 
-        html = helper.get_html(self.url)
+        html = webdriver.get_html(self.url)
         print(f"{self.html_msg}{self.url}")
         return self._extract_show_list(html)
 
@@ -1125,7 +1127,7 @@ class City46(Theater):
         shows = []
         urls, years = self._get_urls()
         for url, year in zip(urls, years):
-            html = helper.get_html(url)
+            html = webdriver.get_html(url)
             print(f"{self.html_msg}{url}")
             table = self._get_program_table(html)
             shows.extend(self._extract_show_list(table, str(year)))
@@ -1175,7 +1177,7 @@ class City46(Theater):
         soup = bs4.BeautifulSoup(html, "html.parser")
         table = soup.find_all('table')
         table.pop(0)  # first table is not part of program
-        return helper.list_nested_tag(table, 'tr')  # get table rows
+        return parsing.list_nested_tag(table, 'tr')  # get table rows
 
     def _extract_show_list(self, table, year):
         """

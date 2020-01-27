@@ -1,5 +1,5 @@
 """
-helper functions for obtaining htmls and parsing html
+helper functions for obtaining htmls
 
 Functions
 ---------
@@ -13,14 +13,9 @@ get_html_ajax(url, class_name)
     Obtain source html from a web page that uses ajax
 get_html_buttons(url, button_classes, overlay_class=None)
     Obtain source html from a web page where buttons need to be clicked
-parse_date_without_year(*args)
-    Guess the year and return arrow object
-list_nested_tag(soup_resultset, element_name):
-    list soup tags that are hidden in a nested soup ResultSet structure
 """
 
 import requests
-import arrow
 import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -29,13 +24,11 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import WebDriverException
 from selenium.common.exceptions import ElementClickInterceptedException
 from selenium.webdriver.firefox.options import Options
-from itertools import chain
-from spinner import spinner
 
 
-@spinner(suffix=" Loading web driver")
 def start_driver():
     """start driver for selenium"""
+    print('...  Loading web driver')
     global driver
     firefox_profile = webdriver.FirefoxProfile()
     firefox_profile.set_preference("intl.accept_languages", "de")
@@ -49,7 +42,6 @@ def close_driver():
     driver.quit()
 
 
-@spinner(prefix='    ', suffix=' Get html from the web (requests)')
 def get_html(url):
     """
     Obtain source html using requests
@@ -70,6 +62,7 @@ def get_html(url):
         source html
     """
 
+    print('    ... Get html from the web (requests)')
     response = requests.get(url)
     if response.status_code == 404:
         raise ConnectionError('received a 404')
@@ -77,7 +70,6 @@ def get_html(url):
         return response.text
 
 
-@spinner(prefix='    ', suffix=' Get html from the web (ajax)')
 def get_html_ajax(url, class_name):
     """
     Obtain source html from a web page that uses ajax
@@ -105,6 +97,7 @@ def get_html_ajax(url, class_name):
         source html
     """
 
+    print('    ... Get html from the web (ajax)')
     driver.get(url)
     WebDriverWait(driver, 10).until(
         EC.presence_of_element_located((By.CLASS_NAME, class_name))
@@ -113,7 +106,6 @@ def get_html_ajax(url, class_name):
     return source
 
 
-@spinner(prefix='    ', suffix=' Get html from the web (clicking buttons)')
 def get_html_buttons(url, button_classes, overlay_class=None):
     """
     Obtain source html from a web page where buttons need to be clicked
@@ -141,6 +133,7 @@ def get_html_buttons(url, button_classes, overlay_class=None):
         source html
     """
 
+    print('    ... Get html from the web (clicking buttons)')
     driver.get(url)
     if overlay_class:
         _wait_for_overlay(overlay_class)
@@ -247,68 +240,3 @@ def _try_clicking(button):
         return True
     except ElementClickInterceptedException:
         return False
-
-
-def parse_date_without_year(*args):
-    """
-    Guess the year and return arrow object
-
-    Assumes that dates don't go back more than 2 months (and must in
-    that case be in the nearest future). Useful when year is not
-    available.
-
-    Parameters
-    ----------
-    args
-        arrow object, or
-        month, day, hour, minute: ints
-    """
-
-    # if arrow object was supplied
-    if len(args) == 1 and isinstance(args[0], arrow.arrow.Arrow):
-        date_time = args[0]
-        if date_time.year == 1:  # if year not specified in arrow year 1 is used
-            year = arrow.now("Europe/Berlin").year  # get current year
-            date_time = date_time.replace(year=year)
-    # if month, day, hour, minute was supplied
-    elif len(args) == 4:
-        year = arrow.now("Europe/Berlin").year  # get current year
-        date_time = arrow.get(
-            year, args[0], args[1], args[2], args[3], tzinfo="Europe/Berlin"
-        )
-    else:
-        raise TypeError(
-            "_parse_date_without_year() only accepts arrow objects or month, day, hour, minute"
-        )
-    if date_time < arrow.now("Europe/Berlin").shift(months=-2):
-        return date_time.replace(year=date_time.year + 1)
-    else:
-        return date_time
-
-
-def list_nested_tag(soup_resultset, element_name):
-    """
-    list soup tags that are hidden in a nested soup ResultSet structure
-
-    this approach prevents list within lists as results
-    For instance:
-    soup = soup.find_all('table')
-    elements = list_nested_tag(soup, 'tr')
-
-    Parameters
-    ----------
-    soup_resultset: bs4.element.ResultSet
-        result of a soup.find_all()
-    element_name: str
-        name of tag to search in the soup result set
-
-    Returns
-    -------
-    list
-        list of bs4.element.Tag that was searched for
-    """
-
-    nested_element = [x.find_all(element_name) for x in soup_resultset]
-    return list(chain.from_iterable(nested_element))
-
-

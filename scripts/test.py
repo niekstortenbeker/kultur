@@ -1,19 +1,17 @@
-import program as p
+import combinedprogram
 import run
-import theater as t
-import threading
-from spinner import SpinCursor
-import sys
 import time
+from theater import Schauburg, Gondel, Atlantis, CinemaOstertor, City46, TheaterBremen
+from theater import Schwankhalle, Glocke, Kukoon
 
 
 def main():
     print("DOIN' SOME TESTIN'")
-    # test_one_theater(t.Atlantis())
+    # test_one_theater(Atlantis())
     # test_combined_program(new=True)
     run.run(new=True, today=False)
-    # run.run(False, False)
-    # run.run(False, today=True)
+    # run.run(new=False, today=False)
+    # run.run(new=False, today=True)
 
 
 def thread_function():
@@ -52,7 +50,7 @@ def test_combined_program(new=False):
         if True scrape new program, if False (default) use from file
     """
 
-    comb_pro = p.CombinedProgram()
+    comb_pro = combinedprogram.CombinedProgram()
 
     if new:
         comb_pro.update_program()

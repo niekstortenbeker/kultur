@@ -3,7 +3,8 @@ command line interface for Kultur
 """
 
 import click
-import program
+
+import combinedprogram
 import emoji
 
 
@@ -35,7 +36,7 @@ def run(new, today):
         if True only print today, otherwise print next week
     """
 
-    p = program.CombinedProgram()
+    p = combinedprogram.CombinedProgram()
     print_header()
     if new:
         p.update_program()
