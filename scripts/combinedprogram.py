@@ -32,7 +32,7 @@ class CombinedProgram:
     Attributes
     ----------
     theaters : list
-        A list of Theater() objects with individual program and
+        A list of TheaterBase() objects with individual program and
         meta_info attributes
     program : Program()
         A combined program from all the theaters

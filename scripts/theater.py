@@ -3,9 +3,9 @@ Theater classes with methods to update the program by web scraping
 
 Classes
 -------
-Theater
+TheaterBase
     Base class for classes representing different theaters
-Kinoheld(Theater)
+Kinoheld(TheaterBase)
     Theaters that use the Kinoheld website
 Filmkunst(Kinoheld):
     Theaters from Filmkunst
@@ -17,15 +17,15 @@ Atlantis(Filmkunst):
     Theater Atlantis
 CinemaOstertor(Kinoheld)
     Theater Cinema Ostertor
-City46(Theater)
+City46(TheaterBase)
     Theater City 46
-TheaterBremen(Theater)
-    Theater "Theater Bremen"
-Schwankhalle(Theater)
+TheaterBremen(TheaterBase)
+    Theater "TheaterBase Bremen"
+Schwankhalle(TheaterBase)
     Theater Schwankhalle
-Glocke(Theater)
+Glocke(TheaterBase)
     Theater Glocke
-Kukoon(Theater)
+Kukoon(TheaterBase)
     Theater Kukoon
 """
 
@@ -39,7 +39,7 @@ from program import Program
 import emoji
 
 
-class Theater:
+class TheaterBase:
     """
     Base class for classes representing different theaters
 
@@ -87,10 +87,10 @@ class Theater:
                                       use_aliases=True)
 
     def __repr__(self):
-        return f"Theater({self.name, self.url})"
+        return f"TheaterBase({self.name, self.url})"
 
     def __str__(self):
-        return f"Theater({self.name})"
+        return f"TheaterBase({self.name})"
 
     def update_program_and_meta_info(self, start_driver=False):
         """
@@ -241,7 +241,7 @@ class Theater:
             return False
 
 
-class Kinoheld(Theater):
+class Kinoheld(TheaterBase):
     """Theaters that use the Kinoheld website
 
         Attributes
@@ -646,7 +646,7 @@ class CinemaOstertor(Kinoheld):
         return meta_film
 
 
-class TheaterBremen(Theater):
+class TheaterBremen(TheaterBase):
     """Theater "Theater Bremen"
 
     Attributes
@@ -770,7 +770,7 @@ class TheaterBremen(Theater):
         return show
 
 
-class Schwankhalle(Theater):
+class Schwankhalle(TheaterBase):
     """Theater Schwankhalle
 
     Attributes
@@ -886,7 +886,7 @@ class Schwankhalle(Theater):
         return date_time
 
 
-class Glocke(Theater):
+class Glocke(TheaterBase):
     """Theater Glocke
 
     Attributes
@@ -1009,7 +1009,7 @@ class Glocke(Theater):
         return date_time, location_details
 
 
-class Kukoon(Theater):
+class Kukoon(TheaterBase):
     """Theater Kukoon
 
     Attributes
@@ -1087,7 +1087,7 @@ class Kukoon(Theater):
         return show_list
 
 
-class City46(Theater):
+class City46(TheaterBase):
     """Theater City 46
 
     Attributes

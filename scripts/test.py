@@ -25,7 +25,7 @@ def test_one_theater(theater):
     """
     Parameters
     ----------
-    theater: theater.Theater()
+    theater: theater.TheaterBase()
         e.g. t.Schwankhalle()
     """
 
