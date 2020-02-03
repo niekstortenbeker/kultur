@@ -227,8 +227,10 @@ class TheaterBase:
         show_metainfo = self.meta_info.get(title)
         if not show_metainfo:
             raise AttributeError('No meta info found')
-        country = show_metainfo["country"].lower()
-        if re.search("deutschland|sterreich|schweiz", country):
+        country = show_metainfo.get("country")
+        if not country:
+            raise AttributeError('No meta info found')
+        if re.search("deutschland|sterreich|schweiz", country.lower()):
             title = show_metainfo.get("title")
             title_original = show_metainfo.get("title_original")
             if not title_original:  # if no original title info is available
