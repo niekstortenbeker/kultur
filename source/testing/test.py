@@ -1,8 +1,6 @@
-import combinedprogram
+from program import CombinedProgram
 import run
 import time
-from theater import Schauburg, Gondel, Atlantis, CinemaOstertor, City46, TheaterBremen
-from theater import Schwankhalle, Glocke, Kukoon
 
 
 def main():
@@ -50,10 +48,10 @@ def test_combined_program(new=False):
         if True scrape new program, if False (default) use from file
     """
 
-    comb_pro = combinedprogram.CombinedProgram()
+    comb_pro = CombinedProgram()
 
     if new:
-        comb_pro.update_program()
+        comb_pro._update_program()
 
     # PRINTING INFO
     print("".center(100, "-"))

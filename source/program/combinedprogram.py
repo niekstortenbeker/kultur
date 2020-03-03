@@ -13,12 +13,17 @@ CombinedProgram
 
 import copy
 import arrow
-import file
-import webdriver
-from theater import Schauburg, Gondel, Atlantis, CinemaOstertor, City46, TheaterBremen
-from theater import Schwankhalle, Glocke, Kukoon
-from program import Program
-from metainfo import MetaInfo
+from database import file
+from helper import webdriver
+from theaters.filmkunst import Schauburg, Gondel, Atlantis
+from theaters.cinemaostertor import CinemaOstertor
+from theaters.city46 import City46
+from theaters.theaterbremen import TheaterBremen
+from theaters.schwankhalle import Schwankhalle
+from theaters.glocke import Glocke
+from theaters.kukoon import Kukoon
+from program.program import Program
+from program.metainfo import MetaInfo
 
 
 class CombinedProgram:
@@ -39,7 +44,7 @@ class CombinedProgram:
 
     Methods
     -------
-    update_program()
+    _update_program()
         Update the program from the web and replace the program on file
     """
 

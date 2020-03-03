@@ -13,7 +13,7 @@ import arrow
 import json
 from pathlib import Path
 
-basepath = Path(__file__).parent.parent
+basepath = Path(__file__).parent.parent.parent
 datapath = basepath / "data"
 scriptpath = basepath / "scripts"
 
