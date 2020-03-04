@@ -44,30 +44,21 @@ class CombinedProgram:
 
     Methods
     -------
-    _update_program()
+    update_program()
         Update the program from the web and replace the program on file
     """
 
     def __init__(self):
-        schauburg = Schauburg()
-        gondel = Gondel()
-        atlantis = Atlantis()
-        cinema_ostertor = CinemaOstertor()
-        city_46 = City46()
-        theater_bremen = TheaterBremen()
-        schwankhalle = Schwankhalle()
-        glocke = Glocke()
-        kukoon = Kukoon()
         self.theaters = [
-            schauburg,
-            gondel,
-            atlantis,
-            cinema_ostertor,
-            city_46,
-            theater_bremen,
-            schwankhalle,
-            glocke,
-            kukoon,
+            Schauburg(),
+            Gondel(),
+            Atlantis(),
+            CinemaOstertor(),
+            City46(),
+            TheaterBremen(),
+            Schwankhalle(),
+            Glocke(),
+            Kukoon(),
         ]
         self.program = Program()
         self._program_from_file()

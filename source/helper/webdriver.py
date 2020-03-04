@@ -19,11 +19,14 @@ import requests
 import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.firefox.webdriver import WebDriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import WebDriverException
 from selenium.common.exceptions import ElementClickInterceptedException
 from selenium.webdriver.firefox.options import Options
+
+driver: WebDriver
 
 
 def start_driver():
@@ -34,7 +37,7 @@ def start_driver():
     firefox_profile.set_preference("intl.accept_languages", "de")
     options = Options()
     options.headless = True
-    driver = webdriver.Firefox(options=options, firefox_profile=firefox_profile)
+    driver: WebDriver = webdriver.Firefox(options=options, firefox_profile=firefox_profile)
 
 
 def close_driver():
