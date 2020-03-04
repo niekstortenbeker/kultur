@@ -1,3 +1,6 @@
+import re
+import traceback
+
 import bs4
 from helper import webdriver
 from program.metainfo import MetaInfo
@@ -95,7 +98,7 @@ class CinemaOstertor(Kinoheld):
 
         meta_info_program = {}
         for url in movie_urls:
-            html = webdriver.get_html(url)
+            html = webdriver.get_html_ajax(url, "elementor-text-editor.elementor-clearfix")
             print(f"{self.html_msg}{url}")
             try:
                 meta_info_show = self._parse_meta_info_show(html)
@@ -119,42 +122,35 @@ class CinemaOstertor(Kinoheld):
             Dictionary contains one show meta info, that when combined in a dictionary
             can serve as the shows attribute of a MetaInfo().
         """
-
+        meta_film = {}
         soup = bs4.BeautifulSoup(html, "html.parser")
-        # many stats are hidden in a sloppy bit of html
-        # in case there is a web page that doesn't display a normal film have this bit in a try except block
+        stats = soup.find("div", class_="elementor-element-bf542d7")
+
+        title = self._parse_item_from_stats(stats, 'Titel')
+        if not title:
+            return None
+
+        meta_film['title'] = title
+        meta_film['title_original'] = self._parse_item_from_stats(stats, 'Originaler Titel')
+        meta_film['country'] = self._parse_item_from_stats(stats, 'Produktion')
+        meta_film['genre'] = self._parse_item_from_stats(stats, 'Genre')
+        meta_film['duration'] = self._parse_item_from_stats(stats, 'Dauer')
+        meta_film['director'] = self._parse_item_from_stats(stats, 'Regie')
+        meta_film["description"] = soup.find(role="document").text
+
+        year = self._parse_item_from_stats(stats, 'Erscheinungsdatum')
+        if year:
+            meta_film["year"] = year[-4:]
+        duration = self._parse_item_from_stats(stats, 'Dauer')
+        if duration:
+            meta_film["duration"] = duration.replace("\xa0", " ")
+        poster = soup.find("div", class_="elementor-element-f5652a8")
+        if poster:
+            meta_film["img_poster"] = poster.find("img").get("src").strip()
+        return meta_film
+
+    def _parse_item_from_stats(self, stats, german_name):
         try:
-            stats = soup.find("div", class_="elementor-element-bf542d7")
-            d = {}
-            for strong in stats.find_all("strong"):
-                name = strong.previous_sibling.strip().lower()
-                description = strong.text.strip()
-                d[name] = description
+            return stats.find(text=re.compile(german_name)).next.text.strip()
         except AttributeError:
             return None
-        translate = {
-            "title_original": "originaler titel:",
-            "country": "produktion:",
-            "year": "erscheinungsdatum:",
-            "genre": "genre:",
-            "duration": "dauer:",
-            "director": "regie:",
-        }
-        try:
-            meta_film = {"title": d["titel:"]}
-        except KeyError:  # If I can't parse the title I don't want anything
-            return None
-        for key in translate.keys():
-            try:
-                meta_film[key] = d[translate[key]]
-            except KeyError:
-                continue
-        # do some necessary cleaning
-        if "year" in meta_film:
-            meta_film["year"] = meta_film["year"][-4:]
-        if "duration" in meta_film:
-            meta_film["duration"] = meta_film["duration"].replace("\xa0", " ")
-        poster = soup.find("div", class_="elementor-element-f5652a8")
-        meta_film["img_poster"] = poster.find("img").get("src").strip()
-        meta_film["description"] = soup.find("p").text
-        return meta_film

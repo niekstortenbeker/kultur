@@ -1,22 +1,17 @@
-from program import CombinedProgram
+from helper import webdriver
+from program.combinedprogram import CombinedProgram
+from theaters.cinemaostertor import CinemaOstertor
 import run
 import time
 
 
 def main():
     print("DOIN' SOME TESTIN'")
-    # test_one_theater(Atlantis())
+    test_one_theater(CinemaOstertor())
     # test_combined_program(new=True)
-    run.run(new=True, today=False)
+    # run.run(new=True, today=False)
     # run.run(new=False, today=False)
     # run.run(new=False, today=True)
-
-
-def thread_function():
-    while True:
-        for item in ('   ', '  .', ' ..', '...'):
-            print(f'\r{item} with some waiting text', end='')
-            time.sleep(0.3)
 
 
 def test_one_theater(theater):
