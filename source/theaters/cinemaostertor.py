@@ -1,6 +1,4 @@
 import re
-import traceback
-
 import bs4
 from helper import webdriver
 from program.metainfo import MetaInfo
