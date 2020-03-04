@@ -20,12 +20,8 @@ class Kukoon(TheaterBase):
 
     Methods
     -------
-    _update_program()
-        update the program of this theater by web scraping
-    _update_meta_info()
-        this method does not change anything for Kukoon
-    _annotate_dubbed_films()
-        this method does not change anything for Kukoon
+    update_program_and_meta_info(self, start_driver=False):
+        update the program and meta_info of this theater by web scraping
     """
 
     def __init__(self):
