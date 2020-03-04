@@ -95,56 +95,69 @@ class CinemaOstertor(Kinoheld):
             html = webdriver.get_html_ajax(url, "elementor-text-editor.elementor-clearfix")
             print(f"{self.html_msg}{url}")
             try:
-                meta_info_show = self._parse_meta_info_show(html)
+                meta_info_show = _parse_meta_info_show(html)
                 meta_info_program[meta_info_show["title"]] = meta_info_show
             except TypeError:
                 print(f"No meta info was extracted because of a NoneType (url: {url})")
         return meta_info_program
 
-    def _parse_meta_info_show(self, html):
-        """
-        parse show meta info
 
-        Parameters
-        ----------
-        html: str
-            html source code containing one show meta info
+def _parse_meta_info_show(html):
+    """
+    parse show meta info
 
-        Returns
-        -------
-        dict or None
-            Dictionary contains one show meta info, that when combined in a dictionary
-            can serve as the shows attribute of a MetaInfo().
-        """
-        meta_film = {}
-        soup = bs4.BeautifulSoup(html, "html.parser")
-        stats = soup.find("div", class_="elementor-element-bf542d7")
+    Parameters
+    ----------
+    html: str
+        html source code containing one show meta info
 
-        title = self._parse_item_from_stats(stats, 'Titel')
-        if not title:
-            return None
+    Returns
+    -------
+    dict or None
+        Dictionary contains one show meta info, that when combined in a dictionary
+        can serve as the shows attribute of a MetaInfo().
+    """
+    meta_film = {}
+    soup = bs4.BeautifulSoup(html, "html.parser")
+    stats = soup.find("div", class_="elementor-element-bf542d7")
 
-        meta_film['title'] = title
-        meta_film['title_original'] = self._parse_item_from_stats(stats, 'Originaler Titel')
-        meta_film['country'] = self._parse_item_from_stats(stats, 'Produktion')
-        meta_film['genre'] = self._parse_item_from_stats(stats, 'Genre')
-        meta_film['duration'] = self._parse_item_from_stats(stats, 'Dauer')
-        meta_film['director'] = self._parse_item_from_stats(stats, 'Regie')
-        meta_film["description"] = soup.find(role="document").text
+    title = _parse_item_from_stats(stats, 'Titel')
+    if not title:
+        return None
 
-        year = self._parse_item_from_stats(stats, 'Erscheinungsdatum')
-        if year:
-            meta_film["year"] = year[-4:]
-        duration = self._parse_item_from_stats(stats, 'Dauer')
-        if duration:
-            meta_film["duration"] = duration.replace("\xa0", " ")
-        poster = soup.find("div", class_="elementor-element-f5652a8")
-        if poster:
-            meta_film["img_poster"] = poster.find("img").get("src").strip()
-        return meta_film
+    meta_film['title'] = title
+    meta_film['title_original'] = _parse_item_from_stats(stats, 'Originaler Titel')
+    meta_film['country'] = _parse_item_from_stats(stats, 'Produktion')
+    meta_film['genre'] = _parse_item_from_stats(stats, 'Genre')
+    meta_film['duration'] = _parse_item_from_stats(stats, 'Dauer')
+    meta_film['director'] = _parse_item_from_stats(stats, 'Regie')
+    meta_film["description"] = soup.find(role="document").text
+    meta_film["year"] = _parse_year(stats)
+    meta_film["duration"] = _parse_duration(stats)
+    meta_film["img_poster"] = _parse_poster(soup)
+    return meta_film
 
-    def _parse_item_from_stats(self, stats, german_name):
-        try:
-            return stats.find(text=re.compile(german_name)).next.text.strip()
-        except AttributeError:
-            return None
+
+def _parse_item_from_stats(stats, german_name):
+    try:
+        return stats.find(text=re.compile(german_name)).next.text.strip()
+    except AttributeError:
+        return None
+
+
+def _parse_year(stats):
+    year = _parse_item_from_stats(stats, 'Erscheinungsdatum')
+    if year:
+        return year[-4:]
+
+
+def _parse_duration(stats):
+    duration = _parse_item_from_stats(stats, 'Dauer')
+    if duration:
+        return duration.replace("\xa0", " ")
+
+
+def _parse_poster(soup):
+    poster = soup.find("div", class_="elementor-element-f5652a8")
+    if poster:
+        return poster.find("img").get("src").strip()
