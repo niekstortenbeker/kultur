@@ -3,6 +3,10 @@ import bs4
 from helper import webdriver
 from program.metainfo import MetaInfo
 from theaters.kinoheld import Kinoheld
+from typing import Union
+
+Tag = bs4.element.Tag
+Soup = bs4.BeautifulSoup
 
 
 class CinemaOstertor(Kinoheld):
@@ -49,8 +53,7 @@ class CinemaOstertor(Kinoheld):
 
         print(f"\n updating meta info {self.name}")
         try:
-            urls = self._get_meta_urls()
-            meta = self._extract_meta(urls)
+            meta = self._extract_meta_info(self._get_meta_urls())
             self.meta_info = MetaInfo(meta)
         except Exception as e:
             statement = f"Note! Meta info from {self.name} was not updated because of an error. {e}"
@@ -66,16 +69,15 @@ class CinemaOstertor(Kinoheld):
             a set of urls as str
         """
 
-        html = webdriver.get_html(self.url_meta)
         print(f"{self.html_msg}{self.url_meta}")
-        soup = bs4.BeautifulSoup(html, "html.parser")
+        soup = bs4.BeautifulSoup(webdriver.get_html(self.url_meta), "html.parser")
         urls = [
             url.get("href").strip()
             for url in soup.find_all("a", class_="elementor-post__read-more")
         ]
         return set(urls)
 
-    def _extract_meta(self, movie_urls):
+    def _extract_meta_info(self, movie_urls):
         """
         Update self.meta_info by web scraping
 
@@ -92,16 +94,21 @@ class CinemaOstertor(Kinoheld):
 
         meta_info_program = {}
         for url in movie_urls:
-            html = webdriver.get_html_ajax(url, "elementor-text-editor.elementor-clearfix")
-            print(f"{self.html_msg}{url}")
-            try:
-                meta_info_show = _parse_meta_info_show(html)
+            meta_info_show = self._extract_meta_info_show(url)
+            if meta_info_show:
                 meta_info_program[meta_info_show["title"]] = meta_info_show
-            except TypeError:
-                print(f"No meta info was extracted because of a NoneType (url: {url})")
         return meta_info_program
 
+    def _extract_meta_info_show(self, url: str) -> dict:
+        html = webdriver.get_html_ajax(url, "elementor-text-editor.elementor-clearfix")
+        print(f"{self.html_msg}{url}")
+        try:
+            return _parse_meta_info_show(html)
+        except TypeError:
+            print(f"No meta info was extracted because of a NoneType (url: {url})")
 
+
+# noinspection PyTypeChecker
 def _parse_meta_info_show(html):
     """
     parse show meta info
@@ -119,6 +126,7 @@ def _parse_meta_info_show(html):
     """
     meta_film = {}
     soup = bs4.BeautifulSoup(html, "html.parser")
+    print(type(soup))
     stats = soup.find("div", class_="elementor-element-bf542d7")
 
     title = _parse_item_from_stats(stats, 'Titel')
@@ -138,26 +146,30 @@ def _parse_meta_info_show(html):
     return meta_film
 
 
-def _parse_item_from_stats(stats, german_name):
+def _parse_item_from_stats(stats: Tag, german_name: str) -> str:
     try:
         return stats.find(text=re.compile(german_name)).next.text.strip()
     except AttributeError:
-        return None
+        return ''
 
 
-def _parse_year(stats):
-    year = _parse_item_from_stats(stats, 'Erscheinungsdatum')
-    if year:
-        return year[-4:]
+def _parse_year(stats: Tag) -> str:
+    try:
+        return _parse_item_from_stats(stats, 'Erscheinungsdatum')[-4:]
+    except AttributeError:
+        return ''
 
 
-def _parse_duration(stats):
-    duration = _parse_item_from_stats(stats, 'Dauer')
-    if duration:
-        return duration.replace("\xa0", " ")
+def _parse_duration(stats: Tag) -> str:
+    try:
+        return _parse_item_from_stats(stats, 'Dauer').replace("\xa0", " ")
+    except AttributeError:
+        return ''
 
 
-def _parse_poster(soup):
-    poster = soup.find("div", class_="elementor-element-f5652a8")
-    if poster:
+def _parse_poster(soup: Soup) -> str:
+    try:
+        poster = soup.find("div", class_="elementor-element-f5652a8")
         return poster.find("img").get("src").strip()
+    except AttributeError:
+        return ''
