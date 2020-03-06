@@ -3,7 +3,6 @@ import bs4
 from helper import webdriver
 from program.metainfo import MetaInfo
 from theaters.kinoheld import Kinoheld
-from typing import Union
 
 Tag = bs4.element.Tag
 Soup = bs4.BeautifulSoup
@@ -126,7 +125,6 @@ def _parse_meta_info_show(html):
     """
     meta_film = {}
     soup = bs4.BeautifulSoup(html, "html.parser")
-    print(type(soup))
     stats = soup.find("div", class_="elementor-element-bf542d7")
 
     title = _parse_item_from_stats(stats, 'Titel')
