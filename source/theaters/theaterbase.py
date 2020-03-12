@@ -1,11 +1,12 @@
 import re
+from abc import ABC, abstractmethod
 from helper import webdriver
 from program.program import Program
 from program.metainfo import MetaInfo
 import emoji
 
 
-class TheaterBase:
+class TheaterBase(ABC):
     """
     Base class for classes representing different theaters
 
@@ -41,8 +42,8 @@ class TheaterBase:
 
         self.name = name
         self.url = url
-        self.program = Program()
-        self.meta_info = MetaInfo()
+        self.program = Program()  #TODO add these as arguments
+        self.meta_info = MetaInfo()  #TODO add these as arguments
         self.html_msg = emoji.emojize(f"    :tada: Retrieved html from: ",
                                       use_aliases=True)
 
@@ -90,21 +91,19 @@ class TheaterBase:
                 f"Note! Program from {self.name} was not updated because of an error {e}"
             )
 
+    @abstractmethod
     def _get_shows(self):
         """
         Make a new show list by web scraping the program
-
-        Note: this is a dummy method that should be overridden by child classes
 
         Returns
         -------
         list
             a show list that can be used as shows attribute of Program()
         """
+        pass
 
-        print("Note! _get_shows() should be present in the child class")
-        return []
-
+    @abstractmethod
     def _update_meta_info(self):
         """
         update self.meta_info by web scraping
@@ -112,7 +111,6 @@ class TheaterBase:
         If this method is not overridden by the child class,
         the meta_info is not updated
         """
-
         pass
 
     def _annotate_dubbed_films(self):
