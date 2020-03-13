@@ -1,4 +1,3 @@
-from abc import ABC, abstractmethod
 from helper import webdriver
 from helper import dubbed
 from program.program import Program
@@ -6,7 +5,7 @@ from program.metainfo import MetaInfo
 import emoji
 
 
-class TheaterBase(ABC):
+class TheaterBase:
     """
     Base class for classes representing different theaters
 
@@ -91,10 +90,10 @@ class TheaterBase(ABC):
                 f"Note! Program from {self.name} was not updated because of an error {e}"
             )
 
-    @abstractmethod
     def _get_shows(self):
         """
         Make a new show list by web scraping the program
+        should be implemented by subclasses
 
         Returns
         -------
@@ -103,7 +102,6 @@ class TheaterBase(ABC):
         """
         pass
 
-    @abstractmethod
     def _update_meta_info(self):
         """
         update self.meta_info by web scraping
