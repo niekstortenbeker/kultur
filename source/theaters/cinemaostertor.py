@@ -38,9 +38,9 @@ class CinemaOstertor(Kinoheld):
         super().__init__(
             name="Cinema Ostertor",
             url=url,
-            url_program_scrape="https://www.kinoheld.de/kino-bremen/cinema-im-ostertor-bremen/shows/shows?mode=widget",
+            url_program="https://www.kinoheld.de/kino-bremen/cinema-im-ostertor-bremen/shows/shows?mode=widget",
+            url_meta=url
         )
-        self.url_meta = url
 
     def _update_meta_info(self):
         """
@@ -68,7 +68,7 @@ class CinemaOstertor(Kinoheld):
             a set of urls as str
         """
 
-        print(f"{self.html_msg}{self.url_meta}")
+        print(f"{self._html_msg}{self.url_meta}")
         soup = bs4.BeautifulSoup(webdriver.get_html(self.url_meta), "html.parser")
         urls = [
             url.get("href").strip()
@@ -100,7 +100,7 @@ class CinemaOstertor(Kinoheld):
 
     def _extract_meta_info_show(self, url: str) -> dict:
         html = webdriver.get_html_ajax(url, "elementor-text-editor.elementor-clearfix")
-        print(f"{self.html_msg}{url}")
+        print(f"{self._html_msg}{url}")
         try:
             return _parse_meta_info_show(html)
         except TypeError:

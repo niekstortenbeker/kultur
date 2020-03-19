@@ -25,7 +25,8 @@ class Schwankhalle(TheaterBase):
     """
 
     def __init__(self):
-        super().__init__("Schwankhalle", "http://schwankhalle.de/spielplan-1.html")
+        url = "http://schwankhalle.de/spielplan-1.html"
+        super().__init__("Schwankhalle", url, url_program=url)
 
     def _get_shows(self):
         """
@@ -38,8 +39,8 @@ class Schwankhalle(TheaterBase):
         """
 
         # at some point requests starting giving SSLError so use selenium for ajax
-        html = webdriver.get_html_ajax(self.url, "date-container")
-        print(f"{self.html_msg}{self.url}")
+        html = webdriver.get_html_ajax(self.url_program, "date-container")
+        print(f"{self._html_msg}{self.url_program}")
         return self._extract_show_list(html)
 
     def _extract_show_list(self, html):

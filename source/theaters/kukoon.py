@@ -25,7 +25,8 @@ class Kukoon(TheaterBase):
     """
 
     def __init__(self):
-        super().__init__("Kukoon", "https://kukoon.de/programm/")
+        url = "https://kukoon.de/programm/"
+        super().__init__("Kukoon", url, url_program=url)
 
     def _get_shows(self):
         """
@@ -37,8 +38,8 @@ class Kukoon(TheaterBase):
             a show list that can be used as shows attribute of Program()
         """
 
-        html = webdriver.get_html(self.url)
-        print(f"{self.html_msg}{self.url}")
+        html = webdriver.get_html(self.url_program)
+        print(f"{self._html_msg}{self.url_program}")
         return self._extract_show_list(html)
 
     def _extract_show_list(self, html):

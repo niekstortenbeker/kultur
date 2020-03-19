@@ -16,7 +16,7 @@ class Kinoheld(TheaterBase):
             A program object containing the program of the theater, or an empty Program()
         meta_info : MetaInfo()
             Containing the meta info of the shows in the theater, or an empty MetaInfo()
-        url_program_scrape: str
+        url_program: str
             url to the program used for scraping the program
         url_meta: str
             url used for scraping the meta info
@@ -27,7 +27,7 @@ class Kinoheld(TheaterBase):
             update the program and meta_info of this theater by web scraping
         """
 
-    def __init__(self, name, url, url_program_scrape):
+    def __init__(self, name, url, url_program=None, url_meta=None):
         """
         Parameters
         ----------
@@ -35,12 +35,11 @@ class Kinoheld(TheaterBase):
             the name of the theater
         url : str
             url to the homepage of the theater
-        url_program_scrape: str
+        url_program: str
             url to the program used for scraping the program
         """
 
-        super().__init__(name, url)
-        self.url_program_scrape = url_program_scrape
+        super().__init__(name, url, url_program=url_program, url_meta=url_meta)
 
     def _get_shows(self):
         """
@@ -52,9 +51,9 @@ class Kinoheld(TheaterBase):
             a show list that can be used as shows attribute of Program()
         """
 
-        url = self.url_program_scrape
+        url = self.url_program
         html = webdriver.get_html_ajax(url, "movie.u-px-2.u-py-2")
-        print(f"{self.html_msg}{url}")
+        print(f"{self._html_msg}{url}")
         return self._extract_show_list(html)
 
     def _extract_show_list(self, html):

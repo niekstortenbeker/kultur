@@ -15,11 +15,15 @@ class TheaterBase:
         the name of the theater
     url : str
         url that links the user to the theater (homepage or program page)
+    url_program : str
+        url used to scrape the program
+    url_meta : str
+        url used to scrape the meta_info
     program : Program()
         A program object containing the program of the theater, or an empty Program()
     meta_info : MetaInfo()
         Containing the meta info of the shows in the theater, or an empty MetaInfo()
-    html_msg: str
+    _html_msg: str
         Base message for printing that a html was obtained, should be appended with
         the name of the url.
 
@@ -29,7 +33,7 @@ class TheaterBase:
         update the program and meta_info of this theater by web scraping
     """
 
-    def __init__(self, name, url):
+    def __init__(self, name, url, url_program=None, url_meta=None):
         """
         Parameters
         ----------
@@ -41,16 +45,18 @@ class TheaterBase:
 
         self.name = name
         self.url = url
-        self.program = Program()  #TODO add these as arguments
-        self.meta_info = MetaInfo()  #TODO add these as arguments
-        self.html_msg = emoji.emojize(f"    :tada: Retrieved html from: ",
-                                      use_aliases=True)
+        self.url_program = url_program
+        self.url_meta = url_meta
+        self.program = Program()  # TODO add these as arguments
+        self.meta_info = MetaInfo()  # TODO add these as arguments
+        self._html_msg = emoji.emojize(f"    :tada: Retrieved html from: ",
+                                       use_aliases=True)
 
     def __repr__(self):
-        return f"TheaterBase({self.name, self.url})"
+        return f"Theater({self.name, self.url})"
 
     def __str__(self):
-        return f"TheaterBase({self.name})"
+        return f"Theater({self.name})"
 
     def update_program_and_meta_info(self, start_driver=False):
         """
@@ -100,7 +106,7 @@ class TheaterBase:
         list
             a show list that can be used as shows attribute of Program()
         """
-        pass
+        raise NotImplementedError
 
     def _update_meta_info(self):
         """
@@ -121,13 +127,13 @@ class TheaterBase:
         """
         if self.name not in ["Schauburg", "Gondel", "Atlantis", "Cinema Ostertor"]:
             return
-        for s in self.program:
+        for show in self.program:
             try:
-                if dubbed.film_is_probably_dubbed(s, self.meta_info.get(s["title"])):
-                    s["is_probably_dubbed_film"] = True
+                if dubbed.film_is_probably_dubbed(show, self.meta_info.get(show["title"])):
+                    show["is_probably_dubbed_film"] = True
                 else:
-                    s["is_probably_dubbed_film"] = False
+                    show["is_probably_dubbed_film"] = False
             except AttributeError as e:
-                s["is_probably_dubbed_film"] = True
-                date = f"{s.get('date_time').month}-{s.get('date_time').day}"
-                print(f"    \"{s.get('title')}\" | {date} was set to be a dubbed movie due to missing data ({e})")
+                show["is_probably_dubbed_film"] = True
+                date = f"{show.get('date_time').month}-{show.get('date_time').day}"
+                print(f"    \"{show.get('title')}\" | {date} was set to be a dubbed movie due to missing data ({e})")

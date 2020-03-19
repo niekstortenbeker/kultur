@@ -26,7 +26,8 @@ class Glocke(TheaterBase):
     """
 
     def __init__(self):
-        super().__init__("Glocke", "https://www.glocke.de/")
+        url = "https://www.glocke.de"
+        super().__init__("Glocke", url, url_program=f'{url}/de/veranstaltungssuche')
 
     def _get_shows(self):
         """
@@ -42,7 +43,7 @@ class Glocke(TheaterBase):
         shows = []
         for url in urls:
             html = webdriver.get_html(url)
-            print(f"{self.html_msg}{url}")
+            print(f"{self._html_msg}{url}")
             shows.extend(self._extract_show_list(html))
         return shows
 
@@ -57,9 +58,9 @@ class Glocke(TheaterBase):
         """
 
         arw = arrow.now()
-        url1 = self.url + f"/de/Veranstaltungssuche/{arw.month}/{arw.year}"
+        url1 = f"{self.url_program}/{arw.month}/{arw.year}"
         arw = arw.shift(months=+1)
-        url2 = self.url + f"/de/Veranstaltungssuche/{arw.month}/{arw.year}"
+        url2 = f"{self.url_program}/{arw.month}/{arw.year}"
         urls = [url1, url2]
         return urls
 
@@ -89,7 +90,7 @@ class Glocke(TheaterBase):
             title = str(s.find("h2")).strip().replace("<h2>", "")
             title = title.replace("</h2>", "").replace("<br/>", " - ")
             show["title"] = title
-            link = self.url + "{}".format(s.a.get("href"))
+            link = f"{self.url}/{s.a.get('href')}"
             show["link_info"] = link
             show["link_tickets"] = link
             show["location"] = self.name

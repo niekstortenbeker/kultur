@@ -25,7 +25,8 @@ class TheaterBremen(TheaterBase):
     """
 
     def __init__(self):
-        super().__init__("Theater Bremen", "http://www.theaterbremen.de")
+        url = "http://www.theaterbremen.de"
+        super().__init__("Theater Bremen", url, url_program=url)
 
     def _get_shows(self):
         """
@@ -41,7 +42,7 @@ class TheaterBremen(TheaterBase):
         urls = self._get_urls()
         for url in urls:
             html = webdriver.get_html_ajax(url, class_name="day")
-            print(f"{self.html_msg}{url}")
+            print(f"{self._html_msg}{url}")
             shows.extend(self._extract_show_list(html))
         return shows
 
@@ -58,11 +59,11 @@ class TheaterBremen(TheaterBase):
         urls = []
         date = arrow.now("Europe/Berlin")
         year, month, day = date.year, date.month, date.day
-        urls.append("{}#?d={}-{}-{}&f=a".format(self.url, year, month, day))
+        urls.append("{}#?d={}-{}-{}&f=a".format(self.url_program, year, month, day))
         if day > 20:
             date = date.shift(months=+1)
             year, month = date.year, date.month
-            urls.append("{}#?d={}-{}-{}&f=a".format(self.url, year, month, 20))
+            urls.append("{}#?d={}-{}-{}&f=a".format(self.url_program, year, month, 20))
         return urls
 
     def _extract_show_list(self, html):

@@ -25,7 +25,8 @@ class City46(TheaterBase):
     """
 
     def __init__(self):
-        super().__init__("City 46", "http://www.city46.de/programm/")
+        url = "http://www.city46.de/programm/"
+        super().__init__("City 46", url, url_program=url)
 
     def _get_shows(self):
         """
@@ -41,7 +42,7 @@ class City46(TheaterBase):
         urls, years = self._get_urls()
         for url, year in zip(urls, years):
             html = webdriver.get_html(url)
-            print(f"{self.html_msg}{url}")
+            print(f"{self._html_msg}{url}")
             table = self._get_program_table(html)
             shows.extend(self._extract_show_list(table, str(year)))
         return shows
@@ -75,12 +76,12 @@ class City46(TheaterBase):
         urls, years = [], []
         date = arrow.now("Europe/Berlin")
         year, month, day = date.year, date.month, date.day
-        urls.append(f"{self.url}{months[month]}-{year}.html")
+        urls.append(f"{self.url_program}{months[month]}-{year}.html")
         years.append(year)
         if day > 20:
             date = date.shift(months=+1)
             year, month = date.year, date.month
-            urls.append(f"{self.url}{months[month]}-{year}.html")
+            urls.append(f"{self.url_program}{months[month]}-{year}.html")
             years.append(year)
         return urls, years
 
