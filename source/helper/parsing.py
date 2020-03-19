@@ -26,6 +26,10 @@ def parse_date_without_year(*args):
     args
         arrow object, or
         month, day, hour, minute: ints
+
+    Returns
+    -------
+        arrow object
     """
 
     # if arrow object was supplied
