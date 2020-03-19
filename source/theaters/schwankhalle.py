@@ -27,7 +27,6 @@ class Schwankhalle(TheaterBase):
     update_program_and_meta_info(self, start_driver=False):
         update the program and meta_info of this theater by web scraping
     """
-
     def __init__(self):
         url = "http://schwankhalle.de/spielplan-1.html"
         super().__init__("Schwankhalle", url, url_program=url)
@@ -85,7 +84,7 @@ class Schwankhalle(TheaterBase):
 
         Parameters
         ----------
-        row: bs4.Beautifulsoup()
+        row: bs4.element.Tag
             shows are separted on html table rows
         year: str
 
@@ -94,7 +93,7 @@ class Schwankhalle(TheaterBase):
         a show dictionary that can be used in Program().shows
         """
 
-        show = {"date_time": self._get_date_time(row, year)}
+        show = {"date_time": _get_date_time(row, year)}
         title_artist_info = row.find("td", class_="title")
         artist = title_artist_info.a.span.text
         # title is not separated by tags:
@@ -110,12 +109,13 @@ class Schwankhalle(TheaterBase):
         show["location"] = self.name
         return show
 
-    def _get_date_time(self, row, year):
-        date = row.find(class_="date-container").text.strip()
-        date = date + year
-        time = row.find(class_="time-container").text.strip()
-        time = time[-9:-4]  # in case the time is 'ab ...'
-        if not time:
-            time = "09:00"
-        date_time = arrow.get(date + time, "D.M.YYYYhh:mm", tzinfo="Europe/Berlin")
-        return date_time
+
+def _get_date_time(row, year):
+    date = row.find(class_="date-container").text.strip()
+    date = date + year
+    time = row.find(class_="time-container").text.strip()
+    time = time[-9:-4]  # in case the time is 'ab ...'
+    if not time:
+        time = "09:00"
+    date_time = arrow.get(date + time, "D.M.YYYYhh:mm", tzinfo="Europe/Berlin")
+    return date_time

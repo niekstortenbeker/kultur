@@ -3,6 +3,9 @@ import bs4
 from helper import webdriver
 from theaters.theaterbase import TheaterBase
 
+Tag = bs4.element.Tag
+Arrow = arrow.arrow.Arrow
+
 
 class TheaterBremen(TheaterBase):
     """Theater "Theater Bremen"
@@ -27,7 +30,6 @@ class TheaterBremen(TheaterBase):
     update_program_and_meta_info(self, start_driver=False):
         update the program and meta_info of this theater by web scraping
     """
-
     def __init__(self):
         url = "http://www.theaterbremen.de"
         super().__init__("Theater Bremen", url, url_program=url)
@@ -111,10 +113,7 @@ class TheaterBremen(TheaterBase):
             a show dictionary that can be used in a Program().shows
         """
 
-        show = {}
-        time = s.find(class_="overview-date-n-flags").text.strip()[0:5]
-        date_time = arrow.get(date + time, "DD.MM.YYYYHH:mm", tzinfo="Europe/Berlin")
-        show["date_time"] = date_time
+        show = {"date_time": _get_date_time(date, s)}
         links = s.find_all("a")
         show["link_info"] = f"{self.url}{links[1].get('href').strip()}"
         try:
@@ -123,7 +122,17 @@ class TheaterBremen(TheaterBase):
         except IndexError:
             pass
         show["title"] = links[1].text.strip()
-        info = "".join([info.text for info in s.find_all("p")])
-        show["info"] = info.replace("\n", " / ")
+        show["info"] = _get_info(s)
         show["location"] = self.name
         return show
+
+
+def _get_date_time(date: Arrow, show: Tag) -> Arrow:
+    time = show.find(class_="overview-date-n-flags").text.strip()[0:5]
+    date_time = arrow.get(date + time, "DD.MM.YYYYHH:mm", tzinfo="Europe/Berlin")
+    return date_time
+
+
+def _get_info(show: Tag) -> str:
+    info = "".join([info.text for info in show.find_all("p")])
+    return info.replace("\n", " / ")

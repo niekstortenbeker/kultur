@@ -65,19 +65,22 @@ class Kukoon(TheaterBase):
         soup = bs4.BeautifulSoup(html, "html.parser")
         shows = soup.find_all("div", class_="event")
         for s in shows:
+
             date_time = s.time
             title_link = s.find(class_="event__title").a
-            if not date_time:
+            if not date_time or "geschlossene gesellschaft" in title_link.text.lower():
                 continue
-            if "geschlossene gesellschaft" in title_link.text.lower():
-                continue
-            show = {"date_time": arrow.get(date_time.get("datetime"))}
-            show["link_info"] = title_link.get("href")
-            show["title"] = title_link.text.strip()
+
+            show = {
+                "date_time": arrow.get(date_time.get("datetime")),
+                "link_info": title_link.get("href"),
+                "title": title_link.text.strip(),
+                "info": s.find(class_="event__categories").text.strip(),
+                "location": self.name,
+            }
             location_details = s.find(class_="event__venue").text.strip()
             if not location_details == self.name:
                 show["location_details"] = location_details
-            show["info"] = s.find(class_="event__categories").text.strip()
-            show["location"] = self.name
+
             show_list.append(show)
         return show_list

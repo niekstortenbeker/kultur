@@ -1,8 +1,12 @@
 import re
+from typing import Union
 import arrow
 import bs4
 from helper import webdriver, parsing
 from theaters.theaterbase import TheaterBase
+
+Tag = bs4.element.Tag
+Arrow = arrow.arrow.Arrow
 
 
 class Glocke(TheaterBase):
@@ -87,43 +91,55 @@ class Glocke(TheaterBase):
         soup = bs4.BeautifulSoup(html, "html.parser")
         shows = soup.find_all("div", class_="va-liste")
         for s in shows:
-            show = {}
-            date_time, location_details = self._get_date_time_and_location_details(s)
-            show["date_time"] = date_time
-            show["location_details"] = location_details
-            title = str(s.find("h2")).strip().replace("<h2>", "")
-            title = title.replace("</h2>", "").replace("<br/>", " - ")
-            show["title"] = title
+            try:
+                show = {"date_time": _get_date_time(s)}
+            except AttributeError:
+                continue
+
+            show["location_details"] = _get_location_details(s)
+            show["title"] = _get_title(s)
             link = f"{self.url}/{s.a.get('href')}"
             show["link_info"] = link
             show["link_tickets"] = link
             show["location"] = self.name
+
             show_list.append(show)
         return show_list
 
-    def _get_date_time_and_location_details(self, show):
-        day = int(show.find(class_=re.compile(r"va_liste_datum_1")).text.strip())
-        month = show.find(class_=re.compile(r"va_liste_datum_2")).text.strip().lower()
-        months = {
-            "jan": 1,
-            "feb": 2,
-            "mär": 3,
-            "maer": 3,
-            "märz": 3,
-            "apr": 4,
-            "mai": 5,
-            "jun": 6,
-            "jul": 7,
-            "aug": 8,
-            "sep": 9,
-            "sept": 9,
-            "okt": 10,
-            "nov": 11,
-            "dez": 12,
-        }
-        month = months[month]
-        time_location = show.find("span", style=re.compile(r"color")).text.strip()
-        hour, minute = int(time_location[:2]), int(time_location[3:6])
-        date_time = parsing.parse_date_without_year(month, day, hour, minute)
-        location_details = time_location[10:]
-        return date_time, location_details
+
+def _get_title(show):
+    title = str(show.find("h2")).strip().replace("<h2>", "")
+    title = title.replace("</h2>", "").replace("<br/>", " - ")
+    return title
+
+
+def _get_date_time(show: Tag) -> Arrow:
+    day = int(show.find(class_=re.compile(r"va_liste_datum_1")).text.strip())
+    month = show.find(class_=re.compile(r"va_liste_datum_2")).text.strip().lower()
+    months = {
+        "jan": 1,
+        "feb": 2,
+        "mär": 3,
+        "maer": 3,
+        "märz": 3,
+        "apr": 4,
+        "mai": 5,
+        "jun": 6,
+        "jul": 7,
+        "aug": 8,
+        "sep": 9,
+        "sept": 9,
+        "okt": 10,
+        "nov": 11,
+        "dez": 12,
+    }
+    month = months[month]
+    time_location = show.find("span", style=re.compile(r"color")).text.strip()
+    hour, minute = int(time_location[:2]), int(time_location[3:6])
+    return parsing.parse_date_without_year(month, day, hour, minute)
+
+
+def _get_location_details(show: Tag) -> Union[str, None]:
+    time_location = show.find("span", style=re.compile(r"color"))
+    if time_location:
+        return time_location.text.strip()[10:]
