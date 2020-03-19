@@ -1,6 +1,6 @@
-requests==2.22.0
+requests==2.23.0
 arrow==0.15.5
 beautifulsoup4==4.8.2
-click==7.0
+click==7.1.1
 colorama==0.4.3
 selenium==3.141.0
