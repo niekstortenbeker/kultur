@@ -46,7 +46,7 @@ def test_combined_program(new=False):
     comb_pro = CombinedProgram()
 
     if new:
-        comb_pro._update_program()
+        comb_pro.update_program()
 
     # PRINTING INFO
     print("".center(100, "-"))
