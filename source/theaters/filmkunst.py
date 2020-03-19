@@ -7,26 +7,26 @@ from theaters.kinoheld import Kinoheld
 class Filmkunst(Kinoheld):
     """Theaters from Filmkunst (Schauburg, Gondel, Atlantis)
 
-            Attributes
-            ----------
-            name : str
-                the name of the theater
-            url : str
-                url to the homepage of the theater
-            program : Program()
-                A program object containing the program of the theater, or an empty Program()
-            meta_info : MetaInfo()
-                Containing the meta info of the shows in the theater, or an empty MetaInfo()
-            url_program: str
-                url to the program used for scraping the program
-            url_meta: str
-                url used for scraping the meta info
+    Attributes
+    ----------
+    name : str
+        the name of the theater
+    url : str
+        url that links the user to the theater (homepage or program page)
+    url_program : str
+        url used to scrape the program
+    url_meta : str
+        url used to scrape the meta_info
+    program : Program()
+        A program object containing the program of the theater, or an empty Program()
+    meta_info : MetaInfo()
+        Containing the meta info of the shows in the theater, or an empty MetaInfo()
 
-            Methods
-            -------
-            update_program_and_meta_info(self, start_driver=False):
-                update the program and meta_info of this theater by web scraping
-            """
+    Methods
+    -------
+    update_program_and_meta_info(self, start_driver=False):
+        update the program and meta_info of this theater by web scraping
+    """
 
     def __init__(self, name, url, url_program, url_meta):
         """

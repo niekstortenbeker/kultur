@@ -16,15 +16,15 @@ class CinemaOstertor(Kinoheld):
     name : str
         the name of the theater
     url : str
-        url to the homepage of the theater
+        url that links the user to the theater (homepage or program page)
+    url_program : str
+        url used to scrape the program
+    url_meta : str
+        url used to scrape the meta_info
     program : Program()
         A program object containing the program of the theater, or an empty Program()
     meta_info : MetaInfo()
         Containing the meta info of the shows in the theater, or an empty MetaInfo()
-    url_program_scrape: str
-        url to the program used for scraping the program
-    url_meta: str
-        url used for scraping the meta info
 
     Methods
     -------

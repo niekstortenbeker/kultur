@@ -14,6 +14,10 @@ class Glocke(TheaterBase):
         the name of the theater
     url : str
         url that links the user to the theater (homepage or program page)
+    url_program : str
+        url used to scrape the program
+    url_meta : str
+        url used to scrape the meta_info
     program : Program()
         A program object containing the program of the theater, or an empty Program()
     meta_info : MetaInfo()
