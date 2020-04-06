@@ -14,13 +14,7 @@ Display only today:
 
 
 #### requirements:
-* python 3.7
-
-with the following packages:
-* arrow
-* beautifulsoup4
-* Click
-* requests
-* selenium
+* python 3.8
+* packages listed in requirements.txt
 
 

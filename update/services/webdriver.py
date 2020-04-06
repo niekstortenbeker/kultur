@@ -31,7 +31,7 @@ driver: WebDriver
 
 def start_driver():
     """start driver for selenium"""
-    print('...  Loading web driver')
+    print("...  Loading web driver")
     global driver
     firefox_profile = webdriver.FirefoxProfile()
     firefox_profile.set_preference("intl.accept_languages", "de")
@@ -65,10 +65,10 @@ def get_html(url):
         source html
     """
 
-    print('    ... Get html from the web (requests)')
+    print("    ... Get html from the web (requests)")
     response = requests.get(url)
     if response.status_code == 404:
-        raise ConnectionError('received a 404')
+        raise ConnectionError("received a 404")
     else:
         return response.text
 
@@ -100,7 +100,7 @@ def get_html_ajax(url, class_name):
         source html
     """
 
-    print('    ... Get html from the web (ajax)')
+    print("    ... Get html from the web (ajax)")
     driver.get(url)
     WebDriverWait(driver, 10).until(
         EC.presence_of_element_located((By.CLASS_NAME, class_name))
@@ -136,7 +136,7 @@ def get_html_buttons(url, button_classes, overlay_class=None):
         source html
     """
 
-    print('    ... Get html from the web (clicking buttons)')
+    print("    ... Get html from the web (clicking buttons)")
     driver.get(url)
     if overlay_class:
         _wait_for_overlay(overlay_class)

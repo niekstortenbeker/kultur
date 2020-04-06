@@ -1,45 +1,21 @@
 import re
 import bs4
-from helper import webdriver
-from program.metainfo import MetaInfo
-from theaters.kinoheld import Kinoheld
+from update.services import webdriver, dubbed
+from update.theaters.kinoheld import Kinoheld
+import update.services.metainfo as mi
 
 Tag = bs4.element.Tag
 Soup = bs4.BeautifulSoup
 
 
 class CinemaOstertor(Kinoheld):
-    """Theater Cinema Ostertor
-
-    Attributes
-    ----------
-    name : str
-        the name of the theater
-    url : str
-        url that links the user to the theater (homepage or program page)
-    url_program : str
-        url used to scrape the program
-    url_meta : str
-        url used to scrape the meta_info
-    program : Program()
-        A program object containing the program of the theater, or an empty Program()
-    meta_info : MetaInfo()
-        Containing the meta info of the shows in the theater, or an empty MetaInfo()
-
-    Methods
-    -------
-    update_program_and_meta_info(self, start_driver=False):
-        update the program and meta_info of this theater by web scraping
-    """
-
-    # TODO use url from meta info for program_link
     def __init__(self):
         url = "https://cinema-ostertor.de/programm"
         super().__init__(
             name="Cinema Ostertor",
             url=url,
             url_program="https://www.kinoheld.de/kino-bremen/cinema-im-ostertor-bremen/shows/shows?mode=widget",
-            url_meta=url
+            url_meta=url,
         )
 
     def _update_meta_info(self):
@@ -53,10 +29,19 @@ class CinemaOstertor(Kinoheld):
         print(f"\n updating meta info {self.name}")
         try:
             meta = self._extract_meta_info(self._get_meta_urls())
-            self.meta_info = MetaInfo(meta)
+            self.meta_info = meta
         except Exception as e:
             statement = f"Note! Meta info from {self.name} was not updated because of an error. {e}"
             print(statement)
+
+    def _adjust_show(self, show, meta_info):
+        """
+        Use the information in metainfo to update all the shows in program
+        """
+        show.dubbed = dubbed.is_dubbed(show, meta_info)
+        show.description = meta_info.description
+        show.url_info = meta_info.url_info
+        return show
 
     def _get_meta_urls(self):
         """
@@ -88,7 +73,7 @@ class CinemaOstertor(Kinoheld):
         Returns
         -------
         dict
-            A dictionary that can be used as shows attribute of a MetaInfo()
+            a dict that maps titles to MetaInfo()
         """
 
         meta_info_program = {}
@@ -107,7 +92,7 @@ class CinemaOstertor(Kinoheld):
             print(f"No meta info was extracted because of a NoneType (url: {url})")
 
 
-# noinspection PyTypeChecker
+# noinspection PyUnresolvedReferences,PyTypeChecker
 def _parse_meta_info_show(html):
     """
     parse show meta info
@@ -119,55 +104,33 @@ def _parse_meta_info_show(html):
 
     Returns
     -------
-    dict or None
-        Dictionary contains one show meta info, that when combined in a dictionary
-        can serve as the shows attribute of a MetaInfo().
+    MetaInfo() or None
     """
-    meta_film = {}
     soup = bs4.BeautifulSoup(html, "html.parser")
     stats = soup.find("div", class_="elementor-element-bf542d7")
 
-    title = _parse_item_from_stats(stats, 'Titel')
+    title = _parse_item_from_stats(stats, "Titel")
     if not title:
         return None
 
-    meta_film['title'] = title
-    meta_film['title_original'] = _parse_item_from_stats(stats, 'Originaler Titel')
-    meta_film['country'] = _parse_item_from_stats(stats, 'Produktion')
-    meta_film['genre'] = _parse_item_from_stats(stats, 'Genre')
-    meta_film['duration'] = _parse_item_from_stats(stats, 'Dauer')
-    meta_film['director'] = _parse_item_from_stats(stats, 'Regie')
-    meta_film["description"] = soup.find(role="document").text
-    meta_film["year"] = _parse_year(stats)
-    meta_film["duration"] = _parse_duration(stats)
-    meta_film["img_poster"] = _parse_poster(soup)
-    return meta_film
+    return mi.MetaInfo(
+        title=title,
+        title_original=_parse_item_from_stats(stats, "Originaler Titel"),
+        description=_parse_duration(stats) + " " + soup.find(role="document").text,
+        country=_parse_item_from_stats(stats, "Produktion"),
+    )
 
 
 def _parse_item_from_stats(stats: Tag, german_name: str) -> str:
     try:
+        # noinspection PyUnresolvedReferences
         return stats.find(text=re.compile(german_name)).next.text.strip()
     except AttributeError:
-        return ''
-
-
-def _parse_year(stats: Tag) -> str:
-    try:
-        return _parse_item_from_stats(stats, 'Erscheinungsdatum')[-4:]
-    except AttributeError:
-        return ''
+        return ""
 
 
 def _parse_duration(stats: Tag) -> str:
     try:
-        return _parse_item_from_stats(stats, 'Dauer').replace("\xa0", " ")
+        return _parse_item_from_stats(stats, "Dauer").replace("\xa0", " ")
     except AttributeError:
-        return ''
-
-
-def _parse_poster(soup: Soup) -> str:
-    try:
-        poster = soup.find("div", class_="elementor-element-f5652a8")
-        return poster.find("img").get("src").strip()
-    except AttributeError:
-        return ''
+        return ""

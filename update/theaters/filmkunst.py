@@ -1,36 +1,12 @@
-from typing import Union
 import bs4
-from helper import webdriver, parsing
-from program.metainfo import MetaInfo
-from theaters.kinoheld import Kinoheld
+from update.services import webdriver, parsing, dubbed
+from update.theaters.kinoheld import Kinoheld
+from update.services.metainfo import MetaInfo
 
 Tag = bs4.element.Tag
 
 
 class Filmkunst(Kinoheld):
-    """Theaters from Filmkunst (Schauburg, Gondel, Atlantis)
-
-    Attributes
-    ----------
-    name : str
-        the name of the theater
-    url : str
-        url that links the user to the theater (homepage or program page)
-    url_program : str
-        url used to scrape the program
-    url_meta : str
-        url used to scrape the meta_info
-    program : Program()
-        A program object containing the program of the theater, or an empty Program()
-    meta_info : MetaInfo()
-        Containing the meta info of the shows in the theater, or an empty MetaInfo()
-
-    Methods
-    -------
-    update_program_and_meta_info(self, start_driver=False):
-        update the program and meta_info of this theater by web scraping
-    """
-
     def __init__(self, name, url, url_program, url_meta):
         """
         name : str
@@ -56,11 +32,18 @@ class Filmkunst(Kinoheld):
                 self.url_meta, button_classes, overlay_class
             )
             print(f"{self._html_msg}{self.url_meta}")
-            meta = _extract_meta_info(html)
-            self.meta_info = MetaInfo(meta)
+            self.meta_info = _extract_meta_info(html)
         except Exception as e:
             statement = f"Note! Meta info from {self.name} was not updated because of an error. {e}"
             print(statement)
+
+    def _adjust_show(self, show, meta_info):
+        """
+        Use the information in metainfo to update all the shows in program
+        """
+        show.dubbed = dubbed.is_dubbed(show, meta_info)
+        show.description = meta_info.description
+        return show
 
 
 def _extract_meta_info(html):
@@ -75,7 +58,7 @@ def _extract_meta_info(html):
     Returns
     -------
     dict
-        A dictionary that can be used as shows attribute of a MetaInfo()
+        a dict that maps titles to MetaInfo()
     """
 
     meta_info = {}
@@ -85,22 +68,17 @@ def _extract_meta_info(html):
         try:
             stats = _get_stats(film)
             description = film.find("div", class_="movie__info-description").text
-            meta_film = {
-                "title": stats['titel'],
-                "description": description,
-            }
+            title = stats["titel"]
         except AttributeError:  # in case there is not enough information for the meta database, such as no <dd>
             continue
 
-        meta_film["country"] = meta_film["description"][0:100]
-        meta_film["duration"] = stats.get("dauer")
-        meta_film["genre"] = stats.get("genre")
-        meta_film["title_original"] = stats.get("originaltitel")
-        meta_film["year"] = _get_year(stats)
-        meta_film["img_screenshot"] = _get_img_screenshot(film)
-        meta_film["img_poster"] = _get_img_poster(film)
-
-        meta_info[meta_film["title"]] = meta_film
+        country = description[0:100]
+        meta_info[title] = MetaInfo(
+            title=title,
+            title_original=stats.get("originaltitel"),
+            description=stats.get("dauer") + " " + description,
+            country=country,
+        )
     return meta_info
 
 
@@ -109,26 +87,6 @@ def _get_stats(film: Tag) -> dict:
     dt = [t.text.strip().lower() for t in parsing.list_nested_tag(dls, "dt")]
     dd = [t.text.strip() for t in parsing.list_nested_tag(dls, "dd")]
     return dict(zip(dt, dd))
-
-
-def _get_img_poster(film: Tag) -> Union[str, None]:
-    img_poster = film.find("div", class_="movie__image")
-    if img_poster:
-        img_poster = img_poster.find("img").get("src").strip()
-    return img_poster
-
-
-def _get_img_screenshot(film: Tag) -> Union[list, None]:
-    img_screenshot = film.find("div", class_="movie__scenes")
-    if img_screenshot:
-        img_screenshot = img_screenshot.find_all("img")
-        return [img.get("data-src").strip() for img in img_screenshot]
-
-
-def _get_year(stats: dict) -> Union[str, None]:
-    year = stats.get("erscheinungsdatum")
-    if year:
-        return year[-4:]
 
 
 class Schauburg(Filmkunst):

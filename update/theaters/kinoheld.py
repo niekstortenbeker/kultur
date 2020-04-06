@@ -1,36 +1,16 @@
 from typing import Union
 import bs4
 import arrow
-from helper import webdriver, parsing
-from theaters.theaterbase import TheaterBase
+
+from data.show import Show
+from update.services import webdriver, parsing
+from update.theaters.theaterbase import TheaterBase
 
 Tag = bs4.element.Tag
 Arrow = arrow.arrow.Arrow
 
 
 class Kinoheld(TheaterBase):
-    """Theaters that use the Kinoheld website
-
-    Attributes
-    ----------
-    name : str
-        the name of the theater
-    url : str
-        url that links the user to the theater (homepage or program page)
-    url_program : str
-        url used to scrape the program
-    url_meta : str
-        url used to scrape the meta_info
-    program : Program()
-        A program object containing the program of the theater, or an empty Program()
-    meta_info : MetaInfo()
-        Containing the meta info of the shows in the theater, or an empty MetaInfo()
-
-    Methods
-    -------
-    update_program_and_meta_info(self, start_driver=False):
-    update the program and meta_info of this theater by web scraping
-    """
     def __init__(self, name, url, url_program=None, url_meta=None):
         """
         Parameters
@@ -45,7 +25,7 @@ class Kinoheld(TheaterBase):
 
         super().__init__(name, url, url_program=url_program, url_meta=url_meta)
 
-    def _get_shows(self):
+    def _scrape_program(self):
         """
         Make a new show list by web scraping the program
 
@@ -58,7 +38,7 @@ class Kinoheld(TheaterBase):
         url = self.url_program
         html = webdriver.get_html_ajax(url, "movie.u-px-2.u-py-2")
         print(f"{self._html_msg}{url}")
-        return self._extract_show_list(html)
+        self.shows = self._extract_show_list(html)
 
     def _extract_show_list(self, html):
         """
@@ -80,23 +60,24 @@ class Kinoheld(TheaterBase):
         shows = soup.find_all("article")
         for s in shows:
             try:
-                show = {
-                    "date_time": _get_date_time(s),
-                    "title": _get_title(s),
-                }
+                show = Show()
+                show.date_time = _get_date_time(s)
+                show.title = _get_title(s)
             except AttributeError:
                 continue
 
-            show["language_version"] = _get_language_version(s, show['title'])
-            show["link_tickets"] = "https://www.kinoheld.de/" + s.a.get("href")
-            show["link_info"] = self.url
-            show["location"] = self.name
+            show.language_version = _get_language_version(s, show["title"])
+            show.url_tickets = "https://www.kinoheld.de/" + s.a.get("href")
+            show.url_info = self.url
+            show.location = self.name
+            show.category = "cinema"
 
             show_list.append(show)
         return show_list
 
 
 def _get_title(show: Tag) -> Arrow:
+    # noinspection PyUnresolvedReferences
     title = show.find(class_="movie__title").text.strip()
     if title[-3:] in ["OmU", " OV", "mdU", "meU"]:
         title = title[:-3].strip()
@@ -104,6 +85,7 @@ def _get_title(show: Tag) -> Arrow:
 
 
 def _get_date_time(show: Tag) -> Arrow:
+    # noinspection PyUnresolvedReferences
     date_time = show.find(class_="movie__date").text
     month, day = int(date_time[6:8]), int(date_time[3:5])
     hour, minute = int(date_time[10:12]), int(date_time[13:15])
@@ -112,6 +94,7 @@ def _get_date_time(show: Tag) -> Arrow:
 
 
 def _get_language_version(show: Tag, title) -> Union[str, None]:
+    # noinspection PyUnresolvedReferences
     language_version = show.find(class_="movie__title").span
     if language_version:
         return language_version.text.strip()

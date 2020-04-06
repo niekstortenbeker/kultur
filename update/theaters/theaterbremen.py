@@ -1,40 +1,20 @@
 import arrow
 import bs4
-from helper import webdriver
-from theaters.theaterbase import TheaterBase
+
+from data.show import Show
+from update.services import webdriver
+from update.theaters.theaterbase import TheaterBase
 
 Tag = bs4.element.Tag
 Arrow = arrow.arrow.Arrow
 
 
 class TheaterBremen(TheaterBase):
-    """Theater "Theater Bremen"
-
-    Attributes
-    ----------
-    name : str
-        the name of the theater
-    url : str
-        url that links the user to the theater (homepage or program page)
-    url_program : str
-        url used to scrape the program
-    url_meta : str
-        url used to scrape the meta_info
-    program : Program()
-        A program object containing the program of the theater, or an empty Program()
-    meta_info : MetaInfo()
-        Containing the meta info of the shows in the theater, or an empty MetaInfo()
-
-    Methods
-    -------
-    update_program_and_meta_info(self, start_driver=False):
-        update the program and meta_info of this theater by web scraping
-    """
     def __init__(self):
         url = "http://www.theaterbremen.de"
         super().__init__("Theater Bremen", url, url_program=url)
 
-    def _get_shows(self):
+    def _scrape_program(self):
         """
         Make a new show list by web scraping the program
 
@@ -50,7 +30,7 @@ class TheaterBremen(TheaterBase):
             html = webdriver.get_html_ajax(url, class_name="day")
             print(f"{self._html_msg}{url}")
             shows.extend(self._extract_show_list(html))
-        return shows
+        self.shows = shows
 
     def _get_urls(self):
         """
@@ -113,21 +93,24 @@ class TheaterBremen(TheaterBase):
             a show dictionary that can be used in a Program().shows
         """
 
-        show = {"date_time": _get_date_time(date, s)}
+        show = Show()
+        show.date_time = _get_date_time(date, s)
         links = s.find_all("a")
-        show["link_info"] = f"{self.url}{links[1].get('href').strip()}"
+        show.url_info = f"{self.url}{links[1].get('href').strip()}"
         try:
-            show["link_tickets"] = links[2].get("href").strip()
-            show["price"] = links[2].text.strip()
+            show.url_tickets = links[2].get("href").strip()
+            # show.price = links[2].text.strip()
         except IndexError:
             pass
-        show["title"] = links[1].text.strip()
-        show["info"] = _get_info(s)
-        show["location"] = self.name
+        show.title = links[1].text.strip()
+        show.description = _get_info(s)
+        show.location = self.name
+        show.category = "stage"
         return show
 
 
-def _get_date_time(date: Arrow, show: Tag) -> Arrow:
+def _get_date_time(date: str, show: Tag) -> Arrow:
+    # noinspection PyUnresolvedReferences
     time = show.find(class_="overview-date-n-flags").text.strip()[0:5]
     date_time = arrow.get(date + time, "DD.MM.YYYYHH:mm", tzinfo="Europe/Berlin")
     return date_time

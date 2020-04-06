@@ -1,10 +1,8 @@
 """
 command line interface for Kultur
 """
-
 import click
-from program.combinedprogram import CombinedProgram
-import emoji
+from commands import data, update, view
 
 
 @click.command()
@@ -14,16 +12,17 @@ import emoji
     is_flag=True,
     help="Scrape websites to make a new database. (Otherwise start from old database)",
 )
-@click.option("-t", "--today", is_flag=True, help="Show only today")
-def main(new, today):
+@click.option("-t", "--display_today", is_flag=True, help="display only today")
+def main(new, display_today):
     """Collect the program of theaters I like in bremen.
     It filters out dubbed movies (because who likes those?), and then
     combines the programs to one sorted-by-date overview.
     """
-    run(new, today)
+
+    run(new, display_today)
 
 
-def run(new, today):
+def run(new: bool, display_today: bool):
     """
     run the command line interface
 
@@ -31,27 +30,23 @@ def run(new, today):
     ----------
     new: bool
         if True update program first
-    today:
+    display_today: bool
         if True only print today, otherwise print next week
     """
 
-    p = CombinedProgram()
-    print_header()
+    view.print_header()
     if new:
-        p.update_program()
+        update.update_program()
+    print_program(display_today)
 
-    if today:
-        p.program.print_today()
+
+def print_program(display_today: bool):
+    if display_today:
+        view.print_today()
     else:
-        p.program.print_next_week()
-
-
-def print_header():
-    print("".center(100, "-"))
-    statement = f"{38 * ' '}:movie_camera: Kultur Factory :movie_camera: "
-    print(emoji.emojize(statement))
-    print("".center(100, "-"))
+        view.print_week()
 
 
 if __name__ == "__main__":
+    data.init_database()
     main()

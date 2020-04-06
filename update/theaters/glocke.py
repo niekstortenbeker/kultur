@@ -2,42 +2,21 @@ import re
 from typing import Union
 import arrow
 import bs4
-from helper import webdriver, parsing
-from theaters.theaterbase import TheaterBase
+
+from data.show import Show
+from update.services import webdriver, parsing
+from update.theaters.theaterbase import TheaterBase
 
 Tag = bs4.element.Tag
 Arrow = arrow.arrow.Arrow
 
 
 class Glocke(TheaterBase):
-    """Theater Glocke
-
-    Attributes
-    ----------
-    name : str
-        the name of the theater
-    url : str
-        url that links the user to the theater (homepage or program page)
-    url_program : str
-        url used to scrape the program
-    url_meta : str
-        url used to scrape the meta_info
-    program : Program()
-        A program object containing the program of the theater, or an empty Program()
-    meta_info : MetaInfo()
-        Containing the meta info of the shows in the theater, or an empty MetaInfo()
-
-    Methods
-    -------
-    update_program_and_meta_info(self, start_driver=False):
-        update the program and meta_info of this theater by web scraping
-    """
-
     def __init__(self):
         url = "https://www.glocke.de"
-        super().__init__("Glocke", url, url_program=f'{url}/de/veranstaltungssuche')
+        super().__init__("Glocke", url, url_program=f"{url}/de/veranstaltungssuche")
 
-    def _get_shows(self):
+    def _scrape_program(self):
         """
         Make a new show list by web scraping the program
 
@@ -53,7 +32,7 @@ class Glocke(TheaterBase):
             html = webdriver.get_html(url)
             print(f"{self._html_msg}{url}")
             shows.extend(self._extract_show_list(html))
-        return shows
+        self.program = shows
 
     def _get_urls(self):
         """
@@ -91,17 +70,17 @@ class Glocke(TheaterBase):
         soup = bs4.BeautifulSoup(html, "html.parser")
         shows = soup.find_all("div", class_="va-liste")
         for s in shows:
+            show = Show()
             try:
-                show = {"date_time": _get_date_time(s)}
+                show.date_time = _get_date_time(s)
             except AttributeError:
                 continue
 
-            show["location_details"] = _get_location_details(s)
-            show["title"] = _get_title(s)
-            link = f"{self.url}/{s.a.get('href')}"
-            show["link_info"] = link
-            show["link_tickets"] = link
-            show["location"] = self.name
+            show.description = _get_location_details(s)
+            show.title = _get_title(s)
+            show.url_info = f"{self.url}/{s.a.get('href')}"
+            show.location = self.name
+            show.category = "music"
 
             show_list.append(show)
         return show_list
@@ -142,4 +121,5 @@ def _get_date_time(show: Tag) -> Arrow:
 def _get_location_details(show: Tag) -> Union[str, None]:
     time_location = show.find("span", style=re.compile(r"color"))
     if time_location:
+        # noinspection PyUnresolvedReferences
         return time_location.text.strip()[10:]
