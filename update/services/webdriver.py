@@ -1,5 +1,5 @@
 """
-helper functions for obtaining htmls
+helper functions for obtaining source htmls
 
 Functions
 ---------
@@ -144,6 +144,8 @@ class HtmlClickedButtons:
         self.url = url
         self.button_classes = button_classes
         self.buttons = None
+        self.wait_time = 0.5
+        self.wait_max_tries = 20
 
     def get(self):
         """
@@ -177,10 +179,10 @@ class HtmlClickedButtons:
         self._set_buttons()
         tries = 0
         while not self.buttons:
-            time.sleep(0.5)
+            time.sleep(self.wait_time)
             self._set_buttons()
             tries += 1
-            if tries > 20:
+            if tries > self.wait_max_tries:
                 raise TimeoutException
 
     def _wait_until_buttons_are_clickable(self):
@@ -188,10 +190,10 @@ class HtmlClickedButtons:
         clicking = self._try_clicking(self.buttons[0])
         tries = 0
         while not clicking:
-            time.sleep(0.5)
+            time.sleep(self.wait_time)
             clicking = self._try_clicking(self.buttons[0])
             tries += 1
-            if tries > 20:
+            if tries > self.wait_max_tries:
                 raise TimeoutException
 
     # noinspection PyMethodMayBeStatic
