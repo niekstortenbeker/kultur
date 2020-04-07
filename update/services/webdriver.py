@@ -14,15 +14,16 @@ get_html_ajax(url, class_name)
 get_html_buttons(url, button_classes, overlay_class=None)
     Obtain source html from a web page where buttons need to be clicked
 """
-
+from typing import List
 import requests
 import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.webdriver import WebDriver
+from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import WebDriverException
+from selenium.common.exceptions import TimeoutException
 from selenium.common.exceptions import ElementClickInterceptedException
 from selenium.webdriver.firefox.options import Options
 
@@ -109,7 +110,7 @@ def get_html_ajax(url, class_name):
     return source
 
 
-def get_html_buttons(url, button_classes, overlay_class=None):
+def get_html_buttons(url, button_classes):
     """
     Obtain source html from a web page where buttons need to be clicked
 
@@ -121,125 +122,83 @@ def get_html_buttons(url, button_classes, overlay_class=None):
         url to obtain html from
     button_classes: list
         names of the classes of the button elements to click
-    overlay_class: str, optional
-        name of the class of an element that should be gone before
-        clicking buttons (default is None)
 
     Raises
     ------
-    ConnectionError
-        when Timout exception or webdriver exception
+    TimeoutException
+        when things take too long
 
     Returns
     -------
     str or None
         source html
     """
-
-    print("    ... Get html from the web (clicking buttons)")
-    driver.get(url)
-    if overlay_class:
-        _wait_for_overlay(overlay_class)
-    _click_buttons(button_classes)
-    source = driver.page_source
+    html_buttons = HtmlClickedButtons(url, button_classes)
+    source = html_buttons.get()
     return source
 
 
-def _wait_for_overlay(overlay_class):
-    """
-    let selenium driver wait until an overlay element is gone
+class HtmlClickedButtons:
 
-    Requires driver to have gotten a page
+    def __init__(self, url: str, button_classes: List[str]):
+        self.url = url
+        self.button_classes = button_classes
+        self.buttons = None
 
-    Parameters
-    ----------
-    overlay_class: str
-        name of the class of an element that should be gone
+    def get(self):
+        """
+        Obtain source html from a web page where buttons need to be clicked
+        """
+        print("    ... Get html from the web (clicking buttons)")
+        driver.get(self.url)
+        self._click_buttons()
+        source = driver.page_source
+        return source
 
-    Returns
-    -------
-    bool
-        True when overlay is gone, False when it's still there after
-        10 seconds
-    """
+    def _click_buttons(self):
+        self._wait_for_buttons()
+        self._wait_until_buttons_are_clickable()
+        self._set_buttons()  # try again now that all overlays are gone
 
-    try:
-        wait = WebDriverWait(driver, 10)
-        wait.until_not(EC.visibility_of_element_located((By.CLASS_NAME, overlay_class)))
-        return True
-    except WebDriverException:
-        return False
+        for button in self.buttons:
+            button.click()
 
+    def _set_buttons(self):
+        buttons = []
+        for button_class in self.button_classes:
+            buttons.extend(driver.find_elements_by_class_name(button_class))
+        if buttons:
+            self.buttons = buttons
+        else:
+            self.buttons = None
 
-def _click_buttons(button_classes):
-    """
-    let selenium driver click buttons
+    def _wait_for_buttons(self):
+        """sometimes overlay classes prevent getting buttons"""
+        self._set_buttons()
+        tries = 0
+        while not self.buttons:
+            time.sleep(0.5)
+            self._set_buttons()
+            tries += 1
+            if tries > 20:
+                raise TimeoutException
 
-    Requires driver to have gotten a page
+    def _wait_until_buttons_are_clickable(self):
+        """sometimes overlay classes prevent clicking"""
+        clicking = self._try_clicking(self.buttons[0])
+        tries = 0
+        while not clicking:
+            time.sleep(0.5)
+            clicking = self._try_clicking(self.buttons[0])
+            tries += 1
+            if tries > 20:
+                raise TimeoutException
 
-    Parameters
-    ----------
-    button_classes: list
-        names of the classes of the button elements to click
-    """
-
-    # todo: these while loops are maybe not great when connection fails
-    # first make sure all overlay classes are gone
-    # which I don't know by name, hence the messy code
-    buttons = _get_buttons(button_classes)
-    while not buttons:  # sometimes this still needs more time
-        time.sleep(1)
-        buttons = _get_buttons(button_classes)
-    clicking = _try_clicking(buttons[0])
-    while not clicking:  # sometimes there are still overlay classes preventing clicking
-        time.sleep(1)
-        clicking = _try_clicking(buttons[0])
-    _try_clicking(buttons[0])  # reset clicked button
-    # second get the buttons again now that all overlays are gone
-    buttons = _get_buttons(button_classes)
-    for button in buttons:
-        button.click()
-
-
-def _get_buttons(button_classes):
-    """
-    find button elements by class name
-
-    Parameters
-    ----------
-    button_classes: list
-        class of the button elements to click
-
-    Returns
-    -------
-    list or None
-        list with the buttons
-    """
-    buttons = []
-    for button_class in button_classes:
-        buttons.extend(driver.find_elements_by_class_name(button_class))
-    if buttons:
-        return buttons
-    else:
-        return None
-
-
-def _try_clicking(button):
-    """
-    try clicking buttons
-
-    Parameters
-    ----------
-    button: selenium object
-
-    Returns
-    -------
-    bool
-        Return True when button was clicked, False when it didn't work
-    """
-
-    try:
-        button.click()
-        return True
-    except ElementClickInterceptedException:
-        return False
+    # noinspection PyMethodMayBeStatic
+    def _try_clicking(self, button: WebElement) -> bool:
+        try:
+            button.click()
+            button.click()  # reset clicked button
+            return True
+        except ElementClickInterceptedException:
+            return False
