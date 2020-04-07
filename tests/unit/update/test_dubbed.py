@@ -7,31 +7,41 @@ from update.services.metainfo import MetaInfo
 
 def test_has_language_version():
     """any language version is not dubbed"""
-    assert not dubbed.is_dubbed(Show(language_version="OmU"), MetaInfo())
+    show = Show(language_version="OmU")
+    meta_info = MetaInfo()
+    assert not dubbed.is_dubbed(show, meta_info)
 
 
 def test_empty_language_version():
     """No language_version or empty MetaInfo should be assigned as dubbed"""
-    assert dubbed.is_dubbed(Show(language_version=""), MetaInfo())
+    show = Show(language_version="")
+    meta_info = MetaInfo()
+    assert dubbed.is_dubbed(show, meta_info)
 
 
 @pytest.mark.parametrize('country',
                          ['in Deutschland', '*DEUTSCHLAND', 'ÖSterREICH*', 'schweiz'])
 def test_is_country(country):
     """german speaking countries are probably original language"""
-    assert not dubbed.is_dubbed(Show(), MetaInfo(country=country))
+    show = Show()
+    meta_info = MetaInfo(country=country)
+    assert not dubbed.is_dubbed(show, meta_info)
 
 
 def test_false_country():
     """other countries and no other info should be dubbed"""
-    assert dubbed.is_dubbed(Show(), MetaInfo(country='Die Niederlande, USA'))
+    show = Show()
+    meta_info = MetaInfo(country='Die Niederlande, USA')
+    assert dubbed.is_dubbed(show, meta_info)
 
 
 def test_original_title_matches():
+    show = Show()
     meta_info = MetaInfo(country='deutschland', title='bla', title_original='bLa')
-    assert not dubbed.is_dubbed(Show(), meta_info)
+    assert not dubbed.is_dubbed(show, meta_info)
 
 
 def test_original_title_doesnt_match():
+    show = Show()
     meta_info = MetaInfo(country='deutschland', title='bla', title_original='blaH')
-    assert dubbed.is_dubbed(Show(), meta_info)
+    assert dubbed.is_dubbed(show, meta_info)

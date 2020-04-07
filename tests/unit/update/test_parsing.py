@@ -13,10 +13,10 @@ def test_parse_date_without_year_arrow(shift):
     year correctly and return an arrow object
     shift: number of days from now
     """
-    expected_result = arrow.now('Europe/Berlin').shift(days=+shift)
-    function_input = expected_result.replace(year=1)
-    result = parsing.parse_date_without_year(function_input)
-    assert result == expected_result
+    dt_expected = arrow.now('Europe/Berlin').shift(days=+shift)
+    dt_before = dt_expected.replace(year=1)
+    dt_after = parsing.parse_date_without_year(dt_before)
+    assert dt_after == dt_expected
 
 
 @pytest.mark.parametrize('shift',
@@ -27,12 +27,14 @@ def test_parse_date_without_year_ints(shift):
     year correctly and return an arrow object
     shift: number of days from now
     """
-    expected_result = arrow.now('Europe/Berlin')\
+    dt_expected = arrow.now('Europe/Berlin')\
         .shift(days=+shift)\
         .replace(second=0, microsecond=0)
-    dt = expected_result.replace(year=1)
-    result = parsing.parse_date_without_year(dt.month, dt.day, dt.hour, dt.minute)
-    assert result == expected_result
+    dt_before = dt_expected.replace(year=1)
+    dt_after = parsing.parse_date_without_year(
+        dt_before.month, dt_before.day, dt_before.hour, dt_before.minute
+    )
+    assert dt_after == dt_expected
 
 
 def test_parse_date_without_year_false_type():
