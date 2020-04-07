@@ -26,11 +26,8 @@ class Filmkunst(Kinoheld):
             "ui-button.ui-corners-bottom-left.ui-ripple.ui-button--secondary.u-flex-grow-1",
             "ui-button.ui-corners-bottom.ui-ripple.ui-button--secondary.u-flex-grow-1",
         ]
-        overlay_class = "overlay-container"
         try:
-            html = webdriver.get_html_buttons(
-                self.url_meta, button_classes, overlay_class
-            )
+            html = webdriver.get_html_buttons(self.url_meta, button_classes)
             print(f"{self._html_msg}{self.url_meta}")
             self.meta_info = _extract_meta_info(html)
         except Exception as e:
