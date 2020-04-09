@@ -1,3 +1,4 @@
 .idea
 geckodriver.log
 .pytest_cache
+.python-version
