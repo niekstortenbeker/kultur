@@ -1,5 +1,4 @@
 import pytest
-
 from data.show import Show
 from update.services import dubbed
 from update.services.metainfo import MetaInfo
@@ -19,8 +18,9 @@ def test_empty_language_version():
     assert dubbed.is_dubbed(show, meta_info)
 
 
-@pytest.mark.parametrize('country',
-                         ['in Deutschland', '*DEUTSCHLAND', 'ÖSterREICH*', 'schweiz'])
+@pytest.mark.parametrize(
+    "country", ["in Deutschland", "*DEUTSCHLAND", "ÖSterREICH*", "schweiz"]
+)
 def test_is_country(country):
     """german speaking countries are probably original language"""
     show = Show()
@@ -31,17 +31,17 @@ def test_is_country(country):
 def test_false_country():
     """other countries and no other info should be dubbed"""
     show = Show()
-    meta_info = MetaInfo(country='Die Niederlande, USA')
+    meta_info = MetaInfo(country="Die Niederlande, USA")
     assert dubbed.is_dubbed(show, meta_info)
 
 
 def test_original_title_matches():
     show = Show()
-    meta_info = MetaInfo(country='deutschland', title='bla', title_original='bLa')
+    meta_info = MetaInfo(country="deutschland", title="bla", title_original="bLa")
     assert not dubbed.is_dubbed(show, meta_info)
 
 
 def test_original_title_doesnt_match():
     show = Show()
-    meta_info = MetaInfo(country='deutschland', title='bla', title_original='blaH')
+    meta_info = MetaInfo(country="deutschland", title="bla", title_original="blaH")
     assert dubbed.is_dubbed(show, meta_info)

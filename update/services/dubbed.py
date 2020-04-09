@@ -1,4 +1,5 @@
 import re
+
 from data.show import Show
 from update.services.metainfo import MetaInfo
 
@@ -37,4 +38,3 @@ def _is_german(show_metainfo: MetaInfo) -> bool:
         return True
     else:  # a different original title suggests it is dubbed after all
         return False
-

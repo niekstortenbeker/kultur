@@ -1,16 +1,16 @@
 from typing import List, Union
+
 from data.dbsession import DbSession
 from data.show import Show
 from update.services import webdriver
 from update.theaters.cinemaostertor import CinemaOstertor
 from update.theaters.city46 import City46
-from update.theaters.filmkunst import Schauburg, Gondel, Atlantis
+from update.theaters.filmkunst import Atlantis, Gondel, Schauburg
 from update.theaters.glocke import Glocke
 from update.theaters.kukoon import Kukoon
 from update.theaters.schwankhalle import Schwankhalle
 from update.theaters.theaterbase import TheaterBase
 from update.theaters.theaterbremen import TheaterBremen
-
 
 all_theaters = [
     Schauburg(),

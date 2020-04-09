@@ -1,7 +1,7 @@
 import bs4
-from update.services import webdriver, parsing, dubbed
-from update.theaters.kinoheld import Kinoheld
+from update.services import dubbed, parsing, webdriver
 from update.services.metainfo import MetaInfo
+from update.theaters.kinoheld import Kinoheld
 
 Tag = bs4.element.Tag
 

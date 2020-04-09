@@ -1,6 +1,5 @@
 import arrow
 import pytest
-
 from data.dbsession import DbSession
 from data.show import Show
 from tests import fake_data
@@ -34,8 +33,9 @@ def test_one_theater(database_light, theater_bremen):
     # GIVEN an initialized filled database and one updated theater
     session = DbSession.factory()
     before_all = session.query(Show).count()
-    before_theater_bremen = session.query(Show).\
-        filter_by(location=theater_bremen.name).count()
+    before_theater_bremen = (
+        session.query(Show).filter_by(location=theater_bremen.name).count()
+    )
     # WHEN this one theater is replaced
     added = replace_records(theater_bremen)
     # THEN database should have only these records replaced
@@ -48,14 +48,14 @@ def test_one_theater(database_light, theater_bremen):
 def test_raises_str():
     """replace_records() only accepts TheaterBase or list of TheaterBase"""
     with pytest.raises(TypeError):
-        replace_records('these are not theaters')
+        replace_records("these are not theaters")
 
 
 # noinspection PyTypeChecker
 def test_raises_str_list():
     """replace_records() only accepts TheaterBase or list of TheaterBase"""
     with pytest.raises(TypeError):
-        replace_records(['these are not theaters'])
+        replace_records(["these are not theaters"])
 
 
 @pytest.fixture()
@@ -69,8 +69,12 @@ def theaters():
 @pytest.fixture()
 def theater_bremen():
     theater_bremen = TheaterBremen()
-    theater_bremen.program = [Show(date_time=arrow.now(),
-                                   title='bla',
-                                   location=theater_bremen.name,
-                                   category='stage')]
+    theater_bremen.program = [
+        Show(
+            date_time=arrow.now(),
+            title="bla",
+            location=theater_bremen.name,
+            category="stage",
+        )
+    ]
     return theater_bremen

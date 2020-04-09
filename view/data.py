@@ -1,4 +1,5 @@
 from typing import List
+
 import arrow
 from data.dbsession import DbSession
 from data.show import Show

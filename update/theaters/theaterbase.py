@@ -1,5 +1,5 @@
-from update.services import webdriver
 import emoji
+from update.services import webdriver
 
 
 class TheaterBase:

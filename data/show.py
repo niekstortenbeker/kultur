@@ -1,5 +1,5 @@
-import sqlalchemy as sa
 import arrow
+import sqlalchemy as sa
 from data.modelbase import SqlAlchemyBase
 from sqlalchemy_utils import ArrowType
 

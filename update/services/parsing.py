@@ -10,7 +10,9 @@ list_nested_tag(soup_resultset, element_name):
 """
 
 from itertools import chain
+
 import arrow
+
 Arrow = arrow.arrow.Arrow
 
 

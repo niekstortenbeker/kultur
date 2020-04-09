@@ -1,9 +1,8 @@
+# noinspection PyUnresolvedReferences
+import data.show  # noqa: F401
 import sqlalchemy
 import sqlalchemy.orm
 from data.modelbase import SqlAlchemyBase
-
-# noinspection PyUnresolvedReferences
-import data.show
 
 
 class DbSession:

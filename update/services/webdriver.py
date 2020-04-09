@@ -14,18 +14,21 @@ get_html_ajax(url, class_name)
 get_html_buttons(url, button_classes, overlay_class=None)
     Obtain source html from a web page where buttons need to be clicked
 """
-from typing import List
-import requests
 import time
+from typing import List
+
+import requests
 from selenium import webdriver
+from selenium.common.exceptions import (
+    ElementClickInterceptedException,
+    TimeoutException,
+)
 from selenium.webdriver.common.by import By
+from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.firefox.webdriver import WebDriver
 from selenium.webdriver.remote.webelement import WebElement
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import TimeoutException
-from selenium.common.exceptions import ElementClickInterceptedException
-from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.support.ui import WebDriverWait
 
 driver: WebDriver
 
@@ -139,7 +142,6 @@ def get_html_buttons(url, button_classes):
 
 
 class HtmlClickedButtons:
-
     def __init__(self, url: str, button_classes: List[str]):
         self.url = url
         self.button_classes = button_classes

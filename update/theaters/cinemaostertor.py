@@ -1,8 +1,9 @@
 import re
+
 import bs4
-from update.services import webdriver, dubbed
-from update.theaters.kinoheld import Kinoheld
 import update.services.metainfo as mi
+from update.services import dubbed, webdriver
+from update.theaters.kinoheld import Kinoheld
 
 Tag = bs4.element.Tag
 Soup = bs4.BeautifulSoup

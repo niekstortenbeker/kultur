@@ -1,5 +1,6 @@
 import arrow
 import bs4
+from data.show import Show
 from update.services import webdriver
 from update.theaters.theaterbase import TheaterBase
 

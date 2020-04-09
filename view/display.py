@@ -1,11 +1,11 @@
 from typing import List
+
 import arrow
 import emoji
-from colorama import init
+from colorama import Back, Fore, Style, init  # noqa: E402
 from data.show import Show
 
 init()
-from colorama import Fore, Back, Style
 
 
 def print_header():

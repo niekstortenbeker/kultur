@@ -30,5 +30,3 @@ def complete_program_light():
         theater_program = fake_data.light_program(theater.name)
         program.extend(theater_program)
     return program
-
-

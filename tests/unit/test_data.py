@@ -1,6 +1,5 @@
 import arrow
 import pytest
-
 from data.dbsession import DbSession
 from data.show import Show
 
@@ -59,22 +58,19 @@ def test_query_all_filled_database(database_light):
 def full_show():
     return Show(
         date_time=arrow.now(),
-        title='bla',
-        location='theater',
-        category='cinema',
-        description='wow nice one',
-        language_version='OmU',
+        title="bla",
+        location="theater",
+        category="cinema",
+        description="wow nice one",
+        language_version="OmU",
         dubbed=False,
-        url_info='www.theater.com',
-        url_tickets='www.buyme.com'
+        url_info="www.theater.com",
+        url_tickets="www.buyme.com",
     )
 
 
 @pytest.fixture()
 def minimal_show():
     return Show(
-        date_time=arrow.now(),
-        title='bla',
-        location='theater',
-        category='music',
+        date_time=arrow.now(), title="bla", location="theater", category="music",
     )
