@@ -26,3 +26,8 @@ class DbSession:
         DbSession.factory = sqlalchemy.orm.sessionmaker(bind=engine)
 
         SqlAlchemyBase.metadata.create_all(engine)
+
+    @staticmethod
+    def close():
+        DbSession.factory = None
+        DbSession.engine = None

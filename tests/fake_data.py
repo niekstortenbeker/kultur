@@ -1,11 +1,12 @@
 import random
 import arrow
-from typing import Union
-
+from typing import Union, List
+from data.show import Show
+from update.theaters.theaterbase import TheaterBase
 
 Arrow = arrow.arrow.Arrow
 
-fake_data = {
+fake_data_container = {
     "title": [
         "Enkel f\u00fcr Anf\u00e4nger",
         "Die K\u00e4nguru-Chroniken",
@@ -46,7 +47,7 @@ fake_data = {
         "Die Unfassbaren - \u00bbComedy-Zauberei &amp; Hypnose\u00ab",
         "Filmabend \u2013 OSCAR\u00ae Shorts 2020 \u2013 Live Action",
     ],
-    "category": ["cinema", "music", "stage",],
+    "category": ["cinema", "music", "stage", ],
     "description": [
         "(*) Kom\u00f6die * Deutschland * Regie: Dani Levy;  * Drehbuch: ;\n(*) Darsteller: Dimitrij Schaad, Rosalie Thomass, Volker Zack, Adnan Maral, Tim Seyfi, Oskar Strohecker, Carmen-Maja Antoni, Henry H\u00fcbchen, Bettina Lamprecht, Daniel Zillmann, Marc-Uwe Kling;\nDas K\u00e4nguru zieht bei seinem Nachbarn, dem unterambitionierten Kleink\u00fcnstler Marc-Uwe, ein. Doch kurz darauf rei\u00dft ein rechtspopulistischer Immobilienhai die halbe Nachbarschaft ab, um mitten in Berlin-Kreuzberg das Hauptquartier der internationalen Nationalisten zu bauen. Das findet das K\u00e4nguru gar nicht gut. Es ist n\u00e4mlich Kommunist. (\u00c4h ja, das hatte ich vergessen zu erw\u00e4hnen.) Jedenfalls entwickelt es einen genialen Plan. Und dann noch einen, weil Marc-Uwe den ersten nicht verstanden hat. Und noch einen dritten, weil der zweite nicht funktioniert hat. Den Rest kann man sich ja denken. Vier Nazis, eine Hasenpfote, drei Sportwagen, ein Psychotherapeut, eine Penthouse-Party und am Ende ein gro\u00dfer Anti-Terror-Anschlag, der dem rechten Treiben ein Ende setzen soll. Nach einer wahren Begebenheit. (Quelle: Verleih)",
         "(*) Thriller * S\u00fcdkorea * Regie: Bong Joon Ho;  * Drehbuch: ;\n(*) Darsteller: Song Kang Ho, Lee Sun Kyun, Cho Yeo Jeong, Choi Woo Shik, Park So Dam, Lee Jung Eun, Chang Hyae Jin;\nFamilie Kim ist ganz unten angekommen: Vater, Mutter, Sohn und Tochter hausen in einem gr\u00fcnlich-schummrigen Keller, kriechen f\u00fcr kostenloses W-LAN in jeden Winkel und sind sich f\u00fcr keinen Aushilfsjob zu schade. Erst als der J\u00fcngste eine Anstellung als Nachhilfelehrer in der todschicken Villa der Familie Park antritt, steigen die Kims ein ins Karussell der Klassenk\u00e4mpfe. Mit findigen Tricksereien, bemerkenswertem Talent und gro\u00dfem Mannschaftsgeist gelingt es ihnen, die bisherigen Bediensteten der Familie Park nach und nach loszuwerden. Bald schon sind die Kims unverzichtbar f\u00fcr ihre neuen Herrschaften. Doch dann l\u00f6st ein unerwarteter Zwischenfall eine Kette von Ereignissen aus, die so unvorhersehbar wie unfassbar sind. (Quelle: Verleih)",
@@ -65,7 +66,7 @@ fake_data = {
         "\u203aOh My\u2039\u00a0 / Performance f\u00fcr Erwachsene",
         "Veranstaltungskategorien: Kukoon-Format, Workshop",
     ],
-    "language_version": ["OmU", "Alternativer Content", "Live", "OV", "OmdU", "OmeU",],
+    "language_version": ["OmU", "Alternativer Content", "Live", "OV", "OmdU", "OmeU", ],
     "dubbed": [True, *[False for _ in range(5)]],
     "url_info": [
         "http://www.bremerfilmkunsttheater.de/Kino_Reservierungen/Gondel.html",
@@ -95,13 +96,20 @@ fake_data = {
 
 
 def get(column: str) -> str:
-    return random.choice(fake_data[column])
+    """get one random fake item for a column of Show"""
+    return random.choice(fake_data_container[column])
 
 
-def get_value_or_empty(column: str) -> Union[str, None]:
-    """get either a valid value for a column, or an empty string, or None"""
-    value = random.choice(fake_data[column])
-    return random.choice([value, "", None,])
+def get_value_or_empty(column: str) -> Union[str, None, bool]:
+    """get one random fake item for a column of Show, or an empty string, or None"""
+    value = random.choice(fake_data_container[column])
+    return random.choice([value, value, value, value, "", None])
+
+
+def get_value_or_none(column: str) -> Union[str, None, bool]:
+    """get one random fake item for a column of Show, or an empty string, or None"""
+    value = random.choice(fake_data_container[column])
+    return random.choice([value, value, None])
 
 
 def show_date_time() -> Arrow:
@@ -111,3 +119,37 @@ def show_date_time() -> Arrow:
         arrow.now("Europe/Berlin").shift(weeks=+8).timestamp,
     )
     return arrow.get(time - time % (60 * 15))  # round to ten minutes
+
+
+def show(location):
+    return Show(
+        date_time=show_date_time(),
+        title=get("title"),
+        location=location,
+        category=get("category"),
+        description=get_value_or_empty("description"),
+        language_version=get_value_or_empty("language_version"),
+        dubbed=get_value_or_none("dubbed"),
+        url_info=get_value_or_empty("url_info"),
+        url_tickets=get_value_or_empty("url_tickets")
+    )
+
+
+def program(location) -> List[Show]:
+    """return can be used as a program from TheaterBase.program"""
+    if isinstance(location, TheaterBase):
+        location = location.name
+    elif type(location) != str:
+        TypeError("only TheaterBase or str accepted")
+
+    return [show(location) for _ in range(4 * 30 * 2)]
+
+
+def light_program(location) -> List[Show]:
+    """return can be used as a program from TheaterBase.program"""
+    if isinstance(location, TheaterBase):
+        location = location.name
+    elif type(location) != str:
+        TypeError("only TheaterBase or str accepted")
+
+    return [show(location) for _ in range(5)]
