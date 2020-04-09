@@ -42,14 +42,20 @@ def update_program_all_theaters() -> List[TheaterBase]:
     return updated_theaters
 
 
-def replace_records(theaters: Union[List[TheaterBase], TheaterBase]):
+def replace_records(theaters: Union[List[TheaterBase], TheaterBase]) -> int:
+    """returns count of added records"""
     if isinstance(theaters, TheaterBase):
         theaters = [theaters]
     elif not isinstance(theaters, List):
-        raise TypeError("only excepts TheaterBase or List")
+        raise TypeError("only excepts TheaterBase or List of Theaterbase")
+    elif not isinstance(theaters[0], TheaterBase):
+        raise TypeError("only excepts TheaterBase or List of Theaterbase")
 
-    session = DbSession.factory
+    added_records = 0
+    session = DbSession.factory()
     for theater in theaters:
         session.query(Show).filter_by(location=theater.name).delete()
         session.add_all(theater.program)
+        added_records += len(theater.program)
     session.commit()
+    return added_records

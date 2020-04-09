@@ -55,7 +55,7 @@ class TheaterBase:
         )
 
     def __repr__(self):
-        return f"Theater({self.name, self.url})"
+        return f"Theater({self.name, self.program})"
 
     def __str__(self):
         return f"Theater({self.name})"
