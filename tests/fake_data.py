@@ -113,11 +113,11 @@ def get_value_or_none(column: str) -> Union[str, None, bool]:
     return random.choice([value, value, None])
 
 
-def show_date_time() -> Arrow:
-    """return a arrow object within the next two months rounded to ten minutes"""
+def show_date_time(max_days=10) -> Arrow:
+    """return a arrow object within the next max_days days rounded to ten minutes"""
     time = random.randrange(
         arrow.now("Europe/Berlin").timestamp,
-        arrow.now("Europe/Berlin").shift(weeks=+8).timestamp,
+        arrow.now("Europe/Berlin").shift(days=+max_days).timestamp,
     )
     return arrow.get(time - time % (60 * 15))  # round to ten minutes
 
@@ -143,7 +143,7 @@ def program(location) -> List[Show]:
     elif type(location) != str:
         TypeError("only TheaterBase or str accepted")
 
-    return [show(location) for _ in range(4 * 30 * 2)]
+    return [show(location) for _ in range(4 * 10)]
 
 
 def light_program(location) -> List[Show]:
@@ -153,4 +153,4 @@ def light_program(location) -> List[Show]:
     elif type(location) != str:
         TypeError("only TheaterBase or str accepted")
 
-    return [show(location) for _ in range(5)]
+    return [show(location) for _ in range(2)]

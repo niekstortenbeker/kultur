@@ -40,8 +40,8 @@ def test_add_show_filled_database(database_light, full_show):
     session = DbSession.factory()
     session.add(full_show)
     session.commit()
-    # THEN show.id should be higher than 25
-    assert full_show.id > 25
+    # THEN show.id should be higher than 10
+    assert full_show.id > 10
 
 
 def test_query_all_filled_database(database_light):
@@ -50,8 +50,8 @@ def test_query_all_filled_database(database_light):
     session = DbSession.factory()
     result = session.query(Show).count()
     session.commit()
-    # THEN more than 25 items should be retrieved
-    assert result > 25
+    # THEN more than 10 items should be retrieved
+    assert result > 10
 
 
 @pytest.fixture()

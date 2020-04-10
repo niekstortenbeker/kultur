@@ -5,6 +5,11 @@ import sqlalchemy.orm
 from data.modelbase import SqlAlchemyBase
 
 
+# custom exception
+class UninitializedDatabaseError(Exception):
+    """a database connection through DbSession.global_init() is required"""
+
+
 class DbSession:
     factory = None
     engine = None
@@ -14,8 +19,8 @@ class DbSession:
         if DbSession.factory:
             return
 
-        if not db_file or not db_file.strip():
-            raise Exception("You must specify a data file")
+        if not db_file or not db_file.strip() or not isinstance(db_file, str):
+            raise ValueError("You must specify a data file as str")
 
         conn_str = "sqlite:///" + db_file
         # print("Connecting to DB at: {}".format(conn_str))

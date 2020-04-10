@@ -1,7 +1,7 @@
 from typing import List
 
 import arrow
-from data.dbsession import DbSession
+from data.dbsession import DbSession, UninitializedDatabaseError
 from data.show import Show
 
 
@@ -14,6 +14,9 @@ def get_program_week() -> List[Show]:
 
 
 def get_program_range(number_of_days: int) -> List[Show]:
+    print(DbSession.factory)
+    if not DbSession.factory:
+        raise UninitializedDatabaseError
     session = DbSession.factory()
     start = arrow.now("Europe/Berlin")
     stop = start.shift(days=+number_of_days).replace(

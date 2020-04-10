@@ -1,6 +1,6 @@
 import arrow
 import pytest
-from data.dbsession import DbSession
+from data.dbsession import DbSession, UninitializedDatabaseError
 from data.show import Show
 from tests import fake_data
 from update.data import all_theaters, replace_records
@@ -45,17 +45,23 @@ def test_one_theater(database_light, theater_bremen):
 
 
 # noinspection PyTypeChecker
-def test_raises_str():
+def test_raises_str(database_empty):
     """replace_records() only accepts TheaterBase or list of TheaterBase"""
     with pytest.raises(TypeError):
         replace_records("these are not theaters")
 
 
 # noinspection PyTypeChecker
-def test_raises_str_list():
+def test_raises_str_list(database_empty):
     """replace_records() only accepts TheaterBase or list of TheaterBase"""
     with pytest.raises(TypeError):
         replace_records(["these are not theaters"])
+
+
+def test_raises_db(theater_bremen):
+    """replace_records() should only work with initialized database"""
+    with pytest.raises(UninitializedDatabaseError):
+        replace_records(theater_bremen)
 
 
 @pytest.fixture()

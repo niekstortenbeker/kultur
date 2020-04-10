@@ -1,6 +1,6 @@
 from typing import List, Union
 
-from data.dbsession import DbSession
+from data.dbsession import DbSession, UninitializedDatabaseError
 from data.show import Show
 from update.services import webdriver
 from update.theaters.cinemaostertor import CinemaOstertor
@@ -27,6 +27,9 @@ all_theaters = [
 
 def update_program_all_theaters() -> List[TheaterBase]:
     """scrape program from the web, only return successfully updated theaters"""
+    if not DbSession.factory:
+        raise UninitializedDatabaseError
+
     updated_theaters = []
     webdriver.start_driver()
     for theater in all_theaters:
@@ -44,6 +47,8 @@ def update_program_all_theaters() -> List[TheaterBase]:
 
 def replace_records(theaters: Union[List[TheaterBase], TheaterBase]) -> int:
     """returns count of added records"""
+    if not DbSession.factory:
+        raise UninitializedDatabaseError
     if isinstance(theaters, TheaterBase):
         theaters = [theaters]
     elif not isinstance(theaters, List):

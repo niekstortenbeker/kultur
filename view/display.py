@@ -2,7 +2,7 @@ from typing import List
 
 import arrow
 import emoji
-from colorama import Back, Fore, Style, init  # noqa: E402
+from colorama import Back, Fore, Style, init
 from data.show import Show
 
 init()
