@@ -27,9 +27,6 @@ all_theaters = [
 
 def update_program_all_theaters() -> List[TheaterBase]:
     """scrape program from the web, only return successfully updated theaters"""
-    if not DbSession.factory:
-        raise UninitializedDatabaseError
-
     updated_theaters = []
     webdriver.start_driver()
     for theater in all_theaters:
