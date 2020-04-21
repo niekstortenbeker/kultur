@@ -148,7 +148,7 @@ def program(location) -> List[Show]:
 
 
 def light_program(location) -> List[Show]:
-    """return can be used as a program from TheaterBase.program"""
+    """returns a list which can be used as TheaterBase.program"""
     if isinstance(location, TheaterBase):
         location = location.name
     elif type(location) != str:
@@ -157,7 +157,8 @@ def light_program(location) -> List[Show]:
     return [show(location) for _ in range(2)]
 
 
-def meta_info():
+def meta_info() -> dict:
+    """returns a dict that can be used as TheaterBase._meta_info"""
     meta_info_dict = {}
     for idx in range(0, 10):
         title = fake_data_container["title"][idx]
