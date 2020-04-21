@@ -3,6 +3,7 @@ from typing import List, Union
 
 import arrow
 from data.show import Show
+from update.services.metainfo import MetaInfo
 from update.theaters.theaterbase import TheaterBase
 
 Arrow = arrow.arrow.Arrow
@@ -154,3 +155,17 @@ def light_program(location) -> List[Show]:
         TypeError("only TheaterBase or str accepted")
 
     return [show(location) for _ in range(2)]
+
+
+def meta_info():
+    meta_info_dict = {}
+    for idx in range(0, 10):
+        title = fake_data_container["title"][idx]
+        meta_info_dict[title] = MetaInfo(
+            title=title,
+            title_original=title,
+            description=get("description"),
+            country="USA",
+            url_info=get("url_info"),
+        )
+    return meta_info_dict

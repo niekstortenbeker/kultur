@@ -1,8 +1,7 @@
 from dataclasses import dataclass
 
 
-# maybe use frozen=True
-@dataclass()
+@dataclass(frozen=True)
 class MetaInfo:
     title: str = None
     title_original: str = None

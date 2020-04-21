@@ -9,8 +9,7 @@ from update.data import all_theaters
 shows = List[Show]
 
 
-# @pytest.fixture(scope='session')
-@pytest.fixture()
+@pytest.fixture(scope="session")
 def database_empty_dir(tmpdir_factory):
     """initialize and close empty database, return directory"""
     tmpdir = tmpdir_factory.mktemp("temp")
