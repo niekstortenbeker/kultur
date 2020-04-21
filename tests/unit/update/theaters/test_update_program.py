@@ -1,11 +1,6 @@
 import pytest
 from tests import fake_data
-from update.theaters.cinemaostertor import CinemaOstertor
-from update.theaters.city46 import City46
-from update.theaters.filmkunst import Atlantis, Gondel, Schauburg
-from update.theaters.glocke import Glocke
-from update.theaters.kukoon import Kukoon
-from update.theaters.schwankhalle import Schwankhalle
+from update.theaters.all import all_theaters_not_initialized
 
 program = fake_data.program("some theater")
 meta_info = fake_data.meta_info()
@@ -19,10 +14,7 @@ def stub_update_meta_info(self):
     self.meta_info = meta_info
 
 
-@pytest.mark.parametrize(
-    "theater",
-    [CinemaOstertor, City46, Atlantis, Schauburg, Gondel, Glocke, Kukoon, Schwankhalle],
-)
+@pytest.mark.parametrize("theater", all_theaters_not_initialized)
 def test_program_is_updated(mocker, theater):
     mocker.patch.object(theater, "_scrape_program", new=stub_scrape_program)
     mocker.patch.object(theater, "_update_meta_info", new=stub_update_meta_info)
@@ -31,10 +23,7 @@ def test_program_is_updated(mocker, theater):
     assert len(result.program) > 1
 
 
-@pytest.mark.parametrize(
-    "theater",
-    [CinemaOstertor, City46, Atlantis, Schauburg, Gondel, Glocke, Kukoon, Schwankhalle],
-)
+@pytest.mark.parametrize("theater", all_theaters_not_initialized)
 def test_scrape_program_called(mocker, theater):
     mocker.patch.object(theater, "_scrape_program")
     mocker.patch.object(theater, "_update_meta_info")
@@ -44,10 +33,7 @@ def test_scrape_program_called(mocker, theater):
     theater._scrape_program.assert_called_once_with()
 
 
-@pytest.mark.parametrize(
-    "theater",
-    [CinemaOstertor, City46, Atlantis, Schauburg, Gondel, Glocke, Kukoon, Schwankhalle],
-)
+@pytest.mark.parametrize("theater", all_theaters_not_initialized)
 def test_update_meta_info_called(mocker, theater):
     mocker.patch.object(theater, "_scrape_program")
     mocker.patch.object(theater, "_update_meta_info")
