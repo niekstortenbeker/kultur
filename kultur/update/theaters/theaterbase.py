@@ -1,5 +1,5 @@
 import emoji
-from update.services import webdriver
+from kultur.update.services import webdriver
 
 
 class TheaterBase:

@@ -1,4 +1,4 @@
-from update import data
+from kultur.update import data
 
 
 def update_program():

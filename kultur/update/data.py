@@ -1,10 +1,10 @@
 from typing import List, Union
 
-from data.dbsession import DbSession, UninitializedDatabaseError
-from data.show import Show
-from update.services import webdriver
-from update.theaters.all import all_theaters
-from update.theaters.theaterbase import TheaterBase
+from kultur.data.dbsession import DbSession, UninitializedDatabaseError
+from kultur.data.show import Show
+from kultur.update.services import webdriver
+from kultur.update.theaters.all import all_theaters
+from kultur.update.theaters.theaterbase import TheaterBase
 
 
 def update_program_all_theaters() -> List[TheaterBase]:

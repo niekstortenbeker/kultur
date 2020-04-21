@@ -1,7 +1,7 @@
 import re
 
-from data.show import Show
-from update.services.metainfo import MetaInfo
+from kultur.data.show import Show
+from kultur.update.services.metainfo import MetaInfo
 
 
 def is_dubbed(show: Show, meta_info: MetaInfo) -> bool:

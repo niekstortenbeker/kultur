@@ -1,9 +1,8 @@
 """
 command line interface for Kultur
 """
-from commands import data, update, view
-
 import click
+from kultur.commands import data, update, view
 
 
 @click.command()

@@ -1,7 +1,7 @@
 import arrow
 import pytest
-from data.dbsession import DbSession
-from data.show import Show
+from kultur.data.dbsession import DbSession
+from kultur.data.show import Show
 
 
 def test_add_minimal_show_empty_database(database_empty, minimal_show):

@@ -1,6 +1,6 @@
 import pytest
-from data.dbsession import DbSession, UninitializedDatabaseError
-from view import data
+from kultur.data.dbsession import UninitializedDatabaseError
+from kultur.view import data
 
 
 def test_get_program_today(database_full):

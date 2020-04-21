@@ -1,8 +1,8 @@
 from typing import List
 
 import arrow
-from data.dbsession import DbSession, UninitializedDatabaseError
-from data.show import Show
+from kultur.data.dbsession import DbSession, UninitializedDatabaseError
+from kultur.data.show import Show
 
 
 def get_program_today() -> List[Show]:

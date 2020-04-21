@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 
-from data.dbsession import DbSession
+from kultur.data.dbsession import DbSession
 
 
 def init_database():

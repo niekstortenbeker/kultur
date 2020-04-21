@@ -1,8 +1,8 @@
 import arrow
 import bs4
-from data.show import Show
-from update.services import parsing, webdriver
-from update.theaters.theaterbase import TheaterBase
+from kultur.data.show import Show
+from kultur.update.services import parsing, webdriver
+from kultur.update.theaters.theaterbase import TheaterBase
 
 
 class City46(TheaterBase):

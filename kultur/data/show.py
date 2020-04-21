@@ -1,6 +1,6 @@
 import arrow
 import sqlalchemy as sa
-from data.modelbase import SqlAlchemyBase
+from kultur.data.modelbase import SqlAlchemyBase
 from sqlalchemy_utils import ArrowType
 
 

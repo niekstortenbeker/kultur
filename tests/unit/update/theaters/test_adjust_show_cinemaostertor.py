@@ -1,8 +1,8 @@
 import arrow
 import pytest
-from data.show import Show
-from update.services.metainfo import MetaInfo
-from update.theaters.cinemaostertor import CinemaOstertor
+from kultur.data.show import Show
+from kultur.update.services.metainfo import MetaInfo
+from kultur.update.theaters.cinemaostertor import CinemaOstertor
 
 
 def test_omu_is_not_dubbed(omu_show, omu_meta_info):

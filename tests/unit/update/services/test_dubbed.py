@@ -1,7 +1,7 @@
 import pytest
-from data.show import Show
-from update.services import dubbed
-from update.services.metainfo import MetaInfo
+from kultur.data.show import Show
+from kultur.update.services import dubbed
+from kultur.update.services.metainfo import MetaInfo
 
 
 def test_has_language_version():

@@ -1,10 +1,10 @@
 from typing import Callable, List
 
 import pytest
-from data.dbsession import DbSession
-from data.show import Show
+from kultur.data.dbsession import DbSession
+from kultur.data.show import Show
+from kultur.update.data import all_theaters
 from tests import fake_data
-from update.data import all_theaters
 
 shows = List[Show]
 

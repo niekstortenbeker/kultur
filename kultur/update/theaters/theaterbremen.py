@@ -1,9 +1,8 @@
 import arrow
 import bs4
-
-from data.show import Show
-from update.services import webdriver
-from update.theaters.theaterbase import TheaterBase
+from kultur.data.show import Show
+from kultur.update.services import webdriver
+from kultur.update.theaters.theaterbase import TheaterBase
 
 Tag = bs4.element.Tag
 Arrow = arrow.arrow.Arrow

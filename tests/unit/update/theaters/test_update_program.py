@@ -1,6 +1,6 @@
 import pytest
+from kultur.update.theaters.all import all_theaters_not_initialized
 from tests import fake_data
-from update.theaters.all import all_theaters_not_initialized
 
 program = fake_data.program("some theater")
 meta_info = fake_data.meta_info()

@@ -1,6 +1,6 @@
 import arrow
 import pytest
-from update.services import parsing
+from kultur.update.services import parsing
 
 
 @pytest.mark.parametrize("shift", [30, 9 * 30, -30, -2 * 28])

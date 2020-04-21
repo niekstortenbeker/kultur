@@ -1,4 +1,4 @@
-from view import data, display
+from kultur.view import data, display
 
 
 def print_today():

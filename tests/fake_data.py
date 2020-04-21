@@ -2,9 +2,9 @@ import random
 from typing import List, Union
 
 import arrow
-from data.show import Show
-from update.services.metainfo import MetaInfo
-from update.theaters.theaterbase import TheaterBase
+from kultur.data.show import Show
+from kultur.update.services.metainfo import MetaInfo
+from kultur.update.theaters.theaterbase import TheaterBase
 
 Arrow = arrow.arrow.Arrow
 
