@@ -14,7 +14,6 @@ def get_program_week() -> List[Show]:
 
 
 def get_program_range(number_of_days: int) -> List[Show]:
-    print(DbSession.factory)
     if not DbSession.factory:
         raise UninitializedDatabaseError
     session = DbSession.factory()
