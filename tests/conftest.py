@@ -4,9 +4,17 @@ import pytest
 from kultur.data.dbsession import DbSession
 from kultur.data.show import Show
 from kultur.update.data import all_theaters
+from kultur.update.services import webdriver
 from tests import fake_data
 
 shows = List[Show]
+
+
+@pytest.fixture(scope="session")
+def started_webdriver():
+    webdriver.start_driver()
+    yield
+    webdriver.close_driver()
 
 
 @pytest.fixture(scope="session")

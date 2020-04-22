@@ -14,7 +14,7 @@ Arrow = arrow.arrow.Arrow
 class Glocke(TheaterBase):
     def __init__(self):
         url = "https://www.glocke.de"
-        super().__init__("Glocke", url, url_program=f"{url}/de/veranstaltungssuche")
+        super().__init__("Glocke", url, url_program=f"{url}/de/Veranstaltungssuche")
 
     def _scrape_program(self):
         """

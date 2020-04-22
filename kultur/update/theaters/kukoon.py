@@ -26,7 +26,7 @@ class Kukoon(TheaterBase):
 
         html = webdriver.get_html(self.url_program)
         print(f"{self._html_msg}{self.url_program}")
-        self.shows = self._extract_show_list(html)
+        self.program = self._extract_show_list(html)
 
     def _extract_show_list(self, html):
         """
@@ -64,7 +64,7 @@ class Kukoon(TheaterBase):
 
             location_details = s.find(class_="event__venue").text.strip()
             if not location_details == self.name:
-                show["location_details"] = location_details
+                show.location_details = location_details
 
             show_list.append(show)
         return show_list

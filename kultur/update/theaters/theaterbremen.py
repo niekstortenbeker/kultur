@@ -29,7 +29,7 @@ class TheaterBremen(TheaterBase):
             html = webdriver.get_html_ajax(url, class_name="day")
             print(f"{self._html_msg}{url}")
             shows.extend(self._extract_show_list(html))
-        self.shows = shows
+        self.program = shows
 
     def _get_urls(self):
         """

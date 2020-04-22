@@ -24,7 +24,7 @@ class Schwankhalle(TheaterBase):
         # at some point requests starting giving SSLError so use selenium for ajax
         html = webdriver.get_html_ajax(self.url_program, "date-container")
         print(f"{self._html_msg}{self.url_program}")
-        self.shows = self._extract_show_list(html)
+        self.program = self._extract_show_list(html)
 
     def _extract_show_list(self, html):
         """

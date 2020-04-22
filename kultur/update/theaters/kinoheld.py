@@ -38,7 +38,7 @@ class Kinoheld(TheaterBase):
         url = self.url_program
         html = webdriver.get_html_ajax(url, "movie.u-px-2.u-py-2")
         print(f"{self._html_msg}{url}")
-        self.shows = self._extract_show_list(html)
+        self.program = self._extract_show_list(html)
 
     def _extract_show_list(self, html):
         """
@@ -66,7 +66,7 @@ class Kinoheld(TheaterBase):
             except AttributeError:
                 continue
 
-            show.language_version = _get_language_version(s, show["title"])
+            show.language_version = _get_language_version(s, show.title)
             show.url_tickets = "https://www.kinoheld.de/" + s.a.get("href")
             show.url_info = self.url
             show.location = self.name
