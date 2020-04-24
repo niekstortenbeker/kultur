@@ -31,9 +31,9 @@ def print_program(program: List[Show]):
 
 
 def _print_update_date(program):
-    most_recent_update = max(show.date_time for show in program)
+    most_recent_update = max(show.creation_date for show in program)
     print(
-        f"\nThis program uses data that was most recently updated {most_recent_update.humanize()}"
+        f"\nThe most recent update to this program was {most_recent_update.humanize()}"
     )
 
 
@@ -50,7 +50,7 @@ def _print_show(show: Show):
     print(f"{c1}{show.location}{stop} | ", end="")
     print(f"{c2}{show.title}{stop} | ", end="")
     print(f"{show.url_info} |", end="")
-    print(f"{show.description}", end="")
+    print(f"{show.description}\n", end="")
 
 
 def _get_styles(location: str):
