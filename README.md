@@ -13,8 +13,3 @@ Display only today:
 `scripts/run.py -t`
 
 
-#### requirements:
-* python 3.8
-* packages listed in requirements.txt
-
-

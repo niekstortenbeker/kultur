@@ -18,7 +18,7 @@ def main(new, display_today):
     It filters out dubbed movies (because who likes those?), and then
     combines the programs to one sorted-by-date overview.
     """
-
+    data.init_database()
     run(new, display_today)
 
 
@@ -45,8 +45,3 @@ def print_program(display_today: bool):
         view.print_today()
     else:
         view.print_week()
-
-
-if __name__ == "__main__":
-    data.init_database()
-    main()
