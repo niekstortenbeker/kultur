@@ -44,6 +44,6 @@ def test_get_program_week_days(database_full):
 
 
 def test_get_program_range_raises():
-    """get_program_rage() only works with a database connection"""
+    """get_program_today() only works with a database connection"""
     with pytest.raises(UninitializedDatabaseError):
-        data.get_program_range(7)
+        data.get_program_today()

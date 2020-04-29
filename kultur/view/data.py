@@ -1,36 +1,26 @@
-from typing import List
+from typing import List, Tuple
 
 import arrow
-from kultur.data.dbsession import DbSession, UninitializedDatabaseError
+from arrow import Arrow
 from kultur.data.show import Show
+from kultur.data.showsgetter import ShowsGetter
 
 
 def get_program_today() -> List[Show]:
-    return get_program_range(1)
+    start, stop = start_and_stop_times(1)
+    sg = ShowsGetter(start, stop)
+    return sg.get()
 
 
 def get_program_week() -> List[Show]:
-    return get_program_range(7)
+    start, stop = start_and_stop_times(7)
+    sg = ShowsGetter(start, stop)
+    return sg.get()
 
 
-def get_program_range(number_of_days: int) -> List[Show]:
-    if not DbSession.factory:
-        raise UninitializedDatabaseError
-    session = DbSession.factory()
+def start_and_stop_times(number_of_days: int) -> Tuple[Arrow, Arrow]:
     start = arrow.now("Europe/Berlin")
     stop = start.shift(days=+number_of_days).replace(
-        hour=0, minute=0, second=0, microsecond=0, tzinfo="Europe/Berlin"
+        hour=0, minute=0, second=0, microsecond=0
     )
-    results = query_program_range(session, start, stop)
-    return results
-
-
-def query_program_range(session, start, end) -> List[Show]:
-    results = (
-        session.query(Show)
-        .filter_by(dubbed=False)
-        .filter(Show.date_time.between(start, end))
-        .order_by(Show.date_time)
-        .all()
-    )
-    return results
+    return start, stop
