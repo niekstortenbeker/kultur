@@ -1,6 +1,7 @@
 import arrow
 import sqlalchemy as sa
 from kultur.data.modelbase import SqlAlchemyBase
+from sqlalchemy.orm import validates
 from sqlalchemy_utils import ArrowType
 
 
@@ -11,7 +12,6 @@ class Show(SqlAlchemyBase):
     date_time = sa.Column(ArrowType, index=True)
     title = sa.Column(sa.String, index=True)
     location = sa.Column(sa.String, index=True)
-    # category = 'cinema', 'music' or 'stage'
     category = sa.Column(sa.String, index=True)
     creation_date = sa.Column(ArrowType, default=arrow.utcnow)
     description = sa.Column(sa.String, nullable=True)
@@ -19,6 +19,14 @@ class Show(SqlAlchemyBase):
     dubbed = sa.Column(sa.Boolean, nullable=True, default=False, index=True)
     url_info = sa.Column(sa.String, nullable=True)
     url_tickets = sa.Column(sa.String, nullable=True)
+
+    @validates("category")
+    def validate_category(self, key, value):
+        if value not in ["cinema", "music", "stage"]:
+            raise ValueError(
+                "only 'cinema', 'stage' and 'music' are accepted categories"
+            )
+        return value
 
     def __repr__(self):
         return f"Show({self.location}, {self.title})"

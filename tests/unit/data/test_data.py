@@ -24,6 +24,14 @@ def test_add_full_show_empty_database(database_empty, full_show):
     assert full_show.id == 1
 
 
+def test_false_category_raises(full_show):
+    # GIVEN a Show object
+    # WHEN Show.category is set to a false string
+    # THEN a ValueError should be raised
+    with pytest.raises(ValueError):
+        full_show.category = "tree"
+
+
 def test_query_all_empty_database(database_empty):
     # GIVEN an initialized empty database
     # WHEN everything is queried
@@ -46,7 +54,7 @@ def test_add_show_filled_database(database_light, full_show):
 
 def test_query_all_filled_database(database_light):
     # GIVEN an initialized and filled database
-    # When everything is queried
+    # WHEN everything is queried
     session = DbSession.factory()
     result = session.query(Show).count()
     session.commit()
