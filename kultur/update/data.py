@@ -27,7 +27,7 @@ def update_program_all_theaters() -> List[TheaterBase]:
 def replace_records(theaters: Union[List[TheaterBase], TheaterBase]) -> int:
     """returns count of added records"""
     if not DbSession.factory:
-        raise UninitializedDatabaseError
+        raise UninitializedDatabaseError("Please call init_database() first")
     if isinstance(theaters, TheaterBase):
         theaters = [theaters]
     elif not isinstance(theaters, List):

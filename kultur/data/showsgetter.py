@@ -26,7 +26,7 @@ class ShowsGetter:
         if type(dubbed) is not bool:
             raise TypeError("only bool accepted")
         if not DbSession.factory:
-            raise UninitializedDatabaseError
+            raise UninitializedDatabaseError("Please call init_database() first")
 
         self.start: Arrow = start
         self.stop: Arrow = stop
