@@ -3,6 +3,7 @@
 
 # testing
 .pytest_cache
+time_database.py
 
 # database and logging
 geckodriver.log
