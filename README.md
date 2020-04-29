@@ -3,7 +3,7 @@
 This command line tool collects the program of theaters I like in bremen. It filters out dubbed movies (because who likes those?), and then combines the programs to one sorted-by-date overview. 
 
 
-###Installation
+### Installation
 If you don't have a distribution, create this first. Download the source code, and go to the project directory. Then run:   
 `$ python setup.py sdist`
   
@@ -11,7 +11,7 @@ Then pip install the distribution:
 `$ pip install dist/kultur--_version_.tar.gz`
 
 ### Usage 
-####cli
+#### cli
 Display this week's program that was stored on disk:    
 `$ kultur`  
   
