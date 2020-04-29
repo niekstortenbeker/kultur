@@ -16,7 +16,7 @@ class Show(SqlAlchemyBase):
     creation_date = sa.Column(ArrowType, default=arrow.utcnow)
     description = sa.Column(sa.String, nullable=True)
     language_version = sa.Column(sa.String, nullable=True)
-    dubbed = sa.Column(sa.Boolean, nullable=True, default=False)
+    dubbed = sa.Column(sa.Boolean, nullable=True, default=False, index=True)
     url_info = sa.Column(sa.String, nullable=True)
     url_tickets = sa.Column(sa.String, nullable=True)
 
