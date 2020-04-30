@@ -1,12 +1,14 @@
 import random
-from typing import List, Union
+from typing import Callable, List, Union
 
 import arrow
 from kultur.data.show import Show
 from kultur.update.services.metainfo import MetaInfo
+from kultur.update.theaters.all import all_theaters
 from kultur.update.theaters.theaterbase import TheaterBase
 
 Arrow = arrow.arrow.Arrow
+shows = List[Show]
 
 fake_data_container = {
     "title": [
@@ -132,7 +134,7 @@ def show(location):
         description=get_value_or_empty("description"),
         language_version=get_value_or_empty("language_version"),
         dubbed=get_value_or_none("dubbed"),
-        url_info=get_value_or_empty("url_info"),
+        url_info=get("url_info"),
         url_tickets=get_value_or_empty("url_tickets"),
     )
 
@@ -170,3 +172,12 @@ def meta_info() -> dict:
             url_info=get("url_info"),
         )
     return meta_info_dict
+
+
+def complete_program(theater_program: Callable[[str], shows]) -> shows:
+    """a complete program from all theaters that can be saved to the db"""
+    theaters = all_theaters.copy()
+    c_program = []
+    for theater in theaters:
+        c_program.extend(theater_program(theater.name))
+    return c_program

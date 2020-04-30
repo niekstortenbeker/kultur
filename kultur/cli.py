@@ -13,13 +13,25 @@ from kultur.commands import data, update, view
     help="Scrape websites to make a new database. (Otherwise start from old database)",
 )
 @click.option("-t", "--display_today", is_flag=True, help="display only today")
-def main(new, display_today):
+@click.option(
+    "-f", "--fake_data", is_flag=True, help="populate database with fake data"
+)
+def main(new, display_today, fake_data):
     """Collect the program of theaters I like in bremen.
     It filters out dubbed movies (because who likes those?), and then
     combines the programs to one sorted-by-date overview.
     """
     data.init_database()
-    run(new, display_today)
+    if fake_data:
+        fake_data_to_database()
+    else:
+        run(new, display_today)
+
+
+def fake_data_to_database():
+    data.fake_data()
+    print("populated the database with fake data!")
+    print("run kultur -n to repopulate with real data")
 
 
 def run(new: bool, display_today: bool):

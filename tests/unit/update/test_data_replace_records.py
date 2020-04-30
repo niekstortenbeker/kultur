@@ -1,10 +1,10 @@
 import arrow
 import pytest
+from kultur.data import fake_data
 from kultur.data.dbsession import DbSession, UninitializedDatabaseError
 from kultur.data.show import Show
 from kultur.update.data import all_theaters, replace_records
 from kultur.update.theaters.theaterbremen import TheaterBremen
-from tests import fake_data
 
 
 def test_all(database_light, theaters):

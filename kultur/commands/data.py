@@ -4,6 +4,8 @@ from typing import List
 
 from arrow import Arrow
 from kultur.data.dbsession import DbSession
+from kultur.data.fake_data import complete_program
+from kultur.data.fake_data import program as fake_program
 from kultur.data.show import Show
 from kultur.data.showsgetter import ShowsGetter
 
@@ -46,3 +48,11 @@ def get_shows(start: Arrow, stop: Arrow, category: str, dubbed: bool) -> List[Sh
     """
     shows = ShowsGetter(start, stop, category, dubbed)
     return shows.get()
+
+
+def fake_data():
+    """populate database with fake data"""
+    session = DbSession.factory()
+    program = complete_program(fake_program)
+    session.add_all(program)
+    session.commit()

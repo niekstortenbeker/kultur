@@ -26,7 +26,8 @@ setup(
     description="Collect programs from a selection of theaters in Bremen",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    packages=find_packages(exclude=("tests",)),
+    # packages=find_packages(exclude=("tests",)),
+    packages=find_packages(),  # for "kultur -f" I need tests also
     include_package_data=True,
     install_requires=[
         "emoji",

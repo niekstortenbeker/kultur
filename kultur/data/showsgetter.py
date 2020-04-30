@@ -19,14 +19,15 @@ class ShowsGetter:
     ):
         valid_categories = ["all", "cinema", "music", "stage"]
         if type(start) is not Arrow:
-            raise TypeError(f"'{start}' is not an Arrow object")
+            raise TypeError(f"Only Arrow objects accepted")
         if type(stop) is not Arrow:
-            raise TypeError(f"'{stop}' is not an Arrow object")
+            raise TypeError(f"Only Arrow objects accepted")
+        if type(category) != str:
+            raise TypeError("only str accepted")
         if category not in valid_categories:
-            m = f"'{category}' is not a valid category. categories: {valid_categories}"
-            raise ValueError(m)
+            raise ValueError(f"'Only categories accepted: {valid_categories}")
         if type(dubbed) is not bool:
-            raise TypeError(f"'{dubbed}' is not a bool")
+            raise TypeError("Only bool accepted")
         if not DbSession.factory:
             raise UninitializedDatabaseError("Please call init_database() first")
 

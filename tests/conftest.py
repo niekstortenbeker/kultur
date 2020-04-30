@@ -1,13 +1,9 @@
-from typing import Callable, List
-
 import pytest
+from kultur.data import fake_data
 from kultur.data.dbsession import DbSession
+from kultur.data.fake_data import complete_program
 from kultur.data.show import Show
-from kultur.update.data import all_theaters
 from kultur.update.services import webdriver
-from tests import fake_data
-
-shows = List[Show]
 
 
 @pytest.fixture(scope="session")
@@ -69,12 +65,3 @@ def database_full_dir(tmpdir_factory):
     session.commit()
     DbSession.close()
     return database_dir
-
-
-def complete_program(theater_program: Callable[[str], shows]) -> shows:
-    """theater_program is function from view.test_data.py (light or full)"""
-    theaters = all_theaters.copy()
-    program = []
-    for theater in theaters:
-        program.extend(theater_program(theater.name))
-    return program
