@@ -11,7 +11,7 @@ def read_version():
     with open(filename, mode="r", encoding="utf-8") as fin:
         for line in fin:
             if line and line.strip() and line.startswith("__version__"):
-                return line.split("=")[1].strip().strip("'")
+                return line.split("=")[1].strip().strip('"')
 
     return "0.0.0.0"
 
