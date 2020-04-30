@@ -17,14 +17,16 @@ class ShowsGetter:
     def __init__(
         self, start: Arrow, stop: Arrow, category: str = "all", dubbed: bool = False
     ):
+        valid_categories = ["all", "cinema", "music", "stage"]
         if type(start) is not Arrow:
-            raise TypeError("only Arrow accepted")
+            raise TypeError(f"'{start}' is not an Arrow object")
         if type(stop) is not Arrow:
-            raise TypeError("only Arrow accepted")
-        if category not in ["all", "cinema", "music", "stage"]:
-            raise ValueError("not a valid category")
+            raise TypeError(f"'{stop}' is not an Arrow object")
+        if category not in valid_categories:
+            m = f"'{category}' is not a valid category. categories: {valid_categories}"
+            raise ValueError(m)
         if type(dubbed) is not bool:
-            raise TypeError("only bool accepted")
+            raise TypeError(f"'{dubbed}' is not a bool")
         if not DbSession.factory:
             raise UninitializedDatabaseError("Please call init_database() first")
 
