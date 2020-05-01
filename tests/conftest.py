@@ -1,3 +1,4 @@
+import arrow
 import pytest
 from kultur.data import fake_data
 from kultur.data.dbsession import DbSession
@@ -65,3 +66,25 @@ def database_full_dir(tmpdir_factory):
     session.commit()
     DbSession.close()
     return database_dir
+
+
+@pytest.fixture()
+def full_show():
+    return Show(
+        date_time=arrow.now(),
+        title="bla",
+        location="theater",
+        category="cinema",
+        description="wow nice one",
+        language_version="OmU",
+        dubbed=False,
+        url_info="www.theater.com",
+        url_tickets="www.buyme.com",
+    )
+
+
+@pytest.fixture()
+def minimal_show():
+    return Show(
+        date_time=arrow.now(), title="bla", location="theater", category="music",
+    )

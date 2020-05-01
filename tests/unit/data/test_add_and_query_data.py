@@ -1,5 +1,3 @@
-import arrow
-import pytest
 from kultur.data.dbsession import DbSession
 from kultur.data.show import Show
 
@@ -22,14 +20,6 @@ def test_add_full_show_empty_database(database_empty, full_show):
     session.commit()
     # THEN show.id should be 1
     assert full_show.id == 1
-
-
-def test_false_category_raises(full_show):
-    # GIVEN a Show object
-    # WHEN Show.category is set to a false string
-    # THEN a ValueError should be raised
-    with pytest.raises(ValueError):
-        full_show.category = "tree"
 
 
 def test_query_all_empty_database(database_empty):
@@ -60,25 +50,3 @@ def test_query_all_filled_database(database_light):
     session.commit()
     # THEN more than 10 items should be retrieved
     assert result > 10
-
-
-@pytest.fixture()
-def full_show():
-    return Show(
-        date_time=arrow.now(),
-        title="bla",
-        location="theater",
-        category="cinema",
-        description="wow nice one",
-        language_version="OmU",
-        dubbed=False,
-        url_info="www.theater.com",
-        url_tickets="www.buyme.com",
-    )
-
-
-@pytest.fixture()
-def minimal_show():
-    return Show(
-        date_time=arrow.now(), title="bla", location="theater", category="music",
-    )
