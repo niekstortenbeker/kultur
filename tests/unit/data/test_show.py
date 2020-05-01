@@ -15,6 +15,18 @@ def test_default_time_returns_correct_format(database_empty, minimal_show):
     assert minimal_show.time == "20:30"
 
 
+def test_default_day_returns_correct_format(database_empty, minimal_show):
+    # GIVEN a Show object with known date an initialized database
+    date = arrow.get("2020-02-02")
+    minimal_show.date_time = date
+    # WHEN the show is added to the database
+    session = DbSession.factory()
+    session.add(minimal_show)
+    session.commit()
+    # THEN minimal_show.day should return the right format
+    assert minimal_show.day == "Sonntag 2.2."
+
+
 def test_false_category_raises(full_show):
     # GIVEN a Show object
     # WHEN Show.category is set to a false string

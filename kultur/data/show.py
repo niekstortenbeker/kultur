@@ -9,6 +9,12 @@ def default_time(context):
     return context.get_current_parameters()["date_time"].format("HH:mm")
 
 
+def default_day(context):
+    return context.get_current_parameters()["date_time"].format(
+        "dddd D.M.", locale="de"
+    )
+
+
 class Show(SqlAlchemyBase):
     __tablename__ = "shows"
 
@@ -16,6 +22,7 @@ class Show(SqlAlchemyBase):
 
     date_time = sa.Column(ArrowType, index=True)
     time = sa.Column(sa.String, default=default_time)
+    day = sa.Column(sa.String, default=default_day)
     creation_date = sa.Column(ArrowType, default=arrow.utcnow)
 
     title = sa.Column(sa.String, index=True)
