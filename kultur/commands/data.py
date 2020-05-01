@@ -17,7 +17,7 @@ def init_database():
     An initialized database is required for all the other functions.
     The database only needs to be initialized once.
     """
-    database = Path(__file__).parent.parent / "database" / "kultur.sqlite"
+    database = Path.home() / ".kultur" / "kultur.sqlite"
     if not database.parent.exists():
         os.mkdir(database.parent)
     DbSession.global_init(str(database.resolve()))

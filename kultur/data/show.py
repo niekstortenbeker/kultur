@@ -41,7 +41,7 @@ class Show(SqlAlchemyBase):
         if value:
             return value.strip().replace("\n", "")
         else:
-            return value
+            return ""
 
     def __repr__(self):
         return f"Show({self.location}, {self.title})"

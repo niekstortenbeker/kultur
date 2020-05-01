@@ -50,7 +50,7 @@ def _print_show(show: Show):
     print(f"{c1}{show.location}{stop} | ", end="")
     print(f"{c2}{show.title}{stop} | ", end="")
     print(f"{show.url_info} |", end="")
-    print(f"{show.description}\n", end="")
+    print(f"{show.description[0:75]}\n", end="")
 
 
 def _get_styles(location: str):

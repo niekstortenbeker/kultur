@@ -38,3 +38,14 @@ So lässt er die Leser an seiner \nErkenntnis teilhaben, dass Bäume dazu in der
     # THEN it should automatically format nicely
     expectation = "Im Mai 2015 veröffentlichte Peter Wohlleben sein Buch „Das geheime Leben der Bäume“ und stürmte damit sofort die Bestsellerlisten.\xa0Wie schafft es ein Buch über Bäume, die Menschen so in den Bann zu ziehen? Vielleicht deswegen, weil es dem Förster aus der Ortschaft Wershofen gelingt, anschaulich wie kein anderer über den deutschen Wald zu schreiben. So lässt er die Leser an seiner Erkenntnis teilhaben, dass Bäume dazu in der Lage sind, miteinander zu kommunizieren. Weiterhin gibt er Waldführungen und hält Lesungen, sodass er den Menschen die außergewöhnlichen Lebewesen näher bringt und seine Leserschar immer weiter anwächst. Seine Leidenschaft hat er zum Beruf gemacht: Angefangen als Beamter in der Landesforstverwaltung Rheinland-Pfalz sprengte er sich bald von den Ketten der Verwaltung frei, stellte zusammen mit der Gemeinde Wershofen einen uralten Buchenwald unter Schutz und gründete eine Waldakademie. Seither reist er durch die Welt, besucht in Schweden den ältesten Baum des Planeten und unterstützt die Demonstranten im Hambacher Forst. Dabei gilt er vielen als Vorbild, denn Peter Wohlleben ist eins bewusst: Wenn es den Bäumen gut geht, werden auch die Menschen überleben."
     assert minimal_show.description == expectation
+
+
+def test_description_validation_none(database_empty, minimal_show):
+    # GIVEN a show object
+    # WHEN None is added as description
+    minimal_show.description = None
+    session = DbSession.factory()
+    session.add(minimal_show)
+    session.commit()
+    # THEN it should still store a string
+    assert minimal_show.description == ""
