@@ -5,13 +5,19 @@ from sqlalchemy.orm import validates
 from sqlalchemy_utils import ArrowType
 
 
-def default_time(context):
-    return context.get_current_parameters()["date_time"].format("HH:mm")
+def default_time(context) -> str:
+    return (
+        context.get_current_parameters()["date_time"]
+        .to("Europe/Berlin")
+        .format("HH:mm")
+    )
 
 
-def default_day(context):
-    return context.get_current_parameters()["date_time"].format(
-        "dddd D.M.", locale="de"
+def default_day(context) -> str:
+    return (
+        context.get_current_parameters()["date_time"]
+        .to("Europe/Berlin")
+        .format("dddd D.M.", locale="de")
     )
 
 

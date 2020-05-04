@@ -19,6 +19,7 @@ def init_database():
     """
     database = Path.home() / ".kultur" / "kultur.sqlite"
     if not database.parent.exists():
+        # noinspection PyTypeChecker
         os.mkdir(database.parent)
     DbSession.global_init(str(database.resolve()))
 

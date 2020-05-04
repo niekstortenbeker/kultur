@@ -5,7 +5,7 @@ from kultur.data.dbsession import DbSession
 
 def test_default_time_returns_correct_format(database_empty, minimal_show):
     # GIVEN a Show object with known time and an initialized database
-    date = arrow.get("2020-02-02 20:30")
+    date = arrow.get("2020-02-02 20:30").replace(tzinfo="Europe/Berlin")
     minimal_show.date_time = date
     # WHEN the Show is added to the database
     session = DbSession.factory()
@@ -13,6 +13,19 @@ def test_default_time_returns_correct_format(database_empty, minimal_show):
     session.commit()
     # THEN minimal_show.time should return the right format
     assert minimal_show.time == "20:30"
+
+
+def test_default_time_returns_correct(database_empty, minimal_show):
+    # GIVEN a initialized database and a Show object with known date_time
+    minimal_show.date_time = arrow.get("2020-02-02T10:30:00").replace(
+        tzinfo="Europe/Berlin"
+    )
+    # WHEN added to database
+    session = DbSession.factory()
+    session.add(minimal_show)
+    session.commit()
+    # THEN Show.time should have the time according to Europe/Berlin timezone
+    assert minimal_show.time == "10:30"
 
 
 def test_default_day_returns_correct_format(database_empty, minimal_show):
@@ -25,6 +38,19 @@ def test_default_day_returns_correct_format(database_empty, minimal_show):
     session.commit()
     # THEN minimal_show.day should return the right format
     assert minimal_show.day == "Sonntag 2.2."
+
+
+def test_default_day_returns_correct(database_empty, minimal_show):
+    # GIVEN a initialized database and a Show object with known date_time
+    minimal_show.date_time = arrow.get("2020-05-05T00:00:00").replace(
+        tzinfo="Europe/Berlin"
+    )
+    # WHEN added to database
+    session = DbSession.factory()
+    session.add(minimal_show)
+    session.commit()
+    # THEN Show.time should have the day according to Europe/Berlin timezone
+    assert minimal_show.day == "Dienstag 5.5."
 
 
 def test_false_category_raises(full_show):

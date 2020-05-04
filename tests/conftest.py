@@ -71,7 +71,7 @@ def database_full_dir(tmpdir_factory):
 @pytest.fixture()
 def full_show():
     return Show(
-        date_time=arrow.now(),
+        date_time=arrow.now("Europe/Berlin"),
         title="bla",
         location="theater",
         category="cinema",
@@ -86,5 +86,8 @@ def full_show():
 @pytest.fixture()
 def minimal_show():
     return Show(
-        date_time=arrow.now(), title="bla", location="theater", category="music",
+        date_time=arrow.now("Europe/Berlin"),
+        title="bla",
+        location="theater",
+        category="music",
     )

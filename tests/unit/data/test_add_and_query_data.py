@@ -1,3 +1,4 @@
+import pytest
 from kultur.data.dbsession import DbSession
 from kultur.data.show import Show
 
@@ -20,6 +21,21 @@ def test_add_full_show_empty_database(database_empty, full_show):
     session.commit()
     # THEN show.id should be 1
     assert full_show.id == 1
+
+
+@pytest.mark.new
+def test_add_show_time_remains_consistent(database_empty, full_show):
+    # GIVEN an initialized empty database
+    # WHEN a Show is added to db and then queried
+    time = full_show.date_time
+    session = DbSession.factory()
+    session.add(full_show)
+    session.commit()
+    session = DbSession.factory()
+    result = session.query(Show).one()
+    session.commit()
+    # THEN the time shouldn't change
+    assert result.date_time == time
 
 
 def test_query_all_empty_database(database_empty):
