@@ -24,7 +24,9 @@ def init_database():
     DbSession.global_init(str(database.resolve()))
 
 
-def get_shows(start: Arrow, stop: Arrow, category: str, dubbed: bool) -> List[Show]:
+def get_shows(
+    start: Arrow, stop: Arrow, category: str, dubbed: bool, location: str = ""
+) -> List[Show]:
     """
     Query shows from database.
 
@@ -40,6 +42,8 @@ def get_shows(start: Arrow, stop: Arrow, category: str, dubbed: bool) -> List[Sh
         Should be "all", "cinema", "music" or "stage"
     dubbed: bool
         If True also return dubbed films, if False exclude dubbed films
+    location: str, optional
+        Either name of location or '' for all locations
 
     Returns
     -------
@@ -47,7 +51,7 @@ def get_shows(start: Arrow, stop: Arrow, category: str, dubbed: bool) -> List[Sh
         A list with show objects ordered by Show.date_time.
 
     """
-    shows = ShowsGetter(start, stop, category, dubbed)
+    shows = ShowsGetter(start, stop, category, dubbed, location)
     return shows.get()
 
 

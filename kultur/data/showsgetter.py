@@ -12,10 +12,16 @@ class ShowsGetter:
 
     Requires initialized DbSession.
     Category can be "all", "cinema", "music" or "stage".
+    When location is '' all locations are searched
     """
 
     def __init__(
-        self, start: Arrow, stop: Arrow, category: str = "all", dubbed: bool = False
+        self,
+        start: Arrow,
+        stop: Arrow,
+        category: str = "all",
+        dubbed: bool = False,
+        location: str = "",
     ):
         valid_categories = ["all", "cinema", "music", "stage"]
         if type(start) is not Arrow:
@@ -28,6 +34,8 @@ class ShowsGetter:
             raise ValueError(f"'Only categories accepted: {valid_categories}")
         if type(dubbed) is not bool:
             raise TypeError("Only bool accepted")
+        if type(location) is not str:
+            raise TypeError("only str accepted")
         if not DbSession.factory:
             raise UninitializedDatabaseError("Please call init_database() first")
 
@@ -35,6 +43,7 @@ class ShowsGetter:
         self.stop: Arrow = stop
         self.category: str = category
         self.dubbed: bool = dubbed
+        self.location = location
         self._session: Session = DbSession.factory()
 
     def get(self) -> List[Show]:
@@ -44,6 +53,8 @@ class ShowsGetter:
             shows = shows.filter_by(category=self.category)
         if not self.dubbed:
             shows = shows.filter_by(dubbed=self.dubbed)
+        if self.location:
+            shows = shows.filter_by(location=self.location)
         return (
             shows.filter(Show.date_time.between(self.start, self.stop))
             .order_by(Show.date_time)
