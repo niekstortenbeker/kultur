@@ -55,8 +55,9 @@ class ShowsGetter:
             shows = shows.filter_by(dubbed=self.dubbed)
         if self.location:
             shows = shows.filter_by(location=self.location)
-        return (
-            shows.filter(Show.date_time.between(self.start, self.stop))
+        shows = (
+            shows.filter(Show.date_time >= self.start)
+            .filter(Show.date_time < self.stop)
             .order_by(Show.date_time)
-            .all()
         )
+        return shows.all()
