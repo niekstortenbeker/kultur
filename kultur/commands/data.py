@@ -76,6 +76,7 @@ def get_location_names():
         possible Show.location_name_url names mapped to their
         Show.location attributes
     """
+    # note: use kultur.update.theaters.all for this dict
     return {
         "schauburg": "Schauburg",
         "gondel": "Gondel",
