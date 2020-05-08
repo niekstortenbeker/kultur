@@ -25,7 +25,7 @@ class DbSession:
         conn_str = "sqlite:///" + db_file
         # print("Connecting to DB at: {}".format(conn_str))
 
-        engine = sqlalchemy.create_engine(conn_str, echo=True)
+        engine = sqlalchemy.create_engine(conn_str, echo=False)
         DbSession.engine = engine
         DbSession.factory = sqlalchemy.orm.sessionmaker(bind=engine)
 
