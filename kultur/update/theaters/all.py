@@ -30,3 +30,8 @@ all_theaters_not_initialized = [
     Glocke,
     Kukoon,
 ]
+
+# Get dictionary that can be used for kultur.commands.data.get_location_names
+if __name__ == "__main__":
+    names = {s.name.replace(" ", "").lower(): s.name for s in all_theaters}
+    print(names)

@@ -3,6 +3,17 @@ import pytest
 from kultur.data.dbsession import DbSession
 
 
+def test_location_name_returns_correct_format(database_empty, minimal_show):
+    # GIVEN a Show object with known location and an initialized database
+    minimal_show.location = "Cinema Ostertor"
+    # WHEN the Show is added to the database
+    session = DbSession.factory()
+    session.add(minimal_show)
+    session.commit()
+    # THEN minimal_show.time should return the right format
+    assert minimal_show.location_name_url == "cinemaostertor"
+
+
 def test_default_time_returns_correct_format(database_empty, minimal_show):
     # GIVEN a Show object with known time and an initialized database
     date = arrow.get("2020-02-02 20:30").replace(tzinfo="Europe/Berlin")

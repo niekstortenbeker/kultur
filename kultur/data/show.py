@@ -22,6 +22,10 @@ def default_day(context) -> str:
     )
 
 
+def default_location_name_url(context) -> str:
+    return context.get_current_parameters()["location"].replace(" ", "").lower()
+
+
 class Show(SqlAlchemyBase):
     __tablename__ = "shows"
 
@@ -38,6 +42,7 @@ class Show(SqlAlchemyBase):
     url_tickets = sa.Column(sa.String, nullable=True)
 
     location = sa.Column(sa.String, index=True)
+    location_name_url = sa.Column(sa.String, default=default_location_name_url)
     category = sa.Column(sa.String, index=True)
     dubbed = sa.Column(sa.Boolean, nullable=True, default=False, index=True)
     language_version = sa.Column(sa.String, nullable=True)

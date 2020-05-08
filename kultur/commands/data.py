@@ -61,3 +61,29 @@ def fake_data():
     program = complete_program(fake_program)
     session.add_all(program)
     session.commit()
+
+
+def get_location_names():
+    """
+    Get all possible Show.location_name_url mapped to Show.location
+
+    This can be used to convert a location name from e.g. a request
+    to a name that can be used for querying the database with get_shows()
+
+    Returns
+    -------
+    dict[str: str]
+        possible Show.location_name_url names mapped to their
+        Show.location attributes
+    """
+    return {
+        "schauburg": "Schauburg",
+        "gondel": "Gondel",
+        "atlantis": "Atlantis",
+        "cinemaostertor": "Cinema Ostertor",
+        "city46": "City 46",
+        "theaterbremen": "Theater Bremen",
+        "schwankhalle": "Schwankhalle",
+        "glocke": "Glocke",
+        "kukoon": "Kukoon",
+    }
