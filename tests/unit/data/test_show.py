@@ -37,7 +37,7 @@ def test_default_day_returns_correct_format(database_empty, minimal_show):
     session.add(minimal_show)
     session.commit()
     # THEN minimal_show.day should return the right format
-    assert minimal_show.day == "Sonntag 2.2."
+    assert minimal_show.day == "SO 2.2."
 
 
 def test_default_day_returns_correct(database_empty, minimal_show):
@@ -50,7 +50,7 @@ def test_default_day_returns_correct(database_empty, minimal_show):
     session.add(minimal_show)
     session.commit()
     # THEN Show.time should have the day according to Europe/Berlin timezone
-    assert minimal_show.day == "Dienstag 5.5."
+    assert minimal_show.day == "DI 5.5."
 
 
 def test_false_category_raises(full_show):

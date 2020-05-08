@@ -17,7 +17,8 @@ def default_day(context) -> str:
     return (
         context.get_current_parameters()["date_time"]
         .to("Europe/Berlin")
-        .format("dddd D.M.", locale="de")
+        .format("ddd D.M.", locale="de")
+        .upper()
     )
 
 
