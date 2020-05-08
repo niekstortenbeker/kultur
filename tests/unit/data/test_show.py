@@ -3,6 +3,44 @@ import pytest
 from kultur.data.dbsession import DbSession
 
 
+def test_default_description_start_returns_correct_dot(database_empty, minimal_show):
+    # GIVEN a Show object with known description and an initialized database
+    minimal_show.description = "Als junger, vielversprechender Anwalt kann sich Bryan Stevenson (Michael B. Jordan) nach seinem Abschluss in Harvard aussuchen, wo er arbeitet. Sein Antrieb ist aber nicht etwa die Möglichkeit, viel Geld zu verdienen, sondern vor allem denen zu helfen, die seine Hilfe ganz besonders brauchen. Er geht nach Alabama, wo er sich an der Seite von Anwältin Eva Ansley (Brie Larson) für zu unrecht Verurteilte einzusetzen - und macht mit einem seiner ersten Fälle gleich Schlagzeilen: Denn Walter McMillian (Jamie Foxx) soll einen grausamen Mord begangen haben, für den er zum Tode verurteilt wurde. Und das obwohl ausreichend Beweise für seine Unschuld vorliegen. Belastet wird der angebliche Täter nur durch die Aussage eines Kriminellen, der auch noch guten Grund hat, zu lügen. Doch Bryan lässt nicht locker und nimmt sich in seinen ersten Berufsjahren zahlreichen Fällen mit geringen Erfolgschancen an, die ihn immer wieder mit offengelegtem Rassismus konfrontieren... (Quelle: Verleih)"  # noqa
+    # WHEN the Show is added to the database
+    session = DbSession.factory()
+    session.add(minimal_show)
+    session.commit()
+    # THEN minimal_show.description_start should return the right format
+    expectation = "Als junger, vielversprechender Anwalt kann sich Bryan Stevenson (Michael B. Jordan) nach seinem Abschluss in Harvard aussuchen, wo er arbeitet. Sein Antrieb ist aber nicht etwa die Möglichkeit, viel Geld zu verdienen, sondern vor allem denen zu helfen, die seine Hilfe ganz besonders brauchen."  # noqa
+    assert minimal_show.description_start == expectation
+
+
+def test_default_description_start_returns_correct_semicolon(
+    database_empty, minimal_show
+):
+    # GIVEN a Show object with known description and an initialized database
+    minimal_show.description = "Als junger, vielversprechender Anwalt kann sich Bryan Stevenson (Michael B. Jordan) nach seinem Abschluss in Harvard aussuchen, wo er arbeitet. Sein Antrieb ist aber nicht etwa die Möglichkeit, viel Geld zu verdienen; sondern vor allem denen zu helfen, die seine Hilfe ganz bes"  # noqa
+    # WHEN the Show is added to the database
+    session = DbSession.factory()
+    session.add(minimal_show)
+    session.commit()
+    # THEN minimal_show.description_start should return the right format
+    expectation = "Als junger, vielversprechender Anwalt kann sich Bryan Stevenson (Michael B. Jordan) nach seinem Abschluss in Harvard aussuchen, wo er arbeitet. Sein Antrieb ist aber nicht etwa die Möglichkeit, viel Geld zu verdienen;"  # noqa
+    assert minimal_show.description_start == expectation
+
+
+def test_default_description_start_returns_correct_comma(database_empty, minimal_show):
+    # GIVEN a Show object with known description and an initialized database
+    minimal_show.description = "Als junger, vielversprechender Anwalt kann sich Bryan Stevenson (Michael B. Jordan) nach seinem Abschluss in Harvard aussuchen, wo er arbeitet. Sein Antrieb ist aber nicht etwa die Möglichkeit, viel Geld zu verdienen, sondern vor allem denen zu helfen, die seine Hilfe ganz bes"  # noqa
+    # WHEN the Show is added to the database
+    session = DbSession.factory()
+    session.add(minimal_show)
+    session.commit()
+    # THEN minimal_show.description_start should return the right format
+    expectation = "Als junger, vielversprechender Anwalt kann sich Bryan Stevenson (Michael B. Jordan) nach seinem Abschluss in Harvard aussuchen, wo er arbeitet. Sein Antrieb ist aber nicht etwa die Möglichkeit, viel Geld zu verdienen, sondern vor allem denen zu helfen,"  # noqa
+    assert minimal_show.description_start == expectation
+
+
 def test_location_name_returns_correct_format(database_empty, minimal_show):
     # GIVEN a Show object with known location and an initialized database
     minimal_show.location = "Cinema Ostertor"
@@ -10,7 +48,7 @@ def test_location_name_returns_correct_format(database_empty, minimal_show):
     session = DbSession.factory()
     session.add(minimal_show)
     session.commit()
-    # THEN minimal_show.time should return the right format
+    # THEN minimal_show.location_name_url should return the right format
     assert minimal_show.location_name_url == "cinemaostertor"
 
 

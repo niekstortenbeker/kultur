@@ -22,6 +22,31 @@ def default_day(context) -> str:
     )
 
 
+def default_description_start(context) -> str:
+    """slice description shorter, try to do so at a logical point in the sentence"""
+    desc = context.get_current_parameters()["description"]
+    if not desc:
+        return desc
+    if len(desc) < 300:
+        return desc
+
+    desc = desc[0:300]
+
+    last_dot = desc.rfind(".")
+    if last_dot > 150:
+        return desc[0 : last_dot + 1]
+
+    last_semi_colon = desc.rfind(";")
+    if last_semi_colon > 150:
+        return desc[0 : last_semi_colon + 1]
+
+    last_comma = desc.rfind(",")
+    if last_comma > 150:
+        return desc[0 : last_comma + 1]
+
+    return desc[0:250] + " ..."
+
+
 def default_location_name_url(context) -> str:
     return context.get_current_parameters()["location"].replace(" ", "").lower()
 
@@ -38,6 +63,9 @@ class Show(SqlAlchemyBase):
 
     title = sa.Column(sa.String, index=True)
     description = sa.Column(sa.String, nullable=True)
+    description_start = sa.Column(
+        sa.String, default=default_description_start, nullable=True
+    )
     url_info = sa.Column(sa.String, nullable=True)
     url_tickets = sa.Column(sa.String, nullable=True)
 
