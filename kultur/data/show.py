@@ -1,54 +1,15 @@
 import arrow
 import sqlalchemy as sa
 from kultur.data.modelbase import SqlAlchemyBase
+from kultur.data.show_defaults import (
+    default_day,
+    default_description_end,
+    default_description_start,
+    default_location_name_url,
+    default_time,
+)
 from sqlalchemy.orm import validates
 from sqlalchemy_utils import ArrowType
-
-
-def default_time(context) -> str:
-    return (
-        context.get_current_parameters()["date_time"]
-        .to("Europe/Berlin")
-        .format("HH:mm")
-    )
-
-
-def default_day(context) -> str:
-    return (
-        context.get_current_parameters()["date_time"]
-        .to("Europe/Berlin")
-        .format("ddd D.M.", locale="de")
-        .upper()
-    )
-
-
-def default_description_start(context) -> str:
-    """slice description shorter, try to do so at a logical point in the sentence"""
-    desc = context.get_current_parameters()["description"]
-    if not desc:
-        return desc
-    if len(desc) < 300:
-        return desc
-
-    desc = desc[0:300]
-
-    last_dot = desc.rfind(".")
-    if last_dot > 150:
-        return desc[0 : last_dot + 1]
-
-    last_semi_colon = desc.rfind(";")
-    if last_semi_colon > 150:
-        return desc[0 : last_semi_colon + 1]
-
-    last_comma = desc.rfind(",")
-    if last_comma > 150:
-        return desc[0 : last_comma + 1]
-
-    return desc[0:250] + " ..."
-
-
-def default_location_name_url(context) -> str:
-    return context.get_current_parameters()["location"].replace(" ", "").lower()
 
 
 class Show(SqlAlchemyBase):
@@ -65,6 +26,9 @@ class Show(SqlAlchemyBase):
     description = sa.Column(sa.String, nullable=True)
     description_start = sa.Column(
         sa.String, default=default_description_start, nullable=True
+    )
+    description_end = sa.Column(
+        sa.String, default=default_description_end, nullable=True
     )
     url_info = sa.Column(sa.String, nullable=True)
     url_tickets = sa.Column(sa.String, nullable=True)
@@ -88,7 +52,7 @@ class Show(SqlAlchemyBase):
         if value:
             return value.strip().replace("\n", "")
         else:
-            return ""
+            return None
 
     def __repr__(self):
         return f"Show({self.location}, {self.title})"
