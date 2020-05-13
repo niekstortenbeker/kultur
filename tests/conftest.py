@@ -57,12 +57,11 @@ def database_full(database_full_dir):
 @pytest.fixture(scope="session")
 def database_full_dir(tmpdir_factory):
     """add many records, so only do once per session, return directory"""
-    tmpdir = tmpdir_factory.mktemp("temp")
+    tmpdir = tmpdir_factory.mktemp("temp_full")
     database_dir = str(tmpdir.join("kultur.sqlite"))
     DbSession.global_init(database_dir)
     session = DbSession.factory()
-    program = complete_program(fake_data.program)
-    session.add_all(program)
+    session.add_all(complete_program(fake_data.program))
     session.commit()
     DbSession.close()
     return database_dir
@@ -91,3 +90,8 @@ def minimal_show():
         location="theater",
         category="music",
     )
+
+
+if __name__ == "__main__":
+    print(complete_program(fake_data.program))
+    print(len(complete_program(fake_data.program)))

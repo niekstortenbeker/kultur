@@ -66,3 +66,13 @@ def test_query_all_filled_database(database_light):
     session.commit()
     # THEN more than 10 items should be retrieved
     assert result > 10
+
+
+def test_query_all_filled_database_2(database_full):
+    # GIVEN an initialized and filled database
+    # WHEN everything is queried
+    session = DbSession.factory()
+    result = session.query(Show).count()
+    session.commit()
+    # THEN more than 10 items should be retrieved
+    assert result > 10

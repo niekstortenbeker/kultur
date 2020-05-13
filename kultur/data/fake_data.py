@@ -139,7 +139,7 @@ def show(location):
     )
 
 
-def program(location) -> List[Show]:
+def program(location: Union[str, TheaterBase]) -> List[Show]:
     """return can be used as a program from TheaterBase.program"""
     if isinstance(location, TheaterBase):
         location = location.name
@@ -149,7 +149,7 @@ def program(location) -> List[Show]:
     return [show(location) for _ in range(4 * 10)]
 
 
-def light_program(location) -> List[Show]:
+def light_program(location: Union[str, TheaterBase]) -> List[Show]:
     """returns a list which can be used as TheaterBase.program"""
     if isinstance(location, TheaterBase):
         location = location.name
