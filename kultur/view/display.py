@@ -44,12 +44,12 @@ def _print_day_separator(day: str):
 def _print_show(show: Show):
     """print information about one show on one line"""
     c1, c2, stop = _get_styles(show.location)
-
+    description = show.description_start if show.description_start else ""
     print(f"{Style.BRIGHT}{show.time}{stop} | ", end="")
     print(f"{c1}{show.location}{stop} | ", end="")
     print(f"{c2}{show.title}{stop} | ", end="")
     print(f"{show.url_info} |", end="")
-    print(f"{show.description[0:75]}\n", end="")
+    print(f"{description}\n", end="")
 
 
 def _get_styles(location: str):
