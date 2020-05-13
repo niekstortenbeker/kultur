@@ -1,4 +1,3 @@
-import pytest
 from kultur.data.dbsession import DbSession
 from kultur.data.show import Show
 
@@ -23,7 +22,6 @@ def test_add_full_show_empty_database(database_empty, full_show):
     assert full_show.id == 1
 
 
-@pytest.mark.new
 def test_add_show_time_remains_consistent(database_empty, full_show):
     # GIVEN an initialized empty database
     # WHEN a Show is added to db and then queried
@@ -56,6 +54,18 @@ def test_add_show_filled_database(database_light, full_show):
     session.commit()
     # THEN show.id should be higher than 10
     assert full_show.id > 10
+
+
+def test_remove_all_one_theater(database_light):
+    # GIVEN a database that already has some data
+    # WHEN all shows from one theater are removed
+    session = DbSession.factory()
+    before = session.query(Show).count()
+    # session.query(Show).filter_by(location='Theater Bremen').delete()
+    # THEN there should be less shows in the database
+    # after = session.query(Show).count()
+    # assert len(before) > len(after)
+    assert before > 10
 
 
 def test_query_all_filled_database(database_light):

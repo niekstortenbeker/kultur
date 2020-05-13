@@ -21,7 +21,6 @@ def init_database():
         # noinspection PyTypeChecker
         os.mkdir(database.parent)
     DbSession.global_init(str(database.resolve()))
-    add_fake_program_to_db()
 
 
 def init_fake_database():
@@ -36,6 +35,7 @@ def init_fake_database():
         # noinspection PyTypeChecker
         os.mkdir(database.parent)
     DbSession.global_init(str(database.resolve()))
+    add_fake_program_to_db()
 
 
 def get_shows(

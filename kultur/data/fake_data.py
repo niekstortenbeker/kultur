@@ -187,6 +187,7 @@ def complete_program(theater_program: Callable[[str], shows]) -> shows:
 def add_fake_program_to_db():
     """populate database with fake data"""
     session = DbSession.factory()
+    session.query(Show).delete()
     program_ = complete_program(program)
     session.add_all(program_)
     session.commit()
