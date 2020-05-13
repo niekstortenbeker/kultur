@@ -28,7 +28,7 @@ def test_print_week(database_full, capsys):
 def test_print_header(capsys):
     kultur.print_header()
     out, err = capsys.readouterr()
-    assert len(out) > 1000
+    assert len(out) > 250
 
 
 @pytest.mark.online

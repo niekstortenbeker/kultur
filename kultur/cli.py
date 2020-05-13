@@ -21,17 +21,12 @@ def main(new, display_today, fake_data):
     It filters out dubbed movies (because who likes those?), and then
     combines the programs to one sorted-by-date overview.
     """
-    data.init_database()
     if fake_data:
-        fake_data_to_database()
+        data.init_fake_database()
+        print("using fake data!")
     else:
-        run(new, display_today)
-
-
-def fake_data_to_database():
-    data.fake_data()
-    print("populated the database with fake data!")
-    print("run kultur -n to repopulate with real data")
+        data.init_database()
+    run(new, display_today)
 
 
 def run(new: bool, display_today: bool):

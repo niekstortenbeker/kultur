@@ -4,8 +4,7 @@ from typing import List
 
 from arrow import Arrow
 from kultur.data.dbsession import DbSession
-from kultur.data.fake_data import complete_program
-from kultur.data.fake_data import program as fake_program
+from kultur.data.fake_data import add_fake_program_to_db
 from kultur.data.show import Show
 from kultur.data.showsgetter import ShowsGetter
 
@@ -18,6 +17,21 @@ def init_database():
     The database only needs to be initialized once.
     """
     database = Path.home() / ".kultur" / "kultur.sqlite"
+    if not database.parent.exists():
+        # noinspection PyTypeChecker
+        os.mkdir(database.parent)
+    DbSession.global_init(str(database.resolve()))
+    add_fake_program_to_db()
+
+
+def init_fake_database():
+    """
+    Initialize a database and populate with fake data.
+
+    An initialized database is required for all the other functions.
+    The database only needs to be initialized once.
+    """
+    database = Path.home() / ".kultur" / "kultur_fake.sqlite"
     if not database.parent.exists():
         # noinspection PyTypeChecker
         os.mkdir(database.parent)
@@ -53,14 +67,6 @@ def get_shows(
     """
     shows = ShowsGetter(start, stop, category, dubbed, location)
     return shows.get()
-
-
-def fake_data():
-    """populate database with fake data"""
-    session = DbSession.factory()
-    program = complete_program(fake_program)
-    session.add_all(program)
-    session.commit()
 
 
 def get_location_names():
