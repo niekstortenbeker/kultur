@@ -2,7 +2,7 @@
 kultur - collect programs from a selection of theaters in Bremen
 """
 
-__version__ = "0.4.2"
+__version__ = "0.4.3"
 __author__ = "Niek Stortenbeker"
 
 from kultur.commands.data import (  # noqa

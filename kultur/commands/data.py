@@ -93,4 +93,5 @@ def get_location_names():
         "schwankhalle": "Schwankhalle",
         "glocke": "Glocke",
         "kukoon": "Kukoon",
+        "alle": "",
     }
