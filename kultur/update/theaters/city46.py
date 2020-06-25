@@ -1,13 +1,15 @@
+import re
+
 import arrow
 import bs4
 from kultur.data.show import Show
-from kultur.update.services import parsing, webdriver
+from kultur.update.services import webdriver
 from kultur.update.theaters.theaterbase import TheaterBase
 
 
 class City46(TheaterBase):
     def __init__(self):
-        url = "http://www.city46.de/programm/"
+        url = "https://www.city46.de/programm/"
         super().__init__("City 46", url, url_program=url)
 
     def _scrape_program(self):
@@ -25,8 +27,7 @@ class City46(TheaterBase):
         for url, year in zip(urls, years):
             html = webdriver.get_html(url)
             print(f"{self._html_msg}{url}")
-            table = self._get_program_table(html)
-            shows.extend(self._extract_show_list(table, str(year)))
+            shows.extend(self._extract_show_list(html, str(year)))
         self.program = shows
 
     def _get_urls(self):
@@ -58,80 +59,53 @@ class City46(TheaterBase):
         urls, years = [], []
         date = arrow.now("Europe/Berlin")
         year, month, day = date.year, date.month, date.day
-        urls.append(f"{self.url_program}{months[month]}-{year}.html")
+        urls.append(f"{self.url_program}{months[month]}-{year}")
         years.append(year)
         if day > 20:
             date = date.shift(months=+1)
             year, month = date.year, date.month
-            urls.append(f"{self.url_program}{months[month]}-{year}.html")
+            urls.append(f"{self.url_program}{months[month]}-{year}")
             years.append(year)
         return urls, years
 
-    def _get_program_table(self, html):
-        """the program table is made of several tables that should be combined"""
-
+    def _extract_show_list(self, html, year):
         soup = bs4.BeautifulSoup(html, "html.parser")
-        table = soup.find_all("table")
-        table.pop(0)  # first table is not part of program
-        return parsing.list_nested_tag(table, "tr")  # get table rows
-
-    def _extract_show_list(self, table, year):
-        """
-        Make a new show list from the source html
-
-        Parameters
-        ----------
-        table: list
-            list of html <tr> elements
-        year: str
-
-        Returns
-        -------
-        list
-            a show list that can be used as shows attribute of Program()
-        """
-
-        date = ""
+        days = soup.find_all("div", class_="termintabelle")
         show_list = []
-        for row in table:
-            columns = row.find_all("td")
-            if columns[
-                1
-            ].text:  # date is not repeated every time, sometimes empty cells
-                date = columns[1].text
-            try:
-                time = columns[2].text
+        for day in days:
+            date = day.find("div", class_="termin_header").text
+            date = re.search(r"\d\d?\.\d\d?\.", date)
+            if not date:
+                continue
+            date = date[0]
+
+            for s in day.find_all("div", class_="tercon_content"):
+                time = s.find(class_="tercon_time").text.strip()
+                if not time:
+                    continue
+                if not s.find("a"):
+                    continue
+
                 show = Show()
                 show.date_time = arrow.get(
                     year + date + time, "YYYYD.M.hh:mm", tzinfo="Europe/Berlin"
                 )
-                show.title = columns[3].a.text
-                show.location = (self.name,)
-                show.description = _get_info(columns)
+                show.title = s.find(class_="tercon_titel").text.strip()
+                show.location = self.name
+                show.description = s.find(class_="tercon_credits").text.strip()
+                if s.find(class_="guest"):  # if a director etc is there
+                    show.description = (
+                        show.description + " " + s.find(class_="guest").text
+                    )
                 show.category = "cinema"
-
-                link = columns[3].a
-            except (AttributeError, arrow.parser.ParserMatchError):
-                continue
-            if link.get("class")[0] == "internal-link":
-                show.url_info = "http://www.city46.de/" + link.get("href")
-            else:
-                show.url_info = link.get("href")
-            if columns[3].dfn:
-                show.language_version = columns[3].dfn.text
-            show_list.append(show)
+                show.url_info = "http://www.city46.de" + s.find("a").get("href")
+                # TODO: what to do when the performance is impro?
+                if s.find("a", class_="dpnglossary"):
+                    show.language_version = s.find("a", class_="dpnglossary").text
+                show_list.append(show)
         return show_list
 
 
-def _get_info(columns):
-    """info can be in the fourth column (where also the title is) or in the fifth column"""
-
-    if columns[3].br:
-        info = columns[3].br.next.strip()
-        if info.endswith(","):
-            info = info[:-1]
-    else:
-        info = ""
-    if columns[4].text:
-        info = info + ". " + columns[4].text
-    return info
+if __name__ == "__main__":
+    city = City46()
+    city._scrape_program()
