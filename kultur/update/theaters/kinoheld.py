@@ -67,6 +67,7 @@ class Kinoheld(TheaterBase):
                 continue
 
             show.language_version = _get_language_version(s, show.title)
+            show.dubbed = False if show.language_version else True
             show.url_tickets = "https://www.kinoheld.de/" + s.a.get("href")
             show.url_info = self.url
             show.location = self.name
