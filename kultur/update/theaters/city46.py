@@ -93,7 +93,8 @@ class City46(TheaterBase):
                 show.title = s.find(class_="tercon_titel").text.strip()
                 show.location = self.name
                 show.description = s.find(class_="tercon_credits").text.strip()
-                if s.find(class_="guest"):  # if a director etc is there
+                # if a director etc is there add that information to the description
+                if show.description and s.find(class_="guest"):
                     show.description = (
                         show.description + " " + s.find(class_="guest").text
                     )
@@ -109,3 +110,4 @@ class City46(TheaterBase):
 if __name__ == "__main__":
     city = City46()
     city._scrape_program()
+    print(city.program)
