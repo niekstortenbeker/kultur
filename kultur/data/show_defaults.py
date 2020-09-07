@@ -20,13 +20,17 @@ def default_day(context) -> str:
 
 def default_description_start(context) -> Union[str, None]:
     """slice description shorter, try to do so at a logical point in the sentence"""
-    desc: Union[str, None] = context.get_current_parameters()["description"]
-    if not desc:
-        return desc
-    if len(desc) < 300:
-        return desc
+    description = context.get_current_parameters()["description"]
+    return make_description_start(description)
 
-    desc = desc[0:300]
+
+def make_description_start(description: str) -> Union[str, None]:
+    if not description:
+        return description
+    if len(description) < 300:
+        return description
+
+    desc = description[0:300]
 
     last_dot = desc.rfind(".")
     if last_dot > 150:
@@ -45,14 +49,18 @@ def default_description_start(context) -> Union[str, None]:
 
 def default_description_end(context) -> Union[str, None]:
     """if description_start did not fit all the text, store remainder"""
-    desc = context.get_current_parameters()["description"]
-    desc_start = context.get_current_parameters()["description_start"]
-    if not desc:
+    description = context.get_current_parameters()["description"]
+    description_start = context.get_current_parameters()["description_start"]
+    return make_description_end(description, description_start)
+
+
+def make_description_end(description: str, description_start) -> Union[str, None]:
+    if not description:
         return None
-    elif len(desc) == len(desc_start):
+    elif len(description) == len(description_start):
         return None
     else:
-        return desc[len(desc_start) :]
+        return description[len(description_start) :]
 
 
 def default_location_name_url(context) -> str:

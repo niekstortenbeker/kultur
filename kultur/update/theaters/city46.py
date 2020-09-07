@@ -2,6 +2,8 @@ import re
 
 import arrow
 import bs4
+import kultur.update.services.metainfo as mi
+from kultur.data import show_defaults
 from kultur.data.show import Show
 from kultur.update.services import webdriver
 from kultur.update.theaters.theaterbase import TheaterBase
@@ -99,15 +101,108 @@ class City46(TheaterBase):
                         show.description + " " + s.find(class_="guest").text
                     )
                 show.category = "cinema"
-                show.url_info = "http://www.city46.de" + s.find("a").get("href")
+                show.url_info = "https://www.city46.de" + s.find("a").get("href")
                 # TODO: what to do when the performance is impro?
                 if s.find("a", class_="dpnglossary"):
                     show.language_version = s.find("a", class_="dpnglossary").text
                 show_list.append(show)
         return show_list
 
+    def _update_meta_info(self):
+        """
+        update self._meta_info by web scraping
+
+        For Cinema Ostertor I prefer to use the meta info provided by Cinema Ostertor,
+        not by Kinoheld.
+        """
+
+        print(f"\n updating meta info {self.name}")
+        try:
+            meta = self._extract_meta_info(self._get_meta_urls())
+            self._meta_info = meta
+        except Exception as e:
+            statement = f"Note! Meta info from {self.name} was not updated because of an error. {e}"
+            print(statement)
+
+    def _get_meta_urls(self):
+        urls = [program.url_info for program in self.program]
+        return set(urls)
+
+    def _extract_meta_info(self, movie_urls):
+        """
+        Update self._meta_info by web scraping
+
+        Parameters
+        ----------
+        movie_urls: iterable
+            Iterable containing urls to meta info as str
+
+        Returns
+        -------
+        dict
+            a dict that maps titles to MetaInfo()
+        """
+
+        meta_info_program = {}
+        for url in movie_urls:
+            meta_info_show = self._extract_meta_info_show(url)
+            if meta_info_show:
+                meta_info_program[meta_info_show.title] = meta_info_show
+        return meta_info_program
+
+    def _extract_meta_info_show(self, url: str) -> mi.MetaInfo:
+        try:
+            html = webdriver.get_html(url)
+            print(f"{self._html_msg}{url}")
+            html_section = url[url.rfind("#") + 1 :]
+            return _parse_meta_info_show(html, html_section)
+        except TypeError:
+            print(f"No meta info was extracted because of a TypeError (url: {url})")
+        except AttributeError:
+            print(
+                f"No meta info was extracted because of a AttributeError (url: {url})"
+            )
+        except Exception:
+            print(f"No meta info was extracted because of an exception (url: {url})")
+
+    def _adjust_show(self, show: Show, meta_info):
+        """
+        Use the information in metainfo to update all the shows in program
+        """
+        if not meta_info.description:
+            return show
+        show.description = show.description + " " + meta_info.description
+        show.description_start = show_defaults.make_description_start(show.description)
+        show.description_end = show_defaults.make_description_end(
+            show.description, show.description_start
+        )
+        return show
+
+
+def _parse_meta_info_show(html: str, html_section: str) -> mi.MetaInfo:
+    """
+    parse show meta info
+
+    Parameters
+    ----------
+    html: str
+        html source code containing one show meta info
+
+    Returns
+    -------
+    MetaInfo() or None
+    """
+    soup = bs4.BeautifulSoup(html, "html.parser")
+    section = soup.find("div", id=html_section)
+    description = section.find("div", class_="filmtext").text.strip()
+    title = section.find("div", class_="start-header").text.strip()
+    return mi.MetaInfo(description=description, title=title)
+
 
 if __name__ == "__main__":
     city = City46()
-    city._scrape_program()
+    city.update_program()
     print(city.program)
+    print(city.program[0].description)
+    print(city.program[0].description_start)
+    print(city.program[0].description_end)
