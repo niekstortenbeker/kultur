@@ -2,6 +2,7 @@ import re
 
 import bs4
 import kultur.update.services.metainfo as mi
+from kultur.data import show_defaults
 from kultur.update.services import dubbed, webdriver
 from kultur.update.theaters.kinoheld import Kinoheld
 
@@ -41,6 +42,10 @@ class CinemaOstertor(Kinoheld):
         """
         show.dubbed = dubbed.is_dubbed(show, meta_info)
         show.description = meta_info.description
+        show.description_start = show_defaults.make_description_start(show.description)
+        show.description_end = show_defaults.make_description_end(
+            show.description, show.description_start
+        )
         show.url_info = meta_info.url_info
         return show
 
