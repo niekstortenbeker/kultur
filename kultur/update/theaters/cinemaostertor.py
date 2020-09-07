@@ -21,7 +21,7 @@ class CinemaOstertor(Kinoheld):
 
     def _update_meta_info(self):
         """
-        update self.meta_info by web scraping
+        update self._meta_info by web scraping
 
         For Cinema Ostertor I prefer to use the meta info provided by Cinema Ostertor,
         not by Kinoheld.
@@ -30,7 +30,7 @@ class CinemaOstertor(Kinoheld):
         print(f"\n updating meta info {self.name}")
         try:
             meta = self._extract_meta_info(self._get_meta_urls())
-            self.meta_info = meta
+            self._meta_info = meta
         except Exception as e:
             statement = f"Note! Meta info from {self.name} was not updated because of an error. {e}"
             print(statement)
@@ -64,7 +64,7 @@ class CinemaOstertor(Kinoheld):
 
     def _extract_meta_info(self, movie_urls):
         """
-        Update self.meta_info by web scraping
+        Update self._meta_info by web scraping
 
         Parameters
         ----------
@@ -110,7 +110,6 @@ def _parse_meta_info_show(html) -> mi.MetaInfo:
     soup = bs4.BeautifulSoup(html, "html.parser")
     sections = soup.find_all("section")
     stats = sections[2]
-
     title = sections[1].text
     if not title:
         return None
@@ -128,14 +127,15 @@ def _parse_meta_info_show(html) -> mi.MetaInfo:
 def _parse_item_from_stats(stats: Tag, german_name: str) -> str:
     try:
         # noinspection PyUnresolvedReferences
-        return stats.find(text=re.compile(german_name)).next.text.strip()
+        item = stats.find(text=re.compile(german_name)).next
+        return str(item).strip()
     except AttributeError:
         return ""
 
 
 def _parse_duration(stats: Tag) -> str:
     try:
-        return _parse_item_from_stats(stats, "Dauer").replace("\xa0", " ")
+        return _parse_item_from_stats(stats, "Laufzeit").replace("\xa0", " ")
     except AttributeError:
         return ""
 
@@ -144,4 +144,5 @@ if __name__ == "__main__":
     cinema_ostertor = CinemaOstertor()
     cinema_ostertor.update_program(start_driver=True)
     print(cinema_ostertor.program)
-    print(cinema_ostertor.meta_info)
+    print(cinema_ostertor.program[0].description)
+    print(cinema_ostertor._meta_info)
