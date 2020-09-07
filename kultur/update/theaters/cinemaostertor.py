@@ -81,10 +81,10 @@ class CinemaOstertor(Kinoheld):
         for url in movie_urls:
             meta_info_show = self._extract_meta_info_show(url)
             if meta_info_show:
-                meta_info_program[meta_info_show["title"]] = meta_info_show
+                meta_info_program[meta_info_show.title] = meta_info_show
         return meta_info_program
 
-    def _extract_meta_info_show(self, url: str) -> dict:
+    def _extract_meta_info_show(self, url: str) -> mi.MetaInfo:
         html = webdriver.get_html_ajax(url, "elementor-text-editor.elementor-clearfix")
         print(f"{self._html_msg}{url}")
         try:
@@ -94,7 +94,7 @@ class CinemaOstertor(Kinoheld):
 
 
 # noinspection PyUnresolvedReferences,PyTypeChecker
-def _parse_meta_info_show(html):
+def _parse_meta_info_show(html) -> mi.MetaInfo:
     """
     parse show meta info
 
@@ -108,17 +108,20 @@ def _parse_meta_info_show(html):
     MetaInfo() or None
     """
     soup = bs4.BeautifulSoup(html, "html.parser")
-    stats = soup.find("div", class_="elementor-element-bf542d7")
+    sections = soup.find_all("section")
+    stats = sections[2]
 
-    title = _parse_item_from_stats(stats, "Titel")
+    title = sections[1].text
     if not title:
         return None
 
+    description = (
+        sections[3].find("div", id="movie-content-text").text.replace("\n", "")
+    )
     return mi.MetaInfo(
-        title=title,
-        title_original=_parse_item_from_stats(stats, "Originaler Titel"),
-        description=_parse_duration(stats) + " " + soup.find(role="document").text,
-        country=_parse_item_from_stats(stats, "Produktion"),
+        title=title.strip().replace("\n", ""),
+        description=_parse_duration(stats) + " " + description,
+        country=_parse_item_from_stats(stats, "Land"),
     )
 
 
@@ -135,3 +138,10 @@ def _parse_duration(stats: Tag) -> str:
         return _parse_item_from_stats(stats, "Dauer").replace("\xa0", " ")
     except AttributeError:
         return ""
+
+
+if __name__ == "__main__":
+    cinema_ostertor = CinemaOstertor()
+    cinema_ostertor.update_program(start_driver=True)
+    print(cinema_ostertor.program)
+    print(cinema_ostertor.meta_info)
