@@ -110,12 +110,12 @@ class TheaterBase:
         for idx, show in enumerate(self.program):
             meta_info = self._meta_info.get(show.title, None)
             if not meta_info:
-                not_updated.add(show)
+                not_updated.add(show.title)
                 continue
             self.program[idx] = self._adjust_show(show, meta_info)
 
-        for show in not_updated:
-            print(f"{show.title} was not adjusted due to missing meta information")
+        for show_title in not_updated:
+            print(f"{show_title} was not adjusted due to missing meta information")
 
     def _adjust_show(self, show, meta_info):
         """
