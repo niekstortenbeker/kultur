@@ -14,14 +14,14 @@ all_theaters = [
     City46(),
     TheaterBremen(),
     Schwankhalle(),
-    # Glocke(),
+    Glocke(),
     Kukoon(),
 ]
 
 # used for testing
 all_theaters_not_initialized = [
     Schauburg,
-    # Gondel,
+    Gondel,
     Atlantis,
     CinemaOstertor,
     City46,
