@@ -1,5 +1,4 @@
 import re
-from typing import Union
 
 import arrow
 import bs4
@@ -76,7 +75,7 @@ class Glocke(TheaterBase):
             except AttributeError:
                 continue
 
-            show.description = _get_location_details(s)
+            show.description = _get_description(s)
             show.title = _get_title(s)
             show.url_info = f"{self.url}/{s.a.get('href')}"
             show.location = self.name
@@ -118,8 +117,17 @@ def _get_date_time(show: Tag) -> Arrow:
     return parsing.parse_date_without_year(month, day, hour, minute)
 
 
-def _get_location_details(show: Tag) -> Union[str, None]:
+def _get_description(show: Tag) -> str:
+    """description is made of location details and optional hinweise"""
     time_location = show.find("span", style=re.compile(r"color"))
-    if time_location:
-        # noinspection PyUnresolvedReferences
-        return time_location.text.strip()[10:]
+    time_location = time_location.text.strip()[10:] if time_location else ""
+    note = show.find("div", class_="va_hinweis")
+    note = note.text.strip() if note else ""
+    return note + " " + time_location
+
+
+if __name__ == "__main__":
+    glocke = Glocke()
+    glocke.update_program()
+    for show in glocke.program:
+        print(show)
