@@ -84,7 +84,6 @@ class Filmkunst(Kinoheld):
         show.description_end = show_defaults.make_description_end(
             show.description, show.description_start
         )
-        show.url_info = meta_info.url_info
         return show
 
 
@@ -128,6 +127,8 @@ if __name__ == "__main__":
     print(schauburg.program)
     print(schauburg._meta_info)
     print(schauburg.program[0])
+    for show in schauburg.program:
+        print(f"{show.title}: {show.url_info}")
 
 # IN CASE THEY START USING KINOHELD AGAIN
 #     def _update_meta_info(self):
