@@ -2,7 +2,6 @@ import random
 from typing import Callable, List, Union
 
 import arrow
-from kultur.data.dbsession import DbSession
 from kultur.data.show import Show
 from kultur.update.services.metainfo import MetaInfo
 from kultur.update.theaters.all import all_theaters
@@ -182,12 +181,3 @@ def complete_program(theater_program: Callable[[str], shows]) -> shows:
     for theater in theaters:
         c_program.extend(theater_program(theater.name))
     return c_program
-
-
-def add_fake_program_to_db():
-    """populate database with fake data"""
-    session = DbSession.factory()
-    session.query(Show).delete()
-    program_ = complete_program(program)
-    session.add_all(program_)
-    session.commit()

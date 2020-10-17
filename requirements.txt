@@ -7,3 +7,4 @@ click
 colorama
 selenium
 sqlalchemy_utils
+psycopg2

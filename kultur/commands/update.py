@@ -11,3 +11,7 @@ def update_program():
     """
     updated_theaters = data.update_program_all_theaters()
     data.replace_records(updated_theaters)
+
+
+if __name__ == "__main__":
+    update_program()

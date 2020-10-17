@@ -1,10 +1,9 @@
 import os
-from pathlib import Path
 from typing import List
 
 from arrow import Arrow
+from kultur.data import fake_data
 from kultur.data.dbsession import DbSession
-from kultur.data.fake_data import add_fake_program_to_db
 from kultur.data.show import Show
 from kultur.data.showsgetter import ShowsGetter
 
@@ -16,11 +15,10 @@ def init_database():
     An initialized database is required for all the other functions.
     The database only needs to be initialized once.
     """
-    database = Path.home() / ".kultur" / "kultur.sqlite"
-    if not database.parent.exists():
-        # noinspection PyTypeChecker
-        os.mkdir(database.parent)
-    DbSession.global_init(str(database.resolve()))
+    user = os.environ["kultur_database_user"]
+    password = os.environ["kultur_database_password"]
+    db = os.environ["kultur_database_name"]
+    DbSession.global_init(user, password, db)
 
 
 def init_fake_database():
@@ -30,12 +28,7 @@ def init_fake_database():
     An initialized database is required for all the other functions.
     The database only needs to be initialized once.
     """
-    database = Path.home() / ".kultur" / "kultur_fake.sqlite"
-    if not database.parent.exists():
-        # noinspection PyTypeChecker
-        os.mkdir(database.parent)
-    DbSession.global_init(str(database.resolve()))
-    add_fake_program_to_db()
+    DbSession.global_init_fake_data()
 
 
 def get_shows(
@@ -95,3 +88,14 @@ def get_location_names():
         "kukoon": "Kukoon",
         "alle": "",
     }
+
+
+if __name__ == "__main__":
+    init_database()
+    print(DbSession.factory)
+    session = DbSession.factory()
+    session.query(Show).delete()
+    program = fake_data.complete_program(fake_data.program)
+    session.add_all(program)
+    session.commit()
+    print(session.query(Show).all())
