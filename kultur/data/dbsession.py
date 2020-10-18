@@ -50,13 +50,23 @@ class DbSession:
             sys.exit()
 
     @staticmethod
-    def global_init_fake_data():
+    def global_init_sqlite_fake_data(db_directory: str = ""):
+        """
+        Use this initialization for fake data
+
+        A SQLite database connection is used.
+        No fake data is actually added to the database by this function.
+
+        db_directory: str, optional
+            a directory string to an existing database
+        """
         if DbSession.factory and DbSession.fake_data:
             return
 
         DbSession.fake_data = True
 
-        db_directory = Path(__file__).parent.absolute() / "kultur_fake.sqlite"
+        if not db_directory:
+            db_directory = Path(__file__).parent.absolute() / "kultur_fake.sqlite"
         conn_str = "sqlite:///" + str(db_directory)
         DbSession._set_engine_and_factory(conn_str)
 

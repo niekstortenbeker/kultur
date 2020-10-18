@@ -19,7 +19,7 @@ def database_empty_dir(tmpdir_factory):
     """initialize and close empty database, return directory"""
     tmpdir = tmpdir_factory.mktemp("temp")
     database_dir = str(tmpdir.join("kultur.sqlite"))
-    DbSession.global_init(database_dir)
+    DbSession.global_init_sqlite_fake_data(database_dir)
     DbSession.close()
     return database_dir
 
@@ -27,7 +27,7 @@ def database_empty_dir(tmpdir_factory):
 @pytest.fixture()
 def database_empty(database_empty_dir):
     """when a empty database that can be altered is required"""
-    DbSession.global_init(database_empty_dir)
+    DbSession.global_init_sqlite_fake_data(database_empty_dir)
     session = DbSession.factory()
     session.query(Show).delete()
     session.commit()
@@ -47,7 +47,7 @@ def database_light(database_empty):
 
 @pytest.fixture()
 def database_full(database_full_dir):
-    DbSession.global_init(database_full_dir)
+    DbSession.global_init_sqlite_fake_data(database_full_dir)
 
     yield
 
@@ -59,7 +59,7 @@ def database_full_dir(tmpdir_factory):
     """add many records, so only do once per session, return directory"""
     tmpdir = tmpdir_factory.mktemp("temp_full")
     database_dir = str(tmpdir.join("kultur.sqlite"))
-    DbSession.global_init(database_dir)
+    DbSession.global_init_sqlite_fake_data(database_dir)
     session = DbSession.factory()
     session.add_all(complete_program(fake_data.program))
     session.commit()
@@ -90,8 +90,3 @@ def minimal_show():
         location="theater",
         category="music",
     )
-
-
-if __name__ == "__main__":
-    print(complete_program(fake_data.program))
-    print(len(complete_program(fake_data.program)))

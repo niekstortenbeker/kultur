@@ -37,7 +37,7 @@ def init_fake_database():
     An initialized database is required for all the other functions.
     The database only needs to be initialized once.
     """
-    DbSession.global_init_fake_data()
+    DbSession.global_init_sqlite_fake_data()
     _add_fake_program_to_db()
 
 
