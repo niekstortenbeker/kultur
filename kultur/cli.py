@@ -52,3 +52,8 @@ def print_program(display_today: bool):
         view.print_today()
     else:
         view.print_week()
+
+
+if __name__ == "__main__":
+    data.init_database()
+    run(False, False)

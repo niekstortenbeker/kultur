@@ -1,4 +1,5 @@
 import os
+import sys
 from typing import List
 
 from arrow import Arrow
@@ -15,9 +16,17 @@ def init_database():
     An initialized database is required for all the other functions.
     The database only needs to be initialized once.
     """
-    user = os.environ["kultur_database_user"]
-    password = os.environ["kultur_database_password"]
-    db = os.environ["kultur_database_name"]
+    try:
+        user = os.environ["kultur_database_user"]
+        password = os.environ["kultur_database_password"]
+        db = os.environ["kultur_database_name"]
+    except KeyError as e:
+        print(f"! Cannot find {e} in the environment variables")
+        print(f"Make sure you add {e} as an environment variable,")
+        print("e.g. in your .bashrc/.zshrc/etc file")
+        print("in this way the postgreSQL connection can be set up")
+        sys.exit()
+
     DbSession.global_init(user, password, db)
 
 
@@ -29,6 +38,7 @@ def init_fake_database():
     The database only needs to be initialized once.
     """
     DbSession.global_init_fake_data()
+    _add_fake_program_to_db()
 
 
 def get_shows(
@@ -90,12 +100,10 @@ def get_location_names():
     }
 
 
-if __name__ == "__main__":
-    init_database()
-    print(DbSession.factory)
+def _add_fake_program_to_db():
+    """populate database with fake data"""
     session = DbSession.factory()
     session.query(Show).delete()
     program = fake_data.complete_program(fake_data.program)
     session.add_all(program)
     session.commit()
-    print(session.query(Show).all())
